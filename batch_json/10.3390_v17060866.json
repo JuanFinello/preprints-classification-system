@@ -1,0 +1,59 @@
+{
+  "source_pdf": "10.3390_v17060866.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    0,
+    3,
+    8,
+    7
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      10,
+      11,
+      12
+    ],
+    [
+      9,
+      10
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "review",
+    "score": 3,
+    "justification": "The review clearly articulates a purpose in assessing the trafficking and activation mechanisms of Henipavirus F proteins, supported by a structured synthesis of existing knowledge.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "the purpose of this review is to provide a comprehensive analysis of current knowledge regarding the distinctive trafficking and activation mechanisms of the F proteins of Henipaviruses"
+    },
+    "method_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "we discuss the unique characteristics of henipavirus F proteins compared to other paramyxovirus fusion proteins"
+    }
+  }
+}

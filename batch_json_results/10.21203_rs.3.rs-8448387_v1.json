@@ -1,0 +1,78 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8448387_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    3,
+    0,
+    5,
+    6
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      7,
+      8,
+      9
+    ],
+    [
+      9,
+      10,
+      11
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objectives are stated clearly, and the methodology is described; however, essential details on sample size and some methods lack clarity.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "the aim was to assess the prevalence of in uenza-like illness, health-seeking behaviour, vaccination uptake, preventive practices, and perceptions related to in uenza."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          4
+        ],
+        "quote": "The minimum required sample size was calculated using the single-proportion (prevalence) formula for cross-sectional surveys."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          4
+        ],
+        "quote": "A convenience sampling technique was employed, where participants who were readily accessible and willing to participate were included in the study."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          4
+        ],
+        "quote": "Data were downloaded as Microsoft Excel and analysed using IBM SPSS Statistics version 29."
+      }
+    ]
+  }
+}

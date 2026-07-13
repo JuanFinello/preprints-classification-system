@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v18010026.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    3,
+    1,
+    0,
+    7
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The research objective and methodology are both clearly articulated and well-supported by the evidence. The objective discusses the aim to characterize the burden and distribution of respiratory viruses, while the methods detail comprehensive surveillance procedures and analysis techniques.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "This study characterizes the burden, distribution, and molecular evolution of influenza, SARS-CoV-2, RSV, and other ORVs through integrated sentinel surveillance of hospitalized SARI cases."
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "Patients were enrolled based on the WHO criteria for SARI: acute respiratory illness with fever ≥ 38 ◦C, cough, and hospital admission."
+    }
+  }
+}

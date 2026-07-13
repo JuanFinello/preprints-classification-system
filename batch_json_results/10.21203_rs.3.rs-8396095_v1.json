@@ -1,0 +1,60 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8396095_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    0,
+    3,
+    4,
+    9,
+    11
+  ],
+  "retrieved_pages": [
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      11,
+      12
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The research objective is indicated, but the connection to the methodology is only partially supported. Methodology details are present, but not sufficiently comprehensive.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "Here we present GTcomplex, a novel algorithm that employs spatial indexing to perform holistic complex-level alignment."
+      },
+      {
+        "chunk_id": 3,
+        "pages": [
+          4
+        ],
+        "quote": "To rigorously evaluate GTcomplex across a range of biologically relevant scenarios, we constructed four structurally diverse benchmark datasets."
+      }
+    ]
+  }
+}

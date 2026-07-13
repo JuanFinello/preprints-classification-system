@@ -1,0 +1,63 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8394782_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    4,
+    0,
+    5,
+    3
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      8,
+      9,
+      10
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      10,
+      11,
+      12
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The objectives are clearly defined, focusing on the association between sociodemographic factors, diabetes mellitus, chronic low back pain, and sarcopenia. The methodology includes detailed sampling, data collection, and statistical analysis, allowing for study reproduction.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "this study aimed to examine the association between sociodemographic factors, diabetes mellitus, chronic low back pain, and sarcopenia"
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "Data were collected by trained investigators using structured questionnaires and standardized physical assessments."
+    }
+  }
+}

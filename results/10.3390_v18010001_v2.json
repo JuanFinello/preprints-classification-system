@@ -1,0 +1,77 @@
+{
+  "source_pdf": "10.3390_v18010001.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 5,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Jacques Fantini",
+      "all_authors": [
+        "Jacques Fantini"
+      ],
+      "affiliations": [
+        "Department of Biology, Faculty of Medicine, Aix-Marseille University, INSERM UA16, 13015 Marseille, France"
+      ],
+      "n_authors": 1,
+      "n_institutes": 1
+    },
+    "ror_results": [
+      {
+        "name": "",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with a credible university, but only one institution is involved and no verifiable expertise is found for the corresponding author.",
+      "institutions_assessed": [
+        "Aix-Marseille University, INSERM UA16"
+      ],
+      "n_institutes": 1,
+      "corresponding_author_papers": 0,
+      "flags": [
+        "no Semantic Scholar data found for corresponding author"
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "The research aims are stated, but there is a lack of precise connections between objectives and methods, and not all important methodological details are included.",
+      "quote": "These contributions underscore the imperative for integrated, interdisciplinary efforts in virology, emphasizing the rapid adaptation of vaccines and diagnostics amid evolving threats."
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "Results are presented, but some lack of clarity regarding their implications is evident. Conclusions mention findings but could benefit from clearer interpretation.",
+      "quote": "These findings reveal a novel antiviral action through the competitive inhibition of initial NTD–ganglioside interactions in raft microdomains."
+    },
+    "references": {
+      "score": 2,
+      "justification": "The references include relevant sources but miss comprehensive recent studies, estimated at around 17 based on provided citations.",
+      "quote": "Lefebvre, M.; Chahinian, H.; La Scola, B.; Fantini, J. Characterization and Fluctuations of an Ivermectin Binding Site at the Lipid Raft Interface of the N-Terminal Domain (NTD) of the Spike Protein of SARS-CoV-2 Variants."
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 2,
+      "references": 2
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-7974126_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    9,
+    26,
+    16
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      9,
+      10,
+      11,
+      12
+    ],
+    [
+      25,
+      26
+    ],
+    [
+      16,
+      17
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "review",
+    "score": 2,
+    "justification": "Score 3 downgraded to 2 because objective and method evidence were not both present.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        2
+      ],
+      "quote": "This review synthesizes the current knowledge on measuring human mobility diversity, critically assessing trends in spatial distributions, themes, and methodologies in the literature."
+    },
+    "method_evidence": null,
+    "warning": "Missing or invalid objective/method evidence."
+  }
+}

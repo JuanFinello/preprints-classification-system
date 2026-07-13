@@ -1,0 +1,82 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8379789_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    11,
+    3,
+    10,
+    0,
+    6,
+    9
+  ],
+  "retrieved_pages": [
+    [
+      5,
+      6
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      16,
+      17,
+      18
+    ],
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      15,
+      16,
+      17
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      10,
+      11,
+      12
+    ],
+    [
+      14,
+      15
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 8
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The objectives for the study are stated, including the aim to assemble the mitochondrial genome and conduct phylogenetic analysis. However, while the methodology mentions specific tools, it lacks detailed parameters essential for reproducibility.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          2
+        ],
+        "quote": "Using previously sequenced DNA from A. dirus, we de novo assembled the complete mitochondrial genome."
+      },
+      {
+        "chunk_id": 1,
+        "pages": [
+          5,
+          6
+        ],
+        "quote": "We used GetOrganelle 1.7.7 (Jin et al. 2020) to obtain the de novo mitochondrial genome sequences."
+      }
+    ]
+  }
+}

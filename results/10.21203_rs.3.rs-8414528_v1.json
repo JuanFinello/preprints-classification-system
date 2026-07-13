@@ -1,0 +1,104 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8414528_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 29,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Destanie Rose",
+      "all_authors": [
+        "Destanie Rose",
+        "Rachel Moreno",
+        "Hadley Osman",
+        "Megan Rowland",
+        "Jill Silverman",
+        "Annie Ciernia",
+        "Paul Ashwood"
+      ],
+      "affiliations": [
+        "University of California, Davis",
+        "University of British Columbia"
+      ],
+      "n_authors": 7,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "University of California, Davis",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of British Columbia",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Canada",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Destanie R. Rose",
+      "paper_count": 30,
+      "citation_count": 1641,
+      "h_index": 16,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible universities. The study involves 2 institutions, and there are 2 authors with verifiable expertise in the field.",
+      "institutions_assessed": [
+        "University of California, Davis",
+        "University of British Columbia"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 30,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives are clear, testable, and aligned with the study design, focusing on therapeutic approaches for autism spectrum disorder and linking it to public health concerns.",
+      "quote": "Using the maternal immune activation (MIA) model, we investigated whether adoptive transfer of wildtype Tregs into MIA offspring recipients could rescue immune activation, brain transcriptome changes and behaviors exhibited in adult MIA offspring.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are inconsistently reported and conclusions are overstated based on the data, as the effectiveness of treatments shows limited explanation of underlying data.",
+      "quote": "However, male offspring from MIA-Tregs group did not show any difference in self-grooming behavior compared to Saline-Saline controls.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The references include a mix of peer-reviewed sources and relevant studies, but there are no major or foundational studies that support the work extensively.",
+      "quote": "Maenner, M.J., et al., Prevalence and Characteristics of Autism Spectrum Disorder Among Children Aged 8 Years — Autism and Developmental Disabilities Monitoring Network, 11 Sites, United States, 2020.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

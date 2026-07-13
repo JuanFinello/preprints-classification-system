@@ -1,0 +1,62 @@
+{
+  "source_pdf": "10.3390_v17071003.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    7,
+    12,
+    8,
+    11,
+    13
+  ],
+  "retrieved_pages": [
+    [
+      8,
+      9
+    ],
+    [
+      12,
+      13,
+      14
+    ],
+    [
+      8,
+      9,
+      10
+    ],
+    [
+      11,
+      12,
+      13
+    ],
+    [
+      13,
+      14,
+      15
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "review",
+    "score": 2,
+    "justification": "The objective and methodology are present but lack strong connection and detail. The review effectively outlines different diagnostics but does not provide a clear analytical/synthesis approach.",
+    "objective_evidence": {
+      "chunk_id": 13,
+      "pages": [
+        14
+      ],
+      "quote": "This review highlighted the different diagnostic assays that have been developed for the detection of Henipaviruses and discussed the relative strengths and limitations of these assays."
+    },
+    "method_evidence": {
+      "chunk_id": 11,
+      "pages": [
+        12
+      ],
+      "quote": "A Luminex multiplex assay uses fluorescently labeled microspheres (beads) suspension arrays to detect multiple targets, meaning both multiplexing and the potential for the detection of antigens, antibodies, and nucleic acids."
+    }
+  }
+}

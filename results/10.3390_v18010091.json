@@ -1,0 +1,114 @@
+{
+  "source_pdf": "10.3390_v18010091.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 12,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Selvarani Vimalanathan",
+      "all_authors": [
+        "James Martins",
+        "Selvarani Vimalanathan",
+        "Jeremy Road",
+        "Chris Miller"
+      ],
+      "affiliations": [
+        "SaNOtize Research & Development Corp., Vancouver, BC V6P 6T3, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, BC V6T 2B5, Canada",
+        "Respiratory Medicine, University of British Columbia, Vancouver, BC V6T 1Z4, Canada"
+      ],
+      "n_authors": 4,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "AKL (United Kingdom)",
+        "type": [
+          "company",
+          "funder"
+        ],
+        "country": "United Kingdom",
+        "score": 0.89,
+        "chosen": false
+      },
+      {
+        "name": "University of British Columbia",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Canada",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of British Columbia",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Canada",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "S. Vimalanathan",
+      "paper_count": 32,
+      "citation_count": 1182,
+      "h_index": 15,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible research institutions, and the study involves two institutions. There are two authors with verifiable expertise in the field based on their work and citation metrics.",
+      "institutions_assessed": [
+        "SaNOtize Research & Development Corp.",
+        "University of British Columbia"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 32,
+      "flags": [
+        "commercial affiliation with SaNOtize Research & Development Corp."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, detailing the virucidal activity of NONS against multiple respiratory viruses, with a methodology that allows for replication of the study. The public health relevance is clear, as it addresses the need for antiviral strategies during outbreaks.",
+      "quote": "In this study, we evaluated the in vitro virucidal activity of the NONS against a panel of clinically relevant respiratory viruses representing four major virus families.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results are presented, but they lack supporting figures or tables regarding overall consistency, and conclusions appear overstated with inadequate grounding in the evidence provided.",
+      "quote": "It is important to note that NONS delivers exogenous nitric oxide through a controlled chemical reaction within a sprayed gel to the surface of the nasal mucosa rather than relying on endogenous nitric oxide synthase (NOS) pathways.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a mix of foundational and recent peer-reviewed studies, supporting the work, with more than 20 references cited.",
+      "quote": "Rimmelzwaan, G.F.; Baars, M.M.; de Lijster, P.; Fouchier, R.A.; Osterhaus, A.D. Inhibition of Influenza Virus Replication by Nitric Oxide.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

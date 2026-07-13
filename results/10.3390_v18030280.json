@@ -1,0 +1,119 @@
+{
+  "source_pdf": "10.3390_v18030280.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 14,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Isidora Prosic",
+      "all_authors": [
+        "Vladimir Gajdov",
+        "Jelena Konstantinov",
+        "Gospava Lazic",
+        "Isidora Prosic",
+        "Mihaela Kavran",
+        "Filip Bosilkov",
+        "Tamas Petrovic"
+      ],
+      "affiliations": [
+        "Scientific Veterinary Institute “Novi Sad”, 21000 Novi Sad, Serbia",
+        "Faculty of Veterinary Medicine, University of Belgrade, 11000 Belgrade, Serbia",
+        "Faculty of Agriculture, University of Novi Sad, 21000 Novi Sad, Serbia",
+        "Faculty of Computer Science & Engineering, St Cyril and Methodius University, 1000 Skopje, North Macedonia"
+      ],
+      "n_authors": 7,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Scientific Veterinary Institute \"Novi Sad\"",
+        "type": [
+          "facility"
+        ],
+        "country": "Serbia",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Belgrade",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Serbia",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Novi Sad",
+        "type": [
+          "education"
+        ],
+        "country": "Serbia",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Ss. Cyril and Methodius University in Skopje",
+        "type": [
+          "education"
+        ],
+        "country": "North Macedonia",
+        "score": 0.97,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible universities or research labs, but the leading author lacks verifiable expertise. The study involves collaboration between 4 institutions, but there are no more than 2 authors with clearly verifiable expertise in the relevant field.",
+      "institutions_assessed": [
+        "Scientific Veterinary Institute \"Novi Sad\"",
+        "University of Belgrade",
+        "University of Novi Sad",
+        "Ss. Cyril and Methodius University in Skopje"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 0,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and methodologies are explicitly defined and detailed throughout the paper, particularly in the introduction and methodology sections, demonstrating a clear link to public health relevance.",
+      "quote": "We developed and evaluated a machine-learning model to classify DENV serotypes (DENV-1–4) directly from nucleotide sequence data.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results section presents inconsistencies and lacks sufficient clarity in explaining how the findings support the conclusions drawn. Some results appear overstated.",
+      "quote": "The near-perfect classification performance observed under these constraints therefore cannot be explained by simple sequence redundancy.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a balanced mix of foundational, recent, and peer-reviewed studies, providing context to its findings and methodology.",
+      "quote": "Bhatt, S.; Gething, P.W.; Brady, O.J.; Messina, J.P.; Farlow, A.W.; Moyes, C.L.; Drake, J.M.; Brownstein, J.S.; Hoen, A.G.; Sankoh, O.; et al. The global distribution and burden of dengue.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

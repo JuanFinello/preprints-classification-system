@@ -1,0 +1,120 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8337580_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 53,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Yingfei Ma",
+      "all_authors": [
+        "Heng Zhu",
+        "Shengkun Dai",
+        "Hewei Deng",
+        "Shifeng Hou",
+        "Yuelong Li",
+        "Xin Tan",
+        "Ning Jia",
+        "Nan Li",
+        "Yingfei Ma"
+      ],
+      "affiliations": [
+        "National Key Laboratory of Quantitative Synthetic Biology, Shenzhen Institute of Synthetic Biology, Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, Shenzhen, 518055, China",
+        "University of Chinese Academy of Sciences, Beijing, China",
+        "Department of Biochemistry, School of Medicine, Southern University of Science and Technology, Shenzhen 518055, China"
+      ],
+      "n_authors": 9,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "Chinese Academy of Sciences",
+        "type": [
+          "funder",
+          "government"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Chinese Academy of Sciences",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Southern University of Science and Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Ying Ma",
+      "paper_count": 7,
+      "citation_count": 72,
+      "h_index": 6,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions that have relevant expertise. The study involves 3 distinct institutions, and there are 2 authors with some verifiable expertise, although the corresponding author has a low publication count and a weak match signal.",
+      "institutions_assessed": [
+        "Chinese Academy of Sciences",
+        "University of Chinese Academy of Sciences",
+        "Southern University of Science and Technology"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 7,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are clearly stated, with detailed methodology presented that allows for replication. The study addresses a pressing public health concern related to CRISPR and phage interactions.",
+      "quote": "This phage replication-associated system comprises two proteins: Gp63 (a DUF669 domain-containing protein), and Gp64 (a AAA domain).",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results are poorly substantiated, lacking definitive support from figures or clear alignment with the provided methods. Conclusions drawn seem overstated and not fully backed by the presented data.",
+      "quote": "However, Gp63(s) did not inhibit Cas3 cleavage activity in the in vitro assay.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a balanced selection of relevant references, but its impact is diminished by the absence of some recent foundational studies in the field.",
+      "quote": "Wang, Y. R., Fan, H. H. & Tong, Y. G. Unveil the Secret of the Bacteria and Phage Arms Race.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

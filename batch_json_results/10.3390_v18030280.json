@@ -1,0 +1,66 @@
+{
+  "source_pdf": "10.3390_v18030280.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    3,
+    4,
+    5,
+    1,
+    2
+  ],
+  "retrieved_pages": [
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      6,
+      7
+    ],
+    [
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      3,
+      4
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The paper presents a clear research objective to develop a machine-learning model for classifying DENV serotypes, along with a detailed methodology that includes data acquisition, preprocessing, and model evaluation.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          2,
+          3
+        ],
+        "quote": "We developed and evaluated a machine-learning model to classify DENV serotypes (DENV-1–4) directly from nucleotide sequence data."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          3,
+          4
+        ],
+        "quote": "Cluster-aware train/test splits were constructed to ensure strict lineage independence."
+      }
+    ]
+  }
+}

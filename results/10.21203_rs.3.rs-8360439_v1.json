@@ -1,0 +1,146 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8360439_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 11,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Zhiyan Ding",
+      "all_authors": [
+        "Zhiyan Ding",
+        "Yongtao Zhan",
+        "John Preskill",
+        "Lin Lin"
+      ],
+      "affiliations": [
+        "Department of Mathematics, University of Michigan, Ann Arbor",
+        "Institute for Quantum Information and Matter, California Institute of Technology",
+        "Division of Physics, Mathematics, and Astronomy, California Institute of Technology",
+        "AWS Center for Quantum Computing",
+        "Department of Mathematics, University of California, Berkeley",
+        "Applied Mathematics and Computational Research Division, Lawrence Berkeley National Laboratory"
+      ],
+      "n_authors": 4,
+      "n_institutes": 5
+    },
+    "ror_results": [
+      {
+        "name": "University of Michigan",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "California Institute of Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "California Institute of Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Paris Centre for Quantum Technologies",
+        "type": [
+          "other"
+        ],
+        "country": "France",
+        "score": 0.97,
+        "chosen": true
+      },
+      {
+        "name": "University of California, Berkeley",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Lawrence Berkeley National Laboratory",
+        "type": [
+          "facility",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Ding Zhi-yan",
+      "paper_count": 5,
+      "citation_count": 1,
+      "h_index": 1,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible institutions, including prestigious universities and research laboratories. The corresponding author is from a well-established institution, and there are more than 3 distinct institutions involved in the study, with several authors having relevant expertise.",
+      "institutions_assessed": [
+        "University of Michigan",
+        "California Institute of Technology",
+        "University of California, Berkeley",
+        "Lawrence Berkeley National Laboratory"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 5,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and methodology of the study are clearly defined, detailing the proposed quantum algorithms and their applicability to early fault-tolerant quantum devices, aligning with public health concerns in quantum computing.",
+      "quote": "We propose new quantum algorithms for thermal and ground state preparation based on system-bath interactions.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results do not include supporting figures or clear interpretations, and conclusions drawn are not sufficiently grounded in the presented evidence.",
+      "quote": "A main drawback of dissipative algorithms for thermal and ground state preparation lies in the complexity of their implementation.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a selection of both foundational and recent studies related to the methodology but does not excessively cover major prior works, falling short of comprehensiveness.",
+      "quote": "Jules Tilly, Hongxiang Chen, Shuxiang Cao, Dario Picozzi, Kanav Setia, Ying Li, Edward Grant, Leonard Wossnig, Ivan Rungger, George H. Booth, The variational quantum eigensolver: A review of methods and best practices.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "source_pdf": "10.64898_2025.12.01.691525.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 38,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Tabitha Wanjiru",
+      "all_authors": [
+        "Tabitha Wanjiru",
+        "Solomon Langat",
+        "Hellen Koka",
+        "Santos Yalwala",
+        "Gladys Kerich",
+        "Janet Ambale",
+        "Jaree Johnson",
+        "Eric Garges",
+        "Robert Haynes",
+        "Gerald Kellar",
+        "John Eads",
+        "Fredrick Eyase"
+      ],
+      "affiliations": [
+        "Department of Emerging Infectious Diseases, Walter Reed Army Institute of Research-Africa, Nairobi, Kenya",
+        "Centre for Virus Research, Kenya Medical Research Institute, Nairobi, Kenya",
+        "Department of Biochemistry, Jomo Kenyatta University of Agriculture and Technology (JKUAT), Nairobi, Kenya"
+      ],
+      "n_authors": 12,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "Walter Reed Army Institute of Research",
+        "type": [
+          "funder",
+          "government"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": false
+      },
+      {
+        "name": "Kenya Medical Research Institute",
+        "type": [
+          "facility",
+          "funder"
+        ],
+        "country": "Kenya",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Jomo Kenyatta University of Agriculture and Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Kenya",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Tabitha Wanjiru",
+      "paper_count": 9,
+      "citation_count": 94,
+      "h_index": 3,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions in Kenya, and at least two authors have verifiable expertise. However, the involvement of the Walter Reed Army Institute of Research (a US military research organization) may raise concerns about collaboration relevance. The overall count of recognized institutions is 3.",
+      "institutions_assessed": [
+        "Walter Reed Army Institute of Research",
+        "Kenya Medical Research Institute",
+        "Jomo Kenyatta University of Agriculture and Technology"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 9,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "The study's objective is clear: to investigate mosquito populations for WNV and to provide evidence of transovarial transmission. The methodology is detailed, allowing for replication.",
+      "quote": "This study investigated mosquito populations from coastal Kenya, where WNV was detected, genetically characterized, and evidence of transovarial transmission in Aedes aegypti was observed.",
+      "quote_valid": false,
+      "score_note": "downgraded 3→2: supporting quote not found verbatim in text"
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are inconsistently presented and descriptions do not align with methodological expectations. There's a lack of clarity regarding the implications of findings.",
+      "quote": "Sequencing of the CPE-positive pools revealed West Nile Virus (WNV) in all ten isolates, with eight complete genomes and two partial genomes recovered.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a balanced mix of foundational, recent, and relevant peer-reviewed studies, reflecting a well-rounded literature support.",
+      "quote": "Asebe G, Mamo G, Michlmayr D, Abegaz WE, Endale A, Medhin G, et al.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion"
+    ]
+  }
+}

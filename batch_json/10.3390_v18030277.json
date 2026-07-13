@@ -1,0 +1,56 @@
+{
+  "source_pdf": "10.3390_v18030277.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    3,
+    2,
+    6,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      9,
+      10,
+      11
+    ],
+    [
+      6,
+      7,
+      8,
+      9
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "Score 3 downgraded to 2 because objective and method evidence were not both present.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        3
+      ],
+      "quote": "The present study describes two phenotypically distinct variants of SARS-CoV-2, differing by a mutation in the region of the genome encoding the NTD of the spike protein."
+    },
+    "method_evidence": null,
+    "warning": "Missing or invalid objective/method evidence."
+  }
+}

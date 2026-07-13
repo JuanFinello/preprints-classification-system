@@ -1,0 +1,87 @@
+{
+  "source_pdf": "10.3390_v18030382.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    13,
+    4,
+    3,
+    8,
+    6,
+    12
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      16,
+      17
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      9,
+      10,
+      11
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      15,
+      16
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 8
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The research objective is clear and aligns with the methods employed. The methodology is detailed, covering the study design, data generation methods, and statistical analysis.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          2,
+          3
+        ],
+        "quote": "This study was conducted to systematically compare the susceptibility of cotton rats and BALB/c mice to RSV infection in the respiratory system and CNS, and to examine the associated pathological changes."
+      },
+      {
+        "chunk_id": 6,
+        "pages": [
+          9,
+          10,
+          11
+        ],
+        "quote": "The experimental unit was defined as a single animal. For both BALB/c mice and cotton rats, 6 animals per group (RSV-infected/PBS control)."
+      },
+      {
+        "chunk_id": 4,
+        "pages": [
+          5,
+          6
+        ],
+        "quote": "qRT–PCR was performed on a CFX96 Touch™ Real–Time PCR Detection System (Bio-Rad Laboratories, Hercules, CA, USA) using the HiScript II One Step qRT–PCR Probe Kit."
+      }
+    ]
+  }
+}

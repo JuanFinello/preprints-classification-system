@@ -1,0 +1,66 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8429398_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "retrieved_pages": [
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      8,
+      9,
+      10
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objectives are stated, particularly the aim to describe a novel clinical presentation of LGMDR29. The methodology is described, but some important details, such as sample size and controls, are missing.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "This report aims to describe this novel clinical presentation."
+      },
+      {
+        "chunk_id": 1,
+        "pages": [
+          3
+        ],
+        "quote": "whole-exome sequencing (WES) testing was recommended."
+      }
+    ]
+  }
+}

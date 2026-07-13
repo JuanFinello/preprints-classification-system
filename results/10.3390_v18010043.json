@@ -1,0 +1,124 @@
+{
+  "source_pdf": "10.3390_v18010043.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 8,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "David E. Martin",
+      "all_authors": [
+        "Kendra Alfson",
+        "Ricardo Carrion, Jr.",
+        "Ralph A. Tripp",
+        "Chris Cirimotich",
+        "David E. Martin"
+      ],
+      "affiliations": [
+        "Texas Biomedical Research Institute, San Antonio, TX 78227, USA",
+        "Department of Infectious Diseases, University of Georgia, Athens, GA 30602, USA",
+        "Battelle Biomedical Research Center, West Jefferson, OH 43162, USA",
+        "TrippBio, Inc., Jacksonville, FL 32256, USA"
+      ],
+      "n_authors": 5,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Biomedical Research Institute",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Georgia",
+        "type": [
+          "education"
+        ],
+        "country": "Georgia",
+        "score": 1.0,
+        "chosen": false
+      },
+      {
+        "name": "Biomedical Research Center of the Slovak Academy of Sciences",
+        "type": [
+          "facility"
+        ],
+        "country": "Slovakia",
+        "score": 0.9,
+        "chosen": false
+      },
+      {
+        "name": "Nio (China)",
+        "type": [
+          "company"
+        ],
+        "country": "China",
+        "score": 0.86,
+        "chosen": false
+      }
+    ],
+    "semantic_scholar": {
+      "name": "David E Martin",
+      "paper_count": 19,
+      "citation_count": 146,
+      "h_index": 8,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible research institutions, but one author is from a commercial entity (TrippBio, Inc.). Relevant expertise is present among the authors.",
+      "institutions_assessed": [
+        "Texas Biomedical Research Institute",
+        "University of Georgia",
+        "Battelle Biomedical Research Center",
+        "TrippBio, Inc."
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 19,
+      "flags": [
+        "commercial affiliation (TrippBio, Inc.)"
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "Objectives and hypotheses are explicit, detailed methodologies suggest replicability, and the study addresses urgent public health needs related to filovirus infections.",
+      "quote": "We evaluated whether probenecid inhibits the replication of EBOV, SUDV, and MARV in Vero E6 cells.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "While the findings are promising and align with the hypotheses, there are some reporting inconsistencies. Conclusions lack clarity in discussing the implications of results.",
+      "quote": "Future experiments in an appropriate animal model would be necessary to determine whether the efficacy observed in Vero E6 cells translates to in vivo efficacy.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "A balanced mix of foundational and recent peer-reviewed studies are cited, effectively providing context and support for the study's methodologies and findings.",
+      "quote": "Jacob, S.T.; Crozier, I.; Fischer, W.A., 2nd; Hewlett, A.; Kraft, C.S.; Vega, M.A.; Soka, M.J.; Wahl, V.; Griffiths, A.; Bollinger, L.; et al. Ebola virus disease.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept",
+    "quotes_invalid": []
+  }
+}

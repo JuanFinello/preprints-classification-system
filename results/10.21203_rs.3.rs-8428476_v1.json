@@ -1,0 +1,103 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8428476_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 40,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Julia Zeitlinger",
+      "all_authors": [
+        "Sergio García-Moreno Alcántara",
+        "Simon Bourdareau",
+        "Melanie Weilert",
+        "Julia Zeitlinger"
+      ],
+      "affiliations": [
+        "Stowers Institute for Medical Research, Kansas City, MO, USA",
+        "Department of Pathology & Laboratory Medicine, The University of Kansas Medical Center, Kansas City, KS, USA"
+      ],
+      "n_authors": 4,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "Stowers Institute for Medical Research",
+        "type": [
+          "funder",
+          "nonprofit"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Kansas Medical Center",
+        "type": [
+          "funder",
+          "healthcare"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "J. Zeitlinger",
+      "paper_count": 87,
+      "citation_count": 17911,
+      "h_index": 44,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are associated with credible research institutions, but there are only 2 institutions involved and some uncertainty regarding the expertise of individual authors.",
+      "institutions_assessed": [
+        "Stowers Institute for Medical Research",
+        "University of Kansas Medical Center"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 87,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit and aligned with the detailed ChIP-nexus methodology. The study addresses the differentiation of TFIID function across various promoter types, providing public health relevance in understanding gene regulation.",
+      "quote": "To investigate TFIID function in vivo, we performed high-resolution ChIP-nexus experiments to map the occupancy of all 14 TFIID subunits across the Drosophila genome.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results lack clarity and there are significant inconsistencies, such as the conclusion suggesting increased transcriptional bursts not fully supported by the data presented.",
+      "quote": "TAF-independent initiation produces sharper footprints because TBP is more precisely positioned at the TATA box.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a balanced mix of foundational and recent peer-reviewed studies, but the number is just at the threshold, and some references may not be as impactful or critical as others.",
+      "quote": "Bhuiyan, T. & Timmers, H. T. M. Promoter recognition: putting TFIID on the spot. Trends Cell Biol. 29, 752–763 (2019).",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

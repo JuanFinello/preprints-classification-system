@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v18030349.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    3,
+    1,
+    5,
+    4
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The study clearly states its objective to evaluate escape mutations of the C12H5 antibody in H1N1 strains and provides detailed methodologies for data collection and analysis.",
+    "evidence": [
+      {
+        "chunk_id": 4,
+        "pages": [
+          4,
+          5
+        ],
+        "quote": "Through reverse genetics, hemagglutination inhibition assays, microneutralization assays, viral growth kinetics analysis, and deep learning model predictions, we reveal that the K147N point mutation is the core mechanism mediating C12H5 escape."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          3,
+          4
+        ],
+        "quote": "To identify escape mutation sites for the C12H5 antibody, a deep learning-based antigen–antibody binding prediction model was constructed."
+      }
+    ]
+  }
+}

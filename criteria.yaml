@@ -1,0 +1,140 @@
+version: "2.0"
+description: >
+  Full rubric for evaluating preprints for GISAID eligibility.
+  Each criterion is scored 1 (weak), 2 (moderate), or 3 (strong).
+  Criterion 5 (feedback) requires preprint server data and is evaluated separately.
+
+criteria:
+
+  author_credibility:
+    label: "Author credibility"
+    requires_external_data: true
+    evidence_to_look_for:
+      - institutional affiliations listed in the paper
+      - number of distinct institutions represented
+      - institution types (university, research institute, government, commercial)
+      - country of affiliations
+      - corresponding author institution
+    score_1:
+      description: >
+        Some authors are affiliated with low-credibility institutions such as
+        predatory "universities" or commercial entities with no research track record.
+        Little or no verifiable expertise among authors. No meaningful collaboration
+        between institutions.
+    score_2:
+      description: >
+        All authors are affiliated with credible universities or research labs with
+        some research output and relevant expertise. Study involves 2–3 institutions.
+        Up to 2 authors with clearly verifiable expertise in the field.
+    score_3:
+      description: >
+        All authors are affiliated with credible institutions AND the main or
+        corresponding author is from a well-established, globally or nationally
+        recognized research institution or lab. At least 3 authors with verifiable
+        expertise. More than 3 distinct institutions involved.
+
+  research_question_and_methods:
+    label: "Research question and methodology"
+    requires_external_data: false
+    evidence_to_look_for:
+      - explicit research objective or aim
+      - connection between objective and methods
+      - relevance to a pressing public health concern or known outbreak
+      - description of study design or experimental setup
+      - data generation methods (sequencing, assays, experiments, cohort design)
+      - data sources or datasets used
+      - statistical or computational analysis
+      - reproducibility details (parameters, protocols, conditions)
+    score_1:
+      description: >
+        Objective is unclear, missing, or vague. Methodology is absent or too
+        superficial to understand how the study was conducted. No clear link to
+        public health relevance.
+    score_2:
+      description: >
+        Objective is stated but lacks precision or clear connection to methods and
+        results. Study design is briefly described but missing important details
+        (sample size, controls, validation, statistical approach). May address a
+        general public health topic without linking to a specific outbreak or concern.
+    score_3:
+      description: >
+        Objectives and hypotheses are explicit, testable, and aligned with the
+        study design. Methodology is detailed enough to understand or reproduce the
+        study. Study clearly addresses a pressing public health concern or a known
+        outbreak (e.g., WHO Disease Outbreak News). Data, code, or materials are
+        openly available or sufficient detail is given for replication.
+
+  results_and_conclusion:
+    label: "Results and conclusion"
+    requires_external_data: false
+    evidence_to_look_for:
+      - presence of figures, tables, or quantitative results
+      - internal consistency between methods and reported results
+      - statistical parameters and confidence intervals where applicable
+      - whether conclusions are supported by the data
+      - acknowledgment of limitations
+      - whether findings align with study hypotheses
+    score_1:
+      description: >
+        Results lack supporting figures or tables, or are inconsistent with the
+        data and methods described. Conclusions are overstated, speculative, or
+        not grounded in the evidence presented.
+    score_2:
+      description: >
+        Some inconsistencies in reporting or unclear statistical parameters.
+        Conclusions are cautious but lack clarity or are only partially supported
+        by the results.
+    score_3:
+      description: >
+        Findings are internally consistent, validated by multiple methods where
+        applicable, and align with study hypotheses. Results are clearly
+        interpreted, and limitations are explicitly discussed.
+
+  references:
+    label: "References"
+    requires_external_data: false
+    evidence_to_look_for:
+      - total number of references
+      - presence of foundational and recent peer-reviewed literature
+      - absence of overreliance on self-citations or non-peer-reviewed sources
+      - references used to support methods, contextualize findings, and discuss limitations
+    score_1:
+      description: >
+        Few references (fewer than ~10), missing major or foundational studies.
+        Overreliance on non-peer-reviewed sources, obscure journals, or self-citations.
+    score_2:
+      description: >
+        Includes relevant and credible sources but omits some important recent work.
+        Roughly 10–20 references.
+    score_3:
+      description: >
+        Includes a balanced mix of foundational, recent, and domain-relevant
+        peer-reviewed studies (more than ~20 references). Cites high-quality sources
+        and uses them to justify methods, contextualize findings, and discuss limitations.
+
+  feedback:
+    label: "Feedback from preprint community"
+    requires_external_data: true
+    note: >
+      This criterion requires checking the preprint server (bioRxiv, medRxiv,
+      ResearchSquare) for community reviews and comments. It cannot be evaluated
+      from the PDF alone and is assessed separately.
+    evidence_to_look_for:
+      - number and quality of peer reviews or community comments
+      - citations or follow-up analyses by other researchers
+      - author responses to reviewers
+      - social media or scholarly discussion
+    score_1:
+      description: >
+        No comments or reviews on the preprint server. Mentions limited to
+        social media hype or unverified sources.
+    score_2:
+      description: >
+        Feedback focuses on clarifications or methods but not full validation.
+        Early signs of citation or inclusion in scholarly discussions.
+        Mixed or tentative community reception.
+    score_3:
+      description: >
+        Multiple expert-level comments or peer reviews received. Follow-up
+        analyses or scholarly citations already exist. Authors have responded
+        responsibly to reviewer feedback.

@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v18010062.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    4,
+    2,
+    3,
+    9,
+    7
+  ],
+  "retrieved_pages": [
+    [
+      5,
+      6
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      12,
+      13
+    ],
+    [
+      8,
+      9,
+      10,
+      11
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The evidence includes a stated objective to evaluate MPXV lysis plaque phenotypic variation, and a methodology that outlines several experimental procedures but lacks explicit connections between them.",
+    "evidence": [
+      {
+        "chunk_id": 3,
+        "pages": [
+          3
+        ],
+        "quote": "In this study, we have evaluated MPXV lysis plaque phenotypic variation through three passages of infection and harvest of selected plaque forming units (PFU)"
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          4
+        ],
+        "quote": "We conducted a comet-forming assay in order to evaluate viral dissemination of MPXV clones through EEV liberation."
+      }
+    ]
+  }
+}

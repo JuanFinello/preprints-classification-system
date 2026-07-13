@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v18010132.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    3,
+    8,
+    0
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      9,
+      10,
+      11,
+      12
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The research objective of investigating immune imprinting is clear, as is the methodology, which includes detailed experimental procedures and analytical techniques.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        2
+      ],
+      "quote": "Here, we investigate immune imprinting by comparing phage-display antibody libraries from WT-infected convalescents in early 2020 (WT-AbLib) and Omicron-infected convalescents in early 2023 (Omi-AbLib)."
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "The construction and screening of the phage antibody library followed previously established methods."
+    }
+  }
+}

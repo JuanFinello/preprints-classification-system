@@ -1,0 +1,119 @@
+{
+  "source_pdf": "10.3390_v18010012.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 18,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Qianyi Zhang",
+      "all_authors": [
+        "Yafen Song",
+        "Shengyao Song",
+        "Aoyang Yan",
+        "Hongxuan Gong",
+        "Huan Yang",
+        "Feihu Guan",
+        "Min Zhang",
+        "Bing Zhang",
+        "Qianyi Zhang",
+        "Guanlong Xu",
+        "Chenghuai Yang"
+      ],
+      "affiliations": [
+        "China Institute of Veterinary Drug Control, Beijing 100081, China",
+        "College of Veterinary Medicine, Qingdao Agricultural University, Qingdao 266109, China",
+        "College of Animal Science and Technology, Shihezi University, Shihezi 832000, China"
+      ],
+      "n_authors": 11,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "China Institute of Veterinary Drug Control",
+        "type": [
+          "facility"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Qingdao Agricultural University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shihezi University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Min Zhang",
+      "paper_count": 12,
+      "citation_count": 49,
+      "h_index": 4,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible universities, but the experience of the corresponding author is uncertain as their expertise does not meet the established thresholds.",
+      "institutions_assessed": [
+        "China Institute of Veterinary Drug Control",
+        "Qingdao Agricultural University",
+        "Shihezi University"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 12,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The study objectives are clear, testable, and aligned with detailed methods, allowing for replication. It directly addresses public health relevance regarding zoonotic transmission of AIVs.",
+      "quote": "This study enhances our understanding of the genetic and biological characteristics of the novel reassortant H6N8 AIVs and underscores their potential risk to public health.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are inadequately explained, lacking sufficient detail and clarity to support the conclusions drawn in the study.",
+      "quote": "The ability of the virus to replicate efficiently in a mammalian model underscores its potential threat to public health and warrants continued surveillance.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list is robust, including over 20 credible peer-reviewed sources that provide context and support for the research.",
+      "quote": "Wang, G.; Deng, G.; Shi, J.; Luo, W.; Zhang, G.; Zhang, Q.; Liu, L.; Jiang, Y.; Li, C.; Sriwilaijaroen, N.; et al. H6 influenza viruses pose a potential threat to human health.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

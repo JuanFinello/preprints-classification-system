@@ -1,0 +1,71 @@
+{
+  "source_pdf": "10.3390_v18010087.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    3,
+    1,
+    0,
+    4,
+    6,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": false,
+    "has_method_chunk": true,
+    "n_retrieved": 7
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The objective of identifying two Clade IIb/sh2017 mpox cases is present but lacks strong methodological detail.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "we report the first two cases of Clade IIb/sh2017 identified in Kinshasa, DRC, imported from West Africa and locally transmitted."
+      },
+      {
+        "chunk_id": 0,
+        "pages": [
+          2
+        ],
+        "quote": "We performed whole genome sequencing using a tiled-amplicon sequencing approach with Clade IIb MPXV-specific primers."
+      }
+    ]
+  }
+}

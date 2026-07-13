@@ -1,0 +1,52 @@
+{
+  "source_pdf": "preprint.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    0,
+    1,
+    3,
+    2
+  ],
+  "retrieved_pages": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      4
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 4
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The research objective is clearly stated and strongly aligned with the methods used, which are detailed enough for reproducibility.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "We investigated whether SARS-CoV-2 protein or ribonucleic acid (RNA) persists in placental tissue months after maternal COVID-19 infection."
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        2
+      ],
+      "quote": "This case-control study was conducted and reported in accordance with the Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) reporting guideline."
+    }
+  }
+}

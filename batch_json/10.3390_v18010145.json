@@ -1,0 +1,58 @@
+{
+  "source_pdf": "10.3390_v18010145.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    6,
+    4,
+    2,
+    3,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      7,
+      8
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The research objective is partially clear, but the connection to methodology lacks detail. The objective is stated, but key methodological aspects like sample size and specific analytical techniques could be clearer.",
+    "objective_evidence": {
+      "chunk_id": 2,
+      "pages": [
+        4
+      ],
+      "quote": "The primary aim was to test whether EV-mediated transfer of SARS-CoV-2 replicon RNA could establish a stable replication system in human cells."
+    },
+    "method_evidence": {
+      "chunk_id": 6,
+      "pages": [
+        8
+      ],
+      "quote": "Luciferase assays were performed according to the manufacturer’s instructions (Promega medicine, Nano-glo ® Luciferase assay REF N110, USA)."
+    }
+  }
+}

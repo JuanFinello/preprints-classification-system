@@ -1,0 +1,60 @@
+{
+  "source_pdf": "10.3390_v17030381.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    10,
+    0,
+    8,
+    6,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      11,
+      12
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "review",
+    "score": 3,
+    "justification": "The review presents a clear scope by emphasizing the importance of surveilling viral diseases in pigs and provides a structured synthesis of existing research and trends.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "This comprehensive study evaluates the prevalence, outbreak dynamics, and public health implications of zoonotic viral diseases of pigs in India, providing valuable direction for developing effective control measures."
+      },
+      {
+        "chunk_id": 7,
+        "pages": [
+          12
+        ],
+        "quote": "The present review highlights the significant zoonotic risks posed by viral diseases in pigs in India, emphasizing the intricate interplay of epidemiology, genetic diversity, and public health concerns."
+      }
+    ]
+  }
+}

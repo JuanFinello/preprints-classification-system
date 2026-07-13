@@ -1,0 +1,49 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-7706316_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    11,
+    13,
+    12,
+    14,
+    16
+  ],
+  "retrieved_pages": [
+    [
+      17,
+      18,
+      19
+    ],
+    [
+      20,
+      21,
+      22
+    ],
+    [
+      19,
+      20
+    ],
+    [
+      21,
+      22,
+      23
+    ],
+    [
+      24,
+      25,
+      26
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 1,
+    "justification": "Score was downgraded automatically because no valid verbatim evidence was found in the retrieved text.",
+    "evidence": [],
+    "warning": "No evidence matched retrieved text."
+  }
+}

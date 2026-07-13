@@ -1,0 +1,59 @@
+{
+  "source_pdf": "10.3390_v18030294.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    2,
+    4,
+    5,
+    0
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      8,
+      9
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objective is stated but lacks a strong connection to detailed methodologies. While some methods are presented, key methodological details are partially missing.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "we report Mali’s index Mpox case, which was clinically identified at the Mali–Guinea border by the national telemedicine center and confirmed by PCR."
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "All laboratory activities were performed at biosafety level 2 while strictly adhering to biosafety and biosecurity measures."
+    }
+  }
+}

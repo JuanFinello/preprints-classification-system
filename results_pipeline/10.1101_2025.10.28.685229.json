@@ -1,0 +1,180 @@
+{
+  "source_pdf": "10.1101_2025.10.28.685229.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 41,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Xu Tan",
+      "all_authors": [
+        "Miao Mei",
+        "Yang Yang",
+        "Zihan Zhang",
+        "Yue Yin",
+        "Jiali Tan",
+        "Chao Jiang",
+        "Yu Gao",
+        "Zhaoyang Wang",
+        "Donghong Wang",
+        "Yajing Li",
+        "Yingyi Cong",
+        "Zhiyuan Zhang",
+        "Yousong Peng",
+        "Wenjie Tan",
+        "Jiandong Li",
+        "Li Li",
+        "Hanxue Wang",
+        "Ren Lang",
+        "Qiang He",
+        "Zihou Deng",
+        "Xiaojie Huang",
+        "Bin Luo",
+        "Cao Shan",
+        "Yonghong Zhang",
+        "Lin Mei",
+        "Gong Cheng",
+        "Xu Tan"
+      ],
+      "affiliations": [
+        "Chinese Institute for Immunology, Chinese Institutes for Medical Research, Beijing You’an Hospital, Capital Medical University, Beijing, China",
+        "Shenzhen Key Laboratory of Pathogen and Immunity, National Clinical Research Center for infectious disease, State Key Discipline of Infectious Disease, Shenzhen Third People's Hospital, Second Hospital Affiliated to Southern University of Science and Technology, Shenzhen, China",
+        "State Key Laboratory of Virology and Biosafety, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; University of the Chinese Academy of Sciences, Beijing 100039, China; Center for Biosafety Mega-Science, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; Hubei Jiangxia Laboratory, Wuhan 430200, China",
+        "Tsinghua-Peking Center for Life Sciences, School of Medicine, Tsinghua University, Beijing; Shenzhen Bay Laboratory, Shenzhen, China",
+        "School of Medicine, Tsinghua University, Beijing",
+        "Bioinformatics Center of College of Biology, Hunan Provincial Key Laboratory of Medical Virology, Hunan University, Changsha, China",
+        "NHC Key Laboratory of Biosafety, National Institute for Viral Disease Control and Prevention, Chinese Center for Disease Control and Prevention, Beijing, 102206, China",
+        "Chinese Institute for Cancer Research, Chinese Institutes for Medical Research, Capital Medical University, Beijing, China",
+        "Department of Hepatobiliary and Pancreatic Surgery, Beijing Chao-Yang Hospital, Capital Medical University, Beijing, China",
+        "Beijing You'an Hospital, Capital Medical University, Beijing, China",
+        "Chinese Institutes for Medical Research, Capital Medical University, Beijing, China"
+      ],
+      "n_authors": 27,
+      "n_institutes": 10
+    },
+    "ror_results": [
+      {
+        "name": "Capital Medical University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Southern University of Science and Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Chinese Academy of Sciences",
+        "type": [
+          "funder",
+          "government"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Tsinghua University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Tsinghua University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Hunan University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Jiali Tan",
+      "paper_count": 11,
+      "citation_count": 205,
+      "h_index": 8,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible universities and research institutes in China. The corresponding author, Jiali Tan, has a substantial number of publications and citations, indicating established expertise. There are multiple distinct institutions involved in the study, enhancing the collaborative aspect.",
+      "institutions_assessed": [
+        "Capital Medical University",
+        "Southern University of Science and Technology",
+        "Chinese Academy of Sciences",
+        "Tsinghua University",
+        "Hunan University"
+      ],
+      "n_institutes": 5,
+      "corresponding_author_papers": 11,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "The objectives and hypotheses are explicit, and the methodology is detailed enough to understand or reproduce the study. The study clearly addresses a pressing public health concern embodied in understanding YFV infection.",
+      "quote": "Here, we performed a barcoded, genome-wide human ORF library screen and identified LRP8 (also named APOER2) as a receptor for YFV.",
+      "quote_valid": false,
+      "score_note": "downgraded 3→2: supporting quote not found verbatim in text"
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results lack supporting figures or tables, and conclusions appear speculative without adequate support from the data presented. The textual interpretations lack clarity.",
+      "quote": "Furthermore, the soluble LRP8 LBD can block YFV infection, together with prior studies, raises the possibility of LRP8-based protein therapeutics or prophylactics for multiple arboviruses.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a mix of foundational and recent studies, but it does not reach the threshold of peer-reviewed coverage, limiting the context for some findings.",
+      "quote": "1 Bres, P. A century of progress in combating yellow fever. Bulletin of the World Health Organization 64, 775-786 (1986).",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion"
+    ]
+  }
+}

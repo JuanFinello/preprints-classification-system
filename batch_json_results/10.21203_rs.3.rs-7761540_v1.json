@@ -1,0 +1,69 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-7761540_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    3,
+    4,
+    8,
+    5,
+    0,
+    18,
+    10,
+    2
+  ],
+  "retrieved_pages": [
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      23,
+      24
+    ],
+    [
+      13,
+      14,
+      15
+    ],
+    [
+      4,
+      5
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": false,
+    "has_method_chunk": true,
+    "n_retrieved": 8
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The research objective is stated, and the methodology is described but lacks specific details necessary for a full understanding of the study design and analysis.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "this study employs a combination of field investigation sampling and testing, physical experiments, and numerical simulations to reveal the laws of water-salt transport in the vadose zone"
+      }
+    ]
+  }
+}

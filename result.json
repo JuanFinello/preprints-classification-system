@@ -1,0 +1,83 @@
+{
+  "source_pdf": "preprint.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    3,
+    5,
+    4,
+    6
+  ],
+  "retrieved_pages": [
+    [
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      9,
+      10,
+      11,
+      12
+    ],
+    [
+      14,
+      15,
+      16,
+      17
+    ],
+    [
+      11,
+      12,
+      13,
+      14
+    ],
+    [
+      17,
+      18,
+      19,
+      20
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objective is clearly stated, and the methodology is detailed with specific techniques and instruments used for measurement.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          6
+        ],
+        "quote": "this study aims to fill this gap through systematic experimental measurement of the thermal properties (thermal conductivity, specific heat capacity, and emissivity) throughout the ablative process."
+      },
+      {
+        "chunk_id": 0,
+        "pages": [
+          11
+        ],
+        "quote": "the thermal conductivity of EPDM is measured within the temperature range of 23 ℃- 605 ℃ using the 1D steady-state method."
+      },
+      {
+        "chunk_id": 0,
+        "pages": [
+          12
+        ],
+        "quote": "the specific heat capacity of the sample is obtained by associating the above equations."
+      },
+      {
+        "chunk_id": 0,
+        "pages": [
+          14
+        ],
+        "quote": "the thermal constant analyzer (TPS2500S, Hot Disk, Sweden) based on the TPS method with in the temperature range of 27 ℃ - 483 ℃."
+      }
+    ]
+  }
+}

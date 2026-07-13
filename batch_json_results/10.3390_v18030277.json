@@ -1,0 +1,74 @@
+{
+  "source_pdf": "10.3390_v18030277.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    3,
+    2,
+    6,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      9,
+      10,
+      11
+    ],
+    [
+      6,
+      7,
+      8,
+      9
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The study provides a clear objective to examine the recognition of SARS-CoV-2 variants by antibodies and their pathogenesis in an animal model, with detailed methodology outlined for experiments.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          2,
+          3
+        ],
+        "quote": "The present study describes two phenotypically distinct variants of SARS-CoV-2, differing by a mutation in the region of the genome encoding the NTD of the spike protein..."
+      },
+      {
+        "chunk_id": 5,
+        "pages": [
+          6,
+          7
+        ],
+        "quote": "Viral RNA was isolated from the culture supernatant using the Extract RNA reagent (Eurogen, Moscow, Russia) followed by chloroform extraction."
+      },
+      {
+        "chunk_id": 6,
+        "pages": [
+          9,
+          10,
+          11
+        ],
+        "quote": "Syrian hamsters were used as a non-lethal animal model to assess the pathogenic properties of the Delta SARS-CoV-2 variants upon intranasal infection."
+      }
+    ]
+  }
+}

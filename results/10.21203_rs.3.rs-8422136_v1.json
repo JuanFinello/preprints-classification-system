@@ -1,0 +1,182 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8422136_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 20,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Chenglong Shen",
+      "all_authors": [
+        "Chenglong Shen",
+        "Yutian Chi",
+        "Dongwei Mao",
+        "Beatriz Sanchez-Cano",
+        "Bingkun Yu",
+        "Fang Shen",
+        "Hanke Zhang",
+        "Mathew Owens",
+        "Christopher Scott",
+        "Luke Barnard",
+        "Daniel Heyner",
+        "H.-U. Auster",
+        "Ingo Richter",
+        "Tielong Zhang",
+        "Jingnan Guo",
+        "Zonghao Pan",
+        "Zhuxuan Zou",
+        "Mengjiao Xu",
+        "Zhiyong Zhang",
+        "Zhihui Zhong",
+        "Long Cheng",
+        "Zhenpeng Su",
+        "Junyan Liu",
+        "Can Wang",
+        "Jingyu Luo",
+        "Zhiyong Wu",
+        "Guoqiang Wang",
+        "Sudong Xiao",
+        "Kai Liu",
+        "Xinjun Hao",
+        "Yiren Li",
+        "Manming Chen",
+        "Michael Lockwood",
+        "Yuming Wang"
+      ],
+      "affiliations": [
+        "Deep Space Exploration Laboratory",
+        "University of Science and Technology of China",
+        "University of Leicester",
+        "National Space Science Center, CAS",
+        "National Satellite Meteorological Center",
+        "University of Reading",
+        "Technische Universität Braunschweig",
+        "Institute for Geophysics and Extraterrestrial Physics, Technische Universität Braunschweig",
+        "Institut für Geophysik und extraterrestrische Physik, Technische Universität Braunschweig",
+        "Institute of Space Science and Applied Technology, Harbin Institute of Technology, Shenzhen",
+        "Harbin Institute of Technology"
+      ],
+      "n_authors": 34,
+      "n_institutes": 11
+    },
+    "ror_results": [
+      {
+        "name": "Exploration Place",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "United States",
+        "score": 0.82,
+        "chosen": false
+      },
+      {
+        "name": "University of Science and Technology of China",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Leicester",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United Kingdom",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "National Space Science Center",
+        "type": [
+          "facility"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Asia Pacific Satellite (South Korea)",
+        "type": [
+          "company"
+        ],
+        "country": "South Korea",
+        "score": 0.92,
+        "chosen": false
+      },
+      {
+        "name": "University of Reading",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United Kingdom",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible and well-established institutions. The majority are educational or research institutions with a high credibility score. Additionally, there are more than three distinct institutions involved, and several authors have verifiable expertise.",
+      "institutions_assessed": [
+        "Deep Space Exploration Laboratory",
+        "University of Science and Technology of China",
+        "University of Leicester",
+        "National Space Science Center, CAS",
+        "National Satellite Meteorological Center",
+        "University of Reading",
+        "Technische Universität Braunschweig",
+        "Institute for Geophysics and Extraterrestrial Physics, Technische Universität Braunschweig",
+        "Institut für Geophysik und extraterrestrische Physik, Technische Universität Braunschweig",
+        "Institute of Space Science and Applied Technology, Harbin Institute of Technology, Shenzhen",
+        "Harbin Institute of Technology"
+      ],
+      "n_institutes": 11,
+      "corresponding_author_papers": 0,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives are clear and explicitly tie to the methodology used to study CME propagation, with sufficient details provided for replication. This matches score_3 description.",
+      "quote": "we present a study of a fast coronal CME initially directed toward Mars, synthesizing observations from five space missions and employing three complementary modeling approaches.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results lack supporting figures and the conclusions are overstated without the necessary evidence to support them fully. This aligns with score_1 description.",
+      "quote": "the unusual enhancement of the magnetic field in the rear part of the flux rope ... suggests that the portion of the flux rope passing by BepiColombo may have undergone additional distortion.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a balanced mix of foundational and recent peer-reviewed studies but does not reach the depth of coverage indicated in score_3 criteria. It has enough for credibility but does not exceed 20 references.",
+      "quote": "[1] Webb, D.F., Howard, T.A.: Coronal mass ejections: Observations. Living Reviews in Solar Physics 9(1), 1–83 (2012)",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

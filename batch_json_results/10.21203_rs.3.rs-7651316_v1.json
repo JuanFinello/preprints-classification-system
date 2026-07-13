@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-7651316_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    3,
+    2,
+    5,
+    0,
+    1
+  ],
+  "retrieved_pages": [
+    [
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      5,
+      6,
+      7
+    ],
+    [
+      13,
+      14,
+      15,
+      16
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      5
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objectives are stated clearly, but while there is a description of methodology, some critical details about sampling and analysis are vague.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          3
+        ],
+        "quote": "Methods: We performed a population‑based retrospective study of EMS assignments in Region Stockholm (2017–2022)."
+      }
+    ]
+  }
+}

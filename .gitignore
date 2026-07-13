@@ -1,0 +1,12 @@
+# PDFs y datos históricos pesados (no versionados, quedan solo en disco local)
+papers/
+significant_preprints/
+preprint.pdf
+paperQA.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# Locks de LibreOffice
+.~lock.*#

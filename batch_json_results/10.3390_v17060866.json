@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v17060866.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    0,
+    3,
+    8,
+    1,
+    7
+  ],
+  "retrieved_pages": [
+    [
+      1,
+      2
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      10,
+      11,
+      12
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      9,
+      10
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "review",
+    "score": 3,
+    "justification": "The research objective is clear, focusing on the trafficking and activation mechanisms of henipavirus fusion proteins, and a comprehensive analysis of current knowledge is explicitly stated.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "the purpose of this review is to provide a comprehensive analysis of current knowledge regarding the distinctive trafficking and activation mechanisms of the F proteins of Henipaviruses"
+      },
+      {
+        "chunk_id": 1,
+        "pages": [
+          2
+        ],
+        "quote": "Understanding the molecular mechanisms underlying HNV F protein function is crucial for developing effective therapeutic strategies"
+      }
+    ]
+  }
+}

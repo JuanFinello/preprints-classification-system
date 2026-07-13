@@ -1,0 +1,63 @@
+{
+  "source_pdf": "10.3390_v18010051.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    4,
+    2,
+    16,
+    3,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      5,
+      6
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      21,
+      22,
+      23
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      6,
+      7,
+      8
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objectives are explicit and aligned with the methodology, including detailed descriptions of the study design and analysis methods.",
+    "evidence": [
+      {
+        "chunk_id": 2,
+        "pages": [
+          3,
+          4
+        ],
+        "quote": "we aimed to describe the biological and genetic properties of this virus, along with related pathological and histological findings"
+      },
+      {
+        "chunk_id": 3,
+        "pages": [
+          4,
+          5
+        ],
+        "quote": "The 50% egg infectious dose (EID50) and the 50% tissue culture infectious dose (TCID50) were determined as recommended in [18]."
+      }
+    ]
+  }
+}

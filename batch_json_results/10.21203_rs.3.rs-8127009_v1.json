@@ -1,0 +1,81 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8127009_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    5,
+    3,
+    4,
+    0,
+    1,
+    6,
+    8
+  ],
+  "retrieved_pages": [
+    [
+      4,
+      5
+    ],
+    [
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      10,
+      11,
+      12,
+      13
+    ],
+    [
+      14,
+      15
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": false,
+    "has_method_chunk": true,
+    "n_retrieved": 8
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objective is clearly stated and directly linked to the methodology, which is detailed and allows reproducibility.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          3,
+          4
+        ],
+        "quote": "This study aimed to evaluate the effectiveness of Bacillus spp. consortia formulated in potato–sugar-based liquid media supplemented with three types of organic broths in controlling bacterial leaf blight."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          5
+        ],
+        "quote": "The antagonistic activity of Bacillus spp. against the leaf blight pathogen was tested using the dual culture method."
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.3390_v18010093.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    3,
+    1,
+    2,
+    4,
+    8
+  ],
+  "retrieved_pages": [
+    [
+      5,
+      6
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      10,
+      11,
+      12
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The study clearly outlines its objectives and employs a detailed methodological approach that allows for reproducibility, including sample size and analytical techniques.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        2
+      ],
+      "quote": "our objectives were to (i) determine the prevalence and genetic characteristics of circulating IDV strains, (ii) reconstruct the timing and routes of introduction into China, and (iii) evaluate the evolutionary dynamics"
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "A total of 563 nasopharyngeal swabs were collected from clinically healthy cattle at the time of sampling on 28 farms"
+    }
+  }
+}

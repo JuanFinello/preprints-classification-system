@@ -1,0 +1,67 @@
+{
+  "source_pdf": "10.3390_v18030337.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    4,
+    5,
+    3,
+    1,
+    10
+  ],
+  "retrieved_pages": [
+    [
+      6,
+      7
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      13,
+      14
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objective is explicitly stated, and the methodology is well-detailed with clear connections between the two, allowing for understanding and reproduction of the study.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          2
+        ],
+        "quote": "the present study aims to molecularly and genetically characterize highly pathogenic H5 influenza viruses isolated from outbreaks in backyard poultry in different states in Mexico"
+      },
+      {
+        "chunk_id": 4,
+        "pages": [
+          6
+        ],
+        "quote": "To confirm the presence of infectious particles of IAV, viral isolation was performed by inoculating field samples into 9–11-day specific pathogen-free (SPF) embryonated eggs via the allantoic cavity"
+      },
+      {
+        "chunk_id": 5,
+        "pages": [
+          7
+        ],
+        "quote": "Phylogenetic analyses were performed to determine the genetic relationships among the H5Nx viruses characterized in this study and reference strains available in the GenBank database"
+      }
+    ]
+  }
+}

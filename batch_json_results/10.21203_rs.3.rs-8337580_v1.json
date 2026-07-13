@@ -1,0 +1,69 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8337580_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    15,
+    14,
+    2,
+    16,
+    12
+  ],
+  "retrieved_pages": [
+    [
+      30,
+      31,
+      32
+    ],
+    [
+      28,
+      29,
+      30
+    ],
+    [
+      7,
+      8,
+      9
+    ],
+    [
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    [
+      26,
+      27
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objectives are stated, but the connection between the research question and methodology is partial. While there are descriptions of methods, key methodological details such as sample size and controls are missing.",
+    "evidence": [
+      {
+        "chunk_id": 2,
+        "pages": [
+          7,
+          8,
+          9
+        ],
+        "quote": "we used AP-MS to identify phage proteins that interact with this complex."
+      },
+      {
+        "chunk_id": 12,
+        "pages": [
+          26,
+          27
+        ],
+        "quote": "We enriched phages (PA phages) from sewage samples using PA14 as a host."
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8415709_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    0,
+    5,
+    3,
+    4
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      7,
+      8,
+      9
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The objective is clearly stated, focusing on examining SARS-CoV-2 IgG antibody titres post-vaccination in RVO patients, and the methodology is detailed with explicit sampling, measurement, and statistical analysis.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        1
+      ],
+      "quote": "The objective of the present study is to examine the levels of SARS-CoV-2 IgG antibody titres post COVID-19 vaccine in retinal vein occlusion (RVO) patients and in healthy control group;"
+    },
+    "method_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        3
+      ],
+      "quote": "A total of 215 patients with retinal vein occlusion (RVO) were consecutively recruited from the Retina Clinic... detailed history about COVID-19 infection, contact history and hospitalisation due to COVID-19 was taken."
+    }
+  }
+}

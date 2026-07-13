@@ -1,0 +1,70 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8406396_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    5,
+    3,
+    7,
+    0,
+    1
+  ],
+  "retrieved_pages": [
+    [
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    [
+      9,
+      10,
+      11,
+      12
+    ],
+    [
+      19,
+      20,
+      21,
+      22
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      5,
+      6,
+      7
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The research objectives are present and somewhat clear, but the methodology lacks important details such as sample size and specific analytical techniques required for deeper understanding.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "This research employs the entropy weight method and Haken model to quantify development levels of the tourism economy and urban ecological resilience."
+      },
+      {
+        "chunk_id": 1,
+        "pages": [
+          5
+        ],
+        "quote": "Spatiotemporal patterns and driving factors were systematically analyzed using multi-temporal lagged convergence cross-mapping complemented by kernel density estimation."
+      }
+    ]
+  }
+}

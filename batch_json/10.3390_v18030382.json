@@ -1,0 +1,58 @@
+{
+  "source_pdf": "10.3390_v18030382.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    2,
+    13,
+    4,
+    3
+  ],
+  "retrieved_pages": [
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      16,
+      17
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      4,
+      5
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 3,
+    "justification": "The study has a clear objective to compare the susceptibility of cotton rats and BALB/c mice to RSV infection, and the methodology is detailed, specifying the experimental design, sample size, and procedures.",
+    "objective_evidence": {
+      "chunk_id": 1,
+      "pages": [
+        2
+      ],
+      "quote": "This study was conducted to systematically compare the susceptibility of cotton rats and BALB/c mice to RSV infection in the respiratory system and CNS."
+    },
+    "method_evidence": {
+      "chunk_id": 3,
+      "pages": [
+        5
+      ],
+      "quote": "For both BALB/c mice and cotton rats, 6 animals per group (RSV-infected/PBS control). The sample size (n = 6 per group) was determined based on preliminary experiments and validated by post hoc power analysis."
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "source_pdf": "10.3390_v18030294.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 9,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Noumou Yakhouba Keita",
+      "all_authors": [
+        "Noumou Yakhouba Keita",
+        "Ousmane Kamena",
+        "Boubacar Doumbia",
+        "Harris Onywera",
+        "Mahamadou Abdou",
+        "Mohamed Ag Baraïka",
+        "Klema Marcel Kone",
+        "Elysabette Coulibaly",
+        "Mariam Sama Sangare",
+        "Korika Diakite",
+        "Dorcas Waruguru Wanjohi",
+        "Moussa Moise Diagne",
+        "Ibrehima Guindo"
+      ],
+      "affiliations": [
+        "Institut National de Santé Pulique, Hippodrome Route de Koulikoro Rue 235 Porte 52, Bamako BP 1771, Mali",
+        "Faculty of Pharmacy, Université des Sciences des Techniques et des Technologies de Bamako, Point G Campus, Bamako BP 1805, Mali",
+        "Africa Centres for Disease Control and Prevention (Africa CDC), Addis Ababa P.O. Box 3243, Ethiopia",
+        "Institut Pasteur de Dakar, Dakar BP 220, Senegal"
+      ],
+      "n_authors": 13,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Institut National de Santé Publique",
+        "type": [
+          "facility"
+        ],
+        "country": "Ivory Coast",
+        "score": 0.99,
+        "chosen": false
+      },
+      {
+        "name": "Université des Sciences, des Techniques et des Technologies de Bamako",
+        "type": [
+          "education"
+        ],
+        "country": "Mali",
+        "score": 0.99,
+        "chosen": true
+      },
+      {
+        "name": "Africa Centres for Disease Control and Prevention",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "Ethiopia",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Institut Pasteur de Dakar",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "Senegal",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "N. Y. Keita",
+      "paper_count": 6,
+      "citation_count": 37,
+      "h_index": 2,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible institutions, and the main author has a moderate research output with some citations. There are 4 distinct institutions involved, including recognized entities like Africa CDC and Institut Pasteur de Dakar.",
+      "institutions_assessed": [
+        "Institut National de Santé Pulique",
+        "Université des Sciences, des Techniques et des Technologies de Bamako",
+        "Africa Centres for Disease Control and Prevention",
+        "Institut Pasteur de Dakar"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 6,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, and the methodology is detailed enough to understand the genomic characterization and epidemiological context of the case; this aligns with score 3 description.",
+      "quote": "genomic characterization and rapid data sharing are crucial in tracking viral evolution and transmission dynamics and informing public health decisions.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results lack clarity and supporting details, with conclusions being speculative without sufficient backing from the presented evidence; this fits the score 1 criteria.",
+      "quote": "The absence of shared mutations between the Malian isolate and the shared Guinea–Sierra Leone lineage indicate that the virus likely traveled on an independent path through the region.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational and recent studies relevant to the topic, satisfying the quality expectations for this criterion.",
+      "quote": "Van Dijck, C.; Hoff, N.A.; Mbala-Kingebeni, P.; Low, N.; Cevik, M.; Rimoin, A.W.; Kindrachuk, J.; Liesenborghs, L.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "source_pdf": "10.3390_v18030304.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 16,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Chao Wu",
+      "all_authors": [
+        "Li Pan",
+        "Yunbo Xu",
+        "Yihan Ma",
+        "Jiaxing Zhang",
+        "Chao Wu"
+      ],
+      "affiliations": [
+        "Institute of Systems and Physical Biology, Shenzhen Bay Laboratory, Shenzhen 518132, China",
+        "School of Life Science and Technology, Harbin Institute of Technology, Harbin 150001, China",
+        "Shenzhen Medical Academy of Research and Translation (SMART), Shenzhen 518107, China",
+        "School of Life Sciences, Westlake University, Hangzhou 310030, China"
+      ],
+      "n_authors": 5,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Shenzhen Bay Laboratory",
+        "type": [
+          "facility",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Harbin Institute of Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shenzhen Medical Academy of Research and Translation",
+        "type": [
+          "education"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Westlake University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Chao Wu",
+      "paper_count": 3,
+      "citation_count": 9,
+      "h_index": 1,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible research institutions, and the corresponding author, Chao Wu, has verifiable expertise in the field, with collaboration between multiple institutions.",
+      "institutions_assessed": [
+        "Shenzhen Bay Laboratory",
+        "Harbin Institute of Technology",
+        "Shenzhen Medical Academy of Research and Translation",
+        "Westlake University"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 3,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The study's objectives and methodologies are explicit, describing the development of a dual-reporter RSV minigenome system aimed at facilitating antiviral drug discovery. The methodology is sufficiently detailed for reproducibility, aligning with public health concerns regarding RSV.",
+      "quote": "To advance the discovery of antiviral drugs, we have developed a dual-reporter RSV minigenome system, providing a safe and robust platform for antiviral evaluation.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "While results are presented, they lack sufficient supporting data or consistency with the methods described, leading to conclusions that are overstated. The paper does not clarify limitations or validate findings adequately.",
+      "quote": "however, the antiviral drug market is projected to reach $2.5 billion by 2030",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list contains a balanced mix of foundational and recent peer-reviewed studies, supporting the study's claims and providing context; however, it does not exceed 20 references.",
+      "quote": "Nam, H.H.; Ison, M.G. Respiratory syncytial virus infection in adults. BMJ 2019, 366, l5021.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

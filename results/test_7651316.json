@@ -1,0 +1,136 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-7651316_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 27,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Peter Hill",
+      "all_authors": [
+        "Peter Hill",
+        "Daniel Jonsson",
+        "Jakob Lederman",
+        "Peter Bolin",
+        "Veronica Vicente"
+      ],
+      "affiliations": [
+        "The Health and Medical Care Administration, Department for Specialized Care, Stockholm, Sweden",
+        "The Ambulance Medical Service in Stockholm (AISAB), Stockholm, Sweden",
+        "Academic EMS in Stockholm, Stockholm, Sweden",
+        "Karolinska Institutet, Department of Clinical Science and Education, Södersjukhuset, Stockholm, Sweden",
+        "KTH Royal Institute of Technology, Department of Urban Planning and Environment, Stockholm, Sweden",
+        "Karolinska Institutet, Department of Learning, Informatics, Management and Ethics (LIME), Stockholm, Sweden"
+      ],
+      "n_authors": 5,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "",
+        "score": 0.8,
+        "chosen": false
+      },
+      {
+        "name": "",
+        "type": [
+          "healthcare"
+        ],
+        "country": "",
+        "score": 0.85,
+        "chosen": false
+      },
+      {
+        "name": "",
+        "type": [
+          "company"
+        ],
+        "country": "",
+        "score": 0.87,
+        "chosen": false
+      },
+      {
+        "name": "",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions with relevant expertise, but only up to 2 authors have verifiable expertise based on available data.",
+      "institutions_assessed": [
+        "The Health and Medical Care Administration, Department for Specialized Care, Stockholm, Sweden",
+        "The Ambulance Medical Service in Stockholm (AISAB), Stockholm, Sweden",
+        "Academic EMS in Stockholm, Stockholm, Sweden",
+        "Karolinska Institutet, Department of Clinical Science and Education, Södersjukhuset, Stockholm, Sweden",
+        "KTH Royal Institute of Technology, Department of Urban Planning and Environment, Stockholm, Sweden",
+        "Karolinska Institutet, Department of Learning, Informatics, Management and Ethics (LIME), Stockholm, Sweden"
+      ],
+      "n_institutes": 5,
+      "corresponding_author_papers": 0,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "Objective is stated but lacks precision regarding the methodology and public health relevance, with some important details missing.",
+      "quote": "To explore concordance among the EMCC reason for call ('Fever/Infection'), the first on‑scene ESS label, and HRTS (RETTS Red/Orange)"
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "Results and conclusions are cautiously presented but lack clarity and explicit discussion of limitations.",
+      "quote": "While not ready for operational deployment, these findings support secondary triage use cases"
+    },
+    "references": {
+      "score": 2,
+      "justification": "Includes relevant sources estimated to be around 10-20 references, but some key works may be missing.",
+      "quote": "For system design, the question is not merely whether response time correlates with outcomes but whether shortening response time plausibly reduces early severity for specific syndromes."
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 2,
+      "references": 2
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations"
+  }
+}

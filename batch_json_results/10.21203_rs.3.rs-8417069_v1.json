@@ -1,0 +1,65 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8417069_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    8,
+    9,
+    3
+  ],
+  "retrieved_pages": [
+    [
+      4,
+      5
+    ],
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      12,
+      13,
+      14
+    ],
+    [
+      14,
+      15,
+      16
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objectives are stated, focusing on evaluating the combined effect of lime and gypsum on soil acidity and maize yield. However, while the methodology includes a range of treatments and data collection procedures, it lacks specific details on some key elements such as sample size or full analytical protocols.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          2,
+          3
+        ],
+        "quote": "Therefore, this study aimed to evaluate the combined effect of lime and gypsum application on ameliorating soil acidity and grain yield of maize in Hurumu district Southwest Ethiopia."
+      },
+      {
+        "chunk_id": 2,
+        "pages": [
+          4,
+          5
+        ],
+        "quote": "Treatments were laid out in a randomized complete block design (RCBD) with three replications."
+      }
+    ]
+  }
+}

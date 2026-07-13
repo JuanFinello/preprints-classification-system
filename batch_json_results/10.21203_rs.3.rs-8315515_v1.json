@@ -1,0 +1,83 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8315515_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    7,
+    6,
+    19,
+    3,
+    10,
+    9,
+    0,
+    8
+  ],
+  "retrieved_pages": [
+    [
+      10,
+      11,
+      12,
+      13
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      31,
+      32,
+      33
+    ],
+    [
+      5,
+      6,
+      7
+    ],
+    [
+      16,
+      17,
+      18
+    ],
+    [
+      14,
+      15,
+      16
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      12,
+      13,
+      14,
+      15
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 8
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The research objective is present but lacks a strong connection to the methodology. The methodology describes data sources and modeling approaches, but some details are generic.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          1
+        ],
+        "quote": "This research examines the influence of Fintech (Financial Technology) and regulatory capital on the bank intermediation cost."
+      },
+      {
+        "chunk_id": 9,
+        "pages": [
+          14
+        ],
+        "quote": "We utilise Principal Component Analysis (PCA) to construct the FI index, alleviating the weighting bias associated with non-parametric techniques."
+      }
+    ]
+  }
+}

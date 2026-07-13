@@ -1,0 +1,100 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8417069_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 19,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Getachew Mulatu",
+      "all_authors": [
+        "Getachew Mulatu",
+        "Ewnetu Teshale",
+        "Adugna Bayata",
+        "Bikila Takala"
+      ],
+      "affiliations": [
+        "Ethiopian Institute of Agricultural Research, Jimma Agricultural Research Center",
+        "Ethiopian institute of agricultura research, Holotta agricultural research center"
+      ],
+      "n_authors": 4,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "Ethiopian Institute of Agricultural Research",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Ethiopia",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Agricultural Research Center",
+        "type": [
+          "facility",
+          "government"
+        ],
+        "country": "Azerbaijan",
+        "score": 1.0,
+        "chosen": false
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Getachew Mulatu",
+      "paper_count": 13,
+      "citation_count": 81,
+      "h_index": 5,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible research institutions, but the main author is from a national research institute and there are only 2 institutions involved. There are limited indicators of the corresponding author's expertise due to the unverified match method.",
+      "institutions_assessed": [
+        "Ethiopian Institute of Agricultural Research"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 13,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives are explicit and testable, focusing on the combined effect of lime and gypsum on soil acidity and maize yield. The methodology is detailed, allowing for reproducibility. The study addresses a public health concern linked to food security.",
+      "quote": "This study investigated the combined effects of lime and gypsum application on soil acidity amelioration and maize performance on acidic Nitisols in the Metu (Hurumu), Southwest Ethiopia.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are reported but lack clear interpretation and connection to the objectives, leading to inconsistent conclusions. There are also instances of overstating the findings.",
+      "quote": "the combined application of Rec. lime + Rec. gypsum signi cantly increased soil pH from 4.34 to 5.90",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational, recent, and credible sources, allowing for adequate context and support for the study.",
+      "quote": "Kisinyo, P.O., Gudu, S.O., Othieno, C.O., Okalebo, J.R., Opala, P.A., Maghanga, J.K., Agalo, J.J., Ng'etich, W.K., Kisinyo, J.A., Osiyo, R.J. and Nekesa, A.O., 2012. Effects of lime, phosphorus and rhizobia on Sesbania sesban performance in a Western Kenyan acid soil.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

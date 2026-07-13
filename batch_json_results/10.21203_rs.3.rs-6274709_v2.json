@@ -1,0 +1,64 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-6274709_v2.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    4,
+    0,
+    3,
+    8,
+    9
+  ],
+  "retrieved_pages": [
+    [
+      8,
+      9,
+      10
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      15,
+      16,
+      17
+    ],
+    [
+      17,
+      18,
+      19
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The objectives are stated but the connection to the methodology lacks detail regarding sample sizes and analytical processes.",
+    "evidence": [
+      {
+        "chunk_id": 4,
+        "pages": [
+          8
+        ],
+        "quote": "the primary objectives: • Comparison across diﬀerent models to assess the impact of diﬀerent language models on protein generation accuracy"
+      },
+      {
+        "chunk_id": 3,
+        "pages": [
+          6
+        ],
+        "quote": "The generation stage creates candidate protein sequences to match the target properties and determines their structure"
+      }
+    ]
+  }
+}

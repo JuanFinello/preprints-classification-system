@@ -1,0 +1,57 @@
+{
+  "source_pdf": "10.3390_v18010117.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    2,
+    1,
+    4,
+    6,
+    5
+  ],
+  "retrieved_pages": [
+    [
+      3,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      8,
+      9,
+      10
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "Score 3 downgraded to 2 because objective and method evidence were not both present.",
+    "objective_evidence": {
+      "chunk_id": 0,
+      "pages": [
+        2
+      ],
+      "quote": "This study characterized two H1N1 influenza virus strains identified during routine epidemiological surveillance of swine herds in Shandong Province."
+    },
+    "method_evidence": null,
+    "warning": "Missing or invalid objective/method evidence."
+  }
+}

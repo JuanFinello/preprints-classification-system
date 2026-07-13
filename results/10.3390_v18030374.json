@@ -1,0 +1,107 @@
+{
+  "source_pdf": "10.3390_v18030374.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 22,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Xiliang Wang",
+      "all_authors": [
+        "Qingchao Zhang",
+        "Lifang Zhang",
+        "Xinmeng Yang",
+        "Wei Wang",
+        "Xiliang Wang",
+        "Chengyu Jiang",
+        "Fengming Huang",
+        "Yanli Zhang"
+      ],
+      "affiliations": [
+        "State Key Laboratory of Common Mechanism Research for Major Diseases, Department of Biochemistry and Molecular Biology, Institute of Basic Medical Sciences, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing 100005, China",
+        "State Key Laboratory of Pathogens and Biosecurity, Beijing Institute of Microbiology and Epidemiology, Beijing 100071, China"
+      ],
+      "n_authors": 8,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Beijing Institute of Microbiology and Epidemiology",
+        "type": [
+          "facility"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Wei Wang",
+      "paper_count": 231,
+      "citation_count": 1123,
+      "h_index": 16,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions with relevant expertise, and the study involves 2 distinct institutions. The corresponding author has a significant publication record, establishing credibility.",
+      "institutions_assessed": [
+        "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "Beijing Institute of Microbiology and Epidemiology"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 231,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The study clearly states its objective of identifying host factors involved in Influenza A virus infection, with a detailed methodology that allows for reproducibility.",
+      "quote": "we performed a genome-wide siRNA screen in A549 cells using cell viability as an integrated endpoint to identify host determinants of IAV (PR8/H1N1) infection.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results are presented without adequate supporting figures or tables for some claims, and conclusions appear overstated, lacking clarity and grounding in the presented data.",
+      "quote": "Together, these findings provide a systematic resource of host factors influencing H1N1 infection, improve understanding of influenza virus–host interactions.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational and recent peer-reviewed studies, contributing to a comprehensive background.",
+      "quote": "Viruses are negative-sense, single-stranded, multisegmented RNA viruses belonging to the Orthomyxoviridae family.",
+      "score": 2,
+      "quote_valid": false,
+      "score_note": "downgraded 3→2: supporting quote not found verbatim in text"
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 2
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "references"
+    ]
+  }
+}

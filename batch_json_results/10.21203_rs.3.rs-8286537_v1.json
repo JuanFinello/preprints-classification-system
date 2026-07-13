@@ -1,0 +1,77 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8286537_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    6,
+    16,
+    8,
+    17,
+    3
+  ],
+  "retrieved_pages": [
+    [
+      12,
+      13,
+      14
+    ],
+    [
+      28,
+      29,
+      30
+    ],
+    [
+      15,
+      16,
+      17
+    ],
+    [
+      29,
+      30,
+      31
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objectives are clearly stated, focusing on the biocontrol efficacy of Bacillus velezensis CMC-6, and the methodology is detailed, covering experimental design, data collection, and analysis.",
+    "evidence": [
+      {
+        "chunk_id": 6,
+        "pages": [
+          12,
+          13,
+          14
+        ],
+        "quote": "We performed systematic investigations encompassing taxonomic characterization, growth-promoting and antagonistic assays, field efficacy evaluation, and multi-omics analyses."
+      },
+      {
+        "chunk_id": 16,
+        "pages": [
+          28,
+          29,
+          30
+        ],
+        "quote": "Greenhouse trials demonstrated biocontrol efficacy exceeding 79.23% accompanied by significant biomass enhancement (27.69%)."
+      },
+      {
+        "chunk_id": 3,
+        "pages": [
+          7,
+          8,
+          9
+        ],
+        "quote": "Integrated genomic and metabolomic approaches thus provide a comprehensive framework for elucidating the biocontrol mechanisms of Bacillus strains."
+      }
+    ]
+  }
+}

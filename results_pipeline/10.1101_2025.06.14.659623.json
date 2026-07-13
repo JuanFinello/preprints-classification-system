@@ -1,0 +1,131 @@
+{
+  "source_pdf": "10.1101_2025.06.14.659623.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 60,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Priya S. Shah",
+      "all_authors": [
+        "Matthew W. Kenaston",
+        "Liubov Cherkashchenko",
+        "Chase L. S. Skawinski",
+        "Adam T. Fishburn",
+        "Vardhan Peddamallu",
+        "Cole J. Florio",
+        "Avery E. Robertson",
+        "Tamanash Bhattacharya",
+        "Janet M. Young",
+        "Harmit S. Malik",
+        "Priya S. Shah"
+      ],
+      "affiliations": [
+        "Department of Microbiology and Molecular Genetics, University of California, Davis, CA",
+        "Department of Chemical Engineering, University of California, Davis, CA",
+        "Division of Basic Sciences, Fred Hutchinson Cancer Center, Seattle, WA",
+        "Howard Hughes Medical Institute, Fred Hutchinson Cancer Center, Seattle, WA"
+      ],
+      "n_authors": 11,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "University of California, Davis",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of California, Davis",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Fred Hutch Cancer Center",
+        "type": [
+          "funder",
+          "nonprofit"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Howard Hughes Medical Institute",
+        "type": [
+          "facility",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Priya S. Shah",
+      "paper_count": 14,
+      "citation_count": 23,
+      "h_index": 3,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible institutions, and the main corresponding author is from a well-established research institution. There are at least 3 authors with verifiable expertise based on their publication records, and more than 3 distinct institutions are involved.",
+      "institutions_assessed": [
+        "University of California, Davis",
+        "Fred Hutch Cancer Center",
+        "Howard Hughes Medical Institute"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 14,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit and aligned with the study design. The methodology is detailed enough to understand or reproduce the study, directly addressing a pressing public health concern regarding YFV.",
+      "quote": "Here, we map YFV interactomes in human and mosquito cells to identify interactions common among divergent flaviviruses or unique to YFV.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results lack sufficient clarity and consistency, with conclusions overstated. The evidence presented does not fully substantiate the conclusions drawn.",
+      "quote": "Despite serial passaging, only 32 amino acids differentiate the entire polyproteins of YFV-17D and YFV-Asibi.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The references include relevant studies, but there are fewer than 30 entries, suggesting limited depth in recent and foundational coverage.",
+      "quote": "Pierson, T.C., and Diamond, M.S. (2020). The continued threat of emerging flaviviruses. Nat Microbiol 5, 796–812.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

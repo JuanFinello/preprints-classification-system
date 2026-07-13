@@ -1,0 +1,147 @@
+{
+  "source_pdf": "10.3390_v18010117.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 15,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Zhijun Yu",
+      "all_authors": [
+        "Zhen Yuan",
+        "Ran Wei",
+        "Zhijun Yu",
+        "Rui Shang",
+        "Huixia Zhang",
+        "Kaihui Cheng",
+        "Sisi Ma",
+        "Lei Zhou"
+      ],
+      "affiliations": [
+        "School of Biological Science and Technology, University of Jinan, Jinan 250022, China",
+        "Poultry Institute, Shandong Academy of Agricultural Sciences, Jinan 250100, China",
+        "Shandong Provincial Key Laboratory of Livestock and Poultry Breeding (PKL2024B15), Jinan 250100, China",
+        "College of Life Sciences, Shandong Normal University, Jinan 250014, China",
+        "Institute of Animal Science and Veterinary Medicine, Shandong Academy of Agricultural Sciences, Jinan 250100, China",
+        "School of Animal Science and Technology, Ningxia University, Lanzhou 750021, China"
+      ],
+      "n_authors": 8,
+      "n_institutes": 6
+    },
+    "ror_results": [
+      {
+        "name": "University of Jinan",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shandong Academy of Agricultural Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shandong Provincial Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "China",
+        "score": 0.83,
+        "chosen": false
+      },
+      {
+        "name": "Shandong Normal University",
+        "type": [
+          "education"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shandong Academy of Agricultural Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Ningxia University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Zhijun Yu",
+      "paper_count": 3,
+      "citation_count": 4,
+      "h_index": 1,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible educational or research institutions, with relevant expertise. However, there are only 2 institutions explicitly recognized based on ROR data, and the corresponding author has a low publication and citation count.",
+      "institutions_assessed": [
+        "University of Jinan",
+        "Shandong Academy of Agricultural Sciences",
+        "Shandong Normal University",
+        "Ningxia University"
+      ],
+      "n_institutes": 6,
+      "corresponding_author_papers": 3,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicitly stated and aligned with the study design, detailing the methodology for genetic characterization and analysis of H1N1 viruses. This addresses a pressing public health concern.",
+      "quote": "This study characterized two H1N1 influenza virus strains identified during routine epidemiological surveillance of swine herds in Shandong Province.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are not fully supported, as the conclusions drawn from genetic analyses lack clear validation through experimental evidence, indicating inconsistencies or speculative conclusions.",
+      "quote": "Although preliminary analysis based on similarity graphs suggested sequence differences, more rigorous RDP5 multi-algorithm reassortment analysis failed to reveal clear statistical evidence.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The paper includes a healthy mix of relevant and credible sources, with over 20 references ensuring coverage of key studies in the field.",
+      "quote": "Yu, H.; Sun, Y.; Zhang, J.; Zhang, W.; Liu, W.; Liu, P.; Liu, K.; Sun, J.; Liang, H.; Zhang, P.; et al. Influenza A virus infection activates caspase-8 to enhance innate antiviral immunity...",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

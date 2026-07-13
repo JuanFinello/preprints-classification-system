@@ -1,0 +1,130 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8413859_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 31,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Rahmeth RADJACK",
+      "all_authors": [
+        "Rahmeth RADJACK",
+        "Hawa CAMARA",
+        "Muriel BOSSUROY",
+        "Marguerite ROUGET",
+        "Juliette RODRIGUEZ",
+        "Susanna FIORI",
+        "Alice Titia RIZZI",
+        "Grace NONG",
+        "Marie Rose MORO"
+      ],
+      "affiliations": [
+        "Hôpital Cochin",
+        "Sorbonne Paris Nord University",
+        "AP-HP Kremlin Bicêtre Hospital",
+        "Université Paris Cité"
+      ],
+      "n_authors": 9,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Hôpital Cochin",
+        "type": [
+          "healthcare"
+        ],
+        "country": "France",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Nord University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Norway",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Bicêtre Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "France",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Université Paris Cité",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "France",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "R. Radjack",
+      "paper_count": 10,
+      "citation_count": 6,
+      "h_index": 1,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible research institutions, and there is some relevant expertise among the authors. However, there are only 2 distinct institutions mentioned in the ROR data and the corresponding author has limited verifiable output based on Semantic Scholar.",
+      "institutions_assessed": [
+        "Hôpital Cochin",
+        "Sorbonne Paris Nord University",
+        "AP-HP Kremlin Bicêtre Hospital",
+        "Université Paris Cité"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 10,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, testable, and aligned with the study design, and methodology is detailed enough to understand or reproduce the study. The study clearly addresses a pressing public health concern related to maternal health among migrant women.",
+      "quote": "This qualitative study aims to describe the lived experience of women participating in the 'Maternity and Cultures' discussion group, specifically focusing on the content of their exchanges and the perceived impact of the intervention.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results lack supporting figures or tables, and conclusions are overstated and not completely grounded in the evidence presented, leading to a mismatch with the results reported.",
+      "quote": "This reconstruction of self-confidence may contribute to the prevention of postpartum depression.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational, recent, and domain-relevant peer-reviewed studies, but could benefit from more sources.",
+      "quote": "Ahmed A, Bowen A, Feng CX. Maternal Depression in Syrian Refugee Women Recently Moved to Canada: A Preliminary Study.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

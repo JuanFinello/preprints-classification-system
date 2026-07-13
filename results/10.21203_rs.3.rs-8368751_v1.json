@@ -1,0 +1,119 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8368751_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 16,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Timothy Hahn",
+      "all_authors": [
+        "Timothy Hahn",
+        "George Tomlinson",
+        "Yukiko Kimura",
+        "Vincent Del Gaizo",
+        "Timothy Beukelman"
+      ],
+      "affiliations": [
+        "Penn State Children's Hospital",
+        "University of Toronto",
+        "Joseph M Sanzari Children's Hospital, Hackensack Meridian School of Medicine",
+        "Childhood Arthritis and Rheumatology Research Alliance"
+      ],
+      "n_authors": 5,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Penn State Health Children's Hospital",
+        "type": [
+          "funder",
+          "healthcare"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Toronto",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Canada",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Hackensack Meridian School of Medicine",
+        "type": [
+          "education"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Childhood Arthritis and Rheumatol­ogy Research Alliance",
+        "type": [
+          "facility",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions with some research output. However, the corresponding author lacks verifiable expertise based on available data.",
+      "institutions_assessed": [
+        "Penn State Health Children's Hospital",
+        "University of Toronto",
+        "Hackensack Meridian School of Medicine",
+        "Childhood Arthritis and Rheumatology Research Alliance"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 0,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are clear, well-defined, and are aligned with the methods involving longitudinal data collection and specific outcome measures, demonstrating public health relevance.",
+      "quote": "The purpose of this study is to describe the long-term clinical and safety outcomes for patients enrolled in the FROST trial.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results presented appear inconsistent with the findings due to missing data on primary outcomes. Conclusions are speculative, indicating limitations without strong evidence.",
+      "quote": "For 35.6% of patients, CID could not be calculated at the most recent study visit due to missing data.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes relevant, peer-reviewed sources, though it lacks some foundational studies in the field, showing an adequate but not exhaustive scope.",
+      "quote": "Pardeo M, Bracaglia C, De Benedetti F. Systemic juvenile idiopathic arthritis: New insights into pathogenesis and cytokine directed therapies.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

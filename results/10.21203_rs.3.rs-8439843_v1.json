@@ -1,0 +1,104 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8439843_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 9,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Stanzin Dolker",
+      "all_authors": [
+        "Stanzin Dolker",
+        "Lenrik Konchok Wangmo",
+        "Sirumai Khusiali Kri",
+        "Vinay Kumar",
+        "Bheem Dutt Joshi",
+        "Kamalakannan Manokaran",
+        "Lalit Kumar Sharma",
+        "Sujeet Kumar Singh Singh",
+        "Mukesh Thakur"
+      ],
+      "affiliations": [
+        "Zoological Survey of India",
+        "Amity Institute of Forestry and Wildlife, Amity University"
+      ],
+      "n_authors": 9,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "Zoological Survey of India",
+        "type": [
+          "government"
+        ],
+        "country": "India",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Amity University",
+        "type": [
+          "education"
+        ],
+        "country": "United Arab Emirates",
+        "score": 1.0,
+        "chosen": false
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Stanzin Dolker",
+      "paper_count": 22,
+      "citation_count": 91,
+      "h_index": 6,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions, but only two distinct institutions are involved, and the corresponding author's expertise, while valid, is assessed as weakly confirmed.",
+      "institutions_assessed": [
+        "Zoological Survey of India",
+        "Amity University"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 22,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The study's objectives and methodology are clear and aligned, detailing field surveys and genetic analyses to investigate species presence, addressing a relevant public health concern related to biodiversity.",
+      "quote": "This study aimed to conduct exploratory surveys in eastern Arunachal Pradesh using sign surveys, camera trapping, and non-invasive genetic methods to investigate transboundary free-ranging large mammal species.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results presented are inconsistent and lack supporting figures, with conclusions overstated and not fully supported by evidence provided in the text.",
+      "quote": "This provides clues for further exploring and validating the possible overlapping distribution of these two species.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational and recent peer-reviewed studies, ensuring credible sourcing and thorough grounding of the research.",
+      "quote": "Zhang YC, Ye HL, Li R, Maung KW, Li GG, Quan RC. Molecular phylogeny of the genus Muntiacus with special emphasis on the phylogenetic position of Muntiacus gongshanensis.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

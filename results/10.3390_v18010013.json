@@ -1,0 +1,170 @@
+{
+  "source_pdf": "10.3390_v18010013.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 19,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Nanjun Lee",
+      "all_authors": [
+        "Julian W. Tang",
+        "Nanjun Lee",
+        "Isamu Sato",
+        "Naoki Kodo",
+        "Eitaro Suzuki",
+        "Hironori Masaki",
+        "Norichika Asoh",
+        "Yutaka Shirahige",
+        "Hirotsune Hamabata",
+        "Tsutomu Tamura",
+        "Tri Bayu Purnama",
+        "Yusuke Ichikawa",
+        "Hisami Watanabe",
+        "Reiko Saito",
+        "Fujio Kakuya",
+        "Ryuta Terao",
+        "Takashi Kawashima",
+        "Keita Wagatsuma",
+        "Yuyang Sun",
+        "Jiaming Li",
+        "Irina Chon"
+      ],
+      "affiliations": [
+        "Division of International Health (Public Health), Graduate School of Medical and Dental Sciences, Niigata University, Niigata 951-8510, Japan",
+        "Department of Respiratory Sciences, University of Leicester, Leicester LE1 7RH, UK",
+        "Department of Clinical Microbiology, University Hospitals of Leicester NHS Trust, Leicester LE1 5WW, UK",
+        "Furano Kyokai Hospital, Furano 076-8765, Japan",
+        "Kawashima Medical Clinic, Shibukawa 377-0008, Japan",
+        "Yoiko Pediatric Clinic, Niigata 950-0983, Japan",
+        "Kodo Pediatrics, Uji 611-0013, Japan",
+        "Suzuki Pediatric Clinic, Ube 755-0151, Japan",
+        "Masaki Respiratory Medicine Clinic, Nagasaki 850-0841, Japan",
+        "Juzenkai Hospital, Nagasaki 852-0812, Japan",
+        "Shirahige Clinic, Nagasaki 850-0003, Japan",
+        "Awase-Daichi Clinic, Okinawa City 904-2172, Japan",
+        "Infectious Diseases Research Center of Niigata University in Myanmar (IDRC), Graduate School of Medical and Dental Sciences, Niigata University, Niigata 951-8510, Japan",
+        "Institute for Research Administration, Niigata University, Niigata 951-8510, Japan"
+      ],
+      "n_authors": 20,
+      "n_institutes": 13
+    },
+    "ror_results": [
+      {
+        "name": "Niigata University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "Japan",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University of Leicester",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United Kingdom",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "University Hospitals of Leicester NHS Trust",
+        "type": [
+          "funder",
+          "healthcare"
+        ],
+        "country": "United Kingdom",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "3M Japan Limited (Japan)",
+        "type": [
+          "company"
+        ],
+        "country": "Japan",
+        "score": 0.86,
+        "chosen": false
+      },
+      {
+        "name": "Clínica dos Gatos (Portugal)",
+        "type": [
+          "company"
+        ],
+        "country": "Portugal",
+        "score": 0.9,
+        "chosen": false
+      },
+      {
+        "name": "Clínica dos Gatos (Portugal)",
+        "type": [
+          "company"
+        ],
+        "country": "Portugal",
+        "score": 0.8,
+        "chosen": false
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Nanjun Lee",
+      "paper_count": 2,
+      "citation_count": 3,
+      "h_index": 1,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions with relevant expertise. The study involves two main institutions: Niigata University and the University of Leicester. However, the corresponding author has a low publication record (2 papers) and h-index (1), which limits their established expertise. There are no commercial affiliations among the main institutions, but there are multiple clinics involved that are primarily healthcare facilities rather than research-focused.",
+      "institutions_assessed": [
+        "Niigata University",
+        "University of Leicester",
+        "University Hospitals of Leicester NHS Trust"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 2,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, testable, and the methodology is detailed enough to replicate the study. It addresses a significant public health concern regarding influenza outbreaks.",
+      "quote": "This study aims to investigate the genetic features of the hemagglutinin (HA) genes of influenza A(H1N1)pdm09, A(H3N2), and B/Victoria viruses circulating in Japan during the 2023–2024 season.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results are not well-supported and conclusions seem overstated, with inconsistencies in reporting. The absence of statistical analysis adds to the lack of clarity.",
+      "quote": "No PA/I38T substitutions were detected in any pre-treatment sample.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of foundational, recent, and domain-relevant peer-reviewed studies, providing a good context for the work.",
+      "quote": "World Health Organization. Influenza (Seasonal) Fact Sheet.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

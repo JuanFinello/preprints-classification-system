@@ -1,0 +1,98 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8415709_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 13,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Mamta Verma",
+      "all_authors": [
+        "Mamta Verma",
+        "Jitender Phogat",
+        "Manisha Nada",
+        "Aparna Parmar",
+        "Rajender Singh Chauhan",
+        "Rahul Thakur",
+        "Mukesh Tanwar",
+        "Anshu Yadav",
+        "Chander Prabha",
+        "Sonam Gill"
+      ],
+      "affiliations": [
+        "Pandit Bhagwat Dayal Sharma Post Graduate Institute of Medical Sciences"
+      ],
+      "n_authors": 10,
+      "n_institutes": 1
+    },
+    "ror_results": [
+      {
+        "name": "Pandit Bhagwat Dayal Sharma Post Graduate Institute of Medical Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "India",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "M. Verma",
+      "paper_count": 35,
+      "citation_count": 251,
+      "h_index": 8,
+      "match_method": "name_search_unverified"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 1,
+      "justification": "All authors are affiliated with a single institution that has been flagged for low credibility. There is no evidence of meaningful collaboration with other institutions. The corresponding author's expertise is unverified due to the match method.",
+      "institutions_assessed": [
+        "Pandit Bhagwat Dayal Sharma Post Graduate Institute of Medical Sciences"
+      ],
+      "n_institutes": 1,
+      "corresponding_author_papers": 35,
+      "flags": [
+        "low-credibility institution"
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, and the methodology is well-detailed, aligning with the study design focused on public health relevance regarding RVO and COVID-19 vaccination.",
+      "quote": "The objective of the present study is to examine the levels of SARS-CoV-2 IgG antibody titres post COVID-19 vaccine in retinal vein occlusion (RVO) patients and in healthy control group.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results are presented but lack consistency and clarity, particularly in interpretation and conclusions, which appear overstated given the limitations.",
+      "quote": "These findings suggest elevated titers are a characteristic feature of RVO, supporting a strong association with thromboembolic events after receiving the COVID-19 vaccine.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The references include a balanced mix of foundational and recent peer-reviewed studies, with appropriate citations to justify methods and contextualize findings.",
+      "quote": "Parotto M, Gyöngyösi M, Howe K, Myatra SN, Ranzani O, Shankar-Hari M, et al. Post-acute sequelae of COVID-19: understanding and addressing the burden of multisystem manifestations.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 1,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "reject",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8545804_v1.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 15,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Lianghui Wei",
+      "all_authors": [
+        "Lianghui Wei",
+        "Li Zhu",
+        "Jianzhong Ye",
+        "Ran Zhang",
+        "Ying Ye",
+        "Chunzhong Zhao",
+        "Ye Yang",
+        "Jianan He"
+      ],
+      "affiliations": [
+        "Yangtze University",
+        "Shenzhen International Travel Health Care Centre"
+      ],
+      "n_authors": 8,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "name": "Yangtze University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "China",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "China",
+        "score": 0.99,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {}
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with credible institutions, but only two institutions are involved, and there are limited verified experts among the authors.",
+      "institutions_assessed": [
+        "Yangtze University",
+        "Shenzhen International Travel Health Care Center"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 0,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit and aligned with the study design, detailing the methodologies used in the analysis of CHIKV infections and their relevance to public health.",
+      "quote": "This study aimed to analyze the molecular epidemiological characteristics of imported Chikungunya virus (CHIKV) infections",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "The results lack supporting figures or tables, and conclusions regarding the effectiveness of the sequencing methods are overstated given the small sample size.",
+      "quote": "the small sample size limits the generalizability of the conclusions.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The reference list includes a balanced mix of contemporary and foundational peer-reviewed studies pertinent to CHIKV, providing adequate support for the research.",
+      "quote": "Javaid A, Ijaz A, Ashfaq UA, Arshad M, Irshad S, Saif S. 2022. An overview of chikungunya virus molecular biology,",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}

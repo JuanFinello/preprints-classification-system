@@ -1,0 +1,58 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8249251_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    3,
+    4,
+    2,
+    0,
+    1
+  ],
+  "retrieved_pages": [
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      3,
+      4,
+      5
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "Original score 3 was downgraded to 2 because fewer than two valid verbatim evidence quotes were found.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          3
+        ],
+        "quote": "Circulating tumor DNA analysis using a commercial liquid biopsy platform was performed after progression."
+      }
+    ]
+  }
+}

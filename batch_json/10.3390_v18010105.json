@@ -1,0 +1,60 @@
+{
+  "source_pdf": "10.3390_v18010105.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    6,
+    7,
+    10,
+    11,
+    9
+  ],
+  "retrieved_pages": [
+    [
+      7,
+      8
+    ],
+    [
+      8,
+      9
+    ],
+    [
+      13,
+      14
+    ],
+    [
+      14,
+      15,
+      16
+    ],
+    [
+      11,
+      12,
+      13
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "paper_type": "original research",
+    "score": 2,
+    "justification": "The objective is present but lacks clarity, and while methods are described, important details for reproduction are missing.",
+    "objective_evidence": {
+      "chunk_id": 3,
+      "pages": [
+        11
+      ],
+      "quote": "Based on the altered protease digestion patterns, we hypothesized that thermal stability would be different for the different Np constructs."
+    },
+    "method_evidence": {
+      "chunk_id": 10,
+      "pages": [
+        15
+      ],
+      "quote": "Crosslinking-MP was used to determine how Np oligomerization differs in the presence of specific RNAs."
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8417000_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    1,
+    0,
+    4,
+    2,
+    3
+  ],
+  "retrieved_pages": [
+    [
+      4,
+      5
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      8,
+      9,
+      10,
+      11
+    ],
+    [
+      5,
+      6,
+      7
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 3,
+    "justification": "The research objectives and methodology are clearly stated and interconnected. The study explicitly aims to address the management of febrile neutropenia in LMIC settings, with a detailed methodology provided.",
+    "evidence": [
+      {
+        "chunk_id": 1,
+        "pages": [
+          4
+        ],
+        "quote": "our research aims to evaluate and optimize FN management strategies in LMIC settings"
+      },
+      {
+        "chunk_id": 1,
+        "pages": [
+          4
+        ],
+        "quote": "we therefore conducted a prospective cohort study to estimate the real-world incidence of FN despite primary peg-G-CSF prophylaxis"
+      }
+    ]
+  }
+}

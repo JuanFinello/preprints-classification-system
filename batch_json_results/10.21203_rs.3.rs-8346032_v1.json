@@ -1,0 +1,61 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-8346032_v1.pdf",
+  "criterion": "research_question_and_methods",
+  "retrieved_chunk_ids": [
+    18,
+    19,
+    17,
+    21,
+    24
+  ],
+  "retrieved_pages": [
+    [
+      52,
+      53,
+      54,
+      55
+    ],
+    [
+      55,
+      56,
+      57
+    ],
+    [
+      48,
+      49,
+      50,
+      51,
+      52
+    ],
+    [
+      58,
+      59,
+      60
+    ],
+    [
+      64,
+      65,
+      66
+    ]
+  ],
+  "retrieval_debug": {
+    "has_objective_chunk": true,
+    "has_method_chunk": true,
+    "n_retrieved": 5
+  },
+  "result": {
+    "criterion": "research_question_and_methods",
+    "score": 2,
+    "justification": "The research objective is stated, but the methodology, while mentioned, lacks key details for a full understanding of the study design.",
+    "evidence": [
+      {
+        "chunk_id": 0,
+        "pages": [
+          64,
+          65
+        ],
+        "quote": "We then performed a GWAS meta-analysis across DCM and HCM, assuming that both cardiomyopathies represent genetically similar diseases."
+      }
+    ]
+  }
+}

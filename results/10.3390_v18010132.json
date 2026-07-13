@@ -1,0 +1,119 @@
+{
+  "source_pdf": "10.3390_v18010132.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 16,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Kai Duan",
+      "all_authors": [
+        "Boyang Li",
+        "Mengxuan Wang",
+        "Fang Huang",
+        "Mifang Liang",
+        "Kai Duan",
+        "Wei Wu",
+        "Jiaxin Fan",
+        "Lu Yang",
+        "Yongbing Pan"
+      ],
+      "affiliations": [
+        "Hubei Provincial Vaccine Technology Innovation Center, State Key Laboratory of Novel Vaccines for Emerging Infectious Diseases, National Engineering Technology Research Center for Combined Vaccines, Wuhan Institute of Biological Products Co., Ltd., Wuhan 430207, China",
+        "Wuhan Riverflow Ab Biotechnology Co., Ltd., Wuhan 430207, China",
+        "Hubei Jiangxia Laboratory, Wuhan 430207, China"
+      ],
+      "n_authors": 9,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "name": "Wuhan Institute of Virology",
+        "type": [
+          "facility"
+        ],
+        "country": "China",
+        "score": 0.89,
+        "chosen": false
+      },
+      {
+        "name": "Sclnow Biotechnology Co., Ltd. (China)",
+        "type": [
+          "company"
+        ],
+        "country": "China",
+        "score": 0.9,
+        "chosen": false
+      },
+      {
+        "name": "Junior Achievement",
+        "type": [
+          "other"
+        ],
+        "country": "China",
+        "score": 0.86,
+        "chosen": false
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Kai Duan",
+      "paper_count": 54,
+      "citation_count": 4067,
+      "h_index": 19,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "All authors are affiliated with research-focused institutions, though some affiliations are commercial in nature, which impacts overall credibility. There are 2–3 institutions involved with up to 2 authors having verifiable expertise in the field.",
+      "institutions_assessed": [
+        "Hubei Provincial Vaccine Technology Innovation Center",
+        "Wuhan Riverflow Ab Biotechnology Co., Ltd.",
+        "Hubei Jiangxia Laboratory"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 54,
+      "flags": [
+        "commercial affiliation"
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives are explicit and the methodology is detailed, allowing for reproduction. The study addresses a pressing public health concern regarding immune responses to SARS-CoV-2 variants.",
+      "quote": "This study investigates the phenomenon of immune imprinting by comparing two phage display antibody libraries derived from early 2020 wild-type SARS-CoV-2 convalescents (WT-AbLib) and early 2023 Omicron convalescents (Omi-AbLib).",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Some results are reported but lack supporting figures and clear interpretation; the conclusions are speculative and not completely grounded in the presented data.",
+      "quote": "Although immune imprinting delays Omicron-specific neutralizing responses, clinical data indicate prior exposure reduces reinfection severity.",
+      "quote_valid": false
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The references include a balanced mix of foundational and recent peer-reviewed studies, contributing to a well-supported context.",
+      "quote": "Yamasoba, D.; Uriu, K.; Plianchaisuk, A.; Kosugi, Y.; Pan, L.; Zahradnik, J.; Ito, J.; Sato, K.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 9,
+    "max": 12,
+    "average": 2.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "results_and_conclusion"
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "source_pdf": "10.3390_v18010001.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 5,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Jacques Fantini",
+      "all_authors": [
+        "Jacques Fantini"
+      ],
+      "affiliations": [
+        "Department of Biology, Faculty of Medicine, Aix-Marseille University, INSERM UA16, 13015 Marseille, France"
+      ],
+      "n_authors": 1,
+      "n_institutes": 1
+    },
+    "ror_results": [
+      {
+        "name": "",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "",
+      "paper_count": 15,
+      "citation_count": 6,
+      "h_index": 1
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 1,
+      "justification": "The author is affiliated with a single institution, which is a credible education institute, but there is no verifiable expertise among authors as indicated by the low paper and citation counts.",
+      "institutions_assessed": [
+        "Department of Biology, Faculty of Medicine, Aix-Marseille University, INSERM UA16"
+      ],
+      "n_institutes": 1,
+      "corresponding_author_papers": 15,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "The objective is stated but lacks precision, and the methodology is briefly described without important details.",
+      "quote": "The articles in this Special Issue collectively illuminate advanced strategies to combat emerging viral threats."
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "Results are presented but some inconsistencies exist and conclusions lack clarity regarding supporting evidence.",
+      "quote": "These findings suggest that gut microbiota composition markers could serve as valuable tools for early risk assessment."
+    },
+    "references": {
+      "score": 2,
+      "justification": "The paper includes roughly 10–20 references but omits some important recent work.",
+      "quote": "Lefebvre et al. [5] demonstrate ivermectin’s mutation-tolerant binding to the NTD."
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 1,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 2,
+      "references": 2
+    },
+    "total": 7,
+    "max": 12,
+    "average": 1.75,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations"
+  }
+}

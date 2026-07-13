@@ -1,0 +1,127 @@
+{
+  "source_pdf": "10.3390_v18010105.pdf",
+  "model": "gpt-4o-mini",
+  "n_pages": 24,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Karin Musier-Forsyth",
+      "all_authors": [
+        "Megan S. Sullivan",
+        "Vicki Wysocki",
+        "Mark C. Williams",
+        "Michael Morse",
+        "Kaylee Grabarkewitz",
+        "Dina Bayachou",
+        "Ioulia Rouzina",
+        "Karin Musier-Forsyth"
+      ],
+      "affiliations": [
+        "Center for Retroviral Research, Department of Chemistry and Biochemistry, The Ohio State University, Columbus, OH 43210, USA",
+        "Center for RNA Biology, Department of Chemistry and Biochemistry, The Ohio State University, Columbus, OH 43210, USA",
+        "Department of Physics, Northeastern University, Boston, MA 02115, USA",
+        "School of Chemistry and Biochemistry, Georgia Institute of Technology, Atlanta, GA 30332, USA"
+      ],
+      "n_authors": 8,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "The Ohio State University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "The Ohio State University",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      },
+      {
+        "name": "Universidad del Noreste",
+        "type": [
+          "education"
+        ],
+        "country": "Mexico",
+        "score": 1.0,
+        "chosen": false
+      },
+      {
+        "name": "Georgia Institute of Technology",
+        "type": [
+          "education",
+          "funder"
+        ],
+        "country": "United States",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "semantic_scholar": {
+      "name": "Karin Musier-Forsyth",
+      "paper_count": 18,
+      "citation_count": 88,
+      "h_index": 6,
+      "match_method": "doi"
+    }
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "All authors are affiliated with credible institutions, with the main author being from a well-established university. There are more than three distinct institutions involved, and several authors have verifiable expertise in their fields.",
+      "institutions_assessed": [
+        "The Ohio State University",
+        "Northeastern University",
+        "Georgia Institute of Technology"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 18,
+      "flags": []
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "The objectives and hypotheses are explicit, testable, and aligned with the study design. Methodology is detailed enough to understand or reproduce the study.",
+      "quote": "To gain mechanistic insights into these distinct roles, we performed in vitro biophysical and biochemical studies using recombinantly expressed ancestral Np and phosphomimetic SRR variants.",
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Results lack supporting figures or tables, or are inconsistent with the data and methods described. Conclusions are overstated, speculative, or not grounded in the evidence presented.",
+      "quote": "The findings also help to explain infectivity differences and clinical outcomes associated with SRR linker variants.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 24,
+      "justification": "The references include a balanced mix of foundational and recent peer-reviewed studies, although some important recent work may be omitted.",
+      "quote": "Characterization of protein-protein interactions between the nucleocapsid protein and membrane protein of the SARS coronavirus.",
+      "score": 3,
+      "quote_valid": true
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 3
+    },
+    "total": 10,
+    "max": 12,
+    "average": 2.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  }
+}
