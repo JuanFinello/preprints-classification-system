@@ -14,6 +14,7 @@ Environment:
 """
 
 import argparse
+import base64
 import json
 import os
 import re
@@ -28,7 +29,10 @@ from pdfminer.layout import LTTextContainer
 
 # ─── constants ───────────────────────────────────────────────────────────────
 
-DEFAULT_MODEL = "gpt-4o-mini"
+# gpt-4o-mini retired from ChatGPT Feb 2026 and dropped off the current pricing
+# table; gpt-5.6-terra is the same price tier as its old gpt-5.4 sibling but the
+# newer generation, and (like gpt-4o+) parses PDFs as text+page-images natively.
+DEFAULT_MODEL = "gpt-5.6-terra"
 ROR_API = "https://api.ror.org/organizations"
 S2_API = "https://api.semanticscholar.org/graph/v1/author/search"
 S2_PAPER_API = "https://api.semanticscholar.org/graph/v1/paper"
@@ -218,7 +222,7 @@ def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024) -> str
     """Single helper for all LLM calls."""
     resp = client.chat.completions.create(
         model=model,
-        max_tokens=max_tokens,
+        max_completion_tokens=max_tokens,  # gpt-5.x rejects the old max_tokens param
         messages=[{"role": "user", "content": prompt}],
     )
     return resp.choices[0].message.content.strip()
@@ -326,13 +330,23 @@ work — if you are about to assign 2 to all three criteria for this paper, re-r
 score_1 and score_3 descriptions again before finalizing; you are likely
 under-differentiating.
 
+You are working from extracted text only — some tables survive here as unstructured
+runs of numbers (headers separated from their values), and figures/images are not
+included at all. Do not conclude "lacks supporting figures or tables" just because
+you cannot see them visually — look for whether tabular or numeric data survived in
+the text and judge internal consistency from that. Only cite an actual absence of
+figures/tables if there is truly no such data anywhere in the text.
+
 - Quote must be a verbatim phrase copied from the paper (max 220 characters).
 - Justify in 1–2 sentences, naming which score_1/score_2/score_3 description the
   evidence matches.
-- For references: carefully count the total number of entries in the reference list
-  and report it as "reference_count" (an integer). The score for this criterion is
-  derived automatically from that count, not chosen by you — focus entirely on
-  counting accurately; do not try to reason about what score the count "should" map to.
+- For references: count the total number of entries in the reference list and report
+  it as "reference_count" (an integer). The score is derived automatically from that
+  count using this exact rule — do not invent a different threshold: reference_count
+  > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
+  about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
+  balance, self-citation reliance) — not about whether the count itself "feels" low
+  or high, since that judgment isn't used.
 
 === FULL PAPER TEXT ===
 {full_text}
@@ -347,6 +361,78 @@ Return ONLY this JSON (no markdown, no extra text):
   "results_and_conclusion": {{
     "score": 1,
     "justification": "brief explanation grounded in the text, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "references": {{
+    "reference_count": 24,
+    "justification": "brief explanation of reference quality and coverage",
+    "quote": "sample reference from the paper"
+  }}
+}}"""
+
+
+def _build_content_prompt_pdf(criteria: dict) -> str:
+    """Same rubric/procedure as _build_content_prompt, but for the attached-PDF
+    path: no full_text is embedded — the model reads the PDF file directly.
+    Keep in sync with _build_content_prompt if the rubric wording changes;
+    _build_content_prompt itself must not change (evaluate_preprint_claude.py
+    still uses it verbatim for the text-only Claude path)."""
+    rqm = criteria["research_question_and_methods"]
+    rac = criteria["results_and_conclusion"]
+    ref = criteria["references"]
+
+    return f"""You are evaluating a scientific preprint for GISAID eligibility.
+Read the attached PDF in full — including its figures and tables — and score
+THREE criteria using ONLY the evidence present.
+
+=== CRITERION 1: {rqm["label"]} ===
+Score 1: {rqm["score_1"]["description"]}
+Score 2: {rqm["score_2"]["description"]}
+Score 3: {rqm["score_3"]["description"]}
+
+=== CRITERION 2: {rac["label"]} ===
+Score 1: {rac["score_1"]["description"]}
+Score 2: {rac["score_2"]["description"]}
+Score 3: {rac["score_3"]["description"]}
+
+=== CRITERION 3: {ref["label"]} ===
+Score 1: {ref["score_1"]["description"]}
+Score 2: {ref["score_2"]["description"]}
+Score 3: {ref["score_3"]["description"]}
+
+=== HOW TO SCORE EACH CRITERION ===
+For each of the three criteria, follow this procedure before committing to a score:
+1. Check the score_3 description first. Does the paper clearly meet it? If yes, score 3 — stop.
+2. If not, check the score_1 description. Does the paper clearly show those weaknesses? If yes, score 1 — stop.
+3. Only score 2 if the paper genuinely sits between the two — some strong elements
+   present, but not enough for a clear 3, with no red flags severe enough for a clear 1.
+
+Score 2 is not a safe default. It should be your conclusion in a minority of cases,
+not most of them. Base "lacks supporting figures or tables" strictly on whether the
+PDF actually contains them — check the real document, don't assume.
+
+- Quote must be a verbatim phrase copied from the paper (max 220 characters).
+- Justify in 1-2 sentences, naming which score_1/score_2/score_3 description the
+  evidence matches. When a figure or table is central to your reasoning, describe
+  what it shows in the justification (quotes can only be text, not images).
+- For references: count the total number of entries in the reference list and report
+  it as "reference_count" (an integer). The score is derived automatically from that
+  count using this exact rule — do not invent a different threshold: reference_count
+  > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
+  about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
+  balance, self-citation reliance) — not about whether the count itself "feels" low
+  or high, since that judgment isn't used.
+
+Return ONLY this JSON (no markdown, no extra text):
+{{
+  "research_question_and_methods": {{
+    "score": 3,
+    "justification": "brief explanation grounded in the paper, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "results_and_conclusion": {{
+    "score": 1,
+    "justification": "brief explanation grounded in the paper, naming the matched score description",
     "quote": "exact verbatim quote from the paper"
   }},
   "references": {{
@@ -385,6 +471,16 @@ Distinct affiliations ({extracted.get("n_institutes", "?")}):
 
 === CORRESPONDING AUTHOR (Semantic Scholar) ===
 {s2_summary}
+
+=== HOW TO SCORE ===
+Follow this procedure before committing to a score:
+1. Check the score_3 description first. Does the evidence clearly meet it? If yes, score 3 — stop.
+2. If not, check the score_1 description. Does the evidence clearly show those weaknesses? If yes, score 1 — stop.
+3. Only score 2 if the paper genuinely sits between the two — some credible elements
+   present, but not enough for a clear 3, with no red flags severe enough for a clear 1.
+
+Score 2 is not a safe default — it should be your conclusion in a minority of cases,
+not most of them.
 
 === INSTRUCTIONS ===
 - Base the score on institution type (prefer universities/research institutes over commercial entities)
@@ -444,6 +540,52 @@ def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str)
     return result
 
 
+def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: str) -> dict:
+    """Evaluate criteria 2, 3, 4 by sending the PDF file directly (text + page
+    images), instead of pre-extracted text. Requires a vision-capable model."""
+    pdf_b64 = base64.standard_b64encode(pdf_path.read_bytes()).decode("utf-8")
+    prompt = _build_content_prompt_pdf(criteria)
+
+    resp = client.chat.completions.create(
+        model=model,
+        max_completion_tokens=4500,  # gpt-5.x rejects the old max_tokens param; reasoning_effort="high" needs headroom beyond the visible JSON
+        reasoning_effort="high",  # left unset it under-reasons; see project memory
+        messages=[{
+            "role": "user",
+            "content": [
+                {
+                    "type": "file",
+                    "file": {
+                        "filename": pdf_path.name,
+                        "file_data": f"data:application/pdf;base64,{pdf_b64}",
+                    },
+                },
+                {"type": "text", "text": prompt},
+            ],
+        }],
+    )
+    raw = resp.choices[0].message.content.strip()
+    raw = re.sub(r"^```(?:json)?\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    try:
+        result = json.loads(raw)
+    except Exception:
+        return {
+            "research_question_and_methods": {"score": 1, "justification": "Parse error", "quote": ""},
+            "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
+            "references": {"score": 1, "justification": "Parse error", "quote": ""},
+        }
+
+    ref = result.get("references", {})
+    ref_count = ref.get("reference_count")
+    if isinstance(ref_count, int):
+        ref["score"] = _score_from_reference_count(ref_count)
+    else:
+        ref["score"] = 1
+        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
+    return result
+
+
 def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenAI, model: str) -> dict:
     """Evaluate criterion 1 (author credibility) using enriched author data."""
     prompt = _build_author_prompt(author_data, criteria)
@@ -471,19 +613,60 @@ def _norm(text: str) -> str:
     return text.strip()
 
 
+_STANDALONE_NUMBER_RE = re.compile(r"(?<!\S)\d{1,4}(?!\S)")
+
+
+def _strip_line_numbers(text: str) -> str:
+    """Drop standalone 1-4 digit tokens (peer-review manuscripts embed inline
+    line numbers like '...investigated \\n21\\n mosquito...' that break an
+    otherwise-verbatim quote). Only strips digits with whitespace on both
+    sides, so numbers glued to units/words (24%, Fig.4) survive."""
+    return re.sub(r"\s+", " ", _STANDALONE_NUMBER_RE.sub(" ", text)).strip()
+
+
+def _bag_of_words_match(quote_words: list[str], full_text_words: list[str], threshold: float = 0.85) -> bool:
+    """Order-independent fallback: true if some window of full_text_words
+    (sized generously around the quote) contains most of the quote's words.
+    Catches pdfminer reading-order scrambles (multi-column layouts, callout
+    boxes) that break exact and prefix matching even though the words are
+    genuinely all present nearby."""
+    n = len(quote_words)
+    if n < 8:
+        return False
+    quote_set = set(quote_words)
+    window = n * 2
+    for i in range(0, max(len(full_text_words) - window, 0) + 1):
+        if len(quote_set & set(full_text_words[i:i + window])) / len(quote_set) >= threshold:
+            return True
+    return False
+
+
 def _quote_found(quote: str, full_text: str) -> bool:
-    """Return True if quote (or its first 12 words) appears in full_text."""
+    """Return True if quote is verifiable in full_text. Tries, in order: exact
+    match, first-12-words prefix match, both again after stripping inline line
+    numbers, and finally an order-independent bag-of-words match — see
+    _strip_line_numbers and _bag_of_words_match for the extraction artifacts
+    each step defends against."""
     q = _norm(quote)
     if not q:
         return False
-    if q in _norm(full_text):
-        return True
-    # partial match: first 12 words (handles truncation artifacts)
+
+    ft = _norm(full_text)
     words = q.split()
-    if len(words) >= 8:
-        partial = " ".join(words[:12])
-        return partial in _norm(full_text)
-    return False
+
+    def _prefix_hit(text: str, tokens: list[str]) -> bool:
+        return len(tokens) >= 8 and " ".join(tokens[:12]) in text
+
+    if q in ft or _prefix_hit(ft, words):
+        return True
+
+    q_nolines = _strip_line_numbers(q)
+    ft_nolines = _strip_line_numbers(ft)
+    words_nolines = q_nolines.split()
+    if q_nolines and (q_nolines in ft_nolines or _prefix_hit(ft_nolines, words_nolines)):
+        return True
+
+    return _bag_of_words_match(words, ft.split())
 
 
 def validate_quotes(criterion_results: dict, full_text: str) -> dict:
@@ -568,8 +751,8 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
     # Step 2: enrich authors (PDF + ROR + Semantic Scholar)
     author_data = enrich_author_data(pdf_data["header_text"], client, model, pdf_path)
 
-    # Step 3: evaluate content criteria (2, 3, 4) in one LLM call
-    content_results = evaluate_content(pdf_data["eval_text"], criteria, client, model)
+    # Step 3: evaluate content criteria (2, 3, 4) in one LLM call — PDF sent directly
+    content_results = evaluate_content_pdf(pdf_path, criteria, client, model)
 
     # Step 4: evaluate author credibility (1) in one LLM call
     author_results = evaluate_author_credibility(author_data, criteria, client, model)

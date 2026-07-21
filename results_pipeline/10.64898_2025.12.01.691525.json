@@ -1,6 +1,6 @@
 {
   "source_pdf": "10.64898_2025.12.01.691525.pdf",
-  "model": "gpt-4o-mini",
+  "model": "gpt-5.6-terra",
   "n_pages": 38,
   "author_enrichment": {
     "extracted": {
@@ -20,9 +20,9 @@
         "Fredrick Eyase"
       ],
       "affiliations": [
-        "Department of Emerging Infectious Diseases, Walter Reed Army Institute of Research-Africa, Nairobi, Kenya",
-        "Centre for Virus Research, Kenya Medical Research Institute, Nairobi, Kenya",
-        "Department of Biochemistry, Jomo Kenyatta University of Agriculture and Technology (JKUAT), Nairobi, Kenya"
+        "Department of Emerging Infectious Diseases, Walter Reed Army Institute of Research-Africa, Nairobi, Kenya.",
+        "Centre for Virus Research, Kenya Medical Research Institute, Nairobi, Kenya.",
+        "Department of Biochemistry, Jomo Kenyatta University of Agriculture and Technology (JKUAT), Nairobi, Kenya."
       ],
       "n_authors": 12,
       "n_institutes": 3
@@ -70,7 +70,7 @@
   "criteria": {
     "author_credibility": {
       "score": 2,
-      "justification": "All authors are affiliated with credible institutions in Kenya, and at least two authors have verifiable expertise. However, the involvement of the Walter Reed Army Institute of Research (a US military research organization) may raise concerns about collaboration relevance. The overall count of recognized institutions is 3.",
+      "justification": "All listed affiliations are credible public research, government, or university institutions with relevant infectious-disease and biomedical research capacity. However, the study has only three distinct institutions, not more than three as required for score 3, and the corresponding author has 9 papers and h-index 3, below the stated established-researcher indicators.",
       "institutions_assessed": [
         "Walter Reed Army Institute of Research",
         "Kenya Medical Research Institute",
@@ -78,25 +78,27 @@
       ],
       "n_institutes": 3,
       "corresponding_author_papers": 9,
-      "flags": []
+      "flags": [
+        "Three institutions only; does not meet the score-3 requirement of more than three distinct institutions",
+        "Corresponding author's Semantic Scholar metrics are below the stated established-researcher thresholds (9 papers, h-index 3)"
+      ]
     },
     "research_question_and_methods": {
-      "score": 2,
-      "justification": "The study's objective is clear: to investigate mosquito populations for WNV and to provide evidence of transovarial transmission. The methodology is detailed, allowing for replication.",
+      "score": 3,
+      "justification": "Matches the score_3 description: the objective is explicit and aligned with detailed, reproducible entomological, culture, sequencing, bioinformatic, phylogenetic, and selection-analysis methods. The study addresses WNV surveillance as a public-health concern in Kenya and provides GenBank accession numbers for the ten viral sequences.",
       "quote": "This study investigated mosquito populations from coastal Kenya, where WNV was detected, genetically characterized, and evidence of transovarial transmission in Aedes aegypti was observed.",
-      "quote_valid": false,
-      "score_note": "downgraded 3→2: supporting quote not found verbatim in text"
+      "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 1,
-      "justification": "The results are inconsistently presented and descriptions do not align with methodological expectations. There's a lack of clarity regarding the implications of findings.",
-      "quote": "Sequencing of the CPE-positive pools revealed West Nile Virus (WNV) in all ten isolates, with eight complete genomes and two partial genomes recovered.",
-      "quote_valid": false
+      "score": 2,
+      "justification": "Matches the score_2 description: results are supported by isolate data in Table 1, phylogenetic trees in Figures 2–4, replication data in Table 2/Figure 5, and COI species confirmation in Table 3, but limitations are not explicitly discussed and vertical transmission is inferred from a male mosquito pool rather than directly experimentally demonstrated.",
+      "quote": "The recovery of a full genomic sequence of Lineage 1 from a male Aedes aegypti further supports the possibility of transovarial transmission",
+      "quote_valid": true
     },
     "references": {
-      "reference_count": 24,
-      "justification": "The paper includes a balanced mix of foundational, recent, and relevant peer-reviewed studies, reflecting a well-rounded literature support.",
-      "quote": "Asebe G, Mamo G, Michlmayr D, Abegaz WE, Endale A, Medhin G, et al.",
+      "reference_count": 41,
+      "justification": "The references provide broad, credible coverage, combining foundational WNV discovery, vector, pathology, and vertical-transmission studies with recent peer-reviewed genomic, epidemiologic, and Kenyan surveillance literature from established journals; there is no apparent overreliance on self-citation.",
+      "quote": "First field evidence for natural vertical transmission of West Nile virus in Culex univittatus complex mosquitoes from Rift Valley Province, Kenya.",
       "score": 3,
       "quote_valid": true
     },
@@ -108,18 +110,15 @@
   "scoring": {
     "per_criterion": {
       "author_credibility": 2,
-      "research_question_and_methods": 2,
-      "results_and_conclusion": 1,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
       "references": 3
     },
-    "total": 8,
+    "total": 10,
     "max": 12,
-    "average": 2.0,
+    "average": 2.5,
     "n_criteria_evaluated": 4,
-    "recommendation": "accept_with_reservations",
-    "quotes_invalid": [
-      "research_question_and_methods",
-      "results_and_conclusion"
-    ]
+    "recommendation": "accept",
+    "quotes_invalid": []
   }
 }

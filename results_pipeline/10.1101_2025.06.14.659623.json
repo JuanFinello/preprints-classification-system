@@ -1,6 +1,6 @@
 {
   "source_pdf": "10.1101_2025.06.14.659623.pdf",
-  "model": "gpt-4o-mini",
+  "model": "gpt-5.6-terra",
   "n_pages": 60,
   "author_enrichment": {
     "extracted": {
@@ -79,33 +79,36 @@
   },
   "criteria": {
     "author_credibility": {
-      "score": 3,
-      "justification": "All authors are affiliated with credible institutions, and the main corresponding author is from a well-established research institution. There are at least 3 authors with verifiable expertise based on their publication records, and more than 3 distinct institutions are involved.",
+      "score": 2,
+      "justification": "All listed affiliations are credible US university, nonprofit research, or research-funding institutions. The corresponding author has a reliable DOI-matched Semantic Scholar profile with 14 papers, but an h-index of 3 does not exceed the stated established-researcher threshold. The collaboration includes three distinct institutions, not more than three as required for a clear score of 3.",
       "institutions_assessed": [
         "University of California, Davis",
         "Fred Hutch Cancer Center",
         "Howard Hughes Medical Institute"
       ],
-      "n_institutes": 4,
+      "n_institutes": 3,
       "corresponding_author_papers": 14,
-      "flags": []
+      "flags": [
+        "Corresponding author h-index is 3, below the stated threshold of greater than 3",
+        "Only three distinct institutions are represented"
+      ]
     },
     "research_question_and_methods": {
       "score": 3,
-      "justification": "The objectives and hypotheses are explicit and aligned with the study design. The methodology is detailed enough to understand or reproduce the study, directly addressing a pressing public health concern regarding YFV.",
+      "justification": "Matches the score_3 description: the study explicitly aims to identify YFV-specific and conserved flavivirus host interactions, links this work to resurgent YFV public-health concern, and provides detailed AP-MS, CRISPRi, infection, structural, and statistical methods plus public data and code availability. Figure 3 further documents functional validation of a prioritized interaction using knockdown, co-IP, and replicon assays.",
       "quote": "Here, we map YFV interactomes in human and mosquito cells to identify interactions common among divergent flaviviruses or unique to YFV.",
       "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 1,
-      "justification": "The results lack sufficient clarity and consistency, with conclusions overstated. The evidence presented does not fully substantiate the conclusions drawn.",
-      "quote": "Despite serial passaging, only 32 amino acids differentiate the entire polyproteins of YFV-17D and YFV-Asibi.",
+      "score": 3,
+      "justification": "Matches the score_3 description: findings are supported by orthogonal methods, including AP-MS, CRISPRi knockdown, plaque assays, endogenous co-immunoprecipitation with RNase treatment, and replicon assays (Figure 3). The conclusions are appropriately tied to these data, and the paper explicitly discusses methodological and biological limitations on page 20.",
+      "quote": "Together, our data support a model in which RBBP6 acts as a YFV restriction factor by inhibiting YFV genome replication through a complex RNA-mediated interaction with NS5.",
       "quote_valid": true
     },
     "references": {
-      "reference_count": 24,
-      "justification": "The references include relevant studies, but there are fewer than 30 entries, suggesting limited depth in recent and foundational coverage.",
-      "quote": "Pierson, T.C., and Diamond, M.S. (2020). The continued threat of emerging flaviviruses. Nat Microbiol 5, 796–812.",
+      "reference_count": 104,
+      "justification": "The reference list provides broad domain coverage, including foundational flavivirus biology, AP-MS and interaction-scoring methods, CRISPR screens, evolutionary analyses, and recent YFV surveillance. It predominantly cites peer-reviewed, high-quality journals such as Nature, Cell, Science, PNAS, and eLife, while using a limited number of recent preprints and public-health reports where directly relevant.",
+      "quote": "Comparative Flavivirus-Host Protein Interaction Mapping Reveals Mechanisms of Dengue and Zika Virus Pathogenesis.",
       "score": 3,
       "quote_valid": true
     },
@@ -116,16 +119,16 @@
   },
   "scoring": {
     "per_criterion": {
-      "author_credibility": 3,
+      "author_credibility": 2,
       "research_question_and_methods": 3,
-      "results_and_conclusion": 1,
+      "results_and_conclusion": 3,
       "references": 3
     },
-    "total": 10,
+    "total": 11,
     "max": 12,
-    "average": 2.5,
+    "average": 2.75,
     "n_criteria_evaluated": 4,
-    "recommendation": "accept_with_reservations",
+    "recommendation": "accept",
     "quotes_invalid": []
   }
 }

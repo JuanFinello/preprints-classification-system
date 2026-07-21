@@ -1,6 +1,6 @@
 {
   "source_pdf": "10.1101_2025.10.28.685229.pdf",
-  "model": "gpt-4o-mini",
+  "model": "gpt-5.6-terra",
   "n_pages": 41,
   "author_enrichment": {
     "extracted": {
@@ -36,19 +36,19 @@
       ],
       "affiliations": [
         "Chinese Institute for Immunology, Chinese Institutes for Medical Research, Beijing You’an Hospital, Capital Medical University, Beijing, China",
-        "Shenzhen Key Laboratory of Pathogen and Immunity, National Clinical Research Center for infectious disease, State Key Discipline of Infectious Disease, Shenzhen Third People's Hospital, Second Hospital Affiliated to Southern University of Science and Technology, Shenzhen, China",
+        "Shenzhen Key Laboratory of Pathogen and Immunity, National Clinical Research Center for Infectious Disease, State Key Discipline of Infectious Disease, Shenzhen Third People's Hospital, Second Hospital Affiliated to Southern University of Science and Technology, Shenzhen, China",
         "State Key Laboratory of Virology and Biosafety, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; University of the Chinese Academy of Sciences, Beijing 100039, China; Center for Biosafety Mega-Science, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; Hubei Jiangxia Laboratory, Wuhan 430200, China",
-        "Tsinghua-Peking Center for Life Sciences, School of Medicine, Tsinghua University, Beijing; Shenzhen Bay Laboratory, Shenzhen, China",
+        "Tsinghua-Peking Center for Life Sciences, School of Medicine, Tsinghua University, Beijing; Institute of Infectious Diseases, Shenzhen Bay Laboratory, Shenzhen, China",
         "School of Medicine, Tsinghua University, Beijing",
         "Bioinformatics Center of College of Biology, Hunan Provincial Key Laboratory of Medical Virology, Hunan University, Changsha, China",
-        "NHC Key Laboratory of Biosafety, National Institute for Viral Disease Control and Prevention, Chinese Center for Disease Control and Prevention, Beijing, 102206, China",
+        "NHC Key Laboratory of Biosafety, National Institute for Viral Disease Control and Prevention, Chinese Center for Disease Control and Prevention, Beijing 102206, China",
         "Chinese Institute for Cancer Research, Chinese Institutes for Medical Research, Capital Medical University, Beijing, China",
         "Department of Hepatobiliary and Pancreatic Surgery, Beijing Chao-Yang Hospital, Capital Medical University, Beijing, China",
         "Beijing You'an Hospital, Capital Medical University, Beijing, China",
         "Chinese Institutes for Medical Research, Capital Medical University, Beijing, China"
       ],
       "n_authors": 27,
-      "n_institutes": 10
+      "n_institutes": 11
     },
     "ror_results": [
       {
@@ -82,10 +82,9 @@
         "chosen": true
       },
       {
-        "name": "Tsinghua University",
+        "name": "National Institute for Communicable Disease Control and Prevention",
         "type": [
-          "education",
-          "funder"
+          "government"
         ],
         "country": "China",
         "score": 1.0,
@@ -122,36 +121,39 @@
   },
   "criteria": {
     "author_credibility": {
-      "score": 3,
-      "justification": "All authors are affiliated with credible universities and research institutes in China. The corresponding author, Jiali Tan, has a substantial number of publications and citations, indicating established expertise. There are multiple distinct institutions involved in the study, enhancing the collaborative aspect.",
+      "score": 2,
+      "justification": "All identified affiliations are credible universities, government public-health bodies, hospitals, and research institutes, with broad multi-institutional collaboration. However, only Jiali Tan has directly verified Semantic Scholar expertise (11 papers, h-index 8, DOI-matched); the supplied data do not verify expertise for at least three authors or clearly establish the first/corresponding author's affiliation. No commercial or low-credibility affiliations were identified.",
       "institutions_assessed": [
         "Capital Medical University",
         "Southern University of Science and Technology",
         "Chinese Academy of Sciences",
+        "National Institute for Communicable Disease Control and Prevention",
         "Tsinghua University",
         "Hunan University"
       ],
-      "n_institutes": 5,
+      "n_institutes": 11,
       "corresponding_author_papers": 11,
-      "flags": []
+      "flags": [
+        "Corresponding-author identity is inconsistent: extracted data lists Xu Tan, while Semantic Scholar data identifies Jiali Tan.",
+        "Verifiable author-expertise data were provided for only one author."
+      ]
     },
     "research_question_and_methods": {
-      "score": 2,
-      "justification": "The objectives and hypotheses are explicit, and the methodology is detailed enough to understand or reproduce the study. The study clearly addresses a pressing public health concern embodied in understanding YFV infection.",
-      "quote": "Here, we performed a barcoded, genome-wide human ORF library screen and identified LRP8 (also named APOER2) as a receptor for YFV.",
-      "quote_valid": false,
-      "score_note": "downgraded 3→2: supporting quote not found verbatim in text"
+      "score": 3,
+      "justification": "Matches the score_3 description: the objective is explicit and testable, and the study uses a detailed genome-wide ORF screen followed by knockout, rescue, binding, primary-hepatocyte, mosquito, and mouse validation. The paper links YFV entry to an important public-health disease and provides reproducibility details, including deposited scRNA-seq data and extensive methods.",
+      "quote": "Here, we performed a barcoded, genome‑wide human ORF library screen and identified LRP8 (also named APOER2) as a receptor for YFV.",
+      "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 1,
-      "justification": "Results lack supporting figures or tables, and conclusions appear speculative without adequate support from the data presented. The textual interpretations lack clarity.",
-      "quote": "Furthermore, the soluble LRP8 LBD can block YFV infection, together with prior studies, raises the possibility of LRP8-based protein therapeutics or prophylactics for multiple arboviruses.",
-      "quote_valid": false
+      "score": 3,
+      "justification": "Matches the score_3 description: the receptor claim is supported by consistent gain-of-function, knockout/rescue, antibody-blocking, viral binding/internalization, pulldown/BLI, primary-cell, mosquito, and mouse-decoy results shown across Figures 1–6. The discussion also explicitly qualifies the conclusion by noting that additional factors likely contribute to viscerotropism.",
+      "quote": "LRP8 serving as a YFV receptor explains neurotropism, while the receptor(s) responsible for viscerotropism likely include additional factors.",
+      "quote_valid": true
     },
     "references": {
-      "reference_count": 24,
-      "justification": "The paper includes a mix of foundational and recent studies, but it does not reach the threshold of peer-reviewed coverage, limiting the context for some findings.",
-      "quote": "1 Bres, P. A century of progress in combating yellow fever. Bulletin of the World Health Organization 64, 775-786 (1986).",
+      "reference_count": 28,
+      "justification": "The references provide a balanced mix of foundational yellow-fever and receptor biology literature, recent peer-reviewed virology studies, and high-quality sources including Nature, Cell, PLOS Pathogens, Journal of Virology, and WHO material. They cover YFV epidemiology, vaccine biology, viral entry, LDLR-family receptors, and relevant experimental methods without apparent reliance on non-peer-reviewed citations.",
+      "quote": "Clark, L. E. et al. VLDLR and ApoER2 are receptors for multiple alphaviruses. Nature 602, 475-+, doi:10.1038/s41586-021-04326-0 (2022).",
       "score": 3,
       "quote_valid": true
     },
@@ -162,19 +164,16 @@
   },
   "scoring": {
     "per_criterion": {
-      "author_credibility": 3,
-      "research_question_and_methods": 2,
-      "results_and_conclusion": 1,
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 3,
       "references": 3
     },
-    "total": 9,
+    "total": 11,
     "max": 12,
-    "average": 2.25,
+    "average": 2.75,
     "n_criteria_evaluated": 4,
-    "recommendation": "accept_with_reservations",
-    "quotes_invalid": [
-      "research_question_and_methods",
-      "results_and_conclusion"
-    ]
+    "recommendation": "accept",
+    "quotes_invalid": []
   }
 }
