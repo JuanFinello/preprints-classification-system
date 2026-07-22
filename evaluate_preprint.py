@@ -34,6 +34,7 @@ from pdfminer.layout import LTTextContainer
 # newer generation, and (like gpt-4o+) parses PDFs as text+page-images natively.
 DEFAULT_MODEL = "gpt-5.6-terra"
 ROR_API = "https://api.ror.org/organizations"
+OPENALEX_API = "https://api.openalex.org/works/doi:"
 S2_API = "https://api.semanticscholar.org/graph/v1/author/search"
 S2_PAPER_API = "https://api.semanticscholar.org/graph/v1/paper"
 S2_AUTHOR_API = "https://api.semanticscholar.org/graph/v1/author"
@@ -130,15 +131,226 @@ def _ror_lookup(affiliation: str, session: requests.Session) -> dict:
         return {}
 
 
+def _split_affiliations(affiliations: list[str]) -> list[str]:
+    """Split affiliation strings that bundle multiple institutions with ';'
+    (common in headers listing an author's institute + parent academy together)
+    before they get queried against ROR one at a time — otherwise ROR's fuzzy
+    matcher tends to return only the more generic/larger institution and silently
+    drop the more specific one."""
+    result = []
+    for aff in affiliations:
+        parts = [p.strip() for p in aff.split(";") if p.strip()]
+        result.extend(parts if parts else [aff])
+    return result
+
+
+def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
+    """Fetch author->institution links from OpenAlex's own record for this DOI,
+    verified against the paper's own raw affiliation text.
+
+    OpenAlex resolves each author's raw affiliation string against its own
+    institution index, and that resolution step can itself mis-split or
+    mismatch (observed on a real paper: a garbled multi-institution Chinese
+    affiliation string got matched to an unrelated "King Center" entity that
+    never appears anywhere in the actual text). So a matched institution is
+    only kept if its name is found, normalized, inside that same author's
+    raw_affiliation_strings — otherwise it's dropped and flagged instead of
+    trusted blindly just because it came from a DOI-anchored API.
+
+    Also extracts the paper's own top research fields (for author_expertise
+    field-matching, see _openalex_author_field_match) and, per author, whether
+    OpenAlex's resolved identity actually matches the name printed in the
+    paper's own byline (raw_author_name) — OpenAlex's author disambiguation
+    can attach the wrong person entirely (observed: a paper's real "Miao Mei"
+    got resolved to an unrelated "May Lei Mei" profile with 141 papers, all
+    in dentistry). identity_verified=False on an author means none of their
+    OpenAlex-derived data (institutions here, topics elsewhere) should be
+    trusted as theirs.
+
+    Returns {"institutions": [...], "warnings": [...], "paper_fields": [...],
+    "authors": [{"name", "id", "identity_verified"}, ...]}.
+    """
+    empty = {"institutions": [], "warnings": [], "paper_fields": [], "authors": []}
+    if not doi:
+        return empty
+    try:
+        r = session.get(f"{OPENALEX_API}{requests.utils.quote(doi, safe='')}", timeout=10)
+        if r.status_code != 200:
+            return empty
+        data = r.json()
+    except Exception:
+        return empty
+
+    paper_fields = []
+    for t in data.get("topics", [])[:5]:
+        field_name = (t.get("field") or {}).get("display_name", "")
+        if field_name and field_name not in paper_fields:
+            paper_fields.append(field_name)
+
+    results = []
+    warnings = []
+    authors_info = []
+    for a in data.get("authorships", []):
+        author = a.get("author") or {}
+        author_name = author.get("display_name", "")
+        author_id = author.get("id", "")
+        raw_name = a.get("raw_author_name", "")
+
+        identity_verified = None
+        if raw_name and author_name:
+            # subset (not equality) so a resolved middle name/initial ("Gerald
+            # Kellar" -> "Gerald G. Kellar") doesn't get flagged as a mismatch —
+            # only a name with no overlap at all (e.g. "Miao Mei" -> "May Lei
+            # Mei") counts as one.
+            raw_words = set(_norm(raw_name).split())
+            auth_words = set(_norm(author_name).split())
+            identity_verified = raw_words <= auth_words or auth_words <= raw_words
+            if not identity_verified:
+                warnings.append(
+                    f"OpenAlex matched the paper's byline name '{raw_name}' to a "
+                    f"different author identity '{author_name}' — that author's "
+                    f"OpenAlex-derived data may belong to the wrong person."
+                )
+        authors_info.append({
+            "name": author_name,
+            "id": author_id,
+            "identity_verified": identity_verified,
+            "position": a.get("author_position", ""),  # "first" | "middle" | "last"
+        })
+
+        raw_text = _norm(" ".join(a.get("raw_affiliation_strings", [])))
+        for inst in a.get("institutions", []):
+            name = inst.get("display_name", "")
+            if not name:
+                continue
+            entry = {
+                "author": author_name,
+                "name": name,
+                "type": [inst.get("type", "")] if inst.get("type") else [],
+                "country": inst.get("country_code", ""),
+                "ror": inst.get("ror", ""),
+            }
+            if not raw_text:
+                warnings.append(
+                    f"OpenAlex gave no raw affiliation text for '{author_name}' "
+                    f"to verify '{name}' against — kept, but unverified."
+                )
+                results.append(entry)
+            elif re.search(r"\b" + re.escape(_norm(name)) + r"\b", raw_text):
+                results.append(entry)
+            else:
+                warnings.append(
+                    f"OpenAlex matched '{name}' to '{author_name}' but that name "
+                    f"doesn't appear anywhere in the paper's own affiliation text "
+                    f"— dropped as a likely mismatch."
+                )
+    return {"institutions": results, "warnings": warnings, "paper_fields": paper_fields, "authors": authors_info}
+
+
+def _match_author_name(name_a: str, name_b: str) -> bool:
+    """Cross-API name match (Semantic Scholar vs OpenAlex spell/order names
+    differently, e.g. 'W. Tan' vs 'Wenjie Tan'). Requires the surname to match
+    AND the first name to be compatible (equal, or one is an initial of the
+    other) — matching on surname alone produces false collisions when a paper
+    has multiple authors sharing it (real case: this function used to match
+    both 'W. Tan' and 'Xu Tan' from Semantic Scholar to the SAME 'Jiali Tan'
+    from OpenAlex, because all three share the surname 'Tan' and surname-only
+    matching just grabs whichever one comes first). Also tries the second
+    name's tokens reversed, since East Asian names get romanized as either
+    family-name-first or given-name-first inconsistently across APIs."""
+    def tokens(n):
+        return [t.rstrip(".") for t in _norm(n).split()]
+
+    def first_name_compatible(fa, fb):
+        return fa == fb or (len(fa) == 1 and fb.startswith(fa)) or (len(fb) == 1 and fa.startswith(fb))
+
+    a, b = tokens(name_a), tokens(name_b)
+    if len(a) < 2 or len(b) < 2:
+        return False
+    if a[-1] == b[-1] and first_name_compatible(a[0], b[0]):
+        return True
+    b_rev = b[::-1]
+    return a[-1] == b_rev[-1] and first_name_compatible(a[0], b_rev[0])
+
+
+def _openalex_author_field_match(authors: list[dict], paper_fields: list[str],
+                                  session: requests.Session) -> dict:
+    """For each OpenAlex author id (from _openalex_institutions_by_doi), check
+    whether their own top research fields overlap with this paper's fields.
+
+    Catches authors whose overall publication record is large but not evidently
+    in this paper's area — real publication volume isn't the same as expertise
+    "in the field" the rubric asks for. Also catches identity mismatches: an
+    author flagged identity_verified=False here always comes back field_match
+    unknown rather than trusting a stranger's topics.
+
+    Also pulls each author's works_count/h_index/cited_by_count from the same
+    OpenAlex profile — free, since the batch call already returns the full
+    author object. Used in enrich_author_data to backfill authors Semantic
+    Scholar has no record for at all (observed: a ResearchSquare preprint not
+    yet indexed by S2 still had full OpenAlex author profiles for everyone).
+
+    Returns {"field_match": {author_name: {"field_match": bool|None,
+    "top_fields": [...], "works_count": int|None, "h_index": int|None,
+    "citation_count": int|None}}, "warnings": [...]}.
+    """
+    warnings = []
+    field_match = {}
+    paper_field_set = set(paper_fields)
+
+    valid = [a for a in authors if a.get("id") and a.get("identity_verified") is not False]
+    ids = [a["id"] for a in valid]
+
+    profiles = {}
+    for i in range(0, len(ids), 50):
+        batch = ids[i:i + 50]
+        try:
+            r = session.get(
+                "https://api.openalex.org/authors",
+                params={"filter": f"openalex_id:{'|'.join(batch)}"},
+                timeout=15,
+            )
+            if r.status_code == 200:
+                for a in r.json().get("results", []):
+                    profiles[a.get("id", "")] = a
+        except Exception:
+            pass
+
+    for a in authors:
+        name = a["name"]
+        position = a.get("position", "")
+        if a.get("identity_verified") is False or not a.get("id") or a["id"] not in profiles:
+            field_match[name] = {
+                "field_match": None, "top_fields": [], "position": position,
+                "works_count": None, "h_index": None, "citation_count": None,
+            }
+            continue
+        profile = profiles[a["id"]]
+        topics = profile.get("topics", [])[:5]
+        fields = [f for f in ((t.get("field") or {}).get("display_name", "") for t in topics) if f]
+        overlap = bool(paper_field_set & set(fields)) if paper_field_set and fields else None
+        field_match[name] = {
+            "field_match": overlap,
+            "top_fields": fields,
+            "position": position,
+            "works_count": profile.get("works_count"),
+            "h_index": (profile.get("summary_stats") or {}).get("h_index"),
+            "citation_count": profile.get("cited_by_count"),
+        }
+        if overlap is False:
+            warnings.append(
+                f"'{name}': top research fields ({', '.join(fields[:3])}) don't overlap "
+                f"with this paper's fields ({', '.join(paper_fields)}) — publication "
+                f"volume may not reflect expertise in THIS field."
+            )
+
+    return {"field_match": field_match, "warnings": warnings}
+
+
 def _doi_from_pdf_path(pdf_path: Path) -> str:
     """Recover the DOI from a PDF filename. Same convention as
     Descargar_papers/MEJORADO/bin/descargar_pdf.py:doi_to_filename, inverted."""
     return pdf_path.stem.replace("_", "/")
-
-
-def _surname(name: str) -> str:
-    parts = name.strip().split()
-    return parts[-1].lower() if parts else ""
 
 
 def _semantic_scholar_author_stats(author_id: str, session: requests.Session) -> dict:
@@ -161,30 +373,24 @@ def _semantic_scholar_author_stats(author_id: str, session: requests.Session) ->
         return {}
 
 
-def _semantic_scholar_lookup_by_doi(doi: str, corresponding_author: str, session: requests.Session) -> dict:
-    """Find the corresponding author's real Semantic Scholar authorId via the
-    paper's own author list (matched by surname), then fetch their stats.
-    Unambiguous when it works, but only covers papers Semantic Scholar has indexed."""
-    if not doi or not corresponding_author:
-        return {}
+def _semantic_scholar_paper_authors(doi: str, session: requests.Session) -> list[dict]:
+    """Fetch the author list Semantic Scholar has on file for this exact DOI.
+    Each entry already carries its own authorId, resolved by S2 against this
+    specific paper — unambiguous, unlike a name search."""
+    if not doi:
+        return []
     try:
         r = session.get(f"{S2_PAPER_API}/DOI:{doi}", params={"fields": "authors"}, timeout=10)
         if r.status_code != 200:
-            return {}
-        authors = r.json().get("authors", [])
-        target = _surname(corresponding_author)
-        match = next((a for a in authors if _surname(a.get("name", "")) == target), None)
-        if not match:
-            return {}
-        stats = _semantic_scholar_author_stats(match["authorId"], session)
-        return {**stats, "match_method": "doi"} if stats else {}
+            return []
+        return r.json().get("authors", [])
     except Exception:
-        return {}
+        return []
 
 
 def _semantic_scholar_lookup_by_name(author_name: str, session: requests.Session) -> dict:
-    """Fallback when DOI lookup fails (e.g. paper not yet indexed). Searches by
-    name alone, so a common name can match the wrong person — flagged as unverified."""
+    """Fallback when the paper isn't indexed under its DOI. Searches by name
+    alone, so a common name can match the wrong person — flagged as unverified."""
     try:
         r = session.get(
             S2_API,
@@ -208,22 +414,75 @@ def _semantic_scholar_lookup_by_name(author_name: str, session: requests.Session
         return {}
 
 
-def _semantic_scholar_lookup(doi: str, corresponding_author: str, session: requests.Session) -> dict:
-    """Look up the corresponding author's publication stats. Prefers the DOI-based
-    match (unambiguous); falls back to a name-only search when the paper isn't
-    indexed under that DOI yet."""
-    result = _semantic_scholar_lookup_by_doi(doi, corresponding_author, session)
-    if result:
-        return result
-    return _semantic_scholar_lookup_by_name(corresponding_author, session)
+def _semantic_scholar_lookup_all_authors(doi: str, corresponding_author: str, session: requests.Session) -> dict:
+    """Fetch publication stats for every author Semantic Scholar lists on this
+    paper's own DOI record — each authorId comes pre-resolved by S2 against this
+    specific paper, so it's as reliable as the old single-author DOI lookup, just
+    for everyone instead of one person. Falls back to a name-only search for the
+    corresponding author alone when the paper isn't indexed under its DOI.
+
+    Returns {"authors": [stats, ...], "warnings": [str, ...]}. author_credibility
+    depends entirely on this data (the LLM never sees the PDF for that criterion),
+    so any gap here directly limits how much of the rubric can actually be judged
+    — warnings surface that instead of failing silently.
+    """
+    warnings = []
+    paper_authors = _semantic_scholar_paper_authors(doi, session)
+
+    if not paper_authors:
+        warnings.append(
+            "Semantic Scholar has no record for this DOI — falling back to a "
+            "name-only search for the corresponding author only; every other "
+            "author's expertise is unverified."
+        )
+        fallback = _semantic_scholar_lookup_by_name(corresponding_author, session) if corresponding_author else {}
+        if corresponding_author and not fallback:
+            warnings.append(
+                f"Semantic Scholar name search also failed for corresponding "
+                f"author '{corresponding_author}' — no author expertise data "
+                f"available at all for this paper."
+            )
+        return {"authors": [fallback] if fallback else [], "warnings": warnings}
+
+    stats_list = []
+    for a in paper_authors:
+        author_id = a.get("authorId")
+        name = a.get("name", "")
+        if not author_id:
+            warnings.append(f"Semantic Scholar: no authorId for '{name}' — skipped.")
+            continue
+        stats = _semantic_scholar_author_stats(author_id, session)
+        time.sleep(0.3)
+        if not stats:
+            warnings.append(f"Semantic Scholar: stats request failed for '{name}'.")
+            continue
+        stats["match_method"] = "doi"
+        stats_list.append(stats)
+
+    if len(stats_list) < len(paper_authors):
+        warnings.append(
+            f"Semantic Scholar: only {len(stats_list)}/{len(paper_authors)} "
+            f"authors on record got verified stats — author_credibility for "
+            f"this paper is scored on incomplete data."
+        )
+
+    return {"authors": stats_list, "warnings": warnings}
 
 
-def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024) -> str:
+def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024,
+         reasoning_effort: str | None = None) -> str:
     """Single helper for all LLM calls."""
+    kwargs = {}
+    if reasoning_effort is not None:
+        # gpt-5.x reasoning tokens are invisible but come out of the same
+        # max_completion_tokens budget — see evaluate_author_credibility for
+        # a case that silently truncated to 0 visible tokens without this.
+        kwargs["reasoning_effort"] = reasoning_effort
     resp = client.chat.completions.create(
         model=model,
         max_completion_tokens=max_tokens,  # gpt-5.x rejects the old max_tokens param
         messages=[{"role": "user", "content": prompt}],
+        **kwargs,
     )
     return resp.choices[0].message.content.strip()
 
@@ -265,30 +524,100 @@ TEXT:
 
 
 def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: Path) -> dict:
-    """Extract authors/affiliations and enrich with ROR and Semantic Scholar."""
+    """Extract authors/affiliations and enrich with institution + author data.
+
+    Institutions: tries OpenAlex first (DOI-anchored, keeps the author link,
+    real ROR ids, no cap on how many come back). Falls back to LLM-extracted
+    header affiliations queried against ROR one by one when OpenAlex has no
+    record for this DOI — every affiliation is tried (no cap), compound
+    "X; Y" strings are split first, and any lookup that comes back empty is
+    recorded as a warning instead of silently dropped.
+
+    Authors: Semantic Scholar, see _semantic_scholar_lookup_all_authors.
+    """
     extracted = _extract_affiliations_with_llm(header_text, client, model)
 
     session = requests.Session()
     session.headers["User-Agent"] = "GISAID-preprint-evaluator/1.0 (mailto:juanfinello@gmail.com)"
 
-    ror_results = []
-    for aff in extracted.get("affiliations", [])[:6]:  # cap at 6 to avoid rate limits
-        result = _ror_lookup(aff, session)
-        if result:
-            ror_results.append(result)
-        time.sleep(0.3)
+    doi = _doi_from_pdf_path(pdf_path)
+    warnings = []
 
-    s2_result = {}
+    openalex = _openalex_institutions_by_doi(doi, session)
+    ror_results = openalex["institutions"]
+    warnings.extend(openalex["warnings"])
+
+    if ror_results:
+        institution_source = "openalex"
+    else:
+        institution_source = "ror_fallback"
+        warnings.append(
+            "OpenAlex had no verified institution data for this DOI — falling "
+            "back to header-text affiliation extraction + ROR lookup (the "
+            "author-institution link is lost in this path; institutions are "
+            "matched as a flat list)."
+        )
+        affiliations = _split_affiliations(extracted.get("affiliations", []))
+        for aff in affiliations:
+            result = _ror_lookup(aff, session)
+            if result:
+                ror_results.append(result)
+            else:
+                warnings.append(f"ROR: no match found for affiliation '{aff}'.")
+            time.sleep(0.3)
+
     corr = extracted.get("corresponding_author", "")
-    if corr:
-        doi = _doi_from_pdf_path(pdf_path)
-        s2_result = _semantic_scholar_lookup(doi, corr, session)
-        time.sleep(0.3)
+    s2_data = _semantic_scholar_lookup_all_authors(doi, corr, session)
+    warnings.extend(s2_data["warnings"])
+
+    field_match = _openalex_author_field_match(
+        openalex.get("authors", []), openalex.get("paper_fields", []), session
+    )
+    warnings.extend(field_match["warnings"])
+
+    covered = set()
+    for author_stat in s2_data["authors"]:
+        match_name = next(
+            (name for name in field_match["field_match"]
+             if _match_author_name(author_stat.get("name", ""), name)),
+            None,
+        )
+        fm = field_match["field_match"].get(match_name, {})
+        author_stat["field_match"] = fm.get("field_match") if match_name else None
+        author_stat["position"] = fm.get("position", "") if match_name else ""
+        if match_name:
+            covered.add(match_name)
+
+    # Backfill authors Semantic Scholar has no record for at all, using
+    # OpenAlex's own works_count/h_index — covers preprint servers (e.g.
+    # ResearchSquare) that S2 often hasn't indexed yet but OpenAlex already has.
+    n_backfilled = 0
+    for name, fm in field_match["field_match"].items():
+        if name in covered or fm.get("works_count") is None:
+            continue
+        s2_data["authors"].append({
+            "name": name,
+            "paper_count": fm["works_count"],
+            "citation_count": fm.get("citation_count"),
+            "h_index": fm.get("h_index"),
+            "match_method": "openalex_fallback",
+            "field_match": fm["field_match"],
+            "position": fm.get("position", ""),
+        })
+        n_backfilled += 1
+    if n_backfilled:
+        warnings.append(
+            f"Semantic Scholar had no record for {n_backfilled} author(s) — "
+            f"their publication stats were backfilled from OpenAlex instead."
+        )
 
     return {
         "extracted": extracted,
         "ror_results": ror_results,
-        "semantic_scholar": s2_result,
+        "institution_source": institution_source,
+        "semantic_scholar": s2_data,
+        "paper_fields": openalex.get("paper_fields", []),
+        "data_quality_warnings": warnings,
     }
 
 
@@ -446,19 +775,41 @@ Return ONLY this JSON (no markdown, no extra text):
 def _build_author_prompt(author_data: dict, criteria: dict) -> str:
     extracted = author_data["extracted"]
     ror = author_data["ror_results"]
-    s2 = author_data["semantic_scholar"]
+    institution_source = author_data.get("institution_source", "ror_fallback")
+    s2 = author_data.get("semantic_scholar", {})
+    s2_authors = s2.get("authors", [])
+    all_warnings = author_data.get("data_quality_warnings", [])
 
-    crit = criteria["author_credibility"]
+    sub = criteria["author_credibility"]["sub_criteria"]
+    inst_c = sub["institution_reputability"]
+    exp_c = sub["author_expertise"]
+    collab_c = sub["institutional_collaboration"]
 
-    ror_summary = json.dumps(ror, indent=2) if ror else "No ROR data found"
-    s2_summary = json.dumps(s2, indent=2) if s2 else "No Semantic Scholar data found"
+    paper_fields = author_data.get("paper_fields", [])
+
+    ror_summary = json.dumps(ror, indent=2) if ror else "No institution data found"
+    s2_summary = json.dumps(s2_authors, indent=2) if s2_authors else "No Semantic Scholar data found"
+    fields_summary = ", ".join(paper_fields) if paper_fields else "Unknown (no OpenAlex field data for this paper)"
+    warnings_block = "\n".join(f"- {w}" for w in all_warnings) if all_warnings else "None"
 
     return f"""You are evaluating the authors and institutions of a scientific preprint for GISAID eligibility.
+Author credibility is scored as 3 INDEPENDENT sub-criteria — score each one on its
+own evidence. Do not let a weak result on one pull down your score on another.
 
-=== CRITERION: {crit["label"]} ===
-Score 1: {crit["score_1"]["description"]}
-Score 2: {crit["score_2"]["description"]}
-Score 3: {crit["score_3"]["description"]}
+=== SUB-CRITERION 1: {inst_c["label"]} ===
+Score 1: {inst_c["score_1"]["description"]}
+Score 2: {inst_c["score_2"]["description"]}
+Score 3: {inst_c["score_3"]["description"]}
+
+=== SUB-CRITERION 2: {exp_c["label"]} ===
+Score 1: {exp_c["score_1"]["description"]}
+Score 2: {exp_c["score_2"]["description"]}
+Score 3: {exp_c["score_3"]["description"]}
+
+=== SUB-CRITERION 3: {collab_c["label"]} ===
+Score 1: {collab_c["score_1"]["description"]}
+Score 2: {collab_c["score_2"]["description"]}
+Score 3: {collab_c["score_3"]["description"]}
 
 === EXTRACTED AUTHOR DATA ===
 Corresponding/first author: {extracted.get("corresponding_author", "unknown")}
@@ -466,41 +817,74 @@ All authors ({extracted.get("n_authors", "?")}): {", ".join(extracted.get("all_a
 Distinct affiliations ({extracted.get("n_institutes", "?")}):
 {chr(10).join("- " + a for a in extracted.get("affiliations", []))}
 
-=== INSTITUTION DATA (ROR API) ===
+=== INSTITUTION DATA (source: {institution_source}) ===
 {ror_summary}
 
-=== CORRESPONDING AUTHOR (Semantic Scholar) ===
+=== AUTHOR PUBLICATION STATS (Semantic Scholar, incl. "field_match" from OpenAlex) ===
+This paper's own research fields: {fields_summary}
 {s2_summary}
 
-=== HOW TO SCORE ===
-Follow this procedure before committing to a score:
-1. Check the score_3 description first. Does the evidence clearly meet it? If yes, score 3 — stop.
-2. If not, check the score_1 description. Does the evidence clearly show those weaknesses? If yes, score 1 — stop.
-3. Only score 2 if the paper genuinely sits between the two — some credible elements
-   present, but not enough for a clear 3, with no red flags severe enough for a clear 1.
+=== DATA QUALITY WARNINGS ===
+{warnings_block}
+
+=== HOW TO SCORE EACH SUB-CRITERION ===
+Follow this procedure independently for each of the 3 sub-criteria above:
+1. Check its score_3 description first. Does the evidence clearly meet it? If yes, score 3 — stop.
+2. If not, check its score_1 description. Does the evidence clearly show those weaknesses? If yes, score 1 — stop.
+3. Only score 2 if the evidence genuinely sits between the two.
 
 Score 2 is not a safe default — it should be your conclusion in a minority of cases,
-not most of them.
+not most of them. A weak result on one sub-criterion must NOT pull down another —
+e.g. a paper with only 3 institutions still scores independently on institution
+reputability and author expertise; it isn't capped just because sub-criterion 3
+(institutional_collaboration) tops out at 2.
 
 === INSTRUCTIONS ===
-- Base the score on institution type (prefer universities/research institutes over commercial entities)
-- Use ROR "type" field: "Education" or "Research" institutions are credible; "Company" or missing data is a flag
-- Use Semantic Scholar to judge author expertise (paper_count > 10 and h_index > 3 suggests established researcher)
-- Check "match_method": "doi" means the Semantic Scholar record was matched via the paper's own author list (reliable);
-  "name_search_unverified" means it was matched by name alone and could belong to a different person with the same name —
-  treat it as a weak signal, not a confirmed match
-- If ROR or Semantic Scholar returned no data, note the uncertainty but do not automatically penalize
+- Sub-criterion 1 (institution reputability): use the "type" field to judge credibility —
+  "education"/"Education" or "facility"/"Research" institutions are credible; "company"/"Company"
+  or missing data is a flag. Same vocabulary whether the source is OpenAlex or ROR.
+- Sub-criterion 2 (author expertise): use the publication stats (paper_count > 10 and h_index > 3
+  suggests an established researcher). The author list above may cover all authors on the paper or
+  only some — check DATA QUALITY WARNINGS to know which. "match_method": "doi" or "openalex_fallback"
+  both mean the record was matched via the paper's own author list on that source (reliable, treat
+  the same way); "name_search_unverified" means it was matched by name alone and could belong to a
+  different person with the same name — treat it as a weak signal.
+  The rubric asks for expertise "in the field" — a high paper_count/h_index is NOT enough on its own.
+  Use "field_match": true means that author's own top research fields overlap with this paper's fields
+  above — count them toward "authors with verifiable expertise". "field_match": false means their
+  record, however large, doesn't evidently connect to this paper's field — do NOT count them, even if
+  paper_count/h_index look strong (real case: a co-author's OpenAlex profile turned out to be 141
+  papers, 100% dentistry, for a virology paper — high volume, wrong field). "field_match": null means
+  no field data was available — treat as unverified, not as a negative signal.
+  Weight "position" when judging overall strength: "first" and "last" authors carry more weight than
+  "middle" — by academic convention the first author is typically the main contributor and the last
+  author is typically the senior/corresponding researcher vouching for the work. A paper where the
+  first or last author has field_match:true and strong stats is stronger evidence than the same signal
+  on a middle author; conversely, a first/last author with field_match:false or no verifiable expertise
+  is a more significant gap than the same being true of one middle author among many.
+- Sub-criterion 3 (institutional collaboration): count distinct institutions from INSTITUTION DATA above.
+- If ROR/OpenAlex or Semantic Scholar returned no data, or DATA QUALITY WARNINGS above flags
+  missing/incomplete coverage, note the uncertainty but do not automatically penalize — unverified
+  is not the same as lacking credibility or expertise.
 
 Return ONLY this JSON (no markdown, no extra text):
 {{
-  "author_credibility": {{
+  "institution_reputability": {{
     "score": 2,
-    "justification": "brief explanation",
-    "institutions_assessed": ["list of institution names"],
-    "n_institutes": 2,
-    "corresponding_author_papers": 0,
-    "flags": ["any concerns found, e.g. commercial affiliation"]
-  }}
+    "justification": "brief explanation"
+  }},
+  "author_expertise": {{
+    "score": 2,
+    "justification": "brief explanation"
+  }},
+  "institutional_collaboration": {{
+    "score": 2,
+    "justification": "brief explanation"
+  }},
+  "institutions_assessed": ["list of institution names"],
+  "n_institutes": 2,
+  "corresponding_author_papers": 0,
+  "flags": ["any concerns found, e.g. commercial affiliation"]
 }}"""
 
 
@@ -586,18 +970,59 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
     return result
 
 
+_AUTHOR_SUB_CRITERIA = ("institution_reputability", "author_expertise", "institutional_collaboration")
+
+
 def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenAI, model: str) -> dict:
-    """Evaluate criterion 1 (author credibility) using enriched author data."""
+    """Evaluate criterion 1 (author credibility) using enriched author data.
+
+    Scores 3 independent sub-criteria (see criteria.yaml, sourced from
+    tabla_de_criterios_sandy.xlsx) and combines them into the final
+    author_credibility score as a deterministic average, rounded to the
+    nearest integer — the composite is never left to the LLM's own arithmetic,
+    same principle as _score_from_reference_count for the references criterion.
+    """
     prompt = _build_author_prompt(author_data, criteria)
-    raw = _llm(client, model, prompt, max_tokens=512)
+    raw = _llm(client, model, prompt, max_tokens=2000, reasoning_effort="medium")
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
     try:
-        return json.loads(raw)
+        parsed = json.loads(raw)
     except Exception:
         return {
-            "author_credibility": {"score": 1, "justification": "Parse error", "flags": []}
+            "author_credibility": {
+                "score": 1,
+                "justification": "Parse error",
+                "sub_scores": {},
+                "flags": [],
+            }
         }
+
+    sub_scores = {}
+    for key in _AUTHOR_SUB_CRITERIA:
+        block = parsed.get(key, {})
+        score = block.get("score")
+        sub_scores[key] = {
+            "score": score if isinstance(score, int) else 1,
+            "justification": block.get("justification", ""),
+        }
+
+    composite = round(sum(s["score"] for s in sub_scores.values()) / len(_AUTHOR_SUB_CRITERIA))
+    combined_justification = " | ".join(
+        f"{key}: {sub_scores[key]['justification']}" for key in _AUTHOR_SUB_CRITERIA
+    )
+
+    return {
+        "author_credibility": {
+            "score": composite,
+            "justification": combined_justification,
+            "sub_scores": sub_scores,
+            "institutions_assessed": parsed.get("institutions_assessed", []),
+            "n_institutes": parsed.get("n_institutes", 0),
+            "corresponding_author_papers": parsed.get("corresponding_author_papers", 0),
+            "flags": parsed.get("flags", []),
+        }
+    }
 
 
 # ─── quote validation ────────────────────────────────────────────────────────
@@ -609,6 +1034,12 @@ def _norm(text: str) -> str:
     text = re.sub(r"[''`]", "'", text)          # curly single quotes → '
     text = re.sub(r'[""„«»]', '"', text)        # curly double quotes → "
     text = re.sub(r"[–—−]", "-", text)          # dashes → hyphen
+    # British/American institution-name spelling variants (observed real case:
+    # OpenAlex matched "...Health Care Center" against a paper whose own text
+    # says "...Health Care Centre" — same institution, dropped as a false mismatch)
+    text = re.sub(r"\bcentre\b", "center", text)
+    text = re.sub(r"\borganisation\b", "organization", text)
+    text = re.sub(r"\bprogramme\b", "program", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
@@ -782,6 +1213,7 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
         "author_enrichment": author_data,
         "criteria": criterion_results,
         "scoring": scoring,
+        "data_quality_warnings": author_data.get("data_quality_warnings", []),
     }
 
 

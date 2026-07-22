@@ -9,29 +9,54 @@ criteria:
   author_credibility:
     label: "Author credibility"
     requires_external_data: true
+    description: >
+      Composite of 3 independently-scored sub-criteria (source: original rubric,
+      tabla_de_criterios_sandy.xlsx). Each sub-criterion is scored 1-3 on its own
+      evidence; the final author_credibility score is the average of the 3,
+      rounded to the nearest integer. This replaces the earlier single merged
+      score_1/2/3 block, which required ALL conditions (institution reputation +
+      corresponding author prominence + author count + institute count) to hold
+      simultaneously for a 3 — too rigid, since these are independent axes.
     evidence_to_look_for:
       - institutional affiliations listed in the paper
       - number of distinct institutions represented
       - institution types (university, research institute, government, commercial)
       - country of affiliations
       - corresponding author institution
-    score_1:
-      description: >
-        Some authors are affiliated with low-credibility institutions such as
-        predatory "universities" or commercial entities with no research track record.
-        Little or no verifiable expertise among authors. No meaningful collaboration
-        between institutions.
-    score_2:
-      description: >
-        All authors are affiliated with credible universities or research labs with
-        some research output and relevant expertise. Study involves 2–3 institutions.
-        Up to 2 authors with clearly verifiable expertise in the field.
-    score_3:
-      description: >
-        All authors are affiliated with credible institutions AND the main or
-        corresponding author is from a well-established, globally or nationally
-        recognized research institution or lab. At least 3 authors with verifiable
-        expertise. More than 3 distinct institutions involved.
+      - author publication history and h-index
+    sub_criteria:
+      institution_reputability:
+        label: "Authors are affiliated with reputable universities/research institutes/recognized labs"
+        score_1:
+          description: >
+            Some authors affiliated with low-credibility institutions such as
+            predatory "universities" or commercial entities.
+        score_2:
+          description: >
+            All authors affiliated with a credible university or lab with some
+            research output and relevant expertise.
+        score_3:
+          description: >
+            All authors affiliated with a credible university or lab with some
+            research output and relevant expertise, AND the main/corresponding
+            author is from a well-established, globally or nationally recognized
+            research institution or lab.
+      author_expertise:
+        label: "Authors have verifiable expertise and prior publications in the field"
+        score_1:
+          description: "Little or none."
+        score_2:
+          description: "Up to 2 authors with verifiable expertise."
+        score_3:
+          description: "3 or more authors with verifiable expertise."
+      institutional_collaboration:
+        label: "The study is collaborative, involving multiple institutes"
+        score_1:
+          description: "No — single institution."
+        score_2:
+          description: "Study involves 2-3 institutes only."
+        score_3:
+          description: "Study involves more than 3 institutes."
 
   research_question_and_methods:
     label: "Research question and methodology"

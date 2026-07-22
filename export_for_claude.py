@@ -41,12 +41,18 @@ def ror_summary(ror_results: list[dict]) -> str:
 
 
 def s2_summary(s2: dict) -> str:
-    if not s2:
+    authors = s2.get("authors", [])
+    if not authors:
         return "Sin datos de Semantic Scholar"
-    return (
-        f"papers={s2.get('paper_count', '?')}, h_index={s2.get('h_index', '?')}, "
-        f"match_method={s2.get('match_method', '?')}"
+    summary = "; ".join(
+        f"{a.get('name', '?')}: papers={a.get('paper_count', '?')}, "
+        f"h_index={a.get('h_index', '?')}, match_method={a.get('match_method', '?')}"
+        for a in authors
     )
+    warnings = s2.get("warnings", [])
+    if warnings:
+        summary += " [WARNINGS: " + " | ".join(warnings) + "]"
+    return summary
 
 
 def author_data_block(author_data: dict, criteria: dict) -> str:

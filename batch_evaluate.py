@@ -58,6 +58,13 @@ def process_all(papers_dir: Path, results_dir: Path, criteria_path: Path,
             out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
             scoring = result["scoring"]
             print(f"  → {scoring['recommendation']}  (avg {scoring['average']})")
+
+            warnings = result.get("data_quality_warnings", [])
+            if warnings:
+                print(f"  ⚠ DATA QUALITY WARNING — author_credibility scored on incomplete data:")
+                for w in warnings:
+                    print(f"    - {w}")
+
             rows.append(_flatten(result))
 
         except Exception as e:
@@ -78,7 +85,7 @@ def _flatten(result: dict) -> dict:
     criteria = result.get("criteria", {})
     author_enrich = result.get("author_enrichment", {})
     extracted = author_enrich.get("extracted", {})
-    s2 = author_enrich.get("semantic_scholar", {})
+    s2_authors = author_enrich.get("semantic_scholar", {}).get("authors", [])
 
     row = {
         "pdf": result.get("source_pdf", ""),
@@ -96,14 +103,22 @@ def _flatten(result: dict) -> dict:
         row[f"{crit}_score"] = c.get("score", "")
         row[f"{crit}_justification"] = c.get("justification", "")
 
+    sub_scores = criteria.get("author_credibility", {}).get("sub_scores", {})
+    for key in ("institution_reputability", "author_expertise", "institutional_collaboration"):
+        row[f"author_credibility_{key}_score"] = sub_scores.get(key, {}).get("score", "")
+
     row["n_authors"] = extracted.get("n_authors", "")
     row["n_institutes"] = extracted.get("n_institutes", "")
     row["corresponding_author"] = extracted.get("corresponding_author", "")
-    row["s2_papers"] = s2.get("paper_count", "")
-    row["s2_hindex"] = s2.get("h_index", "")
+    row["s2_authors_verified"] = len(s2_authors)
+    row["s2_avg_hindex"] = (
+        round(sum(a.get("h_index", 0) for a in s2_authors) / len(s2_authors), 1)
+        if s2_authors else ""
+    )
 
     flags = criteria.get("author_credibility", {}).get("flags", [])
     row["author_flags"] = "; ".join(flags) if flags else ""
+    row["data_quality_warnings"] = " | ".join(result.get("data_quality_warnings", []))
 
     return row
 
