@@ -34,6 +34,7 @@ from pdfminer.layout import LTTextContainer
 # newer generation, and (like gpt-4o+) parses PDFs as text+page-images natively.
 DEFAULT_MODEL = "gpt-5.6-terra"
 ROR_API = "https://api.ror.org/organizations"
+ROR_API_V2_ORG = "https://api.ror.org/v2/organizations"
 OPENALEX_API = "https://api.openalex.org/works/doi:"
 S2_API = "https://api.semanticscholar.org/graph/v1/author/search"
 S2_PAPER_API = "https://api.semanticscholar.org/graph/v1/paper"
@@ -131,6 +132,33 @@ def _ror_lookup(affiliation: str, session: requests.Session) -> dict:
         return {}
 
 
+def _ror_aliases(ror_id: str, session: requests.Session) -> list[str]:
+    """Fetch every alternate full name ROR has on file for this institution ID
+    (aliases, labels in other languages, its ror_display name) — deliberately
+    excludes the "acronym" type (e.g. "MRD-G"), since a short acronym is prone
+    to matching unrelated text by coincidence even with word-boundary checks.
+
+    Used as a second chance when OpenAlex's own chosen display_name doesn't
+    literally appear in the paper's own affiliation text for an author (real
+    case: OpenAlex calls it "Fred Hutch Cancer Center", the paper itself says
+    "Fred Hutchinson Cancer Center" — same ROR ID, and ROR has the full name
+    on file as a registered alias). This only ever validates text the paper
+    itself already contains against another known real name of the SAME
+    registered entity — it never pulls in an institution the paper didn't
+    mention (that would just fail every alias too, same as it fails the
+    primary name)."""
+    if not ror_id:
+        return []
+    try:
+        r = session.get(f"{ROR_API_V2_ORG}/{ror_id}", timeout=10)
+        if r.status_code != 200:
+            return []
+        names = r.json().get("names", [])
+        return [n["value"] for n in names if "acronym" not in n.get("types", [])]
+    except Exception:
+        return []
+
+
 def _split_affiliations(affiliations: list[str]) -> list[str]:
     """Split affiliation strings that bundle multiple institutions with ';'
     (common in headers listing an author's institute + parent academy together)
@@ -155,7 +183,15 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
     never appears anywhere in the actual text). So a matched institution is
     only kept if its name is found, normalized, inside that same author's
     raw_affiliation_strings — otherwise it's dropped and flagged instead of
-    trusted blindly just because it came from a DOI-anchored API.
+    trusted blindly just because it came from a DOI-anchored API. Before
+    dropping, it gets one more chance against that institution's own ROR
+    aliases (see _ror_aliases) — OpenAlex's chosen display_name is sometimes
+    a nickname the paper itself doesn't use (real case: OpenAlex says "Fred
+    Hutch Cancer Center", the paper says "Fred Hutchinson Cancer Center",
+    same ROR ID, and ROR has the full name on file). This only re-checks the
+    paper's own already-declared text against another known real name of the
+    same registered entity — it can't resurrect an institution the paper
+    never mentioned at all (that still fails every alias too).
 
     Also extracts the paper's own top research fields (for author_expertise
     field-matching, see _openalex_author_field_match) and, per author, whether
@@ -190,6 +226,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
     results = []
     warnings = []
     authors_info = []
+    ror_alias_cache: dict[str, list[str]] = {}
     for a in data.get("authorships", []):
         author = a.get("author") or {}
         author_name = author.get("display_name", "")
@@ -225,6 +262,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
                 continue
             entry = {
                 "author": author_name,
+                "position": a.get("author_position", ""),  # "first" | "middle" | "last"
                 "name": name,
                 "type": [inst.get("type", "")] if inst.get("type") else [],
                 "country": inst.get("country_code", ""),
@@ -239,11 +277,28 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
             elif re.search(r"\b" + re.escape(_norm(name)) + r"\b", raw_text):
                 results.append(entry)
             else:
-                warnings.append(
-                    f"OpenAlex matched '{name}' to '{author_name}' but that name "
-                    f"doesn't appear anywhere in the paper's own affiliation text "
-                    f"— dropped as a likely mismatch."
+                ror_id = inst.get("ror", "")
+                if ror_id and ror_id not in ror_alias_cache:
+                    ror_alias_cache[ror_id] = _ror_aliases(ror_id, session)
+                matched_alias = next(
+                    (alias for alias in ror_alias_cache.get(ror_id, [])
+                     if re.search(r"\b" + re.escape(_norm(alias)) + r"\b", raw_text)),
+                    None,
                 )
+                if matched_alias:
+                    warnings.append(
+                        f"'{name}' matched '{author_name}' via a ROR alias "
+                        f"('{matched_alias}') rather than OpenAlex's own display "
+                        f"name — kept."
+                    )
+                    results.append(entry)
+                else:
+                    warnings.append(
+                        f"OpenAlex matched '{name}' to '{author_name}' but that name "
+                        f"(nor any of its known ROR aliases) doesn't appear anywhere "
+                        f"in the paper's own affiliation text — dropped as a likely "
+                        f"mismatch."
+                    )
     return {"institutions": results, "warnings": warnings, "paper_fields": paper_fields, "authors": authors_info}
 
 
@@ -842,7 +897,11 @@ reputability and author expertise; it isn't capped just because sub-criterion 3
 === INSTRUCTIONS ===
 - Sub-criterion 1 (institution reputability): use the "type" field to judge credibility —
   "education"/"Education" or "facility"/"Research" institutions are credible; "company"/"Company"
-  or missing data is a flag. Same vocabulary whether the source is OpenAlex or ROR.
+  or missing data is a flag. Same vocabulary whether the source is OpenAlex or ROR. For score_3,
+  use each institution's own "position" field (already "first"/"middle"/"last", not something to
+  infer by matching names against the corresponding_author string above) to identify the
+  main/corresponding author's institution directly — "first" or "last" is the main/corresponding
+  author by academic convention.
 - Sub-criterion 2 (author expertise): use the publication stats (paper_count > 10 and h_index > 3
   suggests an established researcher). The author list above may cover all authors on the paper or
   only some — check DATA QUALITY WARNINGS to know which. "match_method": "doi" or "openalex_fallback"
