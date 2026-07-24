@@ -24,78 +24,290 @@
     },
     "ror_results": [
       {
+        "author": "Lianghui Wei",
+        "position": "first",
         "name": "Yangtze University",
         "type": [
-          "education",
-          "funder"
+          "education"
         ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
+        "country": "CN",
+        "ror": "https://ror.org/05bhmhz54"
       },
       {
+        "author": "Li Zhu",
+        "position": "middle",
         "name": "Shenzhen International Travel Health Care Center",
         "type": [
           "other"
         ],
-        "country": "China",
-        "score": 0.99,
-        "chosen": true
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
+      },
+      {
+        "author": "jianzhong ye",
+        "position": "middle",
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
+      },
+      {
+        "author": "Ran Zhang",
+        "position": "middle",
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
+      },
+      {
+        "author": "Ying Ye",
+        "position": "middle",
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
+      },
+      {
+        "author": "Chunzhong Zhao",
+        "position": "middle",
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
+      },
+      {
+        "author": "Ye Yang",
+        "position": "middle",
+        "name": "Yangtze University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/05bhmhz54"
+      },
+      {
+        "author": "Jianan He",
+        "position": "last",
+        "name": "Shenzhen International Travel Health Care Center",
+        "type": [
+          "other"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00n7f0287"
       }
     ],
-    "semantic_scholar": {}
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Liang Wei",
+          "paper_count": 7,
+          "citation_count": 3,
+          "h_index": 1,
+          "match_method": "name_search_unverified",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "Lianghui Wei",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "Li Zhu",
+          "paper_count": 3,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "jianzhong ye",
+          "paper_count": 9,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Ran Zhang",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Ying Ye",
+          "paper_count": 43,
+          "citation_count": 511,
+          "h_index": 12,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Chunzhong Zhao",
+          "paper_count": 18,
+          "citation_count": 234,
+          "h_index": 7,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Ye Yang",
+          "paper_count": 353,
+          "citation_count": 8104,
+          "h_index": 46,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jianan He",
+          "paper_count": 3,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": [
+        "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified."
+      ]
+    },
+    "paper_fields": [
+      "Medicine",
+      "Biochemistry, Genetics and Molecular Biology"
+    ],
+    "data_quality_warnings": [
+      "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified.",
+      "Semantic Scholar had no record for 8 author(s) — their publication stats were backfilled from OpenAlex instead."
+    ]
   },
   "criteria": {
     "author_credibility": {
       "score": 2,
-      "justification": "The study involves a credible education institution (Yangtze University) and a public travel health care centre rather than commercial or predatory entities. However, only two institutions are involved, and no Semantic Scholar record was available to verify the corresponding author's publication expertise, so the evidence does not meet the score-3 threshold.",
+      "justification": "institution_reputability: Yangtze University is an education-type institution and the first author is affiliated there. Shenzhen International Travel Health Care Center is not flagged as commercial or predatory, but its OpenAlex type is \"other,\" so the evidence does not clearly establish that all affiliations meet the score-3 recognized university/research-lab standard. | author_expertise: At least three authors have reliably matched, field-relevant OpenAlex records with established publication profiles: Ying Ye (43 papers, h-index 12), Chunzhong Zhao (18 papers, h-index 7), and Ye Yang (353 papers, h-index 46). Their recorded fields overlap with the paper's fields. | institutional_collaboration: The author list includes two distinct institutions: Yangtze University and Shenzhen International Travel Health Care Centre.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 2,
+          "justification": "Yangtze University is an education-type institution and the first author is affiliated there. Shenzhen International Travel Health Care Center is not flagged as commercial or predatory, but its OpenAlex type is \"other,\" so the evidence does not clearly establish that all affiliations meet the score-3 recognized university/research-lab standard."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least three authors have reliably matched, field-relevant OpenAlex records with established publication profiles: Ying Ye (43 papers, h-index 12), Chunzhong Zhao (18 papers, h-index 7), and Ye Yang (353 papers, h-index 46). Their recorded fields overlap with the paper's fields."
+        },
+        "institutional_collaboration": {
+          "score": 2,
+          "justification": "The author list includes two distinct institutions: Yangtze University and Shenzhen International Travel Health Care Centre."
+        }
+      },
       "institutions_assessed": [
         "Yangtze University",
         "Shenzhen International Travel Health Care Centre"
       ],
       "n_institutes": 2,
-      "corresponding_author_papers": 0,
+      "corresponding_author_papers": 2,
       "flags": [
-        "No Semantic Scholar data found for corresponding author Lianghui Wei",
-        "Shenzhen International Travel Health Care Centre is classified by ROR as 'other' rather than education or research"
+        "Shenzhen International Travel Health Care Center is classified as \"other\" rather than education, facility, or research in OpenAlex.",
+        "First author Lianghui Wei and last author Jianan He have limited recorded publication metrics.",
+        "Publication records were backfilled from OpenAlex because Semantic Scholar had no DOI record."
       ]
     },
     "research_question_and_methods": {
       "score": 2,
-      "justification": "This matches the score_2 description: the objective and case-series design are clear and relevant to imported CHIKV surveillance, but reproducibility is limited by missing key analytic details such as variant-calling thresholds, sequencing-depth criteria, and statistical methods.",
-      "quote": "This study aimed to analyze the molecular epidemiological characteristics of imported Chikungunya virus (CHIKV) infections identified during port surveillance",
+      "justification": "objective_and_hypothesis: The study clearly states a platform-comparison objective and connects it to case tracing, but it does not state an explicit hypothesis. It therefore sits between the descriptions: stronger than a vague objective, but not a clear score-3 statement of explicit, testable hypotheses. | public_health_relevance: Imported CHIKV surveillance at ports addresses a pressing vector-borne public-health concern. However, the paper does not link these three cases to a specifically identified or documented outbreak, so it matches score 2 rather than score 3. | study_design_rigor: The paper identifies the three samples, extraction and sequencing platforms, reference genome, and cross-platform phylogenetic comparison, providing some internal validation. However, essential reproducibility details are absent, including RT-qPCR target/cycling conditions, QC thresholds, read-mapping and consensus settings, variant-calling thresholds, and phylogenetic model settings; the declarations also conflict by calling the GSA data public while stating the data used are confidential, matching score 2 rather than score 3.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 2,
+          "justification": "The study clearly states a platform-comparison objective and connects it to case tracing, but it does not state an explicit hypothesis. It therefore sits between the descriptions: stronger than a vague objective, but not a clear score-3 statement of explicit, testable hypotheses.",
+          "quote": "with a focus on evaluating cross-platform consistency and complementarity for case tracing and typing",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 2,
+          "justification": "Imported CHIKV surveillance at ports addresses a pressing vector-borne public-health concern. However, the paper does not link these three cases to a specifically identified or documented outbreak, so it matches score 2 rather than score 3.",
+          "quote": "CHIKF has became a significant public health concern, causing large-scale outbreaks across Asia, Africa, and the Americas.",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 2,
+          "justification": "The paper identifies the three samples, extraction and sequencing platforms, reference genome, and cross-platform phylogenetic comparison, providing some internal validation. However, essential reproducibility details are absent, including RT-qPCR target/cycling conditions, QC thresholds, read-mapping and consensus settings, variant-calling thresholds, and phylogenetic model settings; the declarations also conflict by calling the GSA data public while stating the data used are confidential, matching score 2 rather than score 3.",
+          "quote": "To ensure cross-platform comparability, the study focused on genome coverage, coding region sequence consistency, and phylogenetic typing",
+          "quote_valid": true
+        }
+      },
       "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 2,
-      "justification": "This matches the score_2 description: the paper provides supporting tables and figures, including phylogenetic pairing of ONT and mNGS sequences in Figure 6, and explicitly discusses limitations; however, Table 4 reports a substantial Sample 1 ONT amino-acid identity difference (63.8%) and statistical parameters are unclear.",
-      "quote": "The small sample size limits the generalizability of the conclusions.",
+      "score": 1,
+      "justification": "Table 1 reports Sample 3 with 965519.5 \"Effective Sequences,\" an intrinsically impossible fractional count, and Figure 4 shows exactly zero mNGS-unique variants in all three samples, suggesting a pipeline or reporting artifact. Moreover, Table 4 reports ONT Sample 1 amino-acid identity of 63.8% and overall identity of 78.3%, substantially below the mNGS values (89.6% and 90.0%), undermining the paper's broad claim that both approaches reliably provide suitable genomic information; these are data-integrity and conclusion-grounding problems matching score 1.",
+      "quote": "both sequencing approaches reliably provided genomic information suitable for case typing and epidemiological tracing",
       "quote_valid": true
     },
     "references": {
       "reference_count": 33,
-      "justification": "The reference list includes a broad, recent mix of peer-reviewed CHIKV, molecular-diagnostics, metagenomic, and nanopore-sequencing literature, including a directly relevant clinical MinION-versus-Illumina comparison. A small number of preprints and less directly relevant sequencing examples are included, but the overall coverage is strong and domain-relevant.",
+      "justification": "The references include relevant CHIKV epidemiology, molecular diagnostics, and mNGS/ONT technical studies, with many peer-reviewed and recent sources. However, relevance is diluted by clearly off-topic entries, including reference 13 (Chen et al., a Termitomyces fuliginosus fungal genome assembly) and reference 30 (Jia et al., low-input PacBio sequencing of individual fly genomes); references 5 and 23 are also medRxiv preprints.",
       "quote": "Technical comparison of MinIon and Illumina technologies for genotyping Chikungunya virus in clinical samples.",
       "score": 3,
-      "quote_valid": true
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 32,
+        "n_resolved": 31,
+        "n_unresolved": 1,
+        "unresolved": [
+          {
+            "entry": "1 . Wang J, Zhang R, Sun Z, Ren H, Chen C, Dong X, Ma X. 2020. Detection of the Chikungunya Virus and Sindbis Viruses in Simulated Clinical Samples Using Metage",
+            "resolved": false,
+            "method": "bibliographic_search_no_match"
+          }
+        ]
+      }
     },
     "feedback": {
       "score": null,
-      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
     }
   },
   "scoring": {
     "per_criterion": {
       "author_credibility": 2,
       "research_question_and_methods": 2,
-      "results_and_conclusion": 2,
-      "references": 3
+      "results_and_conclusion": 1,
+      "references": 3,
+      "feedback": null
     },
-    "total": 9,
+    "total": 8,
     "max": 12,
-    "average": 2.25,
+    "average": 2.0,
     "n_criteria_evaluated": 4,
     "recommendation": "accept_with_reservations",
     "quotes_invalid": []
-  }
+  },
+  "data_quality_warnings": [
+    "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified.",
+    "Semantic Scholar had no record for 8 author(s) — their publication stats were backfilled from OpenAlex instead."
+  ]
 }

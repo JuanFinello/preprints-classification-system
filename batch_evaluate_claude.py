@@ -47,7 +47,8 @@ def _flatten(result: dict) -> dict:
     row = {"pdf": result["source_pdf"]}
     for c in CRITERIA_SCORES:
         row[c] = criteria.get(c, {}).get("score", "")
-    row["feedback"] = ""
+    feedback_score = criteria.get("feedback", {}).get("score")
+    row["feedback"] = feedback_score if isinstance(feedback_score, int) else ""
     row["notes"] = f"Auto-scored by {result.get('model', DEFAULT_MODEL)} via API"
     row["date_added"] = date.today().isoformat()
     return row

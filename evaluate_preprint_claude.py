@@ -24,10 +24,18 @@ import anthropic
 from evaluate_preprint import (
     _build_author_prompt,
     _build_content_prompt,
+    _build_feedback_prompt,
+    _compose_author_credibility_result,
+    _compose_research_question_result,
+    _doi_from_pdf_path,
+    _parse_error_author_credibility_result,
+    _parse_error_content_result,
     _score_from_reference_count,
     compute_scores,
     extract_pdf,
+    fetch_prereview_data,
     validate_quotes,
+    verify_references,
 )
 
 DEFAULT_MODEL = "claude-sonnet-5"
@@ -50,17 +58,19 @@ def _llm(client: anthropic.Anthropic, model: str, prompt: str, max_tokens: int =
 
 def evaluate_content_claude(eval_text: str, criteria: dict, client: anthropic.Anthropic, model: str) -> dict:
     prompt = _build_content_prompt(eval_text, criteria)
-    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=1500))
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
     try:
-        result = json.loads(raw)
+        parsed = json.loads(raw)
     except Exception:
-        return {
-            "research_question_and_methods": {"score": 1, "justification": "Parse error", "quote": ""},
-            "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
-            "references": {"score": 1, "justification": "Parse error", "quote": ""},
-        }
+        return _parse_error_content_result()
 
-    ref = result.get("references", {})
+    result = {
+        "research_question_and_methods": _compose_research_question_result(parsed),
+        "results_and_conclusion": parsed.get("results_and_conclusion", {}),
+        "references": parsed.get("references", {}),
+    }
+
+    ref = result["references"]
     ref_count = ref.get("reference_count")
     if isinstance(ref_count, int):
         ref["score"] = _score_from_reference_count(ref_count)
@@ -72,11 +82,44 @@ def evaluate_content_claude(eval_text: str, criteria: dict, client: anthropic.An
 
 def evaluate_author_credibility_claude(author_data: dict, criteria: dict, client: anthropic.Anthropic, model: str) -> dict:
     prompt = _build_author_prompt(author_data, criteria)
-    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=512))
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
     try:
-        return json.loads(raw)
+        parsed = json.loads(raw)
     except Exception:
-        return {"author_credibility": {"score": 1, "justification": "Parse error", "flags": []}}
+        return _parse_error_author_credibility_result()
+
+    return _compose_author_credibility_result(parsed)
+
+
+def evaluate_feedback_claude(doi: str, criteria: dict, client: anthropic.Anthropic, model: str) -> dict:
+    """Same approach as evaluate_feedback (GPT side): score from real
+    PREreview text when any exists for this DOI; stays manual (score: None)
+    otherwise — see evaluate_preprint.evaluate_feedback for the reasoning."""
+    prereview_data = fetch_prereview_data(doi)
+    if prereview_data["n_reviews"] == 0:
+        return {
+            "score": None,
+            "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+            "prereview_data": prereview_data,
+        }
+
+    prompt = _build_feedback_prompt(criteria, [rv["text"] for rv in prereview_data["reviews"]])
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=1500))
+    try:
+        parsed = json.loads(raw)
+    except Exception:
+        return {
+            "score": None,
+            "justification": "Parse error scoring PREreview evidence — requires manual check.",
+            "prereview_data": prereview_data,
+        }
+
+    score = parsed.get("score")
+    return {
+        "score": score if isinstance(score, int) else None,
+        "justification": parsed.get("justification", ""),
+        "prereview_data": prereview_data,
+    }
 
 
 def evaluate_preprint_claude(pdf_path: Path, criteria_path: Path, model: str,
@@ -96,12 +139,10 @@ def evaluate_preprint_claude(pdf_path: Path, criteria_path: Path, model: str,
     author_results = evaluate_author_credibility_claude(author_data, criteria, client, model)
 
     criterion_results = {**author_results, **content_results}
-    criterion_results["feedback"] = {
-        "score": None,
-        "justification": "Not evaluated automatically. Requires manual check of preprint server.",
-    }
+    criterion_results["feedback"] = evaluate_feedback_claude(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
     criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
+    criterion_results["references"]["citation_verification"] = verify_references(pdf_data["full_text"])
     scoring = compute_scores(criterion_results)
 
     checked = ["research_question_and_methods", "results_and_conclusion", "references"]

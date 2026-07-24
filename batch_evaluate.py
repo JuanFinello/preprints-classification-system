@@ -107,6 +107,10 @@ def _flatten(result: dict) -> dict:
     for key in ("institution_reputability", "author_expertise", "institutional_collaboration"):
         row[f"author_credibility_{key}_score"] = sub_scores.get(key, {}).get("score", "")
 
+    rqm_sub_scores = criteria.get("research_question_and_methods", {}).get("sub_scores", {})
+    for key in ("objective_and_hypothesis", "public_health_relevance", "study_design_rigor"):
+        row[f"research_question_and_methods_{key}_score"] = rqm_sub_scores.get(key, {}).get("score", "")
+
     row["n_authors"] = extracted.get("n_authors", "")
     row["n_institutes"] = extracted.get("n_institutes", "")
     row["corresponding_author"] = extracted.get("corresponding_author", "")

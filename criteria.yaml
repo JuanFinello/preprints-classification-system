@@ -61,6 +61,16 @@ criteria:
   research_question_and_methods:
     label: "Research question and methodology"
     requires_external_data: false
+    description: >
+      Composite of 3 independently-scored sub-criteria (source: original rubric,
+      tabla_de_criterios_sandy.xlsx / criterios_question_and_methodology.xlsx).
+      Each sub-criterion is scored 1-3 on its own evidence; the final
+      research_question_and_methods score is the average of the 3, rounded to
+      the nearest integer. This replaces the earlier single merged score_1/2/3
+      block, which required an explicit/testable objective AND public-health/
+      outbreak relevance AND a reproducible design to all hold simultaneously
+      for a 3 — the same over-rigid AND-gate pattern already fixed for
+      author_credibility (see project memory, Pendiente H).
     evidence_to_look_for:
       - explicit research objective or aim
       - connection between objective and methods
@@ -70,28 +80,56 @@ criteria:
       - data sources or datasets used
       - statistical or computational analysis
       - reproducibility details (parameters, protocols, conditions)
-    score_1:
-      description: >
-        Objective is unclear, missing, or vague. Methodology is absent or too
-        superficial to understand how the study was conducted. No clear link to
-        public health relevance.
-    score_2:
-      description: >
-        Objective is stated but lacks precision or clear connection to methods and
-        results. Study design is briefly described but missing important details
-        (sample size, controls, validation, statistical approach). May address a
-        general public health topic without linking to a specific outbreak or concern.
-    score_3:
-      description: >
-        Objectives and hypotheses are explicit, testable, and aligned with the
-        study design. Methodology is detailed enough to understand or reproduce the
-        study. Study clearly addresses a pressing public health concern or a known
-        outbreak (e.g., WHO Disease Outbreak News). Data, code, or materials are
-        openly available or sufficient detail is given for replication.
+    sub_criteria:
+      objective_and_hypothesis:
+        label: "The study objective and hypotheses are clearly written"
+        score_1:
+          description: "Objective is unclear, missing, or vague."
+        score_2:
+          description: >
+            Objective is clear but lacks precision or a clear connection to
+            methods and results.
+        score_3:
+          description: >
+            Objective and hypotheses are explicit, testable, and aligned with
+            theory or prior evidence. Clear sense of why this study matters.
+      public_health_relevance:
+        label: "The study addresses a pressing public health concern"
+        score_1:
+          description: "No."
+        score_2:
+          description: "Yes."
+        score_3:
+          description: >
+            Yes, and it relates to a known outbreak (e.g. WHO Disease Outbreak News).
+      study_design_rigor:
+        label: "Study design is clear and rigorous, with sufficient detail for reproducibility"
+        score_1:
+          description: "Methodology is missing."
+        score_2:
+          description: >
+            Study design is briefly described but lacks detail, or presents
+            preliminary results with no validation.
+        score_3:
+          description: >
+            Clear and rigorous study design, with methods validating the
+            results described. Data, code, and materials are openly available,
+            or sufficient detail is provided for replication.
 
   results_and_conclusion:
     label: "Results and conclusion"
     requires_external_data: false
+    description: >
+      Single criterion, not split into sub-criteria (unlike author_credibility
+      and research_question_and_methods) — Sandy's original rubric
+      (tabla_de_criterios_sandy.xlsx) has it as one row, no AND-gate problem.
+      Prompt guidance added 2026-07-24 (see Pendiente I, project memory) after
+      a real calibration paper (chikungunya, 10.21203/rs.3.rs-8545804/v1) showed
+      the model catching an isolated numeric discrepancy but bucketing it as
+      score_2 "unclear parameters" instead of recognizing it as the paper's own
+      conclusion being contradicted by its own data (score_1) — see the
+      "For results_and_conclusion" instruction in _build_content_prompt /
+      _build_content_prompt_pdf.
     evidence_to_look_for:
       - presence of figures, tables, or quantitative results
       - internal consistency between methods and reported results
@@ -99,6 +137,10 @@ criteria:
       - whether conclusions are supported by the data
       - acknowledgment of limitations
       - whether findings align with study hypotheses
+      - numeric values that are internally impossible (e.g. a fractional count
+        of discrete items, a stated mean that doesn't match its own table)
+      - whether the paper's own stated conclusion is directly contradicted by
+        a data point it reports elsewhere in the same paper
     score_1:
       description: >
         Results lack supporting figures or tables, or are inconsistent with the
@@ -118,11 +160,42 @@ criteria:
   references:
     label: "References"
     requires_external_data: false
+    description: >
+      Score is 100% deterministic from reference_count (_score_from_reference_count:
+      >20→3, <10→1, else→2) — the LLM only counts, it never judges quality into
+      the score itself. This is a known, accepted limitation (see project memory,
+      2026-07-21 falla #2): a paper can hit score_3 on count alone even if several
+      references are off-topic. Reviewed 2026-07-24 (Pendiente: "revisar
+      references"): verified against a real calibration paper (chikungunya,
+      10.21203/rs.3.rs-8545804/v1, 33 refs) that at least 4 references are
+      genuinely unrelated to the paper's subject (e.g. a fungal genome-assembly
+      paper, a grapevine virology review) — yet the model's own justification
+      called the list "strong and domain-relevant" without naming any of them.
+      The score isn't meant to reflect this (by design), but the justification
+      text is the only human-readable signal here and was misleadingly upbeat.
+      Fix: prompt now explicitly asks the model to name specific off-topic
+      references in the justification (score unaffected) so a human reviewer
+      isn't misled by an inaccurate "good coverage" summary.
+
+      Separately, criteria["references"]["citation_verification"] (computed in
+      code by verify_references(), no LLM involved) checks whether each printed
+      citation actually resolves to a real indexed work via Crossref — same
+      "verify externally, don't just trust the read" principle as ROR/OpenAlex
+      for institutions. Verified against all 4 calibration papers: correctly
+      flagged a genuinely corrupted citation ("Road C, Quaritch B. Mosquitoes
+      of the Ethiopian Region" — real author is Edwards, matching what Claude's
+      manual review already caught by domain knowledge on 2026-07-13) without
+      also flagging real citations that just have a mangled DOI from extraction
+      (a fallback to bibliographic search catches those). Also purely
+      informational — does not affect the deterministic score.
     evidence_to_look_for:
       - total number of references
       - presence of foundational and recent peer-reviewed literature
       - absence of overreliance on self-citations or non-peer-reviewed sources
       - references used to support methods, contextualize findings, and discuss limitations
+      - specific references that are off-topic or unrelated to the paper's own
+        subject matter (report by number/author, even though this doesn't
+        change the deterministic score)
     score_1:
       description: >
         Few references (fewer than ~10), missing major or foundational studies.
@@ -144,6 +217,24 @@ criteria:
       This criterion requires checking the preprint server (bioRxiv, medRxiv,
       ResearchSquare) for community reviews and comments. It cannot be evaluated
       from the PDF alone and is assessed separately.
+    description: >
+      Reviewed 2026-07-24. Partially automated: evaluate_feedback() fetches
+      real PREreview.org reviews for the paper's DOI (server-rendered HTML,
+      no API key, no LLM for the fetch itself — see fetch_prereview_data) and,
+      when at least one exists, has the LLM score this criterion from that
+      real review text (with an explicit caveat in the prompt that
+      bioRxiv/medRxiv's own comments were NOT checked). When zero PREreviews
+      exist for a DOI (the common case — PREreview coverage is low; all 4
+      calibration papers had zero), the score stays None/manual exactly as
+      before. Two signals considered and explicitly rejected for this
+      criterion (Juan's correction): "already published in a journal" is a
+      workflow question (should this even still be in the significant-preprint
+      queue), not feedback evidence; and citation count measures broader
+      scientific impact, not direct community feedback/discussion on the
+      preprint itself, which is what this criterion actually asks about.
+      bioRxiv/medRxiv Disqus-based comments remain out of reach (JS-rendered,
+      no clean scrape) — this stays a known coverage gap, not something this
+      fix claims to solve.
     evidence_to_look_for:
       - number and quality of peer reviews or community comments
       - citations or follow-up analyses by other researchers

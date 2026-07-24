@@ -29,100 +29,331 @@
     },
     "ror_results": [
       {
+        "author": "Matthew W. Kenaston",
+        "position": "first",
         "name": "University of California, Davis",
         "type": [
-          "education",
-          "funder"
+          "education"
         ],
-        "country": "United States",
-        "score": 1.0,
-        "chosen": true
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
       },
       {
+        "author": "Liubov Cherkashchenko",
+        "position": "middle",
         "name": "University of California, Davis",
         "type": [
-          "education",
-          "funder"
+          "education"
         ],
-        "country": "United States",
-        "score": 1.0,
-        "chosen": true
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
       },
       {
+        "author": "Chase L. S. Skawinski",
+        "position": "middle",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
+      },
+      {
+        "author": "Adam T. Fishburn",
+        "position": "middle",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
+      },
+      {
+        "author": "Vardhan Peddamallu",
+        "position": "middle",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
+      },
+      {
+        "author": "Cole J. Florio",
+        "position": "middle",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
+      },
+      {
+        "author": "Avery E. Robertson",
+        "position": "middle",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
+      },
+      {
+        "author": "Tamanash Bhattacharya",
+        "position": "middle",
         "name": "Fred Hutch Cancer Center",
         "type": [
-          "funder",
           "nonprofit"
         ],
-        "country": "United States",
-        "score": 1.0,
-        "chosen": true
+        "country": "US",
+        "ror": "https://ror.org/007ps6h72"
       },
       {
+        "author": "Janet M. Young",
+        "position": "middle",
+        "name": "Fred Hutch Cancer Center",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/007ps6h72"
+      },
+      {
+        "author": "Harmit S. Malik",
+        "position": "middle",
         "name": "Howard Hughes Medical Institute",
         "type": [
-          "facility",
-          "funder"
+          "facility"
         ],
-        "country": "United States",
-        "score": 1.0,
-        "chosen": true
+        "country": "US",
+        "ror": "https://ror.org/006w34k90"
+      },
+      {
+        "author": "Harmit S. Malik",
+        "position": "middle",
+        "name": "Fred Hutch Cancer Center",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/007ps6h72"
+      },
+      {
+        "author": "Priya S. Shah",
+        "position": "last",
+        "name": "University of California, Davis",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05rrcem69"
       }
     ],
+    "institution_source": "openalex",
     "semantic_scholar": {
-      "name": "Priya S. Shah",
-      "paper_count": 14,
-      "citation_count": 23,
-      "h_index": 3,
-      "match_method": "doi"
-    }
+      "authors": [
+        {
+          "name": "Matthew W. Kenaston",
+          "paper_count": 15,
+          "citation_count": 100,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "Liubov Cherkashchenko",
+          "paper_count": 2,
+          "citation_count": 8,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Chase L. S. Skawinski",
+          "paper_count": 3,
+          "citation_count": 2,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Adam T. Fishburn",
+          "paper_count": 7,
+          "citation_count": 68,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Vardhan Peddamallu",
+          "paper_count": 3,
+          "citation_count": 5,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Cole J. Florio",
+          "paper_count": 6,
+          "citation_count": 14,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "A. Robertson",
+          "paper_count": 4,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Tamanash Bhattacharya",
+          "paper_count": 17,
+          "citation_count": 368,
+          "h_index": 8,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Janet M. Young",
+          "paper_count": 17,
+          "citation_count": 59,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Harmit S. Malik",
+          "paper_count": 51,
+          "citation_count": 381,
+          "h_index": 10,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Priya S. Shah",
+          "paper_count": 14,
+          "citation_count": 23,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Biochemistry, Genetics and Molecular Biology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Tamanash Bhattacharya' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Fred Hutch Cancer Center' matched 'Tamanash Bhattacharya' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Janet M. Young' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Fred Hutch Cancer Center' matched 'Janet M. Young' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Harmit S. Malik' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Fred Hutch Cancer Center' matched 'Harmit S. Malik' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept."
+    ]
   },
   "criteria": {
     "author_credibility": {
-      "score": 2,
-      "justification": "All listed affiliations are credible US university, nonprofit research, or research-funding institutions. The corresponding author has a reliable DOI-matched Semantic Scholar profile with 14 papers, but an h-index of 3 does not exceed the stated established-researcher threshold. The collaboration includes three distinct institutions, not more than three as required for a clear score of 3.",
+      "score": 3,
+      "justification": "institution_reputability: All authors are affiliated with credible research institutions: University of California, Davis; Fred Hutchinson Cancer Center; and Howard Hughes Medical Institute. The last/main author, Priya S. Shah, is affiliated with UC Davis, a well-established nationally and globally recognized research university. | author_expertise: At least four authors have reliable DOI-linked records showing field overlap and established publication profiles: Matthew W. Kenaston (15 papers, h-index 5), Tamanash Bhattacharya (17 papers, h-index 8), Janet M. Young (17 papers, h-index 4), and Harmit S. Malik (51 papers, h-index 10). The first and last authors also have field-matched publication records. | institutional_collaboration: The study involves three distinct institutions: University of California, Davis; Fred Hutchinson Cancer Center; and Howard Hughes Medical Institute.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "All authors are affiliated with credible research institutions: University of California, Davis; Fred Hutchinson Cancer Center; and Howard Hughes Medical Institute. The last/main author, Priya S. Shah, is affiliated with UC Davis, a well-established nationally and globally recognized research university."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least four authors have reliable DOI-linked records showing field overlap and established publication profiles: Matthew W. Kenaston (15 papers, h-index 5), Tamanash Bhattacharya (17 papers, h-index 8), Janet M. Young (17 papers, h-index 4), and Harmit S. Malik (51 papers, h-index 10). The first and last authors also have field-matched publication records."
+        },
+        "institutional_collaboration": {
+          "score": 2,
+          "justification": "The study involves three distinct institutions: University of California, Davis; Fred Hutchinson Cancer Center; and Howard Hughes Medical Institute."
+        }
+      },
       "institutions_assessed": [
         "University of California, Davis",
-        "Fred Hutch Cancer Center",
+        "Fred Hutchinson Cancer Center",
         "Howard Hughes Medical Institute"
       ],
       "n_institutes": 3,
       "corresponding_author_papers": 14,
-      "flags": [
-        "Corresponding author h-index is 3, below the stated threshold of greater than 3",
-        "Only three distinct institutions are represented"
-      ]
+      "flags": []
     },
     "research_question_and_methods": {
       "score": 3,
-      "justification": "Matches the score_3 description: the study explicitly aims to identify YFV-specific and conserved flavivirus host interactions, links this work to resurgent YFV public-health concern, and provides detailed AP-MS, CRISPRi, infection, structural, and statistical methods plus public data and code availability. Figure 3 further documents functional validation of a prioritized interaction using knockdown, co-IP, and replicon assays.",
-      "quote": "Here, we map YFV interactomes in human and mosquito cells to identify interactions common among divergent flaviviruses or unique to YFV.",
+      "justification": "objective_and_hypothesis: This matches the score_3 description: the paper states a precise objective, frames it in the biology and evolution of dual-host flaviviruses, and tests explicit predictions about conserved versus YFV-specific interactions using comparative interactomes and functional assays. | public_health_relevance: This matches the score_3 description because the work concerns yellow fever, a serious mosquito-borne disease, and explicitly connects its relevance to a documented 2025 PAHO epidemiological alert reporting increased cases in the Americas. | study_design_rigor: This matches the score_3 description: AP-MS interactomes in human and Aedes cells are supported by detailed experimental and computational methods, orthogonal CRISPRi, co-IP/RNase, microscopy, and replicon validation, with MS datasets deposited in PRIDE and code provided on GitHub.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 3,
+          "justification": "This matches the score_3 description: the paper states a precise objective, frames it in the biology and evolution of dual-host flaviviruses, and tests explicit predictions about conserved versus YFV-specific interactions using comparative interactomes and functional assays.",
+          "quote": "Here, we map YFV interactomes in human and mosquito cells to identify interactions common among divergent flaviviruses or unique to YFV.",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 3,
+          "justification": "This matches the score_3 description because the work concerns yellow fever, a serious mosquito-borne disease, and explicitly connects its relevance to a documented 2025 PAHO epidemiological alert reporting increased cases in the Americas.",
+          "quote": "a Pan-American Health Organization alert in February 2025 reported an alarming increase in YFV cases in the Americas",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "This matches the score_3 description: AP-MS interactomes in human and Aedes cells are supported by detailed experimental and computational methods, orthogonal CRISPRi, co-IP/RNase, microscopy, and replicon validation, with MS datasets deposited in PRIDE and code provided on GitHub.",
+          "quote": "The mass spectrometry proteomics data have been deposited to the ProteomeXchange Consortium",
+          "quote_valid": true
+        }
+      },
       "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 3,
-      "justification": "Matches the score_3 description: findings are supported by orthogonal methods, including AP-MS, CRISPRi knockdown, plaque assays, endogenous co-immunoprecipitation with RNase treatment, and replicon assays (Figure 3). The conclusions are appropriately tied to these data, and the paper explicitly discusses methodological and biological limitations on page 20.",
-      "quote": "Together, our data support a model in which RBBP6 acts as a YFV restriction factor by inhibiting YFV genome replication through a complex RNA-mediated interaction with NS5.",
+      "score": 2,
+      "justification": "The findings are supported by multiple figure-based validations, including CRISPRi, endogenous co-IP, RNase sensitivity, and replicon experiments in Figure 3, and the limitations are explicitly discussed. However, this matches score_2 because the reported total of 150 mosquito HC-PPIs conflicts with the seven per-bait prey counts shown in Figure 4A (57+11+28+24+17+3+18 = 158), an internal reporting inconsistency.",
+      "quote": "In total, we identified 150 YFV-mosquito HC-PPIs across 7 viral baits.",
       "quote_valid": true
     },
     "references": {
       "reference_count": 104,
-      "justification": "The reference list provides broad domain coverage, including foundational flavivirus biology, AP-MS and interaction-scoring methods, CRISPR screens, evolutionary analyses, and recent YFV surveillance. It predominantly cites peer-reviewed, high-quality journals such as Nature, Cell, Science, PNAS, and eLife, while using a limited number of recent preprints and public-health reports where directly relevant.",
+      "justification": "The references provide broad, high-quality coverage of flavivirus biology, yellow-fever epidemiology, AP-MS/interactome methods, CRISPR screening, protein-structure analysis, and evolutionary testing. They include foundational and recent peer-reviewed studies, with limited clearly identified preprints and a relevant PAHO alert; no clearly unrelated reference entry was identified.",
       "quote": "Comparative Flavivirus-Host Protein Interaction Mapping Reveals Mechanisms of Dengue and Zika Virus Pathogenesis.",
       "score": 3,
-      "quote_valid": true
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 104,
+        "n_resolved": 104,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
     },
     "feedback": {
       "score": null,
-      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
     }
   },
   "scoring": {
     "per_criterion": {
-      "author_credibility": 2,
+      "author_credibility": 3,
       "research_question_and_methods": 3,
-      "results_and_conclusion": 3,
-      "references": 3
+      "results_and_conclusion": 2,
+      "references": 3,
+      "feedback": null
     },
     "total": 11,
     "max": 12,
@@ -130,5 +361,13 @@
     "n_criteria_evaluated": 4,
     "recommendation": "accept",
     "quotes_invalid": []
-  }
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Tamanash Bhattacharya' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Fred Hutch Cancer Center' matched 'Tamanash Bhattacharya' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Janet M. Young' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Fred Hutch Cancer Center' matched 'Janet M. Young' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'Cape Town HVTN Immunology Laboratory / Hutchinson Centre Research Institute of South Africa' to 'Harmit S. Malik' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Fred Hutch Cancer Center' matched 'Harmit S. Malik' via a ROR alias ('Fred Hutchinson Cancer Center') rather than OpenAlex's own display name — kept."
+  ]
 }

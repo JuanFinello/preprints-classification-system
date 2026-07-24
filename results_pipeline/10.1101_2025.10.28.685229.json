@@ -4,176 +4,699 @@
   "n_pages": 41,
   "author_enrichment": {
     "extracted": {
-      "corresponding_author": "Xu Tan",
-      "all_authors": [
-        "Miao Mei",
-        "Yang Yang",
-        "Zihan Zhang",
-        "Yue Yin",
-        "Jiali Tan",
-        "Chao Jiang",
-        "Yu Gao",
-        "Zhaoyang Wang",
-        "Donghong Wang",
-        "Yajing Li",
-        "Yingyi Cong",
-        "Zhiyuan Zhang",
-        "Yousong Peng",
-        "Wenjie Tan",
-        "Jiandong Li",
-        "Li Li",
-        "Hanxue Wang",
-        "Ren Lang",
-        "Qiang He",
-        "Zihou Deng",
-        "Xiaojie Huang",
-        "Bin Luo",
-        "Cao Shan",
-        "Yonghong Zhang",
-        "Lin Mei",
-        "Gong Cheng",
-        "Xu Tan"
-      ],
-      "affiliations": [
-        "Chinese Institute for Immunology, Chinese Institutes for Medical Research, Beijing You’an Hospital, Capital Medical University, Beijing, China",
-        "Shenzhen Key Laboratory of Pathogen and Immunity, National Clinical Research Center for Infectious Disease, State Key Discipline of Infectious Disease, Shenzhen Third People's Hospital, Second Hospital Affiliated to Southern University of Science and Technology, Shenzhen, China",
-        "State Key Laboratory of Virology and Biosafety, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; University of the Chinese Academy of Sciences, Beijing 100039, China; Center for Biosafety Mega-Science, Wuhan Institute of Virology, Chinese Academy of Sciences, Wuhan 430071, China; Hubei Jiangxia Laboratory, Wuhan 430200, China",
-        "Tsinghua-Peking Center for Life Sciences, School of Medicine, Tsinghua University, Beijing; Institute of Infectious Diseases, Shenzhen Bay Laboratory, Shenzhen, China",
-        "School of Medicine, Tsinghua University, Beijing",
-        "Bioinformatics Center of College of Biology, Hunan Provincial Key Laboratory of Medical Virology, Hunan University, Changsha, China",
-        "NHC Key Laboratory of Biosafety, National Institute for Viral Disease Control and Prevention, Chinese Center for Disease Control and Prevention, Beijing 102206, China",
-        "Chinese Institute for Cancer Research, Chinese Institutes for Medical Research, Capital Medical University, Beijing, China",
-        "Department of Hepatobiliary and Pancreatic Surgery, Beijing Chao-Yang Hospital, Capital Medical University, Beijing, China",
-        "Beijing You'an Hospital, Capital Medical University, Beijing, China",
-        "Chinese Institutes for Medical Research, Capital Medical University, Beijing, China"
-      ],
-      "n_authors": 27,
-      "n_institutes": 11
+      "corresponding_author": "",
+      "all_authors": [],
+      "affiliations": [],
+      "n_authors": 0,
+      "n_institutes": 0
     },
     "ror_results": [
       {
-        "name": "Capital Medical University",
-        "type": [
-          "education",
-          "funder"
-        ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
-      },
-      {
+        "author": "Yang Yang",
+        "position": "middle",
         "name": "Southern University of Science and Technology",
         "type": [
-          "education",
-          "funder"
+          "education"
         ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
+        "country": "CN",
+        "ror": "https://ror.org/049tv2d57"
       },
       {
-        "name": "Chinese Academy of Sciences",
+        "author": "Yang Yang",
+        "position": "middle",
+        "name": "Shenzhen Third People’s Hospital",
         "type": [
-          "funder",
-          "government"
+          "healthcare"
         ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
+        "country": "CN",
+        "ror": "https://ror.org/04xfsbk97"
       },
       {
-        "name": "National Institute for Communicable Disease Control and Prevention",
-        "type": [
-          "government"
-        ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
-      },
-      {
-        "name": "Tsinghua University",
-        "type": [
-          "education",
-          "funder"
-        ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
-      },
-      {
+        "author": "Zihan Zhang",
+        "position": "middle",
         "name": "Hunan University",
         "type": [
-          "education",
-          "funder"
+          "education"
         ],
-        "country": "China",
-        "score": 1.0,
-        "chosen": true
+        "country": "CN",
+        "ror": "https://ror.org/05htk5m33"
+      },
+      {
+        "author": "Zihan Zhang",
+        "position": "middle",
+        "name": "Wuhan Institute of Virology",
+        "type": [
+          "facility"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01jxjav08"
+      },
+      {
+        "author": "Yue Yin",
+        "position": "middle",
+        "name": "Southern University of Science and Technology",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/049tv2d57"
+      },
+      {
+        "author": "Yue Yin",
+        "position": "middle",
+        "name": "Shenzhen Third People’s Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/04xfsbk97"
+      },
+      {
+        "author": "Zhaoyang Wang",
+        "position": "middle",
+        "name": "Shenzhen Bay Laboratory",
+        "type": [
+          "facility"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00sdcjz77"
+      },
+      {
+        "author": "Zhaoyang Wang",
+        "position": "middle",
+        "name": "Center for Life Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/05kje8j93"
+      },
+      {
+        "author": "Donghong Wang",
+        "position": "middle",
+        "name": "Tsinghua University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/03cve4549"
+      },
+      {
+        "author": "Zhiyuan Zhang",
+        "position": "middle",
+        "name": "Hunan University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/05htk5m33"
+      },
+      {
+        "author": "Zhiyuan Zhang",
+        "position": "middle",
+        "name": "Wuhan Institute of Virology",
+        "type": [
+          "facility"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01jxjav08"
+      },
+      {
+        "author": "Yousong Peng",
+        "position": "middle",
+        "name": "Hunan University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/05htk5m33"
+      },
+      {
+        "author": "Wenjie Tan",
+        "position": "middle",
+        "name": "National Institute for Viral Disease Control and Prevention",
+        "type": [
+          "government"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/04b1sh213"
+      },
+      {
+        "author": "Jiandong Li",
+        "position": "middle",
+        "name": "National Institute for Viral Disease Control and Prevention",
+        "type": [
+          "government"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/04b1sh213"
+      },
+      {
+        "author": "Hanxue Wang",
+        "position": "middle",
+        "name": "Beijing Chao-Yang Hospital, Capital Medical University",
+        "type": [
+          "healthcare"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01eff5662"
+      },
+      {
+        "author": "Ren Lang",
+        "position": "middle",
+        "name": "Beijing Chao-Yang Hospital, Capital Medical University",
+        "type": [
+          "healthcare"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01eff5662"
+      },
+      {
+        "author": "Qiang He",
+        "position": "middle",
+        "name": "Beijing Chao-Yang Hospital, Capital Medical University",
+        "type": [
+          "healthcare"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01eff5662"
+      },
+      {
+        "author": "Xiaojie Huang",
+        "position": "middle",
+        "name": "Capital Medical University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/013xs5b60"
+      },
+      {
+        "author": "Bin Luo",
+        "position": "middle",
+        "name": "Capital Medical University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/013xs5b60"
+      },
+      {
+        "author": "Shan Cao",
+        "position": "middle",
+        "name": "Wuhan Institute of Virology",
+        "type": [
+          "facility"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/01jxjav08"
+      },
+      {
+        "author": "Yonghong Zhang",
+        "position": "middle",
+        "name": "Capital Medical University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/013xs5b60"
+      },
+      {
+        "author": "Lin Mei",
+        "position": "middle",
+        "name": "Capital Medical University",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/013xs5b60"
+      },
+      {
+        "author": "Gong Cheng",
+        "position": "middle",
+        "name": "Shenzhen Bay Laboratory",
+        "type": [
+          "facility"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/00sdcjz77"
+      },
+      {
+        "author": "Gong Cheng",
+        "position": "middle",
+        "name": "Center for Life Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/05kje8j93"
       }
     ],
+    "institution_source": "openalex",
     "semantic_scholar": {
-      "name": "Jiali Tan",
-      "paper_count": 11,
-      "citation_count": 205,
-      "h_index": 8,
-      "match_method": "doi"
-    }
+      "authors": [
+        {
+          "name": "Miao Mei",
+          "paper_count": 4,
+          "citation_count": 3,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "Yang Yang",
+          "paper_count": 9,
+          "citation_count": 747,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Zihan Zhang",
+          "paper_count": 6,
+          "citation_count": 16,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Yue Yin",
+          "paper_count": 10,
+          "citation_count": 47,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jiali Tan",
+          "paper_count": 11,
+          "citation_count": 205,
+          "h_index": 8,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Chao Jiang",
+          "paper_count": 4,
+          "citation_count": 16,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Yu Gao",
+          "paper_count": 7,
+          "citation_count": 114,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Zhaoyang Wang",
+          "paper_count": 10,
+          "citation_count": 39,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Donghong Wang",
+          "paper_count": 7,
+          "citation_count": 18,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Yajing Li",
+          "paper_count": 4,
+          "citation_count": 32,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Yingying Cong",
+          "paper_count": 33,
+          "citation_count": 1003,
+          "h_index": 16,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "Zhiyuan Zhang",
+          "paper_count": 7,
+          "citation_count": 9,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Yousong Peng",
+          "paper_count": 17,
+          "citation_count": 46,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "W. Tan",
+          "paper_count": 96,
+          "citation_count": 6222,
+          "h_index": 32,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jiandong Li",
+          "paper_count": 4,
+          "citation_count": 2,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Li Li",
+          "paper_count": 3,
+          "citation_count": 9,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Han Wang",
+          "paper_count": 9,
+          "citation_count": 17,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "R. Lang",
+          "paper_count": 25,
+          "citation_count": 48,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Qiang He",
+          "paper_count": 13,
+          "citation_count": 21,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Zihou Deng",
+          "paper_count": 3,
+          "citation_count": 2,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Xiaojie Huang",
+          "paper_count": 3,
+          "citation_count": 6,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "C. Shan",
+          "paper_count": 5,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Yonghong Zhang",
+          "paper_count": 14,
+          "citation_count": 41,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Gong Cheng",
+          "paper_count": 8,
+          "citation_count": 12,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Xu Tan",
+          "paper_count": 29,
+          "citation_count": 1521,
+          "h_index": 15,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        },
+        {
+          "name": "Hanxue Wang",
+          "paper_count": 16,
+          "citation_count": 314,
+          "h_index": 11,
+          "match_method": "openalex_fallback",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Bin Luo",
+          "paper_count": 167,
+          "citation_count": 5499,
+          "h_index": 36,
+          "match_method": "openalex_fallback",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Lin Mei",
+          "paper_count": 70,
+          "citation_count": 677,
+          "h_index": 9,
+          "match_method": "openalex_fallback",
+          "field_match": false,
+          "position": "middle"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Immunology and Microbiology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched the paper's byline name 'Miao Mei' to a different author identity 'May Lei Mei' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'May Lei Mei' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Changsha Medical University' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Jianghan University' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'The First People's Hospital of Jiangxia District' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'University of Chinese Academy of Sciences' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Jiali Tan' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Chao Jiang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yu Gao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'King Center' to 'Zhaoyang Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Tsinghua–Berkeley Shenzhen Institute' to 'Zhaoyang Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yajing Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yingyi Cong' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Changsha Medical University' to 'Zhiyuan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Changsha Medical University' to 'Yousong Peng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Li Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Zihou Deng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing YouAn Hospital' to 'Xiaojie Huang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Bin Luo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Jianghan University' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'The First People's Hospital of Jiangxia District' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'University of Chinese Academy of Sciences' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing YouAn Hospital' to 'Yonghong Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Lin Mei' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'King Center' to 'Gong Cheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Tsinghua–Berkeley Shenzhen Institute' to 'Gong Cheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Xu Tan' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Yang Yang': top research fields (Biochemistry, Genetics and Molecular Biology, Biochemistry, Genetics and Molecular Biology, Biochemistry, Genetics and Molecular Biology) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Zihan Zhang': top research fields (Engineering, Materials Science, Materials Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Donghong Wang': top research fields (Engineering, Engineering, Engineering) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Zhiyuan Zhang': top research fields (Chemistry, Chemistry, Materials Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Jiandong Li': top research fields (Engineering, Engineering, Computer Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Hanxue Wang': top research fields (Biochemistry, Genetics and Molecular Biology, Agricultural and Biological Sciences, Agricultural and Biological Sciences) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Qiang He': top research fields (Environmental Science, Environmental Science, Engineering) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Bin Luo': top research fields (Environmental Science, Environmental Science, Earth and Planetary Sciences) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "'Lin Mei': top research fields (Arts and Humanities, Environmental Science, Arts and Humanities) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+      "Semantic Scholar had no record for 3 author(s) — their publication stats were backfilled from OpenAlex instead."
+    ]
   },
   "criteria": {
     "author_credibility": {
-      "score": 2,
-      "justification": "All identified affiliations are credible universities, government public-health bodies, hospitals, and research institutes, with broad multi-institutional collaboration. However, only Jiali Tan has directly verified Semantic Scholar expertise (11 papers, h-index 8, DOI-matched); the supplied data do not verify expertise for at least three authors or clearly establish the first/corresponding author's affiliation. No commercial or low-credibility affiliations were identified.",
+      "score": 3,
+      "justification": "institution_reputability: All assessed affiliations are credible education, research-facility, healthcare, or government institutions, with no commercial or predatory affiliations identified. However, the institution data provides only middle-author positions, so a first/last author's affiliation with a nationally or globally recognized institution cannot be directly verified for score 3. | author_expertise: At least three authors have verifiable field-matched publication records and established metrics: Jiali Tan, Yousong Peng, Wenjie Tan, Ren Lang, Yonghong Zhang, and last author Xu Tan. Wenjie Tan and Xu Tan in particular have substantial publication and citation records in the paper's relevant fields. | institutional_collaboration: The study includes more than three distinct institutions, spanning universities, research laboratories, hospitals, and a national viral-disease-control institute.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 2,
+          "justification": "All assessed affiliations are credible education, research-facility, healthcare, or government institutions, with no commercial or predatory affiliations identified. However, the institution data provides only middle-author positions, so a first/last author's affiliation with a nationally or globally recognized institution cannot be directly verified for score 3."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least three authors have verifiable field-matched publication records and established metrics: Jiali Tan, Yousong Peng, Wenjie Tan, Ren Lang, Yonghong Zhang, and last author Xu Tan. Wenjie Tan and Xu Tan in particular have substantial publication and citation records in the paper's relevant fields."
+        },
+        "institutional_collaboration": {
+          "score": 3,
+          "justification": "The study includes more than three distinct institutions, spanning universities, research laboratories, hospitals, and a national viral-disease-control institute."
+        }
+      },
       "institutions_assessed": [
-        "Capital Medical University",
         "Southern University of Science and Technology",
-        "Chinese Academy of Sciences",
-        "National Institute for Communicable Disease Control and Prevention",
+        "Shenzhen Third People’s Hospital",
+        "Hunan University",
+        "Wuhan Institute of Virology",
+        "Shenzhen Bay Laboratory",
+        "Center for Life Sciences",
         "Tsinghua University",
-        "Hunan University"
+        "National Institute for Viral Disease Control and Prevention",
+        "Beijing Chao-Yang Hospital, Capital Medical University",
+        "Capital Medical University"
       ],
-      "n_institutes": 11,
-      "corresponding_author_papers": 11,
+      "n_institutes": 10,
+      "corresponding_author_papers": 0,
       "flags": [
-        "Corresponding-author identity is inconsistent: extracted data lists Xu Tan, while Semantic Scholar data identifies Jiali Tan.",
-        "Verifiable author-expertise data were provided for only one author."
+        "Extracted byline and corresponding-author fields are empty despite publication-stat records for authors.",
+        "Institution records shown are only for middle authors; first/last author institutional affiliation is not directly available.",
+        "Miao Mei has a documented author-identity mismatch warning, so associated metadata should not be relied upon."
       ]
     },
     "research_question_and_methods": {
       "score": 3,
-      "justification": "Matches the score_3 description: the objective is explicit and testable, and the study uses a detailed genome-wide ORF screen followed by knockout, rescue, binding, primary-hepatocyte, mosquito, and mouse validation. The paper links YFV entry to an important public-health disease and provides reproducibility details, including deposited scRNA-seq data and extensive methods.",
-      "quote": "Here, we performed a barcoded, genome‑wide human ORF library screen and identified LRP8 (also named APOER2) as a receptor for YFV.",
+      "justification": "objective_and_hypothesis: This matches the score_2 description: the objective is clear and method-linked—identifying the unknown YFV receptor through an overexpression screen—but the paper does not state a distinct, prospective hypothesis before presenting LRP8 as the screen result. | public_health_relevance: This matches the score_3 description because yellow fever is presented as a substantial current public-health threat and the paper explicitly relates the work to recognized recent outbreaks in multiple countries. | study_design_rigor: This matches the score_3 description: the paper provides detailed protocols for the ORFeome screen, virus production, entry assays, knockout/rescue experiments, BLI, primary hepatocyte studies, mosquito knockdown, and mouse models. Results are validated with orthogonal methods across Figures 1–6, and scRNA-seq raw data are deposited under GSA-Human accession HRA013453.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 2,
+          "justification": "This matches the score_2 description: the objective is clear and method-linked—identifying the unknown YFV receptor through an overexpression screen—but the paper does not state a distinct, prospective hypothesis before presenting LRP8 as the screen result.",
+          "quote": "To uncover the long‑sought YFV receptor, we applied a barcoded ORFeome library",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 3,
+          "justification": "This matches the score_3 description because yellow fever is presented as a substantial current public-health threat and the paper explicitly relates the work to recognized recent outbreaks in multiple countries.",
+          "quote": "Recent outbreaks occurred in Brazil, the Democratic Republic of the Congo, Angola, Uganda, and Nigeria, with spillover cases in Asia",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "This matches the score_3 description: the paper provides detailed protocols for the ORFeome screen, virus production, entry assays, knockout/rescue experiments, BLI, primary hepatocyte studies, mosquito knockdown, and mouse models. Results are validated with orthogonal methods across Figures 1–6, and scRNA-seq raw data are deposited under GSA-Human accession HRA013453.",
+          "quote": "Unless otherwise specified, experiments were repeated at least three times.",
+          "quote_valid": true
+        }
+      },
       "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 3,
-      "justification": "Matches the score_3 description: the receptor claim is supported by consistent gain-of-function, knockout/rescue, antibody-blocking, viral binding/internalization, pulldown/BLI, primary-cell, mosquito, and mouse-decoy results shown across Figures 1–6. The discussion also explicitly qualifies the conclusion by noting that additional factors likely contribute to viscerotropism.",
-      "quote": "LRP8 serving as a YFV receptor explains neurotropism, while the receptor(s) responsible for viscerotropism likely include additional factors.",
+      "score": 1,
+      "justification": "Although the manuscript contains extensive figures and several orthogonal validations, it meets the score_1 description because its stated ZIKV-specificity conclusion is directly contradicted by Figure 6c: one dsVLDLR mosquito condition shows a statistically significant 1.69-fold ZIKV difference (p=0.006), despite the text claiming no effect on ZIKV infection. This is a specific reported data point inconsistent with the paper's stated conclusion, rather than merely unclear statistical reporting.",
+      "quote": "this block was specific to YFV and had no effect on Zika virus infection",
       "quote_valid": true
     },
     "references": {
       "reference_count": 28,
-      "justification": "The references provide a balanced mix of foundational yellow-fever and receptor biology literature, recent peer-reviewed virology studies, and high-quality sources including Nature, Cell, PLOS Pathogens, Journal of Virology, and WHO material. They cover YFV epidemiology, vaccine biology, viral entry, LDLR-family receptors, and relevant experimental methods without apparent reliance on non-peer-reviewed citations.",
-      "quote": "Clark, L. E. et al. VLDLR and ApoER2 are receptors for multiple alphaviruses. Nature 602, 475-+, doi:10.1038/s41586-021-04326-0 (2022).",
+      "justification": "The references provide relevant coverage of yellow-fever epidemiology, vaccine attenuation, flavivirus entry, LDLR-family receptors, alphavirus receptor biology, screening methods, and animal models. They include foundational and recent peer-reviewed sources in high-quality journals, alongside appropriate authoritative and methodological sources such as the WHO fact sheet and Fields Virology; no clearly unrelated reference was identified.",
+      "quote": "Clark, L. E. et al. VLDLR and ApoER2 are receptors for multiple alphaviruses.",
       "score": 3,
-      "quote_valid": true
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 12,
+        "n_resolved": 12,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
     },
     "feedback": {
       "score": null,
-      "justification": "Not evaluated automatically. Requires manual check of preprint server."
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
     }
   },
   "scoring": {
     "per_criterion": {
-      "author_credibility": 2,
+      "author_credibility": 3,
       "research_question_and_methods": 3,
-      "results_and_conclusion": 3,
-      "references": 3
+      "results_and_conclusion": 1,
+      "references": 3,
+      "feedback": null
     },
-    "total": 11,
+    "total": 10,
     "max": 12,
-    "average": 2.75,
+    "average": 2.5,
     "n_criteria_evaluated": 4,
-    "recommendation": "accept",
+    "recommendation": "accept_with_reservations",
     "quotes_invalid": []
-  }
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched the paper's byline name 'Miao Mei' to a different author identity 'May Lei Mei' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'May Lei Mei' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Changsha Medical University' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Jianghan University' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'The First People's Hospital of Jiangxia District' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'University of Chinese Academy of Sciences' to 'Zihan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Jiali Tan' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Chao Jiang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yu Gao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'King Center' to 'Zhaoyang Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Tsinghua–Berkeley Shenzhen Institute' to 'Zhaoyang Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yajing Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Yingyi Cong' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Changsha Medical University' to 'Zhiyuan Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Changsha Medical University' to 'Yousong Peng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Li Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Zihou Deng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing YouAn Hospital' to 'Xiaojie Huang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Bin Luo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Jianghan University' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'The First People's Hospital of Jiangxia District' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'University of Chinese Academy of Sciences' to 'Shan Cao' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing YouAn Hospital' to 'Yonghong Zhang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'China Academy of Chinese Medical Sciences' to 'Lin Mei' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'King Center' to 'Gong Cheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Tsinghua–Berkeley Shenzhen Institute' to 'Gong Cheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Beijing University of Chinese Medicine' to 'Xu Tan' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Yang Yang': top research fields (Biochemistry, Genetics and Molecular Biology, Biochemistry, Genetics and Molecular Biology, Biochemistry, Genetics and Molecular Biology) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Zihan Zhang': top research fields (Engineering, Materials Science, Materials Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Donghong Wang': top research fields (Engineering, Engineering, Engineering) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Zhiyuan Zhang': top research fields (Chemistry, Chemistry, Materials Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Jiandong Li': top research fields (Engineering, Engineering, Computer Science) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Hanxue Wang': top research fields (Biochemistry, Genetics and Molecular Biology, Agricultural and Biological Sciences, Agricultural and Biological Sciences) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Qiang He': top research fields (Environmental Science, Environmental Science, Engineering) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Bin Luo': top research fields (Environmental Science, Environmental Science, Earth and Planetary Sciences) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "'Lin Mei': top research fields (Arts and Humanities, Environmental Science, Arts and Humanities) don't overlap with this paper's fields (Medicine, Immunology and Microbiology) — publication volume may not reflect expertise in THIS field.",
+    "Semantic Scholar had no record for 3 author(s) — their publication stats were backfilled from OpenAlex instead."
+  ]
 }

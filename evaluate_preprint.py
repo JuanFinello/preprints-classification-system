@@ -39,6 +39,9 @@ OPENALEX_API = "https://api.openalex.org/works/doi:"
 S2_API = "https://api.semanticscholar.org/graph/v1/author/search"
 S2_PAPER_API = "https://api.semanticscholar.org/graph/v1/paper"
 S2_AUTHOR_API = "https://api.semanticscholar.org/graph/v1/author"
+CROSSREF_API = "https://api.crossref.org/works"
+CROSSREF_MAILTO = "juanfinello@gmail.com"  # joins Crossref's "polite pool": 3 req/s instead of 1 req/s anonymous, per their own etiquette guidance
+PREREVIEW_BASE = "https://prereview.org"
 
 # Papers over this length are trimmed to front+tail, keeping the last chunk large
 # enough that results/discussion/conclusion/references (near the end) are never cut.
@@ -680,16 +683,34 @@ def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: P
 
 def _build_content_prompt(full_text: str, criteria: dict) -> str:
     rqm = criteria["research_question_and_methods"]
+    sub = rqm["sub_criteria"]
+    obj_c = sub["objective_and_hypothesis"]
+    phr_c = sub["public_health_relevance"]
+    dr_c = sub["study_design_rigor"]
     rac = criteria["results_and_conclusion"]
     ref = criteria["references"]
 
     return f"""You are evaluating a scientific preprint for GISAID eligibility.
-Read the full paper text below and score THREE criteria using ONLY the evidence present.
+Read the full paper text below and score the criteria below using ONLY the evidence present.
 
-=== CRITERION 1: {rqm["label"]} ===
-Score 1: {rqm["score_1"]["description"]}
-Score 2: {rqm["score_2"]["description"]}
-Score 3: {rqm["score_3"]["description"]}
+=== CRITERION 1: {rqm["label"]} — 3 INDEPENDENT SUB-CRITERIA ===
+Score each sub-criterion on its own evidence. A weak result on one must NOT pull
+down your score on another.
+
+--- Sub-criterion 1a: {obj_c["label"]} ---
+Score 1: {obj_c["score_1"]["description"]}
+Score 2: {obj_c["score_2"]["description"]}
+Score 3: {obj_c["score_3"]["description"]}
+
+--- Sub-criterion 1b: {phr_c["label"]} ---
+Score 1: {phr_c["score_1"]["description"]}
+Score 2: {phr_c["score_2"]["description"]}
+Score 3: {phr_c["score_3"]["description"]}
+
+--- Sub-criterion 1c: {dr_c["label"]} ---
+Score 1: {dr_c["score_1"]["description"]}
+Score 2: {dr_c["score_2"]["description"]}
+Score 3: {dr_c["score_3"]["description"]}
 
 === CRITERION 2: {rac["label"]} ===
 Score 1: {rac["score_1"]["description"]}
@@ -701,8 +722,9 @@ Score 1: {ref["score_1"]["description"]}
 Score 2: {ref["score_2"]["description"]}
 Score 3: {ref["score_3"]["description"]}
 
-=== HOW TO SCORE EACH CRITERION ===
-For each of the three criteria, follow this procedure before committing to a score:
+=== HOW TO SCORE EACH (SUB-)CRITERION ===
+For each of the 5 things you are scoring (3 sub-criteria of criterion 1, plus
+criteria 2 and 3), follow this procedure before committing to a score:
 1. Check the score_3 description first. Does the paper clearly meet it? If yes, score 3 — stop.
 2. If not, check the score_1 description. Does the paper clearly show those weaknesses? If yes, score 1 — stop.
 3. Only score 2 if the paper genuinely sits between the two — some strong elements
@@ -710,7 +732,7 @@ For each of the three criteria, follow this procedure before committing to a sco
 
 Score 2 is not a safe default. It should be your conclusion in a minority of cases,
 not most of them. A real, diverse batch of preprints spans weak, moderate, and strong
-work — if you are about to assign 2 to all three criteria for this paper, re-read the
+work — if you are about to assign 2 to everything for this paper, re-read the
 score_1 and score_3 descriptions again before finalizing; you are likely
 under-differentiating.
 
@@ -721,23 +743,56 @@ you cannot see them visually — look for whether tabular or numeric data surviv
 the text and judge internal consistency from that. Only cite an actual absence of
 figures/tables if there is truly no such data anywhere in the text.
 
-- Quote must be a verbatim phrase copied from the paper (max 220 characters).
+- Quote must be a verbatim phrase copied from the paper (max 220 characters), one
+  per sub-criterion/criterion.
 - Justify in 1–2 sentences, naming which score_1/score_2/score_3 description the
   evidence matches.
+- For results_and_conclusion: actively cross-check numeric values across tables,
+  figures, and the surrounding text for internal consistency — do not just check
+  whether tables/figures are present. Specifically: (1) flag any count of discrete
+  items (reads, sequences, samples) reported with a decimal/fraction — that is
+  intrinsically impossible and signals a data-integrity problem, not merely
+  "unclear parameters"; (2) check whether a summary statistic stated in the text
+  (a mean, a total) matches the values in the table it is summarizing; (3) if a
+  specific data point directly contradicts a conclusion the paper itself states
+  (e.g., the paper claims genome integrity/concordance "was well preserved" but
+  its own reported identity numbers show a large drop for one sample), that is
+  direct evidence for score_1's "conclusions ... not grounded in the evidence
+  presented" — do not soften this to score_2's "unclear statistical parameters",
+  which is for vague or incomplete reporting, not a documented contradiction
+  between the paper's own data and its own conclusion.
 - For references: count the total number of entries in the reference list and report
   it as "reference_count" (an integer). The score is derived automatically from that
   count using this exact rule — do not invent a different threshold: reference_count
   > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
   about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
   balance, self-citation reliance) — not about whether the count itself "feels" low
-  or high, since that judgment isn't used.
+  or high, since that judgment isn't used. Separately, actually check every entry
+  in the list against the paper's own subject matter — if any reference is
+  genuinely unrelated (e.g. a paper about virus X citing a genome-assembly study
+  of an unrelated fungus, or a plant-virology review, with no clear methodological
+  link to this paper), name it explicitly in the justification (by number and/or
+  first author). This does not change the score — the count rule above still
+  applies — but do not write a generically positive justification ("strong,
+  domain-relevant coverage") if you can find even one clearly off-topic entry;
+  a human is relying on this text, not just the score, to judge reference quality.
 
 === FULL PAPER TEXT ===
 {full_text}
 
 Return ONLY this JSON (no markdown, no extra text):
 {{
-  "research_question_and_methods": {{
+  "objective_and_hypothesis": {{
+    "score": 3,
+    "justification": "brief explanation grounded in the text, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "public_health_relevance": {{
+    "score": 2,
+    "justification": "brief explanation grounded in the text, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "study_design_rigor": {{
     "score": 3,
     "justification": "brief explanation grounded in the text, naming the matched score description",
     "quote": "exact verbatim quote from the paper"
@@ -762,17 +817,35 @@ def _build_content_prompt_pdf(criteria: dict) -> str:
     _build_content_prompt itself must not change (evaluate_preprint_claude.py
     still uses it verbatim for the text-only Claude path)."""
     rqm = criteria["research_question_and_methods"]
+    sub = rqm["sub_criteria"]
+    obj_c = sub["objective_and_hypothesis"]
+    phr_c = sub["public_health_relevance"]
+    dr_c = sub["study_design_rigor"]
     rac = criteria["results_and_conclusion"]
     ref = criteria["references"]
 
     return f"""You are evaluating a scientific preprint for GISAID eligibility.
 Read the attached PDF in full — including its figures and tables — and score
-THREE criteria using ONLY the evidence present.
+the criteria below using ONLY the evidence present.
 
-=== CRITERION 1: {rqm["label"]} ===
-Score 1: {rqm["score_1"]["description"]}
-Score 2: {rqm["score_2"]["description"]}
-Score 3: {rqm["score_3"]["description"]}
+=== CRITERION 1: {rqm["label"]} — 3 INDEPENDENT SUB-CRITERIA ===
+Score each sub-criterion on its own evidence. A weak result on one must NOT pull
+down your score on another.
+
+--- Sub-criterion 1a: {obj_c["label"]} ---
+Score 1: {obj_c["score_1"]["description"]}
+Score 2: {obj_c["score_2"]["description"]}
+Score 3: {obj_c["score_3"]["description"]}
+
+--- Sub-criterion 1b: {phr_c["label"]} ---
+Score 1: {phr_c["score_1"]["description"]}
+Score 2: {phr_c["score_2"]["description"]}
+Score 3: {phr_c["score_3"]["description"]}
+
+--- Sub-criterion 1c: {dr_c["label"]} ---
+Score 1: {dr_c["score_1"]["description"]}
+Score 2: {dr_c["score_2"]["description"]}
+Score 3: {dr_c["score_3"]["description"]}
 
 === CRITERION 2: {rac["label"]} ===
 Score 1: {rac["score_1"]["description"]}
@@ -784,8 +857,9 @@ Score 1: {ref["score_1"]["description"]}
 Score 2: {ref["score_2"]["description"]}
 Score 3: {ref["score_3"]["description"]}
 
-=== HOW TO SCORE EACH CRITERION ===
-For each of the three criteria, follow this procedure before committing to a score:
+=== HOW TO SCORE EACH (SUB-)CRITERION ===
+For each of the 5 things you are scoring (3 sub-criteria of criterion 1, plus
+criteria 2 and 3), follow this procedure before committing to a score:
 1. Check the score_3 description first. Does the paper clearly meet it? If yes, score 3 — stop.
 2. If not, check the score_1 description. Does the paper clearly show those weaknesses? If yes, score 1 — stop.
 3. Only score 2 if the paper genuinely sits between the two — some strong elements
@@ -795,21 +869,57 @@ Score 2 is not a safe default. It should be your conclusion in a minority of cas
 not most of them. Base "lacks supporting figures or tables" strictly on whether the
 PDF actually contains them — check the real document, don't assume.
 
-- Quote must be a verbatim phrase copied from the paper (max 220 characters).
+- Quote must be a verbatim phrase copied from the paper (max 220 characters), one
+  per sub-criterion/criterion.
 - Justify in 1-2 sentences, naming which score_1/score_2/score_3 description the
   evidence matches. When a figure or table is central to your reasoning, describe
   what it shows in the justification (quotes can only be text, not images).
+- For results_and_conclusion: actively cross-check numeric values across tables,
+  figures, and the surrounding text for internal consistency — do not just check
+  whether tables/figures are present. Specifically: (1) flag any count of discrete
+  items (reads, sequences, samples) reported with a decimal/fraction — that is
+  intrinsically impossible and signals a data-integrity problem, not merely
+  "unclear parameters"; (2) check whether a summary statistic stated in the text
+  (a mean, a total) matches the values in the table it is summarizing; (3) look at
+  the actual figure panels (not just their captions) for implausible patterns —
+  e.g. a count of exactly zero in every sample for something the method should
+  sometimes detect — which can signal a pipeline artifact rather than a real
+  finding; (4) if a specific data point directly contradicts a conclusion the
+  paper itself states (e.g., the paper claims genome integrity/concordance "was
+  well preserved" but its own reported identity numbers show a large drop for one
+  sample), that is direct evidence for score_1's "conclusions ... not grounded in
+  the evidence presented" — do not soften this to score_2's "unclear statistical
+  parameters", which is for vague or incomplete reporting, not a documented
+  contradiction between the paper's own data and its own conclusion.
 - For references: count the total number of entries in the reference list and report
   it as "reference_count" (an integer). The score is derived automatically from that
   count using this exact rule — do not invent a different threshold: reference_count
   > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
   about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
   balance, self-citation reliance) — not about whether the count itself "feels" low
-  or high, since that judgment isn't used.
+  or high, since that judgment isn't used. Separately, actually check every entry
+  in the list against the paper's own subject matter — if any reference is
+  genuinely unrelated (e.g. a paper about virus X citing a genome-assembly study
+  of an unrelated fungus, or a plant-virology review, with no clear methodological
+  link to this paper), name it explicitly in the justification (by number and/or
+  first author). This does not change the score — the count rule above still
+  applies — but do not write a generically positive justification ("strong,
+  domain-relevant coverage") if you can find even one clearly off-topic entry;
+  a human is relying on this text, not just the score, to judge reference quality.
 
 Return ONLY this JSON (no markdown, no extra text):
 {{
-  "research_question_and_methods": {{
+  "objective_and_hypothesis": {{
+    "score": 3,
+    "justification": "brief explanation grounded in the paper, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "public_health_relevance": {{
+    "score": 2,
+    "justification": "brief explanation grounded in the paper, naming the matched score description",
+    "quote": "exact verbatim quote from the paper"
+  }},
+  "study_design_rigor": {{
     "score": 3,
     "justification": "brief explanation grounded in the paper, naming the matched score description",
     "quote": "exact verbatim quote from the paper"
@@ -958,6 +1068,367 @@ def _score_from_reference_count(n: int) -> int:
     return 2
 
 
+# ─── reference-list citation verification (Crossref, no LLM) ────────────────
+# Added 2026-07-24 after a real calibration paper's references list turned out
+# to include several entries genuinely unrelated to its subject (see criteria.yaml
+# references.description) while the LLM's own justification called the list
+# "domain-relevant". This is a separate, purely deterministic check: does each
+# printed citation actually resolve to a real indexed work, via Crossref (free,
+# no API key). It does not judge topical relevance — it catches garbled/
+# fabricated/mismatched citations, the same "verify against a real external
+# source instead of trusting the LLM's read" principle already used for
+# institutions (ROR/OpenAlex) and authors (Semantic Scholar) elsewhere in this
+# file.
+
+_DOI_RE = re.compile(
+    r'10\.\d{4,9}/[-._;/:a-zA-Z0-9]+(?:\([-._;/:a-zA-Z0-9]+\)[-._;/:a-zA-Z0-9]*)*'
+)  # DOI suffixes legitimately contain balanced parentheses (e.g. Elsevier/Lancet-
+   # style "10.1016/S2542-5196(20)30178-9") — a naive "stop at any ')'" regex
+   # truncates those mid-DOI; this allows matched "(...)" groups through instead
+
+_REF_NAME_PREFIX = r'(?:de|van|von|da|dos|del|la|le)\s+'
+_REF_SURNAME = r"[A-ZÀ-Ý][a-zà-ÿ']+(?:-[A-ZÀ-Ý][a-zà-ÿ']+)*"
+_REF_ENTRY_RE = re.compile(
+    rf'(?:^|\n)\s*(?:Page\s+\d+/\d+\s*\n\s*)?\d{{0,3}}\s*\.\s+'
+    rf'(?=(?:{_REF_NAME_PREFIX})?{_REF_SURNAME}(?:\s+[A-ZÀ-Ý]|,))'
+)
+
+_CROSSREF_MATCH_SCORE_THRESHOLD = 50  # spot-checked true matches scored 80+; below this, treat as unresolved rather than risk a false positive
+
+
+def _clean_doi(raw: str) -> str:
+    return raw.rstrip(".").rstrip(")").rstrip("]")
+
+
+def _extract_references_section(full_text: str) -> str:
+    """Isolate the reference-list text from the end of the paper. Used only
+    for citation verification (verify_references) — independent of whatever
+    slice of the paper is sent to the LLM for scoring."""
+    idx = full_text.rfind("References")
+    if idx == -1:
+        return ""
+    section = full_text[idx + len("References"):]
+    for stop in ("\nFigures\n", "\nSupplementary", "\nFigure Legends", "\nAcknowledg"):
+        cut = section.find(stop)
+        if cut != -1:
+            section = section[:cut]
+    return section
+
+
+def _split_reference_entries(ref_section: str) -> list[str]:
+    """Split a references section into individual entries, tolerant of real
+    extraction quirks found in practice: pdfminer drops the odd leading digit
+    in some reference numbers (e.g. "16." extracts as "1 ."), and entries
+    commonly start with a hyphenated compound surname ("Cardona-Trujillo") or
+    a lowercase surname prefix ("de Souza") — plain "^\\d+\\. " splitting misses
+    both. Known residual gap (verified, not fixed): a Chinese-name
+    romanization with the hyphen inside a lowercase given name (e.g.
+    "Wei-ying Chen") isn't caught either — that entry merges into its
+    neighbor's text instead of being silently dropped, so verification just
+    runs on the combined text rather than skipping a reference outright."""
+    positions = [m.start() for m in _REF_ENTRY_RE.finditer(ref_section)]
+    entries = []
+    for i, pos in enumerate(positions):
+        end = positions[i + 1] if i + 1 < len(positions) else len(ref_section)
+        entry = re.sub(r"\s+", " ", ref_section[pos:end]).strip()
+        if entry:
+            entries.append(entry)
+    return entries
+
+
+def _crossref_get(url: str, params: dict, session: requests.Session, max_retries: int = 3) -> requests.Response | None:
+    """GET with retry-with-backoff on 429 specifically — Crossref's anonymous
+    rate limit is 1 req/s (3 req/s with CROSSREF_MAILTO's "polite pool"), and a
+    verification pass hits it dozens of times per paper in quick succession.
+    Without this, a rate-limited request looks identical to a genuine
+    no-match — verified in practice: the same query flipped between a
+    confident match and total failure across repeated runs purely because of
+    intermittent 429s, which would have silently mislabeled real citations as
+    unverifiable. Only retries 429; any other failure (timeout, 5xx, network
+    error) still returns None immediately, same as before."""
+    params = {**params, "mailto": CROSSREF_MAILTO}
+    for attempt in range(max_retries + 1):
+        try:
+            r = session.get(url, params=params, timeout=10)
+        except Exception:
+            return None
+        if r.status_code == 429:
+            if attempt < max_retries:
+                time.sleep(1.5 * (attempt + 1))
+                continue
+            return None
+        return r
+    return None
+
+
+def _crossref_lookup_doi(doi: str, session: requests.Session) -> dict:
+    """Verify a DOI already printed in the reference actually resolves."""
+    r = _crossref_get(f"{CROSSREF_API}/{doi}", {}, session)
+    if r is None or r.status_code != 200:
+        return {}
+    try:
+        item = r.json().get("message", {})
+    except Exception:
+        return {}
+    titles = item.get("title", [])
+    return {"doi": doi, "title": titles[0] if titles else ""}
+
+
+def _crossref_search_bibliographic(entry_text: str, session: requests.Session) -> dict:
+    """No DOI printed in the entry — search Crossref's own bibliographic-string
+    matcher for the best candidate. The ranking (and the accept/reject call
+    via _CROSSREF_MATCH_SCORE_THRESHOLD) is Crossref's deterministic score,
+    not an LLM judgment."""
+    r = _crossref_get(CROSSREF_API, {"query.bibliographic": entry_text, "rows": 1}, session)
+    if r is None or r.status_code != 200:
+        return {}
+    try:
+        items = r.json().get("message", {}).get("items", [])
+    except Exception:
+        return {}
+    if not items:
+        return {}
+    best = items[0]
+    titles = best.get("title", [])
+    return {"doi": best.get("DOI", ""), "title": titles[0] if titles else "", "score": best.get("score", 0)}
+
+
+def verify_references(full_text: str, session: requests.Session | None = None) -> dict:
+    """Non-LLM verification of the reference list via Crossref: confirms each
+    entry either carries a DOI that actually resolves, or can be matched to a
+    real indexed work by bibliographic search. Purely informational — does
+    NOT affect the deterministic reference_count score (_score_from_reference_count
+    stays the only thing driving the score, by design). Flags entries that
+    can't be confirmed as a real, indexed publication — can indicate a garbled
+    extraction, a fabricated/mismatched citation, OR simply a work outside
+    Crossref's coverage (some gray literature, government/agency reports,
+    non-English-indexed journals) — "unresolved" is a prompt to check
+    manually, not proof of fabrication."""
+    session = session or requests.Session()
+    section = _extract_references_section(full_text)
+    entries = _split_reference_entries(section)
+
+    checked = []
+    for i, entry in enumerate(entries):
+        if i > 0:
+            time.sleep(0.35)  # stay under the polite pool's 3 req/s even before any 429 forces a retry
+        doi_match = _DOI_RE.search(entry)
+        resolved_via_doi = False
+        if doi_match:
+            doi = _clean_doi(doi_match.group(0))
+            result = _crossref_lookup_doi(doi, session)
+            if result:
+                checked.append({"entry": entry[:160], "resolved": True,
+                                 "method": "doi_in_text", "doi": result["doi"]})
+                resolved_via_doi = True
+
+        if not resolved_via_doi:
+            # Either no DOI was printed, or the one that was didn't resolve —
+            # the latter is often not a bad citation but a text-extraction
+            # artifact: verified in practice that this PDF's extraction drops
+            # hyphens where a DOI wraps across a line break (e.g.
+            # "S0065-3527" → "S00653527"), which silently breaks an exact-DOI
+            # lookup for an otherwise perfectly real, resolvable reference.
+            # Bibliographic search on the full entry text doesn't depend on
+            # getting that exact string right, so try it as a fallback before
+            # concluding the citation can't be confirmed.
+            result = _crossref_search_bibliographic(entry, session)
+            if result and result.get("score", 0) >= _CROSSREF_MATCH_SCORE_THRESHOLD:
+                checked.append({"entry": entry[:160], "resolved": True,
+                                 "method": "bibliographic_search" if not doi_match else "bibliographic_search_doi_fallback",
+                                 "doi": result["doi"], "match_score": result["score"]})
+            else:
+                checked.append({"entry": entry[:160], "resolved": False,
+                                 "method": "bibliographic_search_no_match" if not doi_match else "doi_in_text_not_resolved",
+                                 **({"doi": _clean_doi(doi_match.group(0))} if doi_match else {})})
+
+    n_resolved = sum(1 for c in checked if c["resolved"])
+    return {
+        "n_entries_found": len(checked),
+        "n_resolved": n_resolved,
+        "n_unresolved": len(checked) - n_resolved,
+        "unresolved": [c for c in checked if not c["resolved"]],
+    }
+
+
+# ─── PREreview feedback lookup (no LLM for fetching; real HTML, no JS) ──────
+# Added 2026-07-24 (feedback criterion review). PREreview.org publishes expert
+# peer reviews of preprints at a predictable URL, server-rendered — no API
+# key, no JavaScript rendering needed (verified against a real reviewed
+# preprint and a real unreviewed one). This is the only feedback-criterion
+# source found with a clean, scrapeable signal — bioRxiv/medRxiv's own
+# Disqus-based comments remain JS-only and out of scope. Two things this
+# deliberately does NOT do (per Juan's correction, 2026-07-24): does not use
+# "already published in a journal" as a feedback signal (that's a workflow
+# question — should this even still be in the significant-preprint queue —
+# not evidence of community feedback), and does not use citation counts (that
+# measures broader scientific impact, not direct feedback/discussion on the
+# preprint itself, which is what this criterion actually asks about).
+
+def _prereview_doi_slug(doi: str) -> str:
+    return "doi-" + doi.replace("/", "-")
+
+
+def _extract_prereview_body(stripped_text: str) -> str:
+    """Crop the page's chrome (nav/menu/footer) from its stripped text. Not
+    surgically precise — some header metadata (title/author/date/license)
+    can leak into the start — but that's harmless for an LLM reader; the
+    goal is just to exclude the site-wide nav and footer boilerplate."""
+    start_marker = "Read the preprint"
+    end_marker = "Learn about upcoming events"
+    start = stripped_text.find(start_marker)
+    start = start + len(start_marker) if start != -1 else 0
+    end = stripped_text.find(end_marker)
+    if end == -1 or end <= start:
+        end = len(stripped_text)
+    return stripped_text[start:end].strip()
+
+
+def _strip_html_text(html: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", html)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def fetch_prereview_data(doi: str, session: requests.Session | None = None) -> dict:
+    """Fetch PREreview.org's page for a preprint DOI and, if any reviews
+    exist, pull the full text of each one. Returns
+    {"n_reviews": int, "reviews": [{"review_id", "text"}, ...]}. Any failure
+    (network error, DOI not found on PREreview) returns n_reviews=0 — treated
+    the same as "genuinely zero reviews" by evaluate_feedback, since either
+    way there's no automated evidence to score from."""
+    session = session or requests.Session()
+    try:
+        r = session.get(f"{PREREVIEW_BASE}/preprints/{_prereview_doi_slug(doi)}", timeout=10)
+        if r.status_code != 200:
+            return {"n_reviews": 0, "reviews": []}
+        review_ids = sorted(set(re.findall(r"/reviews/(\d+)", r.text)))
+    except Exception:
+        return {"n_reviews": 0, "reviews": []}
+
+    reviews = []
+    for rid in review_ids:
+        try:
+            rr = session.get(f"{PREREVIEW_BASE}/reviews/{rid}", timeout=10)
+            if rr.status_code != 200:
+                continue
+            body = _extract_prereview_body(_strip_html_text(rr.text))
+            if body:
+                reviews.append({"review_id": rid, "text": body})
+        except Exception:
+            continue
+    return {"n_reviews": len(reviews), "reviews": reviews}
+
+
+def _build_feedback_prompt(criteria: dict, review_texts: list[str]) -> str:
+    fb = criteria["feedback"]
+    reviews_block = "\n\n".join(f"=== PREreview #{i + 1} ===\n{t}" for i, t in enumerate(review_texts))
+
+    return f"""You are evaluating community feedback on a scientific preprint for GISAID eligibility.
+You have been given the full text of {len(review_texts)} public PREreview(s) — independent expert
+peer review(s) published on prereview.org for this specific preprint. Score using ONLY this evidence.
+
+=== CRITERION: {fb["label"]} ===
+Score 1: {fb["score_1"]["description"]}
+Score 2: {fb["score_2"]["description"]}
+Score 3: {fb["score_3"]["description"]}
+
+=== IMPORTANT CAVEAT ===
+This evidence covers PREreview only. It does NOT include comments on the preprint's own
+hosting server (bioRxiv/medRxiv/ResearchSquare), which are not available to you and were not
+checked. Score strictly from what these PREreview(s) show — their depth, expertise, and
+whether they read as a full expert review versus a cursory comment. Explicitly note in the
+justification that server-side comments were not checked, rather than assuming anything
+about them.
+
+{reviews_block}
+
+Return ONLY this JSON (no markdown, no extra text):
+{{
+  "score": 2,
+  "justification": "brief explanation grounded in the review text, naming which score description it matches, and noting that bioRxiv/medRxiv comments were not checked"
+}}"""
+
+
+def evaluate_feedback(doi: str, criteria: dict, client: OpenAI, model: str,
+                       session: requests.Session | None = None) -> dict:
+    """Score the feedback criterion from real PREreview text when available.
+    When there are zero PREreviews for this DOI, stays fully manual
+    (score: None) — absence of a PREreview does NOT mean absence of feedback,
+    since bioRxiv/medRxiv server-side comments might still exist unseen."""
+    prereview_data = fetch_prereview_data(doi, session)
+    if prereview_data["n_reviews"] == 0:
+        return {
+            "score": None,
+            "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+            "prereview_data": prereview_data,
+        }
+
+    prompt = _build_feedback_prompt(criteria, [rv["text"] for rv in prereview_data["reviews"]])
+    raw = _llm(client, model, prompt, max_tokens=2000, reasoning_effort="medium")
+    raw = re.sub(r"^```(?:json)?\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    try:
+        parsed = json.loads(raw)
+    except Exception:
+        return {
+            "score": None,
+            "justification": "Parse error scoring PREreview evidence — requires manual check.",
+            "prereview_data": prereview_data,
+        }
+
+    score = parsed.get("score")
+    return {
+        "score": score if isinstance(score, int) else None,
+        "justification": parsed.get("justification", ""),
+        "prereview_data": prereview_data,
+    }
+
+
+_RESEARCH_SUB_CRITERIA = ("objective_and_hypothesis", "public_health_relevance", "study_design_rigor")
+
+
+def _compose_research_question_result(parsed: dict) -> dict:
+    """Combine the 3 independent research_question_and_methods sub-scores into
+    the final composite (average, rounded to the nearest integer) — same
+    principle as evaluate_author_credibility's composite and
+    _score_from_reference_count: the aggregate is computed in code, never left
+    to the LLM's own arithmetic. Each sub-score keeps its own quote so
+    validate_quotes can check/downgrade them independently."""
+    sub_scores = {}
+    for key in _RESEARCH_SUB_CRITERIA:
+        block = parsed.get(key, {})
+        score = block.get("score")
+        sub_scores[key] = {
+            "score": score if isinstance(score, int) else 1,
+            "justification": block.get("justification", ""),
+            "quote": block.get("quote", ""),
+        }
+
+    composite = round(sum(s["score"] for s in sub_scores.values()) / len(_RESEARCH_SUB_CRITERIA))
+    combined_justification = " | ".join(
+        f"{key}: {sub_scores[key]['justification']}" for key in _RESEARCH_SUB_CRITERIA
+    )
+
+    return {
+        "score": composite,
+        "justification": combined_justification,
+        "sub_scores": sub_scores,
+    }
+
+
+def _parse_error_content_result() -> dict:
+    return {
+        "research_question_and_methods": {
+            "score": 1,
+            "justification": "Parse error",
+            "sub_scores": {k: {"score": 1, "justification": "Parse error", "quote": ""}
+                            for k in _RESEARCH_SUB_CRITERIA},
+        },
+        "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
+        "references": {"score": 1, "justification": "Parse error", "quote": ""},
+    }
+
+
 def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str) -> dict:
     """Evaluate criteria 2, 3, 4 (research question, results, references) from full paper text."""
     prompt = _build_content_prompt(full_text, criteria)
@@ -965,15 +1436,17 @@ def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str)
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
     try:
-        result = json.loads(raw)
+        parsed = json.loads(raw)
     except Exception:
-        return {
-            "research_question_and_methods": {"score": 1, "justification": "Parse error", "quote": ""},
-            "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
-            "references": {"score": 1, "justification": "Parse error", "quote": ""},
-        }
+        return _parse_error_content_result()
 
-    ref = result.get("references", {})
+    result = {
+        "research_question_and_methods": _compose_research_question_result(parsed),
+        "results_and_conclusion": parsed.get("results_and_conclusion", {}),
+        "references": parsed.get("references", {}),
+    }
+
+    ref = result["references"]
     ref_count = ref.get("reference_count")
     if isinstance(ref_count, int):
         ref["score"] = _score_from_reference_count(ref_count)
@@ -1011,15 +1484,17 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
     try:
-        result = json.loads(raw)
+        parsed = json.loads(raw)
     except Exception:
-        return {
-            "research_question_and_methods": {"score": 1, "justification": "Parse error", "quote": ""},
-            "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
-            "references": {"score": 1, "justification": "Parse error", "quote": ""},
-        }
+        return _parse_error_content_result()
 
-    ref = result.get("references", {})
+    result = {
+        "research_question_and_methods": _compose_research_question_result(parsed),
+        "results_and_conclusion": parsed.get("results_and_conclusion", {}),
+        "references": parsed.get("references", {}),
+    }
+
+    ref = result["references"]
     ref_count = ref.get("reference_count")
     if isinstance(ref_count, int):
         ref["score"] = _score_from_reference_count(ref_count)
@@ -1032,31 +1507,16 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
 _AUTHOR_SUB_CRITERIA = ("institution_reputability", "author_expertise", "institutional_collaboration")
 
 
-def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenAI, model: str) -> dict:
-    """Evaluate criterion 1 (author credibility) using enriched author data.
-
-    Scores 3 independent sub-criteria (see criteria.yaml, sourced from
-    tabla_de_criterios_sandy.xlsx) and combines them into the final
-    author_credibility score as a deterministic average, rounded to the
-    nearest integer — the composite is never left to the LLM's own arithmetic,
-    same principle as _score_from_reference_count for the references criterion.
-    """
-    prompt = _build_author_prompt(author_data, criteria)
-    raw = _llm(client, model, prompt, max_tokens=2000, reasoning_effort="medium")
-    raw = re.sub(r"^```(?:json)?\n?", "", raw)
-    raw = re.sub(r"\n?```$", "", raw)
-    try:
-        parsed = json.loads(raw)
-    except Exception:
-        return {
-            "author_credibility": {
-                "score": 1,
-                "justification": "Parse error",
-                "sub_scores": {},
-                "flags": [],
-            }
-        }
-
+def _compose_author_credibility_result(parsed: dict) -> dict:
+    """Combine the 3 independent author_credibility sub-scores into the final
+    composite (average, rounded to the nearest integer) — the composite is
+    never left to the LLM's own arithmetic, same principle as
+    _score_from_reference_count. Shared by both the GPT path
+    (evaluate_author_credibility) and the Claude path
+    (evaluate_author_credibility_claude in evaluate_preprint_claude.py) so the
+    two never drift out of sync the way they did after the 2026-07-22
+    sub-criteria rewrite (Claude side kept returning the raw un-composed JSON,
+    with no top-level "author_credibility" key at all)."""
     sub_scores = {}
     for key in _AUTHOR_SUB_CRITERIA:
         block = parsed.get(key, {})
@@ -1082,6 +1542,36 @@ def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenA
             "flags": parsed.get("flags", []),
         }
     }
+
+
+def _parse_error_author_credibility_result() -> dict:
+    return {
+        "author_credibility": {
+            "score": 1,
+            "justification": "Parse error",
+            "sub_scores": {},
+            "flags": [],
+        }
+    }
+
+
+def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenAI, model: str) -> dict:
+    """Evaluate criterion 1 (author credibility) using enriched author data.
+
+    Scores 3 independent sub-criteria (see criteria.yaml, sourced from
+    tabla_de_criterios_sandy.xlsx) and combines them into the final
+    author_credibility score via _compose_author_credibility_result.
+    """
+    prompt = _build_author_prompt(author_data, criteria)
+    raw = _llm(client, model, prompt, max_tokens=2000, reasoning_effort="medium")
+    raw = re.sub(r"^```(?:json)?\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    try:
+        parsed = json.loads(raw)
+    except Exception:
+        return _parse_error_author_credibility_result()
+
+    return _compose_author_credibility_result(parsed)
 
 
 # ─── quote validation ────────────────────────────────────────────────────────
@@ -1159,14 +1649,39 @@ def _quote_found(quote: str, full_text: str) -> bool:
     return _bag_of_words_match(words, ft.split())
 
 
+def _validate_research_question_quotes(c: dict, full_text: str) -> None:
+    """research_question_and_methods has 3 independently-quoted sub-scores
+    (see _compose_research_question_result) instead of a single top-level
+    quote — check/downgrade each sub-score on its own evidence, then
+    recompute the composite score from the (possibly downgraded) sub-scores,
+    same aggregation rule as _compose_research_question_result."""
+    sub_scores = c.get("sub_scores", {})
+    for key in _RESEARCH_SUB_CRITERIA:
+        if key not in sub_scores:
+            continue
+        sub = sub_scores[key]
+        quote = sub.get("quote", "")
+        valid = _quote_found(quote, full_text) if quote else False
+        sub["quote_valid"] = valid
+        if not valid and sub.get("score") == 3:
+            sub["score"] = 2
+            sub["score_note"] = "downgraded 3→2: supporting quote not found verbatim in text"
+
+    if sub_scores:
+        c["score"] = round(sum(s["score"] for s in sub_scores.values()) / len(sub_scores))
+        c["quote_valid"] = all(s.get("quote_valid", False) for s in sub_scores.values())
+
+
 def validate_quotes(criterion_results: dict, full_text: str) -> dict:
     """
     For each criterion with a 'quote' field, verify the quote exists verbatim
     in full_text. Adds 'quote_valid' bool to each criterion. Downgrades score
     from 3 → 2 when the supporting quote cannot be verified.
     """
+    if "research_question_and_methods" in criterion_results:
+        _validate_research_question_quotes(criterion_results["research_question_and_methods"], full_text)
+
     CRITERIA_WITH_QUOTES = [
-        "research_question_and_methods",
         "results_and_conclusion",
         "references",
     ]
@@ -1187,12 +1702,14 @@ def validate_quotes(criterion_results: dict, full_text: str) -> dict:
 
 def compute_scores(criterion_results: dict) -> dict:
     """
-    Aggregate per-criterion scores.
-    feedback is excluded from automatic scoring (requires manual check).
+    Aggregate per-criterion scores. feedback is included when it has a real
+    score (see evaluate_feedback — only happens when PREreviews exist for
+    this DOI); otherwise its score stays None and it's excluded here exactly
+    like before, same as any other criterion that failed to produce a score.
     Recommendation thresholds are not applied here — calibrate with real cases.
     """
     scored_criteria = ["author_credibility", "research_question_and_methods",
-                       "results_and_conclusion", "references"]
+                       "results_and_conclusion", "references", "feedback"]
 
     scores = {}
     for k in scored_criteria:
@@ -1201,7 +1718,7 @@ def compute_scores(criterion_results: dict) -> dict:
 
     valid_scores = [s for s in scores.values() if isinstance(s, int) and s > 0]
     total = sum(valid_scores)
-    max_possible = len(scored_criteria) * 3
+    max_possible = len(valid_scores) * 3  # scales with how many criteria actually got a real score, not a fixed count — feedback often stays unscored
     avg = round(total / len(valid_scores), 2) if valid_scores else 0
 
     return {
@@ -1249,13 +1766,16 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
 
     # Merge all criterion results
     criterion_results = {**author_results, **content_results}
-    criterion_results["feedback"] = {
-        "score": None,
-        "justification": "Not evaluated automatically. Requires manual check of preprint server.",
-    }
+
+    # Step 4b: evaluate feedback from real PREreview text, when any exists
+    # (stays manual — score: None — if this DOI has zero PREreviews)
+    criterion_results["feedback"] = evaluate_feedback(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
     # Step 5: validate quotes against full text (catches hallucinated evidence)
     criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
+
+    # Step 5b: verify the reference list against Crossref (no LLM, informational only)
+    criterion_results["references"]["citation_verification"] = verify_references(pdf_data["full_text"])
 
     # Step 6: aggregate scores
     scoring = compute_scores(criterion_results)
