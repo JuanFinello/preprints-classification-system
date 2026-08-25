@@ -47,18 +47,38 @@ def _strip_json_fences(raw: str) -> str:
     return raw
 
 
-def _llm(client: anthropic.Anthropic, model: str, prompt: str, max_tokens: int = 1024) -> str:
+def _llm(client: anthropic.Anthropic, model: str, prompt: str, max_tokens: int = 16000) -> str:
+    """Una llamada a la API. Devuelve el texto del bloque `text`.
+
+    max_tokens tiene que cubrir thinking + respuesta: en claude-sonnet-5 el
+    thinking adaptativo está PRENDIDO por defecto (omitir `thinking` no lo
+    apaga), así que un presupuesto chico se consume pensando y la respuesta
+    llega sin ningún bloque `text`. Con max_tokens=2000 eso pasaba SIEMPRE:
+    stop_reason='max_tokens', output_tokens=2000, todos thinking_tokens, y el
+    único bloque devuelto era ('thinking', 0 chars). El texto vacío hacía
+    fallar json.loads() y cada criterio quedaba con score=1 "Parse error"
+    (bug real, detectado 2026-08-25 — todos los scores de Claude eran basura).
+    """
     resp = client.messages.create(
         model=model,
         max_tokens=max_tokens,
         messages=[{"role": "user", "content": prompt}],
     )
-    return next((b.text for b in resp.content if b.type == "text"), "").strip()
+    text = next((b.text for b in resp.content if b.type == "text"), "").strip()
+    if not text:
+        # No degradar en silencio a score=1: sin texto no hay evaluación.
+        raise RuntimeError(
+            f"Respuesta sin bloque de texto (stop_reason={resp.stop_reason}, "
+            f"output_tokens={resp.usage.output_tokens}, max_tokens={max_tokens}). "
+            "Si stop_reason es 'max_tokens', subí max_tokens: el presupuesto se "
+            "agotó en thinking antes de escribir la respuesta."
+        )
+    return text
 
 
 def evaluate_content_claude(eval_text: str, criteria: dict, client: anthropic.Anthropic, model: str) -> dict:
     prompt = _build_content_prompt(eval_text, criteria)
-    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=16000))
     try:
         parsed = json.loads(raw)
     except Exception:
@@ -82,7 +102,7 @@ def evaluate_content_claude(eval_text: str, criteria: dict, client: anthropic.An
 
 def evaluate_author_credibility_claude(author_data: dict, criteria: dict, client: anthropic.Anthropic, model: str) -> dict:
     prompt = _build_author_prompt(author_data, criteria)
-    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=16000))
     try:
         parsed = json.loads(raw)
     except Exception:
@@ -104,7 +124,7 @@ def evaluate_feedback_claude(doi: str, criteria: dict, client: anthropic.Anthrop
         }
 
     prompt = _build_feedback_prompt(criteria, [rv["text"] for rv in prereview_data["reviews"]])
-    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=1500))
+    raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=16000))
     try:
         parsed = json.loads(raw)
     except Exception:
