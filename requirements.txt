@@ -5,5 +5,5 @@ PyYAML>=6.0
 requests>=2.32
 pandas>=2.2
 
-# Alternative model backends (evaluate_preprint_claude.py — optional)
+# Alternative model backends (evaluate_preprint_claude.py, optional)
 anthropic>=0.112

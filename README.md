@@ -5,13 +5,13 @@ linking to a genomic surveillance database.**
 
 A preprint that reports or cites genomic sequence data is a candidate for being linked
 into a genomic surveillance database. Whether it actually qualifies is a judgment about
-the paper itself — who wrote it, how the study was designed, whether the results hold up,
-what it cites — and it is made one preprint at a time.
+the paper itself: who wrote it, how the study was designed, whether the results hold up,
+what it cites. It has to be made one preprint at a time.
 
 This repository automates that judgment: it takes a preprint PDF, scores it against a
 five-criterion rubric using an LLM **grounded in external scholarly APIs**, validates
 the model's own evidence against the source text, and emits a structured recommendation
-— `accept`, `accept_with_reservations` or `reject` — with a written justification for
+(`accept`, `accept_with_reservations` or `reject`) with a written justification for
 every criterion.
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -27,7 +27,7 @@ see. Four design choices address that directly:
 
 | Problem | What the pipeline does |
 |---|---|
-| The model cannot know if an institution or an author is real | Author affiliations are resolved against **ROR** and **OpenAlex**, author track records against **Semantic Scholar** — by DOI first, name-matching only as a labelled fallback |
+| The model cannot know if an institution or an author is real | Author affiliations are resolved against **ROR** and **OpenAlex**, author track records against **Semantic Scholar**, by DOI first, with name-matching only as a labelled fallback |
 | The model invents supporting quotes | Every quote it cites as evidence is **matched back against the extracted PDF text** (`validate_quotes`); an unverifiable quote caps that criterion's score |
 | The model bluffs about the bibliography | Reference entries are resolved against **Crossref**; the `references` score is computed **deterministically** from the verified count, not from the model's opinion |
 | Silent data gaps become silent scoring errors | Enrichment failures are surfaced as explicit `data_quality_warnings` in the output, and the prompt tells the model which fields it may *not* trust |
@@ -73,19 +73,19 @@ better affiliation score.
 
 ## The rubric
 
-Defined declaratively in [`criteria.yaml`](criteria.yaml) — scoring logic lives in data,
-not in prompt strings. Each criterion is scored 1 (weak) / 2 (moderate) / 3 (strong).
+Defined declaratively in [`criteria.yaml`](criteria.yaml), so the scoring logic lives in
+data rather than in prompt strings. Each criterion is scored 1 (weak) / 2 (moderate) / 3 (strong).
 
 | # | Criterion | Sub-criteria | Source of truth |
 |---|---|---|---|
 | 1 | **Author credibility** | institution reputability · author expertise · institutional collaboration | ROR + OpenAlex + Semantic Scholar |
 | 2 | **Research question & methods** | objective & hypothesis · public-health relevance · study-design rigour | Paper text (quote-validated) |
-| 3 | **Results & conclusion** | — | Paper text (quote-validated) |
-| 4 | **References** | — | Crossref (deterministic count) |
-| 5 | **Community feedback** | — | PREreview (scored only when reviews exist) |
+| 3 | **Results & conclusion** | | Paper text (quote-validated) |
+| 4 | **References** | | Crossref (deterministic count) |
+| 5 | **Community feedback** | | PREreview (scored only when reviews exist) |
 
 Composite criteria average their sub-criteria rather than requiring every condition to
-hold at once — an earlier AND-gate design made a score of 3 nearly unreachable and was
+hold at once. An earlier AND-gate design made a score of 3 nearly unreachable and was
 replaced after the first real runs.
 
 ---
@@ -160,9 +160,9 @@ useful part.
 
 1. **Content-policy refusals are an architectural constraint, not an edge case.**
    Molecular-virology preprints (viral receptors, host restriction factors,
-   protein–host interactions) were refused outright by one provider's API — reproduced
-   across four isolated diagnostics, including an 8 000-character abstract with a
-   trivial instruction, which ruled out prompt length and rubric wording. Surveillance
+   protein-host interactions) were refused outright by one provider's API. The refusal
+   reproduced across four isolated diagnostics, including an 8 000-character abstract
+   with a trivial instruction, which ruled out prompt length and rubric wording. Surveillance
    and diagnostics papers passed cleanly. For a genomic-surveillance use case that
    pattern hits exactly the papers that matter most, so the pipeline is built
    multi-backend (`evaluate_preprint.py`, `_claude.py`, `_deepseek.py` share one rubric
@@ -170,13 +170,14 @@ useful part.
 
 2. **Anchoring is real and criterion-specific.** In an early run, one model returned
    `results_and_conclusion = 1` for four papers out of four while the other model
-   spread across 1–3. Verified in code that no deterministic function was forcing it —
-   it was pure prompt bias, and it was fixed in the prompt, not in the aggregation.
+   spread across 1 to 3. Verified in code that no deterministic function was forcing it:
+   the anchoring was pure prompt bias, and it was fixed in the prompt, not in the
+   aggregation.
 
 3. **An agreement percentage can be meaningless.** The `references` criterion agreed
    ~65 % of the time between models, but one side computes it from a Crossref count and
    the other makes a qualitative judgment. Agreement there measures coincidence, not
-   consensus — comparisons are only worth reporting when both sides answer the same
+   consensus. Comparisons are only worth reporting when both sides answer the same
    question.
 
 4. **A failed run must never look like a low score.** A parse failure was written to
@@ -189,14 +190,14 @@ useful part.
 
 | Path | Role |
 |---|---|
-| `evaluate_preprint.py` | Core pipeline — extraction, API grounding, prompts, quote validation, scoring |
+| `evaluate_preprint.py` | Core pipeline: extraction, API grounding, prompts, quote validation, scoring |
 | `criteria.yaml` | The rubric: criteria, sub-criteria and score definitions |
 | `batch_evaluate.py` · `weekly_update.py` | Batch runs over a directory of PDFs, and the weekly orchestration around them |
 | `evaluate_preprint_claude.py` · `_deepseek.py` · `compare_scores.py` | Alternative model backends and the cross-model agreement report |
 | `results_pipeline/` · `results_summary_pipeline.csv` | Structured outputs of real runs |
 
 Source PDFs and internal curation data (DOI worklists, curator spreadsheets) are
-deliberately not versioned — see `.gitignore`.
+deliberately not versioned; see `.gitignore`.
 
 ---
 
@@ -224,7 +225,7 @@ deliberately not versioned — see `.gitignore`.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
 Built for genomic-surveillance curation work. Preprint content belongs to its respective
 authors; this repository contains only automatically generated assessments of publicly
