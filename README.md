@@ -29,11 +29,21 @@ see. Four design choices address that directly:
 |---|---|
 | The model cannot know if an institution or an author is real | Author affiliations are resolved against **ROR** and **OpenAlex**, author track records against **Semantic Scholar**, by DOI first, with name-matching only as a labelled fallback |
 | The model invents supporting quotes | Every quote it cites as evidence is **matched back against the extracted PDF text** (`validate_quotes`); an unverifiable quote caps that criterion's score |
-| The model bluffs about the bibliography | Reference entries are resolved against **Crossref**; the `references` score is computed **deterministically** from the verified count, not from the model's opinion |
+| The model bluffs about the bibliography | The `references` score is computed **in code**, never by the model: the count it reports sets the base and the quality problems it reports can only lower it. Reference entries are separately resolved against **Crossref**, recorded for a human to read |
 | Silent data gaps become silent scoring errors | Enrichment failures are surfaced as explicit `data_quality_warnings` in the output, and the prompt tells the model which fields it may *not* trust |
 
 Everything the model is asked to do that it can't be trusted to do alone is either
 grounded in an API or checked after the fact.
+
+The honest exception is reference quality. Whether a cited work is off-topic,
+non-peer-reviewed or a self-citation is the model's own reading of the bibliography, and
+nothing verifies it: those three inputs lower the `references` score on the model's word
+alone. Two of them could be grounded, since Crossref returns a work's type and author
+list for every entry that resolves, but the reference-list parser currently finds only
+47 % of entries and fails almost completely on some papers, so counts built on it would
+be drawn from a biased subset of the bibliography. Fixing the parser is the prerequisite;
+until then the caps are explicitly a model judgment, recorded in `score_note` so a
+reviewer can see exactly which entries triggered them.
 
 ---
 
