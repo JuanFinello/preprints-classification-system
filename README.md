@@ -73,20 +73,84 @@ better affiliation score.
 
 ## The rubric
 
-Defined declaratively in [`criteria.yaml`](criteria.yaml), so the scoring logic lives in
-data rather than in prompt strings. Each criterion is scored 1 (weak) / 2 (moderate) / 3 (strong).
+Nine scored rows, grouped into five criteria. Each row is scored 1 (weak) / 2 (moderate) /
+3 (strong) on its own evidence, and composite criteria average their rows rather than
+requiring every condition to hold at once. The whole thing is declared in
+[`criteria.yaml`](criteria.yaml), so the scoring logic lives in data rather than in prompt
+strings.
 
-| # | Criterion | Sub-criteria | Source of truth |
-|---|---|---|---|
-| 1 | **Author credibility** | institution reputability · author expertise · institutional collaboration | ROR + OpenAlex + Semantic Scholar |
-| 2 | **Research question & methods** | objective & hypothesis · public-health relevance · study-design rigour | Paper text (quote-validated) |
-| 3 | **Results & conclusion** | | Paper text (quote-validated) |
-| 4 | **References** | | Crossref (deterministic count) |
-| 5 | **Community feedback** | | PREreview (scored only when reviews exist) |
+| # | Criterion | Row | What earns a 3 | Grounded in |
+|---|---|---|---|---|
+| 1 | **Author credibility** | institution reputability | All authors at credible institutions **and** the corresponding author at a nationally or globally recognised one | ROR + OpenAlex |
+| | | author expertise | 3 or more authors with a verifiable publication record in the field | Semantic Scholar |
+| | | institutional collaboration | More than 3 institutes involved | OpenAlex |
+| 2 | **Research question & methods** | objective & hypothesis | Objective and hypotheses explicit, testable, aligned with prior evidence | Paper text (quote-validated) |
+| | | public-health relevance | Addresses a pressing concern **and** relates to a known outbreak (e.g. WHO DON) | Paper text (quote-validated) |
+| | | study-design rigour | Rigorous design, methods validating the results, data and materials available for replication | Paper text (quote-validated) |
+| 3 | **Results & conclusion** | | Findings internally consistent, validated by multiple methods, limitations explicitly discussed | Paper text (quote-validated) |
+| 4 | **References** | | Balanced mix of foundational, recent and domain-relevant peer-reviewed work (more than ~20) | Crossref |
+| 5 | **Community feedback** | | Multiple expert reviews, follow-up analyses or citations, authors responding to feedback | PREreview |
 
-Composite criteria average their sub-criteria rather than requiring every condition to
-hold at once. An earlier AND-gate design made a score of 3 nearly unreachable and was
-replaced after the first real runs.
+<details>
+<summary><strong>Full 1 / 2 / 3 definitions for every row</strong></summary>
+
+**1a. Institution reputability**: *Authors are affiliated with reputable universities, research institutes or recognised labs*
+1. Some authors affiliated with low-credibility institutions such as predatory "universities" or commercial entities.
+2. All authors affiliated with a credible university or lab with some research output and relevant expertise.
+3. The above, and the main or corresponding author is from a well-established, globally or nationally recognised research institution.
+
+**1b. Author expertise**: *Authors have verifiable expertise and prior publications in the field*
+1. Little or none.
+2. Up to 2 authors with verifiable expertise.
+3. Three or more authors with verifiable expertise.
+
+**1c. Institutional collaboration**: *The study is collaborative, involving multiple institutes*
+1. Single institution.
+2. Two or three institutes.
+3. More than three institutes.
+
+**2a. Objective and hypothesis**: *The study objective and hypotheses are clearly written*
+1. Objective is unclear, missing or vague.
+2. Objective is clear but lacks precision or a clear connection to methods and results.
+3. Objective and hypotheses are explicit, testable and aligned with theory or prior evidence, with a clear sense of why the study matters.
+
+**2b. Public-health relevance**: *The study addresses a pressing public health concern*
+1. No.
+2. Yes.
+3. Yes, and it relates to a known outbreak (e.g. WHO Disease Outbreak News).
+
+**2c. Study-design rigour**: *Study design is clear and rigorous, with sufficient detail for reproducibility*
+1. Methodology is missing.
+2. Design briefly described but lacking detail, or preliminary results with no validation.
+3. Clear and rigorous design with methods validating the results; data, code and materials openly available or described in enough detail to replicate.
+
+**3. Results and conclusion**
+1. Results lack supporting figures or tables, or are inconsistent with the data and methods described; conclusions overstated, speculative or not grounded in the evidence.
+2. Some inconsistencies in reporting or unclear statistical parameters; conclusions cautious but lacking clarity or only partially supported.
+3. Findings internally consistent, validated by multiple methods where applicable, aligned with the hypotheses; results clearly interpreted and limitations explicitly discussed.
+
+**4. References**
+1. Fewer than ~10 references, missing foundational studies; overreliance on non-peer-reviewed sources, obscure journals or self-citations.
+2. Relevant and credible sources but omitting some important recent work; roughly 10 to 20 references.
+3. Balanced mix of foundational, recent and domain-relevant peer-reviewed studies (more than ~20), used to justify methods, contextualise findings and discuss limitations.
+
+**5. Community feedback**
+1. No comments or reviews on the preprint server; mentions limited to social media or unverified sources.
+2. Feedback on clarifications or methods but not full validation; early signs of citation or scholarly discussion; mixed or tentative reception.
+3. Multiple expert-level comments or peer reviews; follow-up analyses or scholarly citations already exist; authors have responded responsibly.
+
+</details>
+
+Two rows are not scored by the model, by design. **References** is computed
+deterministically from the verified reference count rather than from the model's opinion
+of the bibliography, because the model kept misreading its own count against the
+threshold. **Community feedback** is scored only when PREreview actually holds reviews
+for the DOI; otherwise it stays unscored and drops out of the average, rather than
+scoring a 1 that would apply to almost every preprint.
+
+An earlier design required every condition in a criterion to hold at once for a 3. It
+made that score nearly unreachable and was replaced by the row-averaging above after the
+first real runs.
 
 ---
 
