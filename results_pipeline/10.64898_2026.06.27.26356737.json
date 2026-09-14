@@ -1,0 +1,206 @@
+{
+  "source_pdf": "10.64898_2026.06.27.26356737.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 26,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Antonia Ho",
+      "all_authors": [
+        "Kirsty Kwok",
+        "Laura Mojsiejczuk",
+        "Joseph Hughes",
+        "Ana da Silva Filipe",
+        "Antonia Ho"
+      ],
+      "affiliations": [
+        "MRC University of Glasgow Centre for Virus Research, Glasgow, United Kingdom"
+      ],
+      "n_authors": 5,
+      "n_institutes": 1
+    },
+    "ror_results": [
+      {
+        "name": "MRC University of Glasgow Centre for Virus Research",
+        "type": [
+          "government"
+        ],
+        "country": "United Kingdom",
+        "score": 1.0,
+        "chosen": true
+      }
+    ],
+    "institution_source": "ror_fallback",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "K. Kwok",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "L. Mojsiejczuk",
+          "paper_count": 9,
+          "citation_count": 21,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Hughes",
+          "paper_count": 2,
+          "citation_count": 24,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "A. da Silva Filipe",
+          "paper_count": 114,
+          "citation_count": 12238,
+          "h_index": 36,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "A. Ho",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Kirsty Kwok' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Laura Mojsiejczuk' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Joseph Hughes' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Ana da Silva Filipe' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Antonia Ho' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex had no verified institution data for this DOI — falling back to header-text affiliation extraction + ROR lookup (the author-institution link is lost in this path; institutions are matched as a flat list)."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "institution_reputability: The sole listed affiliation, the MRC University of Glasgow Centre for Virus Research, is a well-established UK government/university virus-research centre. With one affiliation listed for the paper, the last/corresponding author is affiliated with this nationally and internationally recognized research institution. | author_expertise: Ana da Silva Filipe has strong, field-matched evidence of established expertise (114 papers, h-index 36). The remaining authors have field-matched records but limited publication metrics, including the first and last authors (2 papers each), so there are not three authors with clearly established verifiable expertise under the stated thresholds. | institutional_collaboration: Only one distinct institution is listed: MRC University of Glasgow Centre for Virus Research.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "The sole listed affiliation, the MRC University of Glasgow Centre for Virus Research, is a well-established UK government/university virus-research centre. With one affiliation listed for the paper, the last/corresponding author is affiliated with this nationally and internationally recognized research institution."
+        },
+        "author_expertise": {
+          "score": 2,
+          "justification": "Ana da Silva Filipe has strong, field-matched evidence of established expertise (114 papers, h-index 36). The remaining authors have field-matched records but limited publication metrics, including the first and last authors (2 papers each), so there are not three authors with clearly established verifiable expertise under the stated thresholds."
+        },
+        "institutional_collaboration": {
+          "score": 1,
+          "justification": "Only one distinct institution is listed: MRC University of Glasgow Centre for Virus Research."
+        }
+      },
+      "institutions_assessed": [
+        "MRC University of Glasgow Centre for Virus Research"
+      ],
+      "n_institutes": 1,
+      "corresponding_author_papers": 2,
+      "flags": [
+        "Author-to-institution links could not be independently verified from OpenAlex; affiliation data were obtained from header-text extraction and ROR fallback.",
+        "First and corresponding/last authors have limited publication records in the supplied data."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 2,
+      "justification": "objective_and_hypothesis: This matches the score 2 description: the objective is clear and directly connected to the repository-based comparisons and clustering analyses, but the paper does not state explicit, testable hypotheses. | public_health_relevance: This matches the score 2 description because the study addresses the substantial burden of non-COVID respiratory infections and surveillance inequities in Africa. It is not an investigation of a specific ongoing outbreak. | study_design_rigor: This matches the score 2 description: the design specifies repositories, study viruses, a ≥90% coverage criterion, and MMseqs2 clustering, but important search and curation details are deferred to unavailable supplementary materials and no analysis code is provided in the PDF.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 2,
+          "justification": "This matches the score 2 description: the objective is clear and directly connected to the repository-based comparisons and clustering analyses, but the paper does not state explicit, testable hypotheses.",
+          "quote": "We further compared African near-complete genome data with global datasets to contextualise representation and identify disparities in sequencing efforts.",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 2,
+          "justification": "This matches the score 2 description because the study addresses the substantial burden of non-COVID respiratory infections and surveillance inequities in Africa. It is not an investigation of a specific ongoing outbreak.",
+          "quote": "Mortality rates associated with both non-COVID-19 URI and LRI are highest in sub-Saharan Africa",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 2,
+          "justification": "This matches the score 2 description: the design specifies repositories, study viruses, a ≥90% coverage criterion, and MMseqs2 clustering, but important search and curation details are deferred to unavailable supplementary materials and no analysis code is provided in the PDF.",
+          "quote": "All sequences with segment/genome coverage of ≥ 90% underwent nucleotide clustering using MMseqs2[19] with a 95% sequence identity threshold",
+          "quote_valid": true
+        }
+      },
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "This matches the score 1 description because a stated summary finding is internally inconsistent with the paper's own Results: page 7 reports IAV (n=10,900) above rhinovirus (n=4,774), but the Discussion reverses their order. The Discussion also cites representative-sequence percentages as Figure 5A and geographical cluster sharing as Figure 5B, whereas the actual figure shows these in panels B and C, respectively.",
+      "quote": "RSV was the most sequenced non-SARS-CoV-2 respiratory virus in Africa, followed by rhinovirus and IAV.",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 40,
+      "justification": "The references provide a strong mix of foundational burden estimates, recent genomic-surveillance research, respiratory-virus epidemiology, data-sharing resources, and methods sources from credible journals. References 37–40 include a relevant institutional webpage and sequence-dataset records rather than peer-reviewed articles, but they are directly relevant; no clearly unrelated reference was identified.",
+      "quote": "Global landscape of SARS-CoV-2 genomic surveillance and data sharing.",
+      "score": 3,
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 35,
+        "n_resolved": 34,
+        "n_unresolved": 1,
+        "unresolved": [
+          {
+            "entry": "34. Sigal A, Neher RA, Lessells RJ. The consequences of SARS-CoV-2 within-host persistence. Nat Rev Microbiol. 2024;:1–15. https://doi.org/10.1038/s41579-024-01",
+            "resolved": false,
+            "method": "doi_in_text_not_resolved",
+            "doi": "10.1038/s41579-024-01125y"
+          }
+        ]
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 2,
+      "results_and_conclusion": 1,
+      "references": 3,
+      "feedback": null
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Kirsty Kwok' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Laura Mojsiejczuk' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Joseph Hughes' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Ana da Silva Filipe' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'MRC University of Glasgow Centre for Virus Research' to 'Antonia Ho' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex had no verified institution data for this DOI — falling back to header-text affiliation extraction + ROR lookup (the author-institution link is lost in this path; institutions are matched as a flat list)."
+  ]
+}

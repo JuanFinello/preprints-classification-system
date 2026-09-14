@@ -13,7 +13,7 @@ from pdfminer.high_level import extract_pages
 from pdfminer.layout import LTTextContainer
 from openai import OpenAI
 
-OPENAI_API_KEY = "REDACTED_API_KEY"
+OPENAI_API_KEY = ""  # set OPENAI_API_KEY in the environment instead
 
 
 # ---------------------------

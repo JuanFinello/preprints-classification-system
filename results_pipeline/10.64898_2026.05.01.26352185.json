@@ -1,0 +1,602 @@
+{
+  "source_pdf": "10.64898_2026.05.01.26352185.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 58,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Nathan D. Grubaugh",
+      "all_authors": [
+        "Emma Taylor-Salmon",
+        "Yi Ting Chew",
+        "Rafael Lopes",
+        "Timothy Locksmith",
+        "Edgar Kopp",
+        "Julieta Vergara",
+        "Amanda Davis",
+        "Molly Mitchell",
+        "Pamela Colarusso",
+        "Sarah Schmedes",
+        "Valerie Mock",
+        "Blake Scott",
+        "Rebecca Zimler",
+        "Chalmers Vasquez",
+        "Maday Moreno",
+        "Lauren M. Paul",
+        "Scott F. Michael",
+        "Mallery I. Breban",
+        "Chantal B.F. Vogels",
+        "Joshua L. Warren",
+        "Colin J. Carlson",
+        "Danielle Stanek",
+        "Lea Heberlein",
+        "Verity Hill",
+        "Andrea Morrison",
+        "Nathan D. Grubaugh"
+      ],
+      "affiliations": [
+        "Department of Epidemiology of Microbial Diseases, Yale School of Public Health, New Haven, Connecticut, USA",
+        "Public Health Modeling Unit, Yale School of Public Health, New Haven, Connecticut, USA",
+        "Bureau of Public Health Laboratories, Division of Disease Control and Health Protection, Florida Department of Health, Tampa, Florida, USA",
+        "Bureau of Public Health Laboratories, Division of Disease Control and Health Protection, Florida Department of Health, Jacksonville, Florida, USA",
+        "Bureau of Epidemiology, Division of Disease Control and Health Protection, Florida Department of Health, Tallahassee, Florida, USA",
+        "Miami-Dade County Mosquito Control, Miami, Florida, USA",
+        "Department of Biological Sciences, College of Arts and Sciences, Florida Gulf Coast University, Fort Myers, Florida, USA",
+        "Department of Biostatistics, Yale School of Public Health, New Haven, Connecticut, USA",
+        "Department of Microbiology, Immunology and Transplantation, Rega Institute, KU Leuven, Leuven 3000, Belgium",
+        "Department of Ecology and Evolutionary Biology, Yale University, New Haven, Connecticut, USA"
+      ],
+      "n_authors": 26,
+      "n_institutes": 10
+    },
+    "ror_results": [
+      {
+        "author": "Timothy Locksmith",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Edgar Kopp",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Julieta Vergara",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Amanda Davis",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Molly Mitchell",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Pamela Colarusso",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Sarah Schmedes",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Valerie Mock",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Blake Scott",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Rebecca Zimler",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Lauren M. Paul",
+        "position": "middle",
+        "name": "Florida Gulf Coast University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05tc5bm31"
+      },
+      {
+        "author": "Scott F. Michael",
+        "position": "middle",
+        "name": "Florida Gulf Coast University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05tc5bm31"
+      },
+      {
+        "author": "Danielle Stanek",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Lea Heberlein",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Verity Hill",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      },
+      {
+        "author": "Andrea Morrison",
+        "position": "middle",
+        "name": "Florida Department of Health",
+        "type": [
+          "government"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03e1xkn26"
+      },
+      {
+        "author": "Nathan D. Grubaugh",
+        "position": "last",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Emma Taylor-Salmon",
+          "paper_count": 14,
+          "citation_count": 349,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "Yi Ting Chew",
+          "paper_count": 6,
+          "citation_count": 5,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Rafael Lopes",
+          "paper_count": 9,
+          "citation_count": 7,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "T. Locksmith",
+          "paper_count": 7,
+          "citation_count": 128,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Edgar W. Kopp",
+          "paper_count": 14,
+          "citation_count": 854,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Julieta Vergara",
+          "paper_count": 2,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Amanda Davis",
+          "paper_count": 4,
+          "citation_count": 54,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Mitchell",
+          "paper_count": 11,
+          "citation_count": 13,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Pamela Colarusso",
+          "paper_count": 4,
+          "citation_count": 117,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "S. Schmedes",
+          "paper_count": 8,
+          "citation_count": 63,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Valerie E. Mock",
+          "paper_count": 8,
+          "citation_count": 49,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Blake Scott",
+          "paper_count": 8,
+          "citation_count": 353,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Rebecca A Zimler",
+          "paper_count": 15,
+          "citation_count": 481,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Chalmers Vasquez",
+          "paper_count": 51,
+          "citation_count": 1622,
+          "h_index": 18,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Maday Moreno",
+          "paper_count": 11,
+          "citation_count": 149,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Lauren M. Paul",
+          "paper_count": 21,
+          "citation_count": 3366,
+          "h_index": 13,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Scott F. Michael",
+          "paper_count": 9,
+          "citation_count": 124,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Breban",
+          "paper_count": 72,
+          "citation_count": 2241,
+          "h_index": 21,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "C. B. Vogels",
+          "paper_count": 8,
+          "citation_count": 17,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Warren",
+          "paper_count": 8,
+          "citation_count": 9,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Colin J. Carlson",
+          "paper_count": 29,
+          "citation_count": 320,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Danielle Stanek",
+          "paper_count": 8,
+          "citation_count": 196,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Lea A Heberlein",
+          "paper_count": 8,
+          "citation_count": 201,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "V. Hill",
+          "paper_count": 77,
+          "citation_count": 16646,
+          "h_index": 40,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "A. Morrison",
+          "paper_count": 11,
+          "citation_count": 230,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "N. Grubaugh",
+          "paper_count": 15,
+          "citation_count": 33,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Mathematics"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'Yale University' to 'Emma Taylor-Salmon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Yi Ting Chew' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Rafael Lopes' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Miami-Dade Public Library System' to 'Chalmers Vasquez' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Miami-Dade Public Library System' to 'Maday Moreno' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Mallery I. Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Chantal B.F. Vogels' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Joshua L. Warren' to a different author identity 'Jushua L. Warren' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale University' to 'Jushua L. Warren' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Colin J. Carlson' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Rega Institute for Medical Research' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "institution_reputability: The assessed institutions are credible education or government/public-health organizations, including Yale University, KU Leuven, Florida Gulf Coast University, and the Florida Department of Health. The last/main author is affiliated with Yale University, a globally recognized research institution. | author_expertise: Well over three authors have reliable DOI-linked records with field overlap and established publication metrics, including Emma Taylor-Salmon, Edgar W. Kopp, Rebecca A. Zimler, Chalmers Vasquez, Lauren M. Paul, Mallery Breban, Colin J. Carlson, Verity Hill, and others. The first author also has field-matched publications (14 papers; h-index 6). | institutional_collaboration: Institution data identifies four distinct institutions: Yale University, Florida Department of Health, Florida Gulf Coast University, and KU Leuven.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "The assessed institutions are credible education or government/public-health organizations, including Yale University, KU Leuven, Florida Gulf Coast University, and the Florida Department of Health. The last/main author is affiliated with Yale University, a globally recognized research institution."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "Well over three authors have reliable DOI-linked records with field overlap and established publication metrics, including Emma Taylor-Salmon, Edgar W. Kopp, Rebecca A. Zimler, Chalmers Vasquez, Lauren M. Paul, Mallery Breban, Colin J. Carlson, Verity Hill, and others. The first author also has field-matched publications (14 papers; h-index 6)."
+        },
+        "institutional_collaboration": {
+          "score": 3,
+          "justification": "Institution data identifies four distinct institutions: Yale University, Florida Department of Health, Florida Gulf Coast University, and KU Leuven."
+        }
+      },
+      "institutions_assessed": [
+        "Yale University",
+        "Florida Department of Health",
+        "Florida Gulf Coast University",
+        "KU Leuven"
+      ],
+      "n_institutes": 4,
+      "corresponding_author_papers": 15,
+      "flags": [
+        "Several OpenAlex affiliation matches were dropped as likely identity or affiliation mismatches; these do not undermine the credible affiliations explicitly listed in the manuscript.",
+        "One author identity match for Joshua L. Warren may be unreliable."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "objective_and_hypothesis: This matches the Score 3 description: the study states a testable objective concerning introductions, persistence, and climatic/travel drivers, and explicitly links its sequential surveillance, phylogenetic, and modeling methods to those questions and their public-health importance. | public_health_relevance: This matches the Score 3 description because it addresses documented dengue outbreaks in Miami-Dade and Florida, including the 2022–2024 consecutive outbreaks, in the context of the major dengue surge in the Americas. | study_design_rigor: This matches the Score 3 description: the paper details surveillance sources, sequencing protocols, genomic filtering, phylogeography, climate-index construction, and Bayesian models; it also provides GenBank accessions, a code repository, and sensitivity analyses excluding 2023–2024 and Miami-Dade.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 3,
+          "justification": "This matches the Score 3 description: the study states a testable objective concerning introductions, persistence, and climatic/travel drivers, and explicitly links its sequential surveillance, phylogenetic, and modeling methods to those questions and their public-health importance.",
+          "quote": "In this study, we combined case surveillance, virus sequencing, and transmission dynamic modeling to estimate the dynamics and drivers of DENV in Florida from 2009 to 2024.",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 3,
+          "justification": "This matches the Score 3 description because it addresses documented dengue outbreaks in Miami-Dade and Florida, including the 2022–2024 consecutive outbreaks, in the context of the major dengue surge in the Americas.",
+          "quote": "From 2022 to 2024, consecutive outbreaks in Miami-Dade County were mainly caused by a single lineage of dengue virus (DENV) serotype 3",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "This matches the Score 3 description: the paper details surveillance sources, sequencing protocols, genomic filtering, phylogeography, climate-index construction, and Bayesian models; it also provides GenBank accessions, a code repository, and sensitivity analyses excluding 2023–2024 and Miami-Dade.",
+          "quote": "All code and model results are available at: https://github.com/EmmaTS22/dengueFL.",
+          "quote_valid": true
+        }
+      },
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "This matches the Score 2 description: extensive figures, tables, phylogenetic analyses, models, and limitations support generally cautious conclusions, but reporting is inconsistent. The text reports 594 local cases and 329 Miami-Dade cases, while Figure 1C's displayed county counts sum to 592 and label Miami-Dade as 327; Figure 3's caption also reverses the contents of panels A and B. No discrete count was reported as a decimal or fraction.",
+      "quote": "From 2009 through 2024, there were a total of 594 local dengue cases reported from 15 counties",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 68,
+      "justification": "The references provide a balanced subject-relevant mix of foundational dengue and vector literature, recent dengue surveillance and climate studies, Florida outbreak reports, genomic-sequencing methods, and appropriate phylogenetic/statistical methodology sources. The list includes a small number of preprints, but these are supplemented by many peer-reviewed Lancet, Nature, PLoS, CDC/PAHO, and methodological sources; no clearly unrelated reference was identified.",
+      "quote": "G. Paz-Bailey, L. E. Adams, J. Deen, K. B. Anderson, L. C. Katzelnick, Dengue. Lancet 403, 667–682 (2024).",
+      "score": 3,
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 15,
+        "n_resolved": 14,
+        "n_unresolved": 1,
+        "unresolved": [
+          {
+            "entry": ". Garry, N. J. Loman, N. R. Faria, M. C. Porcelli, C. Vasquez, E. R. Nagle, D. A. T. Cummings, D. Stanek, A. Rambaut, M. Sanchez-Lockhart, P. C. Sabeti, L. D. G",
+            "resolved": false,
+            "method": "doi_in_text_not_resolved",
+            "doi": "10.1101/2025.10.06.25337235v1"
+          }
+        ]
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
+      "references": 3,
+      "feedback": null
+    },
+    "total": 11,
+    "max": 12,
+    "average": 2.75,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept",
+    "quotes_invalid": []
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'Yale University' to 'Emma Taylor-Salmon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Yi Ting Chew' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Rafael Lopes' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Miami-Dade Public Library System' to 'Chalmers Vasquez' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Miami-Dade Public Library System' to 'Maday Moreno' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Mallery I. Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Chantal B.F. Vogels' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Joshua L. Warren' to a different author identity 'Jushua L. Warren' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale University' to 'Jushua L. Warren' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Colin J. Carlson' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Rega Institute for Medical Research' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+  ]
+}

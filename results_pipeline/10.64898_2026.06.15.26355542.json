@@ -1,0 +1,526 @@
+{
+  "source_pdf": "10.64898_2026.06.15.26355542.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 27,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Carolina Lucas",
+      "all_authors": [
+        "Luciana Conde",
+        "Valter Monteiro",
+        "Joao CR Freitas",
+        "Jameson Crandell",
+        "Lauren Lawres",
+        "Fernanda Tana",
+        "Mallery I. Breban",
+        "Jordan Polster",
+        "Fahima Akther",
+        "Abbey Porzucek",
+        "Tauyne M Ramiro",
+        "Ana B de Oliveira",
+        "Mauricio L Nogueira",
+        "Nathan D Grubaugh",
+        "David R Martinez",
+        "Pedro RJ Almeida",
+        "Daniela Weiskopf",
+        "Mauro M Teixeira",
+        "Carolina Lucas"
+      ],
+      "affiliations": [
+        "Department of Immunobiology, Yale University School of Medicine, New Haven, CT, USA",
+        "Instituto de Microbiologia, Universidade Federal do Rio de Janeiro, Rio de Janeiro, Brazil",
+        "Departamento de Fisiologia e Biofísica, Instituto de Ciências Biológicas, Universidade Federal de Minas Gerais, Belo Horizonte, MG, Brazil",
+        "Department of Epidemiology of Microbial Diseases, Yale School of Public Health, New Haven, CT, USA",
+        "Department of Microbiology, Yale University School of Medicine, New Haven, CT, USA",
+        "Laboratório de Pesquisas em Virologia, Departamento de Doenças dermatológicas, Infecciosas e Parasitárias, Faculdade de Medicina de São José do Rio Preto, São José do Rio Preto, SP, Brazil",
+        "Center for Infection and Immunity, Yale University, New Haven, CT, USA",
+        "Center for Vaccine Innovation, La Jolla Institute for Immunology (LJI), La Jolla, CA, USA",
+        "Department of Medicine, Division of Infectious Diseases and Global Public Health, University of California, San Diego (UCSD), La Jolla, CA, USA"
+      ],
+      "n_authors": 19,
+      "n_institutes": 9
+    },
+    "ror_results": [
+      {
+        "author": "Luciana Conde",
+        "position": "first",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Valter Monteiro",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "João CR de Freitas",
+        "position": "middle",
+        "name": "Universidade Federal do Rio de Janeiro",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/03490as77"
+      },
+      {
+        "author": "Jameson Crandell",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Lauren Lawres",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Fernanda Tana",
+        "position": "middle",
+        "name": "Universidade Federal de Minas Gerais",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/0176yjw32"
+      },
+      {
+        "author": "J. Polster",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Fahima Akther",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Tauyne M. Ramiro",
+        "position": "middle",
+        "name": "Faculdade de Medicina de São José do Rio Preto",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/052e6h087"
+      },
+      {
+        "author": "Ana B. Oliveira",
+        "position": "middle",
+        "name": "Faculdade de Medicina de São José do Rio Preto",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/052e6h087"
+      },
+      {
+        "author": "Maurício Lacerda Nogueira",
+        "position": "middle",
+        "name": "Faculdade de Medicina de São José do Rio Preto",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/052e6h087"
+      },
+      {
+        "author": "David R. Martinez",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Pedro R. J. Almeida",
+        "position": "middle",
+        "name": "Universidade Federal de Minas Gerais",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/0176yjw32"
+      },
+      {
+        "author": "Daniela Weiskopf",
+        "position": "middle",
+        "name": "La Jolla Institute for Immunology",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/05vkpd318"
+      },
+      {
+        "author": "Daniela Weiskopf",
+        "position": "middle",
+        "name": "University of California San Diego",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/0168r3w48"
+      },
+      {
+        "author": "Mauro M. Teixeira",
+        "position": "middle",
+        "name": "Universidade Federal de Minas Gerais",
+        "type": [
+          "education"
+        ],
+        "country": "BR",
+        "ror": "https://ror.org/0176yjw32"
+      },
+      {
+        "author": "Carolina Lucas",
+        "position": "last",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Luciana Conde",
+          "paper_count": 6,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "V. Monteiro",
+          "paper_count": 22,
+          "citation_count": 682,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Joao Cr Freitas",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "Jameson Crandell",
+          "paper_count": 7,
+          "citation_count": 43,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Lauren Lawres",
+          "paper_count": 5,
+          "citation_count": 27,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "F. Tana",
+          "paper_count": 5,
+          "citation_count": 6,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Breban",
+          "paper_count": 72,
+          "citation_count": 2241,
+          "h_index": 21,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jordan Polster",
+          "paper_count": 6,
+          "citation_count": 12,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Fahima Akther",
+          "paper_count": 24,
+          "citation_count": 346,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Abbey J. Porzucek",
+          "paper_count": 3,
+          "citation_count": 4,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "T. M. Ramiro",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "A. B. D. De Oliveira",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "ML Nogueira",
+          "paper_count": 21,
+          "citation_count": 167,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "N. Grubaugh",
+          "paper_count": 15,
+          "citation_count": 33,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "David R Martinez",
+          "paper_count": 15,
+          "citation_count": 25,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Pedro Rj Almeida",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Daniela Weiskopf",
+          "paper_count": 27,
+          "citation_count": 568,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. M. Teixeira",
+          "paper_count": 9,
+          "citation_count": 42,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Carolina Lucas",
+          "paper_count": 10,
+          "citation_count": 83,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Immunology and Microbiology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched the paper's byline name 'Joao CR Freitas' to a different author identity 'João CR de Freitas' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale University' to 'Mallery I. Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Jordan Polster' to a different author identity 'J. Polster' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale University' to 'Abbey Porzucek' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Tauyne M Ramiro' to a different author identity 'Tauyne M. Ramiro' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched the paper's byline name 'Ana B de Oliveira' to a different author identity 'Ana B. Oliveira' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched the paper's byline name 'Mauricio L Nogueira' to a different author identity 'Maurício Lacerda Nogueira' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale University' to 'Nathan D Grubaugh' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'David R Martinez' to a different author identity 'David R. Martinez' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched the paper's byline name 'Pedro RJ Almeida' to a different author identity 'Pedro R. J. Almeida' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "'University of California San Diego' matched 'Daniela Weiskopf' via a ROR alias ('University of California, San Diego') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched the paper's byline name 'Mauro M Teixeira' to a different author identity 'Mauro M. Teixeira' — that author's OpenAlex-derived data may belong to the wrong person."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "institution_reputability: All assessed affiliations are credible education or nonprofit research institutions: Yale University, major Brazilian federal universities/medical school, La Jolla Institute for Immunology, and UC San Diego. The first and last/main-author positions are affiliated with Yale University, a globally recognized research institution. | author_expertise: At least four authors have verifiable field-matched publication records meeting the established-researcher threshold: Valter Monteiro (22 papers, h-index 9), Mallery I. Breban (72 papers, h-index 21), Fahima Akther (24 papers, h-index 6), and Daniela Weiskopf (27 papers, h-index 5). Additional authors, including first author Luciana Conde and last author Carolina Lucas, also have field-matched records. | institutional_collaboration: The institution data identify six distinct institutions, exceeding the more-than-three-institutes threshold.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "All assessed affiliations are credible education or nonprofit research institutions: Yale University, major Brazilian federal universities/medical school, La Jolla Institute for Immunology, and UC San Diego. The first and last/main-author positions are affiliated with Yale University, a globally recognized research institution."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least four authors have verifiable field-matched publication records meeting the established-researcher threshold: Valter Monteiro (22 papers, h-index 9), Mallery I. Breban (72 papers, h-index 21), Fahima Akther (24 papers, h-index 6), and Daniela Weiskopf (27 papers, h-index 5). Additional authors, including first author Luciana Conde and last author Carolina Lucas, also have field-matched records."
+        },
+        "institutional_collaboration": {
+          "score": 3,
+          "justification": "The institution data identify six distinct institutions, exceeding the more-than-three-institutes threshold."
+        }
+      },
+      "institutions_assessed": [
+        "Yale University",
+        "Universidade Federal do Rio de Janeiro",
+        "Universidade Federal de Minas Gerais",
+        "Faculdade de Medicina de São José do Rio Preto",
+        "La Jolla Institute for Immunology",
+        "University of California San Diego"
+      ],
+      "n_institutes": 6,
+      "corresponding_author_papers": 10,
+      "flags": [
+        "Several author-to-OpenAlex identity matches are flagged as possible name-variant or different-person matches; these create uncertainty for those individual affiliation and publication records but do not affect the clearly supported multi-institutional collaboration or the multiple unflagged field-matched expertise records.",
+        "No commercial or low-credibility institutional affiliations identified."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "objective_and_hypothesis: Meets the score 3 description: the paper states explicit, testable questions about DENV-2-backbone skewing and immune imprinting, and applies longitudinal neutralization and cellular assays directly to these questions. The rationale is clearly linked to tetravalent protection and potential antibody-dependent enhancement risk. | public_health_relevance: Meets the score 3 description: dengue is identified as a major global health threat, and the study explicitly relates its vaccine question to the documented record dengue surge in the Americas during 2024. The work addresses a current outbreak-relevant vaccination and protection gap. | study_design_rigor: Meets the score 3 description: this is a clearly described longitudinal cohort of 99 retained participants, sampled at four defined timepoints after two Qdenga doses, with baseline-serostatus stratification, blinded laboratory testing, detailed FRNT/ELISA/flow-cytometry methods, vaccine and circulating-virus validation, and stated source-data availability.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 3,
+          "justification": "Meets the score 3 description: the paper states explicit, testable questions about DENV-2-backbone skewing and immune imprinting, and applies longitudinal neutralization and cellular assays directly to these questions. The rationale is clearly linked to tetravalent protection and potential antibody-dependent enhancement risk.",
+          "quote": "We investigated whether the vaccine design skews responses to the DENV-2 backbone and assessed the extent to which immune imprinting (prior DENV exposure) shapes the magnitude and breadth of the vaccine responses.",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 3,
+          "justification": "Meets the score 3 description: dengue is identified as a major global health threat, and the study explicitly relates its vaccine question to the documented record dengue surge in the Americas during 2024. The work addresses a current outbreak-relevant vaccination and protection gap.",
+          "quote": "the Americas reporting a record 12.6 million cases in 2024, nearly triple the previous year's number",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "Meets the score 3 description: this is a clearly described longitudinal cohort of 99 retained participants, sampled at four defined timepoints after two Qdenga doses, with baseline-serostatus stratification, blinded laboratory testing, detailed FRNT/ELISA/flow-cytometry methods, vaccine and circulating-virus validation, and stated source-data availability.",
+          "quote": "All ELISA, FRNT, and flow cytometry analyses were performed in a blinded manner by independent laboratory teams.",
+          "quote_valid": true
+        }
+      },
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "Matches the score 2 description: Figures 1–4 and the FRNT testing of both vaccine and circulating strains support the main serotype-skewing findings, including Figure 4's reported 63%, 76%, 61%, and 12% responder rates for DENV-1–4, and limitations are discussed. However, reporting is internally inconsistent: page 4 reports an acute coronary syndrome after dose two, whereas Methods states no serious adverse events, and Figure 1 specifies a 3-SD T-cell positivity threshold while Methods specifies 2 SD.",
+      "quote": "No serious adverse events were reported following Qdenga vaccination (Table S2).",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 44,
+      "justification": "The references combine authoritative WHO surveillance with peer-reviewed foundational dengue/ADE studies, TAK-003 phase 2/3 efficacy and safety studies, recent dengue epidemiology, and relevant immune-imprinting and aging-immunology literature. No clearly unrelated reference was identified; the organizational WHO fact sheet is appropriate for disease-burden context.",
+      "quote": "Katzelnick, L. C. et al. Antibody-dependent enhancement of severe dengue disease in humans.",
+      "score": 3,
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 0,
+        "n_resolved": 0,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
+      "references": 3,
+      "feedback": null
+    },
+    "total": 11,
+    "max": 12,
+    "average": 2.75,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept",
+    "quotes_invalid": []
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched the paper's byline name 'Joao CR Freitas' to a different author identity 'João CR de Freitas' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale University' to 'Mallery I. Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Jordan Polster' to a different author identity 'J. Polster' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale University' to 'Abbey Porzucek' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Tauyne M Ramiro' to a different author identity 'Tauyne M. Ramiro' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched the paper's byline name 'Ana B de Oliveira' to a different author identity 'Ana B. Oliveira' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched the paper's byline name 'Mauricio L Nogueira' to a different author identity 'Maurício Lacerda Nogueira' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale University' to 'Nathan D Grubaugh' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'David R Martinez' to a different author identity 'David R. Martinez' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched the paper's byline name 'Pedro RJ Almeida' to a different author identity 'Pedro R. J. Almeida' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "'University of California San Diego' matched 'Daniela Weiskopf' via a ROR alias ('University of California, San Diego') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched the paper's byline name 'Mauro M Teixeira' to a different author identity 'Mauro M. Teixeira' — that author's OpenAlex-derived data may belong to the wrong person."
+  ]
+}

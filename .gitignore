@@ -1,12 +1,45 @@
-# PDFs y datos históricos pesados (no versionados, quedan solo en disco local)
+# ─── Secrets ──────────────────────────────────────────────────────────────────
+.env
+*.key
+
+# ─── Internal curation data (GISAID) — stays on local disk, never versioned ──
+daily_dois.xlsx
+preprints_para_revisar.csv
+claude_author_data.csv
+update_preprint_status/*.xlsx
+update_preprint_status/*.xlsx.bak
+update_preprint_status/*.csv
+cambiaron_de_status/
+tabla_de_criterios_sandy.xlsx
+criterios_question_and_methodology.xlsx
+notas.md
+
+# ─── Source PDFs and historical runs (heavy, reproducible, not the active set) ─
 papers/
 significant_preprints/
-preprint.pdf
-paperQA.pdf
+significant_preprints.ipynb
+*.pdf
+batch_json/
+batch_json_results/
+results/
+results_pipeline_claude/
+batch_results.csv
+batch_results.xlsx
+results_summary.csv
+preprint.json
+result.json
+scripts anterires/
 
-# Python
+# ─── Python ───────────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
 
-# Locks de LibreOffice
+# ─── Tooling / editors ────────────────────────────────────────────────────────
+.claude/
 .~lock.*#
+
+# Local backup of manually loaded calibration scores
+claude_scores_pipeline_manual_*.csv

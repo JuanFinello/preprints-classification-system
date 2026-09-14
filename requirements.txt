@@ -1,0 +1,9 @@
+# Core pipeline (evaluate_preprint.py, batch_evaluate.py)
+openai>=1.99
+pdfminer.six>=20231228
+PyYAML>=6.0
+requests>=2.32
+pandas>=2.2
+
+# Alternative model backends (evaluate_preprint_claude.py — optional)
+anthropic>=0.112

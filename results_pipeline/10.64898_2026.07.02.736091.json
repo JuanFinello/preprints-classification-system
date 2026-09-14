@@ -1,0 +1,297 @@
+{
+  "source_pdf": "10.64898_2026.07.02.736091.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 61,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Mst. Noorjahan Begum",
+      "all_authors": [
+        "Md. Shaheen Alam",
+        "Yeasir Karim",
+        "Riaz Rahman Shanto",
+        "Rubel Howlader",
+        "Tanzim Rahman",
+        "Muhammad Talha",
+        "Fahmida Chowdhury",
+        "Mohammad Jubair",
+        "Mst. Noorjahan Begum",
+        "Mustafizur Rahman"
+      ],
+      "affiliations": [
+        "Virology Laboratory, Infectious Diseases Division, icddr,b, Mohakhali, Dhaka-1212, Bangladesh",
+        "Genome Centre, Infectious Diseases Division, icddr,b, Mohakhali, Dhaka-1212, Bangladesh",
+        "Emerging Infections, Infectious Diseases Division, icddr,b, Mohakhali, Dhaka-1212, Bangladesh",
+        "Health Systems & Population Studies Division, icddr,b, Mohakhali, Dhaka-1212, Bangladesh"
+      ],
+      "n_authors": 10,
+      "n_institutes": 4
+    },
+    "ror_results": [
+      {
+        "name": "Department of Fisheries of the Government of the People's Republic of Bangladesh",
+        "type": [
+          "government"
+        ],
+        "country": "Bangladesh",
+        "score": 0.88,
+        "chosen": false
+      },
+      {
+        "name": "Department of Fisheries of the Government of the People's Republic of Bangladesh",
+        "type": [
+          "government"
+        ],
+        "country": "Bangladesh",
+        "score": 0.88,
+        "chosen": false
+      },
+      {
+        "name": "International Training Network, Bangladesh University of Engineering and Technology",
+        "type": [
+          "education"
+        ],
+        "country": "Bangladesh",
+        "score": 0.88,
+        "chosen": false
+      },
+      {
+        "name": "World Health Organization - Bangladesh",
+        "type": [
+          "nonprofit"
+        ],
+        "country": "Bangladesh",
+        "score": 0.88,
+        "chosen": false
+      }
+    ],
+    "institution_source": "ror_fallback",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Md. Shaheen Alam",
+          "paper_count": 10,
+          "citation_count": 39,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "Yeasir Karim",
+          "paper_count": 19,
+          "citation_count": 265,
+          "h_index": 8,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Riaz Rahman Shanto",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "Rubel Howlader",
+          "paper_count": 2,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Tanzim Rahman",
+          "paper_count": 7,
+          "citation_count": 19,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Muhammad Talha",
+          "paper_count": 8,
+          "citation_count": 37,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "F. Chowdhury",
+          "paper_count": 107,
+          "citation_count": 1073,
+          "h_index": 20,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Mohammad Jubair",
+          "paper_count": 38,
+          "citation_count": 132,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "Mst. Noorjahan Begum",
+          "paper_count": 19,
+          "citation_count": 41,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Mustafizur Rahman",
+          "paper_count": 32,
+          "citation_count": 152,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Immunology and Microbiology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Md. Shaheen Alam' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Yeasir Karim' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Riaz Rahman Shanto' to a different author identity 'Mustafizur Rahman' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mustafizur Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Rubel Howlader' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Tanzim Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Muhammad Talha' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Fahmida Chowdhury' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mohammad Jubair' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mst. Noorjahan Begum' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mustafizur Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex had no verified institution data for this DOI — falling back to header-text affiliation extraction + ROR lookup (the author-institution link is lost in this path; institutions are matched as a flat list)."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "institution_reputability: The affiliation text places the authors in multiple divisions of icddr,b (International Centre for Diarrhoeal Disease Research, Bangladesh), a well-established internationally recognized public-health and infectious-disease research institute. No commercial or low-credibility affiliations are indicated, and the first/main-author affiliation is within icddr,b. | author_expertise: At least three reliably DOI-matched authors have field overlap and publication records supporting relevant expertise: Md. Shaheen Alam (10 papers, h-index 4), Yeasir Karim (19 papers, h-index 8), and Mst. Noorjahan Begum (19 papers, h-index 4). Tanzim Rahman also has field overlap, though a smaller record. | institutional_collaboration: The fallback institution data contain three distinct institutions: the Department of Fisheries of Bangladesh, Bangladesh University of Engineering and Technology's International Training Network, and WHO Bangladesh. This is a 2-3-institute collaboration under the rubric.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "The affiliation text places the authors in multiple divisions of icddr,b (International Centre for Diarrhoeal Disease Research, Bangladesh), a well-established internationally recognized public-health and infectious-disease research institute. No commercial or low-credibility affiliations are indicated, and the first/main-author affiliation is within icddr,b."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least three reliably DOI-matched authors have field overlap and publication records supporting relevant expertise: Md. Shaheen Alam (10 papers, h-index 4), Yeasir Karim (19 papers, h-index 8), and Mst. Noorjahan Begum (19 papers, h-index 4). Tanzim Rahman also has field overlap, though a smaller record."
+        },
+        "institutional_collaboration": {
+          "score": 2,
+          "justification": "The fallback institution data contain three distinct institutions: the Department of Fisheries of Bangladesh, Bangladesh University of Engineering and Technology's International Training Network, and WHO Bangladesh. This is a 2-3-institute collaboration under the rubric."
+        }
+      },
+      "institutions_assessed": [
+        "Department of Fisheries of the Government of the People's Republic of Bangladesh",
+        "International Training Network, Bangladesh University of Engineering and Technology",
+        "World Health Organization - Bangladesh"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 19,
+      "flags": [
+        "ROR fallback institutions do not align with the paper header's icddr,b affiliation text, and author-to-institution links were lost in the fallback extraction.",
+        "Riaz Rahman Shanto was matched to a different author identity (Mustafizur Rahman), so that profile should not be treated as verified evidence for Riaz Rahman Shanto."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 1,
+      "justification": "Parse error",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "public_health_relevance": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "study_design_rigor": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        }
+      },
+      "quote_valid": false
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false
+    },
+    "references": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false,
+      "citation_verification": {
+        "n_entries_found": 9,
+        "n_resolved": 9,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 1,
+      "results_and_conclusion": 1,
+      "references": 1,
+      "feedback": null
+    },
+    "total": 6,
+    "max": 12,
+    "average": 1.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "reject",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion",
+      "references"
+    ]
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Md. Shaheen Alam' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Yeasir Karim' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Riaz Rahman Shanto' to a different author identity 'Mustafizur Rahman' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mustafizur Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Rubel Howlader' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Tanzim Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Muhammad Talha' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Fahmida Chowdhury' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mohammad Jubair' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mst. Noorjahan Begum' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'International Centre for Diarrhoeal Disease Research' to 'Mustafizur Rahman' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex had no verified institution data for this DOI — falling back to header-text affiliation extraction + ROR lookup (the author-institution link is lost in this path; institutions are matched as a flat list)."
+  ]
+}

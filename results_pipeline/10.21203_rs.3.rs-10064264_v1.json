@@ -1,0 +1,274 @@
+{
+  "source_pdf": "10.21203_rs.3.rs-10064264_v1.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 48,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Hongqi Liu; Xiaozhong Peng",
+      "all_authors": [
+        "Meng Zou",
+        "Zhihui Zheng",
+        "Peijie Qu",
+        "Cheng Wang",
+        "Xiaozhong Peng",
+        "Hongqi Liu"
+      ],
+      "affiliations": [
+        "National Human Diseases Animal Model Resource Center, NHC Key Laboratory of Human Disease Comparative Medicine, National Center of Technology Innovation for Animal Model, State Key Laboratory of Respiratory Health and Multimorbidity, and Key Laboratory of Pathogen Infection Prevention and Control, Ministry of Education, Institute of Laboratory Animal Science, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, China, 100021.",
+        "State Key Laboratory of Medical Molecular Biology, Department of Molecular Biology and Biochemistry, Institute of Basic Medical Sciences, Medical Primate Research Center, Neuroscience Center, Chinese Academy of Medical Sciences, School of Basic Medicine, Peking Union Medical College, Beijing, China, 100730."
+      ],
+      "n_authors": 6,
+      "n_institutes": 2
+    },
+    "ror_results": [
+      {
+        "author": "Meng Zou",
+        "position": "first",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      },
+      {
+        "author": "zhihui zheng",
+        "position": "middle",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      },
+      {
+        "author": "Peijie Qu",
+        "position": "middle",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      },
+      {
+        "author": "C Wang",
+        "position": "middle",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      },
+      {
+        "author": "xiaozhong peng",
+        "position": "middle",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      },
+      {
+        "author": "Hongqi Liu",
+        "position": "last",
+        "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+        "type": [
+          "education"
+        ],
+        "country": "CN",
+        "ror": "https://ror.org/02drdmm93"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Meng Zou",
+          "paper_count": 42,
+          "citation_count": 363,
+          "h_index": 10,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "zhihui zheng",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Peijie Qu",
+          "paper_count": 3,
+          "citation_count": 15,
+          "h_index": 2,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "xiaozhong peng",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Hongqi Liu",
+          "paper_count": 112,
+          "citation_count": 5456,
+          "h_index": 31,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": [
+        "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified.",
+        "Semantic Scholar name search also failed for corresponding author 'Hongqi Liu; Xiaozhong Peng' — no author expertise data available at all for this paper."
+      ]
+    },
+    "paper_fields": [
+      "Medicine"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'Meng Zou' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'zhihui zheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'Peijie Qu' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'cheng wang' to a different author identity 'C Wang' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'C Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'xiaozhong peng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Peking Union Medical College Hospital' to 'Hongqi Liu' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified.",
+      "Semantic Scholar name search also failed for corresponding author 'Hongqi Liu; Xiaozhong Peng' — no author expertise data available at all for this paper.",
+      "Semantic Scholar had no record for 5 author(s) — their publication stats were backfilled from OpenAlex instead."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "institution_reputability: All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type institution. The first and last authors are affiliated with this established nationally recognized medical research institution. | author_expertise: Two authors have clear field-matched, established publication records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (112 papers, h-index 31). Other authors have limited or incomplete verifiable publication evidence. | institutional_collaboration: Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College, despite authors being based in different internal laboratories and centers.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type institution. The first and last authors are affiliated with this established nationally recognized medical research institution."
+        },
+        "author_expertise": {
+          "score": 2,
+          "justification": "Two authors have clear field-matched, established publication records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (112 papers, h-index 31). Other authors have limited or incomplete verifiable publication evidence."
+        },
+        "institutional_collaboration": {
+          "score": 1,
+          "justification": "Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College, despite authors being based in different internal laboratories and centers."
+        }
+      },
+      "institutions_assessed": [
+        "Chinese Academy of Medical Sciences & Peking Union Medical College"
+      ],
+      "n_institutes": 1,
+      "corresponding_author_papers": 112,
+      "flags": [
+        "Semantic Scholar did not identify the paper by DOI and corresponding-author name search failed.",
+        "Publication statistics were largely backfilled from OpenAlex.",
+        "Cheng Wang's OpenAlex identity match may refer to a different author.",
+        "Affiliation text lists two internal CAMS/PUMC units, but normalized institution data contains only one parent institution."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 1,
+      "justification": "Parse error",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "public_health_relevance": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "study_design_rigor": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        }
+      },
+      "quote_valid": false
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false
+    },
+    "references": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false,
+      "citation_verification": {
+        "n_entries_found": 1,
+        "n_resolved": 0,
+        "n_unresolved": 1,
+        "unresolved": [
+          {
+            "entry": "54. Yan Y, Zhang F, Zou M, Chen H, Xu J, Lu S, Liu H: Identification of RACK1 as a novel regulator of non-structural protein 4 of chikungunya virus. Acta Biochi",
+            "resolved": false,
+            "method": "bibliographic_search_no_match"
+          }
+        ]
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 1,
+      "results_and_conclusion": 1,
+      "references": 1,
+      "feedback": null
+    },
+    "total": 5,
+    "max": 12,
+    "average": 1.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "reject",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion",
+      "references"
+    ]
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'Meng Zou' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'zhihui zheng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'Peijie Qu' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'cheng wang' to a different author identity 'C Wang' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'C Wang' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'xiaozhong peng' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Peking Union Medical College Hospital' to 'Hongqi Liu' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "Semantic Scholar has no record for this DOI — falling back to a name-only search for the corresponding author only; every other author's expertise is unverified.",
+    "Semantic Scholar name search also failed for corresponding author 'Hongqi Liu; Xiaozhong Peng' — no author expertise data available at all for this paper.",
+    "Semantic Scholar had no record for 5 author(s) — their publication stats were backfilled from OpenAlex instead."
+  ]
+}

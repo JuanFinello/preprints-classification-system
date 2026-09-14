@@ -1,0 +1,312 @@
+{
+  "source_pdf": "10.64898_2026.06.09.731176.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 34,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Jacob E. Lemieux",
+      "all_authors": [
+        "Paula Eillanny Silva Marinho",
+        "Dibya Ghimire",
+        "João Tsai Silva",
+        "Jamie Devlin",
+        "Sunyoung Kwon",
+        "Gordon Adams",
+        "Patricia Jorquera",
+        "Jeremy Luban",
+        "Jacob E. Lemieux"
+      ],
+      "affiliations": [
+        "Massachusetts General Hospital, Boston, MA",
+        "Moderna Tx",
+        "University of Massachusetts Chan Medical School, Worcester, MA"
+      ],
+      "n_authors": 9,
+      "n_institutes": 3
+    },
+    "ror_results": [
+      {
+        "author": "P Silva Marinho",
+        "position": "first",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "Dibya Ghimire",
+        "position": "middle",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "João Vitor Tsai Silva",
+        "position": "middle",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "Jamie Devlin",
+        "position": "middle",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "S Kwon",
+        "position": "middle",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "Gordon Adams",
+        "position": "middle",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      },
+      {
+        "author": "Jeremy Luban",
+        "position": "middle",
+        "name": "University of Massachusetts Chan Medical School",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/0464eyp60"
+      },
+      {
+        "author": "Jacob E. Lemieux",
+        "position": "last",
+        "name": "Massachusetts General Hospital",
+        "type": [
+          "healthcare"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/002pd6e78"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "P. S. Silva Marinho",
+          "paper_count": 3,
+          "citation_count": 5,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "first"
+        },
+        {
+          "name": "D. Ghimire",
+          "paper_count": 8,
+          "citation_count": 50,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "João Tsai Silva",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Devlin",
+          "paper_count": 3,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "S. Kwon",
+          "paper_count": 4,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "G. Adams",
+          "paper_count": 10,
+          "citation_count": 19,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Patricia A. Jorquera",
+          "paper_count": 5,
+          "citation_count": 189,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jeremy Luban",
+          "paper_count": 27,
+          "citation_count": 479,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jacob E. Lemieux",
+          "paper_count": 23,
+          "citation_count": 329,
+          "h_index": 7,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Agricultural and Biological Sciences",
+      "Biochemistry, Genetics and Molecular Biology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched the paper's byline name 'Paula Eillanny Silva Marinho' to a different author identity 'P Silva Marinho' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched the paper's byline name 'Sunyoung Kwon' to a different author identity 'S Kwon' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Moderna Therapeutics (United States)' to 'Patricia Jorquera' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "institution_reputability: The assessed affiliations are Massachusetts General Hospital, a major nationally and internationally recognized academic medical and research institution, and the University of Massachusetts Chan Medical School, a credible education and biomedical research institution. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital. | author_expertise: At least three authors have verifiable field-aligned publication records: Jacob E. Lemieux (23 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched authors including Gordon Adams, Patricia A. Jorquera, Dibya Ghimire, Jamie Devlin, and João Tsai Silva. The senior/last author Lemieux has strong field-matched publication evidence. | institutional_collaboration: The institution data identifies two distinct institutes: Massachusetts General Hospital and the University of Massachusetts Chan Medical School.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "The assessed affiliations are Massachusetts General Hospital, a major nationally and internationally recognized academic medical and research institution, and the University of Massachusetts Chan Medical School, a credible education and biomedical research institution. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least three authors have verifiable field-aligned publication records: Jacob E. Lemieux (23 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched authors including Gordon Adams, Patricia A. Jorquera, Dibya Ghimire, Jamie Devlin, and João Tsai Silva. The senior/last author Lemieux has strong field-matched publication evidence."
+        },
+        "institutional_collaboration": {
+          "score": 2,
+          "justification": "The institution data identifies two distinct institutes: Massachusetts General Hospital and the University of Massachusetts Chan Medical School."
+        }
+      },
+      "institutions_assessed": [
+        "Massachusetts General Hospital",
+        "University of Massachusetts Chan Medical School"
+      ],
+      "n_institutes": 2,
+      "corresponding_author_papers": 23,
+      "flags": [
+        "The reported Moderna Therapeutics affiliation was dropped from institution data as a likely author-affiliation mismatch.",
+        "OpenAlex author-identity matches for Paula Eillanny Silva Marinho and Sunyoung Kwon may be incomplete or assigned to different individuals."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 1,
+      "justification": "Parse error",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "public_health_relevance": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "study_design_rigor": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        }
+      },
+      "quote_valid": false
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false
+    },
+    "references": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false,
+      "citation_verification": {
+        "n_entries_found": 27,
+        "n_resolved": 27,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 1,
+      "results_and_conclusion": 1,
+      "references": 1,
+      "feedback": null
+    },
+    "total": 6,
+    "max": 12,
+    "average": 1.5,
+    "n_criteria_evaluated": 4,
+    "recommendation": "reject",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion",
+      "references"
+    ]
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched the paper's byline name 'Paula Eillanny Silva Marinho' to a different author identity 'P Silva Marinho' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched the paper's byline name 'Sunyoung Kwon' to a different author identity 'S Kwon' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Moderna Therapeutics (United States)' to 'Patricia Jorquera' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+  ]
+}

@@ -132,7 +132,7 @@ def main():
     ap.add_argument("--papers-dir", default="papers", help="Directory with PDF files")
     ap.add_argument("--results-dir", default="results", help="Directory for JSON outputs")
     ap.add_argument("--criteria", default="criteria.yaml", help="Path to criteria.yaml")
-    ap.add_argument("--model", default=DEFAULT_MODEL, help="Claude model to use")
+    ap.add_argument("--model", default=DEFAULT_MODEL, help="Model to use")
     ap.add_argument("--summary", default="results_summary.csv", help="Output summary CSV path")
     ap.add_argument("--no-skip", action="store_true", help="Re-evaluate even if result already exists")
     args = ap.parse_args()

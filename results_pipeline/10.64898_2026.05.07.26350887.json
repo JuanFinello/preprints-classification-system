@@ -1,0 +1,395 @@
+{
+  "source_pdf": "10.64898_2026.05.07.26350887.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 32,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Jiye Kwon",
+      "all_authors": [
+        "Jiye Kwon",
+        "Ellen M. de Vries",
+        "Philippe Lemey",
+        "Ke Li",
+        "Mallery Breban",
+        "Kelly Laing",
+        "Dave Ferguson",
+        "Wade Schulz",
+        "Carlos R. Oliveira",
+        "Louis J. Bont",
+        "Virginia E. Pitzer",
+        "Daniel M. Weinberger",
+        "Nathan D. Grubaugh",
+        "Verity Hill",
+        "Seth Redmond"
+      ],
+      "affiliations": [
+        "Department of Epidemiology of Microbial Diseases, Yale School of Public Health; New Haven, CT, USA.",
+        "Public Health Modeling Unit, Yale School of Public Health; New Haven, CT, USA.",
+        "Department of Microbiology, Immunology and Transplantation, Rega Institute, KU Leuven, Leuven, Belgium.",
+        "Department of Laboratory Medicine, Yale School of Medicine; New Haven, CT, USA.",
+        "Yale School of Medicine Biorepository, Yale University; New Haven, CT, USA.",
+        "Department of Pediatrics, Section of Infectious Diseases and Global Health, Yale School of Medicine, New Haven, Connecticut.",
+        "Department of Biostatistics, Section of Health Informatics, Yale School of Public Health, New Haven, Connecticut.",
+        "Department of Biomedical Informatics and Data Science, Yale School of Medicine, New Haven, Connecticut.",
+        "Department of Pediatric Infectious Diseases and Immunology, Wilhelmina Children's Hospital, University Medical Center Utrecht, Utrecht, the Netherlands.",
+        "Department of Ecology and Evolutionary Biology, Yale University; New Haven, CT, USA."
+      ],
+      "n_authors": 15,
+      "n_institutes": 10
+    },
+    "ror_results": [
+      {
+        "author": "Philippe Lemey",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      },
+      {
+        "author": "Dave Ferguson",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Wade L. Schulz",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Louis J Bont",
+        "position": "middle",
+        "name": "University Medical Center Utrecht",
+        "type": [
+          "healthcare"
+        ],
+        "country": "NL",
+        "ror": "https://ror.org/0575yy874"
+      },
+      {
+        "author": "Nathan D Grubaugh",
+        "position": "middle",
+        "name": "Yale University",
+        "type": [
+          "education"
+        ],
+        "country": "US",
+        "ror": "https://ror.org/03v76x132"
+      },
+      {
+        "author": "Verity Hill",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "J. Kwon",
+          "paper_count": 5,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "first"
+        },
+        {
+          "name": "E. M. de Vries",
+          "paper_count": 5,
+          "citation_count": 74,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "P. Lemey",
+          "paper_count": 17,
+          "citation_count": 206,
+          "h_index": 7,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "K. Li",
+          "paper_count": 4,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Breban",
+          "paper_count": 72,
+          "citation_count": 2241,
+          "h_index": 21,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "K. Laing",
+          "paper_count": 2,
+          "citation_count": 3,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "D. Ferguson",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "W. Schulz",
+          "paper_count": 2,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "C. Oliveira",
+          "paper_count": 7,
+          "citation_count": 47,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "L. Bont",
+          "paper_count": 5,
+          "citation_count": 21,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "V. Pitzer",
+          "paper_count": 196,
+          "citation_count": 8152,
+          "h_index": 46,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "D. M. Weinberger",
+          "paper_count": 7,
+          "citation_count": 8,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "N. Grubaugh",
+          "paper_count": 235,
+          "citation_count": 20193,
+          "h_index": 64,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "V. Hill",
+          "paper_count": 77,
+          "citation_count": 16646,
+          "h_index": 40,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "S. Redmond",
+          "paper_count": 2,
+          "citation_count": 146,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Medicine",
+      "Immunology and Microbiology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'Yale University' to 'Jiye Kwon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale New Haven Health System' to 'Jiye Kwon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Ellen M. de Vries' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Rega Institute for Medical Research' to 'Philippe Lemey' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Ke Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale New Haven Health System' to 'Ke Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Mallery Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Kelly Laing' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Carlos R. Oliveira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Louis J. Bont' to a different author identity 'Louis J Bont' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale University' to 'Louis J Bont' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Wilhelmina Children's Hospital' to 'Louis J Bont' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Virginia E. Pitzer' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale New Haven Health System' to 'Virginia E. Pitzer' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Daniel M. Weinberger' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale New Haven Health System' to 'Daniel M. Weinberger' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Nathan D. Grubaugh' to a different author identity 'Nathan D Grubaugh' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Yale New Haven Health System' to 'Nathan D Grubaugh' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Rega Institute for Medical Research' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Yale University' to 'Seth Redmond' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "institution_reputability: The assessed institutions are credible education or healthcare research institutions (Yale University, KU Leuven, and University Medical Center Utrecht). However, the institution data contains no first- or last-author institutional record, so the main/corresponding author's affiliation with a globally or nationally recognized institution cannot be verified from the prescribed position-tagged institution data. | author_expertise: At least four authors have reliable DOI-linked, field-matched records showing established relevant publication histories: Philippe Lemey (17 papers, h-index 7), Mallery Breban (72, h-index 21), Virginia E. Pitzer (196, h-index 46), and Verity Hill (77, h-index 40). | institutional_collaboration: The institution data identifies three distinct collaborating institutions: Yale University, KU Leuven, and University Medical Center Utrecht.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 2,
+          "justification": "The assessed institutions are credible education or healthcare research institutions (Yale University, KU Leuven, and University Medical Center Utrecht). However, the institution data contains no first- or last-author institutional record, so the main/corresponding author's affiliation with a globally or nationally recognized institution cannot be verified from the prescribed position-tagged institution data."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least four authors have reliable DOI-linked, field-matched records showing established relevant publication histories: Philippe Lemey (17 papers, h-index 7), Mallery Breban (72, h-index 21), Virginia E. Pitzer (196, h-index 46), and Verity Hill (77, h-index 40)."
+        },
+        "institutional_collaboration": {
+          "score": 2,
+          "justification": "The institution data identifies three distinct collaborating institutions: Yale University, KU Leuven, and University Medical Center Utrecht."
+        }
+      },
+      "institutions_assessed": [
+        "Yale University",
+        "KU Leuven",
+        "University Medical Center Utrecht"
+      ],
+      "n_institutes": 3,
+      "corresponding_author_papers": 5,
+      "flags": [
+        "Institutional records for the first/corresponding author were dropped as likely OpenAlex mismatches, leaving no position-tagged first or last author institution for verification.",
+        "Several OpenAlex author-institution matches were flagged as mismatches or potentially different author identities; institutional coverage is incomplete."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "objective_and_hypothesis: This matches the score_3 description: the paper states specific, testable aims concerning lineage origins, persistence, and age-stratified transmission, and applies corresponding phylogeographic and discrete-trait phylodynamic methods. The rationale is grounded in prior evidence on RSV burden and uncertainty about which ages drive spread. | public_health_relevance: This matches the score_2 description because RSV is clearly presented as a major public-health concern and the study addresses transmission-relevant prevention strategy, but it is not tied to a named or documented outbreak such as a WHO Disease Outbreak News event. | study_design_rigor: This matches the score_3 description: the paper details hospital-based sampling, extraction, primer validation in 182 mixed-genotype samples, sequencing, consensus calling, down-sampling, and Bayesian phylogenetic analyses. It also provides public sequence, data, and code links, supporting replication.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 3,
+          "justification": "This matches the score_3 description: the paper states specific, testable aims concerning lineage origins, persistence, and age-stratified transmission, and applies corresponding phylogeographic and discrete-trait phylodynamic methods. The rationale is grounded in prior evidence on RSV burden and uncertainty about which ages drive spread.",
+          "quote": "The main objectives of our study are to: 1) identify the local Connecticut lineages relative to global diversity across both subtypes;",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 2,
+          "justification": "This matches the score_2 description because RSV is clearly presented as a major public-health concern and the study addresses transmission-relevant prevention strategy, but it is not tied to a named or documented outbreak such as a WHO Disease Outbreak News event.",
+          "quote": "Respiratory syncytial virus (RSV) remains the leading cause of lower respiratory tract infections globally, driving substantial morbidity and mortality",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "This matches the score_3 description: the paper details hospital-based sampling, extraction, primer validation in 182 mixed-genotype samples, sequencing, consensus calling, down-sampling, and Bayesian phylogenetic analyses. It also provides public sequence, data, and code links, supporting replication.",
+          "quote": "Data and code used in this study are publicly available on GitHub:",
+          "quote_valid": true
+        }
+      },
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "This matches the score_1 description because Figure 1A's contingency table reports 328 RSV-A sequences among 456 in 2024/25, which is about 72%, not the stated 76%; thus the text is inconsistent with its displayed data. The same paper's Figure 2 identifies 76 local clades and Figure 3 identifies seven potential trans-seasonal clades, whereas the discussion reports 11% trans-seasonal persistence, another numerical inconsistency.",
+      "quote": "with a switch in 2024/25 to predominantly RSV-A (76%) (Figure 1A).",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 58,
+      "justification": "The references provide broad coverage of foundational RSV burden and transmission work, recent immunization and surveillance literature, genomic RSV studies, and relevant phylogenetic and sequencing methods. The list includes several non-peer-reviewed/web surveillance resources (for example, PopHIVE and RSV-NET), but these are used as data-source citations alongside predominantly peer-reviewed, domain-relevant sources; no clearly unrelated citation was identified.",
+      "quote": "The genomic evolutionary dynamics and global circulation patterns of respiratory syncytial virus.",
+      "score": 2,
+      "quote_valid": false,
+      "score_note": "downgraded 3→2: supporting quote not found verbatim in text",
+      "citation_verification": {
+        "n_entries_found": 4,
+        "n_resolved": 4,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 1,
+      "references": 2,
+      "feedback": null
+    },
+    "total": 8,
+    "max": 12,
+    "average": 2.0,
+    "n_criteria_evaluated": 4,
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": [
+      "references"
+    ]
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'Yale University' to 'Jiye Kwon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale New Haven Health System' to 'Jiye Kwon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Ellen M. de Vries' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Rega Institute for Medical Research' to 'Philippe Lemey' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Ke Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale New Haven Health System' to 'Ke Li' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Mallery Breban' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Kelly Laing' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Carlos R. Oliveira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Louis J. Bont' to a different author identity 'Louis J Bont' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale University' to 'Louis J Bont' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Wilhelmina Children's Hospital' to 'Louis J Bont' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Virginia E. Pitzer' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale New Haven Health System' to 'Virginia E. Pitzer' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Daniel M. Weinberger' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale New Haven Health System' to 'Daniel M. Weinberger' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Nathan D. Grubaugh' to a different author identity 'Nathan D Grubaugh' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Yale New Haven Health System' to 'Nathan D Grubaugh' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Rega Institute for Medical Research' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Verity Hill' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Yale University' to 'Seth Redmond' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch."
+  ]
+}

@@ -1,0 +1,573 @@
+{
+  "source_pdf": "10.64898_2026.06.25.26356562.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 16,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Leandre Murhula Masirika",
+      "all_authors": [
+        "Leandre Murhula Masirika",
+        "Jean Claude Udahemuka",
+        "David F. Nieuwenhuijse",
+        "Bertin Chasinga",
+        "Reuben Sindayiheba",
+        "Leonard Schuele",
+        "Hayley Cassidy",
+        "Francisco Bacon Benimana",
+        "Akili Chigabo",
+        "Jacques Bihando",
+        "Gisèle Nzigire Barhatwira",
+        "Justin Bengehya Mbiribindi",
+        "Jules Ndoli Minega",
+        "Trudie Lang",
+        "Willy Lulihoshi Kasi",
+        "Polepole Ngabo",
+        "Stephanie Mitchell",
+        "Christian Gortazar",
+        "Frank M. Aarestrup",
+        "Esto Bahizire",
+        "Marion Koopmans",
+        "Bas B. Oude Munnink",
+        "Pacifique Ndishimye"
+      ],
+      "affiliations": [
+        "Centre de Recherche en Sciences Naturelles de Lwiro, South Kivu, DS Bukavu, DRC",
+        "SaBio Instituto de Investigación en Recursos Cinegéticos IREC (Universidad de Castilla-La Mancha & CSIC), Ciudad Real, Spain",
+        "Congo Outbreaks, Research for Development, South-Kivu, Bukavu, DRC",
+        "Department of Veterinary Medicine, University of Rwanda, Nyagatare, Rwanda",
+        "Department of Viroscience, Pandemic and Disaster Preparedness Centre, Erasmus University Medical Center, Rotterdam, the Netherlands",
+        "Université Catholoique de Bukavu, UCB, Bugabo Campus, Bukavu, DRC",
+        "Rwanda Biomedical Centre/ National Reference Laboratory, Kigali, Rwanda",
+        "University Teaching Hospital of Butare, Huye, Rwanda",
+        "Division Provinciale de la Santé, DPS South Kivu, Bukavu, DRC",
+        "The Global Health Network, University of Oxford, Oxford, UK",
+        "SMitchell Consulting, LLC, Sammamish WA, USA",
+        "Center for One Health Research, Dept. of Environmental Health, University of Washington, Seattle WA, USA",
+        "Research Group for Genomic Epidemiology, National Food Institute, Technical University of Denmark, Lyngby, Denmark",
+        "Stansile, Kigali, Rwanda",
+        "Epidemic Response Laboratory, African Institute for Mathematical Sciences (AIMS), Kigali, Rwanda"
+      ],
+      "n_authors": 23,
+      "n_institutes": 15
+    },
+    "ror_results": [
+      {
+        "author": "Leandre Murhula Masirika",
+        "position": "first",
+        "name": "Instituto de Investigación en Recursos Cinegéticos",
+        "type": [
+          "facility"
+        ],
+        "country": "ES",
+        "ror": "https://ror.org/0140hpe71"
+      },
+      {
+        "author": "Leandre Murhula Masirika",
+        "position": "first",
+        "name": "University of Castilla-La Mancha",
+        "type": [
+          "education"
+        ],
+        "country": "ES",
+        "ror": "https://ror.org/05r78ng12"
+      },
+      {
+        "author": "Jean Claude Udahemuka",
+        "position": "middle",
+        "name": "University of Rwanda",
+        "type": [
+          "education"
+        ],
+        "country": "RW",
+        "ror": "https://ror.org/00286hs46"
+      },
+      {
+        "author": "Reuben Sindayiheba",
+        "position": "middle",
+        "name": "Rwanda Biomedical Center",
+        "type": [
+          "healthcare"
+        ],
+        "country": "RW",
+        "ror": "https://ror.org/03jggqf79"
+      },
+      {
+        "author": "Francisco Bacon Benimana",
+        "position": "middle",
+        "name": "University Teaching Hospital of Butare",
+        "type": [
+          "healthcare"
+        ],
+        "country": "RW",
+        "ror": "https://ror.org/05rkvrx68"
+      },
+      {
+        "author": "Jules Ndoli Minega",
+        "position": "middle",
+        "name": "University Teaching Hospital of Butare",
+        "type": [
+          "healthcare"
+        ],
+        "country": "RW",
+        "ror": "https://ror.org/05rkvrx68"
+      },
+      {
+        "author": "Trudie Lang",
+        "position": "middle",
+        "name": "University of Oxford",
+        "type": [
+          "education"
+        ],
+        "country": "GB",
+        "ror": "https://ror.org/052gg0110"
+      },
+      {
+        "author": "Christian Gortázar",
+        "position": "middle",
+        "name": "Instituto de Investigación en Recursos Cinegéticos",
+        "type": [
+          "facility"
+        ],
+        "country": "ES",
+        "ror": "https://ror.org/0140hpe71"
+      },
+      {
+        "author": "Christian Gortázar",
+        "position": "middle",
+        "name": "University of Castilla-La Mancha",
+        "type": [
+          "education"
+        ],
+        "country": "ES",
+        "ror": "https://ror.org/05r78ng12"
+      },
+      {
+        "author": "Frank M. Aarestrup",
+        "position": "middle",
+        "name": "Technical University of Denmark",
+        "type": [
+          "education"
+        ],
+        "country": "DK",
+        "ror": "https://ror.org/04qtj9h94"
+      },
+      {
+        "author": "Pacifique Ndishimye",
+        "position": "last",
+        "name": "African Institute for Mathematical Sciences",
+        "type": [
+          "education"
+        ],
+        "country": "RW",
+        "ror": "https://ror.org/02w32z542"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "L. Murhula",
+          "paper_count": 2,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": ""
+        },
+        {
+          "name": "J. Udahemuka",
+          "paper_count": 26,
+          "citation_count": 382,
+          "h_index": 11,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "D. Nieuwenhuijse",
+          "paper_count": 55,
+          "citation_count": 3950,
+          "h_index": 21,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "B. Chasinga",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "R. Sindayiheba",
+          "paper_count": 10,
+          "citation_count": 68,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "L. Schuele",
+          "paper_count": 16,
+          "citation_count": 284,
+          "h_index": 8,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "H. Cassidy",
+          "paper_count": 24,
+          "citation_count": 432,
+          "h_index": 7,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "F. Bacon Benimana",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "A. Chigabo",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Bihando",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "G. Nzigire Barhatwira",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "J. Bengehya Mbiribindi",
+          "paper_count": 3,
+          "citation_count": 7,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Ndoli Minega",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "T. Lang",
+          "paper_count": 7,
+          "citation_count": 183,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "K. Lulihoshi Willy",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "P. Ngabo",
+          "paper_count": 3,
+          "citation_count": 27,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "S. Mitchell",
+          "paper_count": 2,
+          "citation_count": 12,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "C. Gortázar",
+          "paper_count": 5,
+          "citation_count": 63,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "F. M. Aarestrup",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "E. Bahizire",
+          "paper_count": 37,
+          "citation_count": 282,
+          "h_index": 10,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Koopmans",
+          "paper_count": 17,
+          "citation_count": 111,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "B. O. Oude Munnink",
+          "paper_count": 128,
+          "citation_count": 6727,
+          "h_index": 34,
+          "match_method": "doi",
+          "field_match": null,
+          "position": "middle"
+        },
+        {
+          "name": "P. Ndishimye",
+          "paper_count": 51,
+          "citation_count": 3399,
+          "h_index": 16,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "last"
+        },
+        {
+          "name": "Leandre Murhula Masirika",
+          "paper_count": 15,
+          "citation_count": 370,
+          "h_index": 7,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "first"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Immunology and Microbiology",
+      "Medicine"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'University of Kigali' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Evangélique en Afrique' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'University of Castilla-La Mancha' matched 'Leandre Murhula Masirika' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'University of Kigali' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Evangélique en Afrique' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'David F. Nieuwenhuijse' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Catholique de Bukavu' to 'Bertin Chasinga' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'Leonard Schuele' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'Hayley Cassidy' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Akili Chigabo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Jacques Bihando' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Gisèle Nzigire Barhatwira' to a different author identity 'Gisele Nzigire Barhatwira' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Evangélique en Afrique' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Justin Bengehya Mbiribindi' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Kasi Lulihoshi Willy' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Officielle de Bukavu' to 'Polepole Ngabo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Washington State Department of Health' to 'Stephanie Mitchell' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Parallel Consulting (United States)' to 'Stephanie Mitchell' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Christian Gortazar' to a different author identity 'Christian Gortázar' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "'University of Castilla-La Mancha' matched 'Christian Gortázar' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'Université Catholique de Bukavu' to 'Esto Bahizire' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'Bas B. Oude Munnink' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'University of Kigali' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Evangélique en Afrique' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "Semantic Scholar had no record for 1 author(s) — their publication stats were backfilled from OpenAlex instead."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 2,
+      "justification": "institution_reputability: The collaboration includes many credible education, research, and healthcare institutions, and the first author is affiliated with the Instituto de Investigación en Recursos Cinegéticos and University of Castilla-La Mancha. However, the affiliation list also includes SMitchell Consulting, LLC, a commercial entity, which meets the score-1 condition. | author_expertise: More than three authors have verifiable field-matched publication records with established metrics, including first author Leandre Murhula Masirika (15 papers, h-index 7), Jean Claude Udahemuka (26, h-index 11), David F. Nieuwenhuijse (55, h-index 21), Leonard Schuele (16, h-index 8), Hayley Cassidy (24, h-index 7), Esto Bahizire (37, h-index 10), and last author Pacifique Ndishimye (51, h-index 16). | institutional_collaboration: Institution data identifies eight distinct institutions, exceeding the more-than-three-institutes threshold.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 1,
+          "justification": "The collaboration includes many credible education, research, and healthcare institutions, and the first author is affiliated with the Instituto de Investigación en Recursos Cinegéticos and University of Castilla-La Mancha. However, the affiliation list also includes SMitchell Consulting, LLC, a commercial entity, which meets the score-1 condition."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "More than three authors have verifiable field-matched publication records with established metrics, including first author Leandre Murhula Masirika (15 papers, h-index 7), Jean Claude Udahemuka (26, h-index 11), David F. Nieuwenhuijse (55, h-index 21), Leonard Schuele (16, h-index 8), Hayley Cassidy (24, h-index 7), Esto Bahizire (37, h-index 10), and last author Pacifique Ndishimye (51, h-index 16)."
+        },
+        "institutional_collaboration": {
+          "score": 3,
+          "justification": "Institution data identifies eight distinct institutions, exceeding the more-than-three-institutes threshold."
+        }
+      },
+      "institutions_assessed": [
+        "Instituto de Investigación en Recursos Cinegéticos",
+        "University of Castilla-La Mancha",
+        "University of Rwanda",
+        "Rwanda Biomedical Center",
+        "University Teaching Hospital of Butare",
+        "University of Oxford",
+        "Technical University of Denmark",
+        "African Institute for Mathematical Sciences"
+      ],
+      "n_institutes": 8,
+      "corresponding_author_papers": 15,
+      "flags": [
+        "SMitchell Consulting, LLC is a commercial affiliation.",
+        "Several affiliations in the paper affiliation list have no corresponding institution-type record in the supplied OpenAlex data, so their institutional status is not independently verified.",
+        "Some author/institution identity matches were flagged as likely mismatches and excluded from assessment."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 1,
+      "justification": "Parse error",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "public_health_relevance": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        },
+        "study_design_rigor": {
+          "score": 1,
+          "justification": "Parse error",
+          "quote": "",
+          "quote_valid": false
+        }
+      },
+      "quote_valid": false
+    },
+    "results_and_conclusion": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false
+    },
+    "references": {
+      "score": 1,
+      "justification": "Parse error",
+      "quote": "",
+      "quote_valid": false,
+      "citation_verification": {
+        "n_entries_found": 28,
+        "n_resolved": 27,
+        "n_unresolved": 1,
+        "unresolved": [
+          {
+            "entry": "4. Ladnyj, D., Ziegler, P., & Kima3, E. (1972). A human infection caused by monkeypox virus in Basankusu Territory, Democratic Republic of the Congo *. In Bull.",
+            "resolved": false,
+            "method": "bibliographic_search_no_match"
+          }
+        ]
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 2,
+      "research_question_and_methods": 1,
+      "results_and_conclusion": 1,
+      "references": 1,
+      "feedback": null
+    },
+    "total": 5,
+    "max": 12,
+    "average": 1.25,
+    "n_criteria_evaluated": 4,
+    "recommendation": "reject",
+    "quotes_invalid": [
+      "research_question_and_methods",
+      "results_and_conclusion",
+      "references"
+    ]
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'University of Kigali' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Evangélique en Afrique' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'University of Castilla-La Mancha' matched 'Leandre Murhula Masirika' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'University of Kigali' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Evangélique en Afrique' to 'Jean Claude Udahemuka' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'David F. Nieuwenhuijse' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Catholique de Bukavu' to 'Bertin Chasinga' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'Leonard Schuele' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'Hayley Cassidy' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Akili Chigabo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Jacques Bihando' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Gisèle Nzigire Barhatwira' to a different author identity 'Gisele Nzigire Barhatwira' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Evangélique en Afrique' to 'Gisele Nzigire Barhatwira' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Justin Bengehya Mbiribindi' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Kasi Lulihoshi Willy' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Officielle de Bukavu' to 'Polepole Ngabo' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Washington State Department of Health' to 'Stephanie Mitchell' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Parallel Consulting (United States)' to 'Stephanie Mitchell' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Christian Gortazar' to a different author identity 'Christian Gortázar' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "'University of Castilla-La Mancha' matched 'Christian Gortázar' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'Université Catholique de Bukavu' to 'Esto Bahizire' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'Bas B. Oude Munnink' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'University of Kigali' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Evangélique en Afrique' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "Semantic Scholar had no record for 1 author(s) — their publication stats were backfilled from OpenAlex instead."
+  ]
+}

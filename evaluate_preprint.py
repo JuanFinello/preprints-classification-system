@@ -1803,7 +1803,7 @@ def main():
     ap.add_argument("--pdf", required=True, help="Path to the preprint PDF")
     ap.add_argument("--criteria", default="criteria.yaml", help="Path to criteria.yaml")
     ap.add_argument("--out", required=True, help="Output JSON path")
-    ap.add_argument("--model", default=DEFAULT_MODEL, help="Claude model to use")
+    ap.add_argument("--model", default=DEFAULT_MODEL, help="Model to use")
     args = ap.parse_args()
 
     pdf_path = Path(args.pdf)
