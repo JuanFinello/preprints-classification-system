@@ -43,3 +43,6 @@ venv/
 
 # Local backup of manually loaded calibration scores
 claude_scores_pipeline_manual_*.csv
+
+# Predicciones congeladas: se regeneran corriendo score_candidates.py
+predictions_frozen.csv

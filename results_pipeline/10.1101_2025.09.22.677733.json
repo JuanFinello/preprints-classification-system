@@ -1,0 +1,638 @@
+{
+  "source_pdf": "10.1101_2025.09.22.677733.pdf",
+  "model": "gpt-5.6-terra",
+  "n_pages": 41,
+  "author_enrichment": {
+    "extracted": {
+      "corresponding_author": "Martin Ferrié; Johan Neyts",
+      "all_authors": [
+        "Martin Ferrié",
+        "Maïlis Darmuzey",
+        "Itona Tarillon",
+        "Thibault Tubiana",
+        "Mona Khan",
+        "Tania Roskams",
+        "Birgit Weynand",
+        "Dietmar Rudolf Thal",
+        "Niels Cremers",
+        "Stijn Hendrickx",
+        "Kim Donckers",
+        "Thayara Morais Portal",
+        "Bert Vanmechelen",
+        "Viktor Lemmens",
+        "Joana RochaPereira",
+        "Concetta Castilletti",
+        "Peter Mombaerts",
+        "Stéphane Bressanelli",
+        "Manon Laporte",
+        "Hélène Malet",
+        "Johan Neyts"
+      ],
+      "affiliations": [
+        "KU Leuven, Department of Microbiology, Immunology and Transplantation, Rega Institute for Medical Research, Virology, Antiviral Drug and Vaccine Research Group & VirusBank Platform, Leuven, Belgium.",
+        "University Grenoble Alpes, CEA, CNRS, IBS, Grenoble, France.",
+        "Institute for Integrative Biology of the Cell (I2BC), Université Paris-Saclay, CEA, CNRS, Gif-sur-Yvette, France.",
+        "Max Planck Research Unit for Neurogenetics, Frankfurt, Germany.",
+        "KU Leuven, Department of Imaging and Pathology, Division of Translational Cell and Tissue Research, Leuven, Belgium.",
+        "UZ Leuven, Department of Pathology, Leuven, Belgium.",
+        "KU Leuven, Department of Imaging and Pathology and Leuven Brain Institute (LBI), Laboratory of Neuropathology, Leuven, Belgium.",
+        "KU Leuven, Department of Microbiology, Immunology and Transplantation, Rega Institute for Medical Research, Virus-Host Interactions & Therapeutic Approaches Research Group, Leuven, Belgium.",
+        "Department of Infectious-Tropical Diseases and Microbiology, IRCCS Sacro Cuore Don Calabria Hospital, Negrar Di Valpolicella, Verona, Italy."
+      ],
+      "n_authors": 21,
+      "n_institutes": 9
+    },
+    "ror_results": [
+      {
+        "author": "Martin Ferrié",
+        "position": "first",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Maïlis Darmuzey",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Thibault Tubiana",
+        "position": "middle",
+        "name": "Université Paris-Saclay",
+        "type": [
+          "education"
+        ],
+        "country": "FR",
+        "ror": "https://ror.org/03xjwb503"
+      },
+      {
+        "author": "Mona Khan",
+        "position": "middle",
+        "name": "Max Planck Research Unit for Neurogenetics",
+        "type": [
+          "facility"
+        ],
+        "country": "DE",
+        "ror": "https://ror.org/04fx38p98"
+      },
+      {
+        "author": "Tania Roskams",
+        "position": "middle",
+        "name": "Universitair Ziekenhuis Leuven",
+        "type": [
+          "healthcare"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/0424bsv16"
+      },
+      {
+        "author": "Tania Roskams",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      },
+      {
+        "author": "Birgit Weynand",
+        "position": "middle",
+        "name": "Universitair Ziekenhuis Leuven",
+        "type": [
+          "healthcare"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/0424bsv16"
+      },
+      {
+        "author": "Birgit Weynand",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      },
+      {
+        "author": "Dietmar Rudolf Thal",
+        "position": "middle",
+        "name": "Universitair Ziekenhuis Leuven",
+        "type": [
+          "healthcare"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/0424bsv16"
+      },
+      {
+        "author": "Dietmar Rudolf Thal",
+        "position": "middle",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      },
+      {
+        "author": "Niels Cremers",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Stijn Hendrickx",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Kim Donckers",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Thayara Morais Portal",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Bert Vanmechelen",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Viktor Lemmens",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Joana Rocha-Pereira",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Peter Mombaerts",
+        "position": "middle",
+        "name": "Max Planck Research Unit for Neurogenetics",
+        "type": [
+          "facility"
+        ],
+        "country": "DE",
+        "ror": "https://ror.org/04fx38p98"
+      },
+      {
+        "author": "Stéphane Bressanelli",
+        "position": "middle",
+        "name": "Université Paris-Saclay",
+        "type": [
+          "education"
+        ],
+        "country": "FR",
+        "ror": "https://ror.org/03xjwb503"
+      },
+      {
+        "author": "Manon Laporte",
+        "position": "middle",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Johan Neyts",
+        "position": "last",
+        "name": "Rega Institute for Medical Research",
+        "type": [
+          "facility"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/03w5j8p12"
+      },
+      {
+        "author": "Johan Neyts",
+        "position": "last",
+        "name": "KU Leuven",
+        "type": [
+          "education"
+        ],
+        "country": "BE",
+        "ror": "https://ror.org/05f950310"
+      }
+    ],
+    "institution_source": "openalex",
+    "semantic_scholar": {
+      "authors": [
+        {
+          "name": "Martin Ferrié",
+          "paper_count": 19,
+          "citation_count": 128,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "first"
+        },
+        {
+          "name": "Maïlis Darmuzey",
+          "paper_count": 6,
+          "citation_count": 124,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Itona Tarillon",
+          "paper_count": 0,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Thibault Tubiana",
+          "paper_count": 29,
+          "citation_count": 514,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Mona Khan",
+          "paper_count": 29,
+          "citation_count": 1479,
+          "h_index": 18,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Tania Roskams",
+          "paper_count": 2,
+          "citation_count": 1,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "B. Weynand",
+          "paper_count": 22,
+          "citation_count": 88,
+          "h_index": 6,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "D. Thal",
+          "paper_count": 80,
+          "citation_count": 1127,
+          "h_index": 15,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Niels Cremers",
+          "paper_count": 7,
+          "citation_count": 36,
+          "h_index": 2,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Stijn Hendrickx",
+          "paper_count": 4,
+          "citation_count": 14,
+          "h_index": 1,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Kim Donckers",
+          "paper_count": 11,
+          "citation_count": 663,
+          "h_index": 9,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Thayara Morais Portal",
+          "paper_count": 10,
+          "citation_count": 105,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "B. Vanmechelen",
+          "paper_count": 73,
+          "citation_count": 3432,
+          "h_index": 21,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "V. Lemmens",
+          "paper_count": 13,
+          "citation_count": 334,
+          "h_index": 5,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "J. Rocha-Pereira",
+          "paper_count": 83,
+          "citation_count": 2834,
+          "h_index": 25,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "C. Castilletti",
+          "paper_count": 50,
+          "citation_count": 278,
+          "h_index": 10,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Peter Mombaerts",
+          "paper_count": 12,
+          "citation_count": 143,
+          "h_index": 4,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "S. Bressanelli",
+          "paper_count": 12,
+          "citation_count": 53,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "M. Laporte",
+          "paper_count": 35,
+          "citation_count": 1219,
+          "h_index": 12,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "middle"
+        },
+        {
+          "name": "Hélène Malet",
+          "paper_count": 4,
+          "citation_count": 31,
+          "h_index": 3,
+          "match_method": "doi",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "J. Neyts",
+          "paper_count": 76,
+          "citation_count": 597,
+          "h_index": 10,
+          "match_method": "doi",
+          "field_match": false,
+          "position": "last"
+        }
+      ],
+      "warnings": []
+    },
+    "paper_fields": [
+      "Agricultural and Biological Sciences",
+      "Biochemistry, Genetics and Molecular Biology"
+    ],
+    "data_quality_warnings": [
+      "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'CEA Grenoble' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut de Biologie Structurale' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Grenoble Alpes' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut de Biologie Intégrative de la Cellule' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'CEA Paris-Saclay' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Universitair Ziekenhuis Leuven' matched 'Tania Roskams' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+      "'Universitair Ziekenhuis Leuven' matched 'Birgit Weynand' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'Allen Institute for Brain Science' to 'Dietmar Rudolf Thal' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Universitair Ziekenhuis Leuven' matched 'Dietmar Rudolf Thal' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+      "OpenAlex matched 'VIB-KU Leuven Center for Brain & Disease Research' to 'Dietmar Rudolf Thal' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Ospedale Sacro Cuore Don Calabria' to 'Concetta Castilletti' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut de Biologie Intégrative de la Cellule' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'CEA Paris-Saclay' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'CEA Grenoble' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Institut de Biologie Structurale' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched 'Université Grenoble Alpes' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "'Martin Ferrié': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Mona Khan': top research fields (Neuroscience, Nursing, Neuroscience) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Dietmar Rudolf Thal': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Kim Donckers': top research fields (Medicine, Computer Science, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Viktor Lemmens': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Concetta Castilletti': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Peter Mombaerts': top research fields (Neuroscience, Nursing, Neuroscience) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Manon Laporte': top research fields (Medicine, Medicine, Nursing) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+      "'Johan Neyts': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field."
+    ]
+  },
+  "criteria": {
+    "author_credibility": {
+      "score": 3,
+      "justification": "institution_reputability: All assessed affiliations are credible education, research-facility, or academic healthcare institutions. The first author is affiliated with the Rega Institute for Medical Research, and the last/corresponding author is affiliated with both Rega Institute and KU Leuven, a nationally and internationally recognized university. | author_expertise: At least four authors have field-matched, established publication records (more than 10 papers and h-index above 3): Thibault Tubiana, Birgit Weynand, Bert Vanmechelen, and Joana Rocha-Pereira. The first and last authors' profiles do not show field overlap in the supplied data, but this does not negate the independently sufficient evidence from 3 or more other authors. | institutional_collaboration: The institution data identify five distinct institutions: Rega Institute for Medical Research, Université Paris-Saclay, Max Planck Research Unit for Neurogenetics, Universitair Ziekenhuis Leuven, and KU Leuven.",
+      "sub_scores": {
+        "institution_reputability": {
+          "score": 3,
+          "justification": "All assessed affiliations are credible education, research-facility, or academic healthcare institutions. The first author is affiliated with the Rega Institute for Medical Research, and the last/corresponding author is affiliated with both Rega Institute and KU Leuven, a nationally and internationally recognized university."
+        },
+        "author_expertise": {
+          "score": 3,
+          "justification": "At least four authors have field-matched, established publication records (more than 10 papers and h-index above 3): Thibault Tubiana, Birgit Weynand, Bert Vanmechelen, and Joana Rocha-Pereira. The first and last authors' profiles do not show field overlap in the supplied data, but this does not negate the independently sufficient evidence from 3 or more other authors."
+        },
+        "institutional_collaboration": {
+          "score": 3,
+          "justification": "The institution data identify five distinct institutions: Rega Institute for Medical Research, Université Paris-Saclay, Max Planck Research Unit for Neurogenetics, Universitair Ziekenhuis Leuven, and KU Leuven."
+        }
+      },
+      "institutions_assessed": [
+        "Rega Institute for Medical Research",
+        "Université Paris-Saclay",
+        "Max Planck Research Unit for Neurogenetics",
+        "Universitair Ziekenhuis Leuven",
+        "KU Leuven"
+      ],
+      "n_institutes": 5,
+      "corresponding_author_papers": 76,
+      "flags": [
+        "The supplied publication-field data do not show overlap with the paper's fields for first author Martin Ferrié or last/corresponding author Johan Neyts.",
+        "Some affiliation matches for authors at French institutions were flagged as likely OpenAlex mismatches and excluded from the institution data."
+      ]
+    },
+    "research_question_and_methods": {
+      "score": 3,
+      "justification": "objective_and_hypothesis: This matches the score-3 description: the study states a testable antiviral-screening objective, then examines mechanism, animal efficacy, and resistance, with rationale from prior broad-spectrum antiviral evidence and the absence of OROV treatment options. | public_health_relevance: This matches the score-3 description because it concerns an active, documented Central and South American OROV outbreak and explicitly cites a PAHO epidemiological alert regarding vertical transmission, alongside fatalities and congenital outcomes. | study_design_rigor: This matches the score-3 description: the paper provides detailed cell, virus, dosing, animal, RT-qPCR, polymerase-assay, sequencing, and statistical methods; it validates findings across cell assays, an in-vitro polymerase system, two animal models, histology/RNAscope, and resistance selection. It also states that source data are provided.",
+      "sub_scores": {
+        "objective_and_hypothesis": {
+          "score": 3,
+          "justification": "This matches the score-3 description: the study states a testable antiviral-screening objective, then examines mechanism, animal efficacy, and resistance, with rationale from prior broad-spectrum antiviral evidence and the absence of OROV treatment options.",
+          "quote": "We therefore assembled a panel of antiviral drugs and assessed their potential effect on OROV replication.",
+          "quote_valid": true
+        },
+        "public_health_relevance": {
+          "score": 3,
+          "justification": "This matches the score-3 description because it concerns an active, documented Central and South American OROV outbreak and explicitly cites a PAHO epidemiological alert regarding vertical transmission, alongside fatalities and congenital outcomes.",
+          "quote": "In July 2024, the Pan American Health Organization issued an epidemiological alert about the potential of vertical transmission of OROV",
+          "quote_valid": true
+        },
+        "study_design_rigor": {
+          "score": 3,
+          "justification": "This matches the score-3 description: the paper provides detailed cell, virus, dosing, animal, RT-qPCR, polymerase-assay, sequencing, and statistical methods; it validates findings across cell assays, an in-vitro polymerase system, two animal models, histology/RNAscope, and resistance selection. It also states that source data are provided.",
+          "quote": "All data generated and analyzed in this paper are included in this article.",
+          "quote_valid": true
+        }
+      },
+      "quote_valid": true
+    },
+    "results_and_conclusion": {
+      "score": 2,
+      "justification": "Figures 1–2 agree with the surrounding text for the reported EC90 values (0.17 µM in A549 and 0.24 µM in JEG-3) and the 3% nine-mer/232% three-mer polymerase-product findings; Figure 7 reports integer sequencing-coverages rather than fractional discrete counts. However, the Results reports five mice per prophylactic group, whereas Figure 3 and the Methods report eight, an internal reporting inconsistency that fits the score-2 description rather than fully internally consistent score 3.",
+      "quote": "randomly assigned into five groups (n = 5 per group)",
+      "quote_valid": true
+    },
+    "references": {
+      "reference_count": 49,
+      "justification": "The references are predominantly peer-reviewed and span foundational OROV/Peribunyaviridae work, current OROV epidemiology and outbreaks, antiviral studies, structural-polymerase research, and relevant analytical methods; relevant official PAHO alerts and one identified preprint on Boltz-2 are also included. No reference is clearly unrelated, although references 27 and 39 are duplicates, as are references 29 and 48.",
+      "quote": "4’-Fluorouridine is an oral antiviral that blocks respiratory syncytial virus and SARS-CoV-2 replication.",
+      "score": 3,
+      "quote_valid": true,
+      "citation_verification": {
+        "n_entries_found": 0,
+        "n_resolved": 0,
+        "n_unresolved": 0,
+        "unresolved": []
+      }
+    },
+    "feedback": {
+      "score": null,
+      "justification": "Not evaluated automatically. Requires manual check of preprint server.",
+      "prereview_data": {
+        "n_reviews": 0,
+        "reviews": []
+      }
+    }
+  },
+  "scoring": {
+    "per_criterion": {
+      "author_credibility": 3,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
+      "references": 3,
+      "feedback": null
+    },
+    "total": 11,
+    "max": 12,
+    "average": 2.75,
+    "n_criteria_evaluated": 4,
+    "failed_criteria": [],
+    "recommendation": "accept",
+    "quotes_invalid": []
+  },
+  "data_quality_warnings": [
+    "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'CEA Grenoble' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut de Biologie Structurale' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Grenoble Alpes' to 'Itona Tarillon' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut de Biologie Intégrative de la Cellule' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'CEA Paris-Saclay' to 'Thibault Tubiana' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Universitair Ziekenhuis Leuven' matched 'Tania Roskams' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+    "'Universitair Ziekenhuis Leuven' matched 'Birgit Weynand' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'Allen Institute for Brain Science' to 'Dietmar Rudolf Thal' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Universitair Ziekenhuis Leuven' matched 'Dietmar Rudolf Thal' via a ROR alias ('UZ Leuven') rather than OpenAlex's own display name — kept.",
+    "OpenAlex matched 'VIB-KU Leuven Center for Brain & Disease Research' to 'Dietmar Rudolf Thal' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Ospedale Sacro Cuore Don Calabria' to 'Concetta Castilletti' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut de Biologie Intégrative de la Cellule' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'CEA Paris-Saclay' to 'Stéphane Bressanelli' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Centre National de la Recherche Scientifique' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Commissariat à l'Énergie Atomique et aux Énergies Alternatives' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'CEA Grenoble' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Institut de Biologie Structurale' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched 'Université Grenoble Alpes' to 'Hélène Malet' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "'Martin Ferrié': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Mona Khan': top research fields (Neuroscience, Nursing, Neuroscience) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Dietmar Rudolf Thal': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Kim Donckers': top research fields (Medicine, Computer Science, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Viktor Lemmens': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Concetta Castilletti': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Peter Mombaerts': top research fields (Neuroscience, Nursing, Neuroscience) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Manon Laporte': top research fields (Medicine, Medicine, Nursing) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field.",
+    "'Johan Neyts': top research fields (Medicine, Medicine, Medicine) don't overlap with this paper's fields (Agricultural and Biological Sciences, Biochemistry, Genetics and Molecular Biology) — publication volume may not reflect expertise in THIS field."
+  ]
+}
