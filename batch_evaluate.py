@@ -57,7 +57,12 @@ def process_all(papers_dir: Path, results_dir: Path, criteria_path: Path,
             result = evaluate_preprint(pdf, criteria_path, model, client)
             out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
             scoring = result["scoring"]
-            print(f"  → {scoring['recommendation']}  (avg {scoring['average']})")
+            failed = scoring.get("failed_criteria", [])
+            if failed:
+                print(f"  ✗ EVALUATION FAILED: no usable answer for {', '.join(failed)}")
+                print(f"    (diagnostics saved in {out_path.name}, under criteria.<name>.error)")
+            else:
+                print(f"  → {scoring['recommendation']}  (avg {scoring['average']})")
 
             warnings = result.get("data_quality_warnings", [])
             if warnings:
@@ -95,6 +100,7 @@ def _flatten(result: dict) -> dict:
         "average_score": scoring.get("average", ""),
         "total_score": scoring.get("total", ""),
         "max_score": scoring.get("max", ""),
+        "failed_criteria": "; ".join(scoring.get("failed_criteria", [])),
     }
 
     for crit in ["author_credibility", "research_question_and_methods",

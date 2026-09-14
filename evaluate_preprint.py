@@ -45,6 +45,13 @@ PREREVIEW_BASE = "https://prereview.org"
 
 # Papers over this length are trimmed to front+tail, keeping the last chunk large
 # enough that results/discussion/conclusion/references (near the end) are never cut.
+# The content call carries a whole paper and reasons at effort "high"; reasoning
+# tokens are invisible but come out of this same budget, so a cap that only fits
+# the JSON truncates the answer mid-object and the parse fails. 4500 did exactly
+# that on 5 of the first 18 runs.
+_CONTENT_MAX_TOKENS = 16000
+_AUTHOR_MAX_TOKENS = 4000
+
 _FULL_THRESHOLD = 100_000
 _FRONT_CAP = 60_000
 _TAIL_CAP = 40_000
@@ -527,22 +534,33 @@ def _semantic_scholar_lookup_all_authors(doi: str, corresponding_author: str, se
     return {"authors": stats_list, "warnings": warnings}
 
 
-def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024,
-         reasoning_effort: str | None = None) -> str:
-    """Single helper for all LLM calls."""
+def _llm_call(client: OpenAI, model: str, messages: list, max_tokens: int,
+              reasoning_effort: str | None = None) -> tuple[str, str | None, object]:
+    """Every LLM call goes through here. Returns the text alongside the
+    finish_reason and usage, which are what tell a truncated answer apart from
+    a malformed one when the caller fails to parse the result."""
     kwargs = {}
     if reasoning_effort is not None:
         # gpt-5.x reasoning tokens are invisible but come out of the same
-        # max_completion_tokens budget — see evaluate_author_credibility for
+        # max_completion_tokens budget - see evaluate_author_credibility for
         # a case that silently truncated to 0 visible tokens without this.
         kwargs["reasoning_effort"] = reasoning_effort
     resp = client.chat.completions.create(
         model=model,
         max_completion_tokens=max_tokens,  # gpt-5.x rejects the old max_tokens param
-        messages=[{"role": "user", "content": prompt}],
+        messages=messages,
         **kwargs,
     )
-    return resp.choices[0].message.content.strip()
+    choice = resp.choices[0]
+    return (choice.message.content or "").strip(), choice.finish_reason, resp.usage
+
+
+def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024,
+         reasoning_effort: str | None = None) -> str:
+    """Single helper for all LLM calls that only need the text back."""
+    text, _, _ = _llm_call(client, model, [{"role": "user", "content": prompt}],
+                           max_tokens, reasoning_effort)
+    return text
 
 
 def _extract_affiliations_with_llm(header_text: str, client: OpenAI, model: str) -> dict:
@@ -1416,29 +1434,69 @@ def _compose_research_question_result(parsed: dict) -> dict:
     }
 
 
-def _parse_error_content_result() -> dict:
+_RAW_SNIPPET_CAP = 4000
+
+
+def _failure_payload(reason: str, raw: str = "", finish_reason: str | None = None,
+                     usage: object = None) -> dict:
+    """Diagnostics for a call that never produced a usable answer. Without the
+    raw response on disk there is no way to tell a truncated reply from a
+    refusal or a malformed one after the fact."""
+    payload = {"reason": reason}
+    if finish_reason:
+        payload["finish_reason"] = finish_reason
+    if usage is not None:
+        tokens = {"prompt": getattr(usage, "prompt_tokens", None),
+                  "completion": getattr(usage, "completion_tokens", None)}
+        details = getattr(usage, "completion_tokens_details", None)
+        if details is not None:
+            tokens["reasoning"] = getattr(details, "reasoning_tokens", None)
+        payload["tokens"] = tokens
+    if raw:
+        payload["raw_response"] = raw[:_RAW_SNIPPET_CAP]
+        payload["raw_response_chars"] = len(raw)
+    return payload
+
+
+def _failed_content_result(reason: str, raw: str = "", finish_reason: str | None = None,
+                           usage: object = None) -> dict:
+    """Criteria 2-4 when the content call produced nothing parseable.
+
+    Scores stay None rather than 1: a failure written as the lowest score
+    aggregates into a perfectly plausible "reject" and is indistinguishable
+    from a real one. compute_scores turns any of these into an "error"
+    recommendation instead of averaging them.
+    """
+    err = _failure_payload(reason, raw, finish_reason, usage)
+    justification = f"Evaluation failed: {reason}"
     return {
         "research_question_and_methods": {
-            "score": 1,
-            "justification": "Parse error",
-            "sub_scores": {k: {"score": 1, "justification": "Parse error", "quote": ""}
-                            for k in _RESEARCH_SUB_CRITERIA},
+            "score": None,
+            "justification": justification,
+            "sub_scores": {},
+            "error": err,
         },
-        "results_and_conclusion": {"score": 1, "justification": "Parse error", "quote": ""},
-        "references": {"score": 1, "justification": "Parse error", "quote": ""},
+        "results_and_conclusion": {"score": None, "justification": justification,
+                                   "quote": "", "error": err},
+        "references": {"score": None, "justification": justification,
+                       "quote": "", "error": err},
     }
 
 
 def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str) -> dict:
     """Evaluate criteria 2, 3, 4 (research question, results, references) from full paper text."""
     prompt = _build_content_prompt(full_text, criteria)
-    raw = _llm(client, model, prompt)
+    raw, finish_reason, usage = _llm_call(
+        client, model, [{"role": "user", "content": prompt}], _CONTENT_MAX_TOKENS)
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
+    if not raw:
+        return _failed_content_result("empty response from model", raw, finish_reason, usage)
     try:
         parsed = json.loads(raw)
-    except Exception:
-        return _parse_error_content_result()
+    except Exception as e:
+        return _failed_content_result(f"could not parse response as JSON ({e})",
+                                      raw, finish_reason, usage)
 
     result = {
         "research_question_and_methods": _compose_research_question_result(parsed),
@@ -1462,31 +1520,30 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
     pdf_b64 = base64.standard_b64encode(pdf_path.read_bytes()).decode("utf-8")
     prompt = _build_content_prompt_pdf(criteria)
 
-    resp = client.chat.completions.create(
-        model=model,
-        max_completion_tokens=4500,  # gpt-5.x rejects the old max_tokens param; reasoning_effort="high" needs headroom beyond the visible JSON
-        reasoning_effort="high",  # left unset it under-reasons; see project memory
-        messages=[{
-            "role": "user",
-            "content": [
-                {
-                    "type": "file",
-                    "file": {
-                        "filename": pdf_path.name,
-                        "file_data": f"data:application/pdf;base64,{pdf_b64}",
-                    },
+    messages = [{
+        "role": "user",
+        "content": [
+            {
+                "type": "file",
+                "file": {
+                    "filename": pdf_path.name,
+                    "file_data": f"data:application/pdf;base64,{pdf_b64}",
                 },
-                {"type": "text", "text": prompt},
-            ],
-        }],
-    )
-    raw = resp.choices[0].message.content.strip()
+            },
+            {"type": "text", "text": prompt},
+        ],
+    }]
+    raw, finish_reason, usage = _llm_call(
+        client, model, messages, _CONTENT_MAX_TOKENS, reasoning_effort="high")
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
+    if not raw:
+        return _failed_content_result("empty response from model", raw, finish_reason, usage)
     try:
         parsed = json.loads(raw)
-    except Exception:
-        return _parse_error_content_result()
+    except Exception as e:
+        return _failed_content_result(f"could not parse response as JSON ({e})",
+                                      raw, finish_reason, usage)
 
     result = {
         "research_question_and_methods": _compose_research_question_result(parsed),
@@ -1544,13 +1601,18 @@ def _compose_author_credibility_result(parsed: dict) -> dict:
     }
 
 
-def _parse_error_author_credibility_result() -> dict:
+def _failed_author_credibility_result(reason: str, raw: str = "",
+                                      finish_reason: str | None = None,
+                                      usage: object = None) -> dict:
+    """Criterion 1 when its call produced nothing parseable. Score stays None,
+    same reasoning as _failed_content_result."""
     return {
         "author_credibility": {
-            "score": 1,
-            "justification": "Parse error",
+            "score": None,
+            "justification": f"Evaluation failed: {reason}",
             "sub_scores": {},
             "flags": [],
+            "error": _failure_payload(reason, raw, finish_reason, usage),
         }
     }
 
@@ -1563,13 +1625,19 @@ def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenA
     author_credibility score via _compose_author_credibility_result.
     """
     prompt = _build_author_prompt(author_data, criteria)
-    raw = _llm(client, model, prompt, max_tokens=2000, reasoning_effort="medium")
+    raw, finish_reason, usage = _llm_call(
+        client, model, [{"role": "user", "content": prompt}],
+        _AUTHOR_MAX_TOKENS, reasoning_effort="medium")
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
+    if not raw:
+        return _failed_author_credibility_result("empty response from model", raw,
+                                                 finish_reason, usage)
     try:
         parsed = json.loads(raw)
-    except Exception:
-        return _parse_error_author_credibility_result()
+    except Exception as e:
+        return _failed_author_credibility_result(
+            f"could not parse response as JSON ({e})", raw, finish_reason, usage)
 
     return _compose_author_credibility_result(parsed)
 
@@ -1678,8 +1746,9 @@ def validate_quotes(criterion_results: dict, full_text: str) -> dict:
     in full_text. Adds 'quote_valid' bool to each criterion. Downgrades score
     from 3 → 2 when the supporting quote cannot be verified.
     """
-    if "research_question_and_methods" in criterion_results:
-        _validate_research_question_quotes(criterion_results["research_question_and_methods"], full_text)
+    rqm = criterion_results.get("research_question_and_methods")
+    if rqm is not None and not rqm.get("error"):
+        _validate_research_question_quotes(rqm, full_text)
 
     CRITERIA_WITH_QUOTES = [
         "results_and_conclusion",
@@ -1689,6 +1758,8 @@ def validate_quotes(criterion_results: dict, full_text: str) -> dict:
         if key not in criterion_results:
             continue
         c = criterion_results[key]
+        if c.get("error"):
+            continue
         quote = c.get("quote", "")
         valid = _quote_found(quote, full_text) if quote else False
         c["quote_valid"] = valid
@@ -1716,18 +1787,26 @@ def compute_scores(criterion_results: dict) -> dict:
         if k in criterion_results:
             scores[k] = criterion_results[k].get("score", 0)
 
+    failed = sorted(k for k, v in criterion_results.items()
+                    if isinstance(v, dict) and v.get("error"))
+
     valid_scores = [s for s in scores.values() if isinstance(s, int) and s > 0]
     total = sum(valid_scores)
-    max_possible = len(valid_scores) * 3  # scales with how many criteria actually got a real score, not a fixed count — feedback often stays unscored
+    max_possible = len(valid_scores) * 3  # scales with how many criteria actually got a real score, not a fixed count: feedback often stays unscored
     avg = round(total / len(valid_scores), 2) if valid_scores else 0
 
+    # A criterion that errored has no score, so it cannot be averaged into a
+    # recommendation - and the remaining criteria cannot stand in for it either,
+    # since scoring 1 of 4 criteria and calling the result "accept" is worse than
+    # saying nothing. Any failure makes the whole evaluation an error.
     return {
         "per_criterion": scores,
         "total": total,
         "max": max_possible,
         "average": avg,
         "n_criteria_evaluated": len(valid_scores),
-        "recommendation": _recommendation(avg, scores),
+        "failed_criteria": failed,
+        "recommendation": "error" if failed else _recommendation(avg, scores),
     }
 
 
@@ -1782,7 +1861,9 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
 
     # Add quote health summary to scoring
     checked = ["research_question_and_methods", "results_and_conclusion", "references"]
-    invalid = [k for k in checked if not criterion_results.get(k, {}).get("quote_valid", True)]
+    invalid = [k for k in checked
+               if not criterion_results.get(k, {}).get("error")
+               and not criterion_results.get(k, {}).get("quote_valid", True)]
     scoring["quotes_invalid"] = invalid
 
     return {

@@ -42,8 +42,8 @@ from evaluate_preprint import (
     _compose_author_credibility_result,
     _compose_research_question_result,
     _doi_from_pdf_path,
-    _parse_error_author_credibility_result,
-    _parse_error_content_result,
+    _failed_author_credibility_result,
+    _failed_content_result,
     _score_from_reference_count,
     compute_scores,
     extract_pdf,
@@ -76,8 +76,8 @@ def evaluate_content_deepseek(eval_text: str, criteria: dict, client: OpenAI, mo
     raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
     try:
         parsed = json.loads(raw)
-    except Exception:
-        return _parse_error_content_result()
+    except Exception as e:
+        return _failed_content_result(f"could not parse response as JSON ({e})", raw)
 
     result = {
         "research_question_and_methods": _compose_research_question_result(parsed),
@@ -100,8 +100,8 @@ def evaluate_author_credibility_deepseek(author_data: dict, criteria: dict, clie
     raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
     try:
         parsed = json.loads(raw)
-    except Exception:
-        return _parse_error_author_credibility_result()
+    except Exception as e:
+        return _failed_author_credibility_result(f"could not parse response as JSON ({e})", raw)
 
     return _compose_author_credibility_result(parsed)
 
