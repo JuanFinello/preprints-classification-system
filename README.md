@@ -43,31 +43,35 @@ grounded in an API or checked after the fact.
 flowchart TD
     A[Preprint PDF] --> B[pdfminer extraction<br/>header + full text]
 
-    B --> C[LLM pass 1<br/>extract authors & affiliations]
+    B --> C[LLM 1<br/>extract authors & affiliations]
     C --> D{External grounding}
     D --> D1[ROR<br/>institution identity + aliases]
     D --> D2[OpenAlex<br/>affiliations by DOI, field match]
-    D --> D3[Semantic Scholar<br/>h-index, publication record]
+    D --> D3[Semantic Scholar<br/>publication record, h-index]
+    D --> F[LLM 2<br/>criterion 1: author credibility<br/>structured data only, no paper text]
 
-    B --> E[LLM pass 2<br/>content criteria 2-4<br/>native PDF input]
-    D --> F[LLM pass 3<br/>criterion 1: author credibility]
+    A --> E[LLM 3<br/>criteria 2-4<br/>native PDF: text + page images]
+    E --> I[Quote validation<br/>every cited quote matched<br/>against the extracted text]
+    E --> J[Reference count<br/>to fixed thresholds<br/>no model judgement]
 
-    B --> G[Crossref<br/>reference verification<br/>no LLM]
-    A --> H[PREreview<br/>community feedback<br/>criterion 5]
+    A --> H[PREreview<br/>reviews for this DOI]
+    H --> G[LLM 4<br/>criterion 5<br/>only when reviews exist]
 
-    E --> I[Quote validation<br/>against source text]
-    F --> I
-    G --> J[Deterministic<br/>reference score]
+    B --> V[Crossref<br/>do the cited works resolve?<br/>no LLM, informational only]
 
-    I --> K[Score aggregation]
+    F --> K[Score aggregation]
+    I --> K
     J --> K
-    H --> K
-    K --> L[JSON result + summary CSV<br/>accept / with reservations / reject]
+    G --> K
+    K --> L[JSON result + summary CSV<br/>accept / with reservations / reject<br/>or error if a call produced nothing]
+    V -.-> L
 ```
 
-The three LLM calls are deliberately separate: author credibility is scored from
-structured, API-verified data only, so a persuasive paper cannot talk its way into a
-better affiliation score.
+The calls are deliberately separate. Author credibility never sees the paper text, only
+the structured data the APIs returned, so a persuasive paper cannot talk its way into a
+better affiliation score. The Crossref check runs alongside the score rather than into
+it: it reports whether each cited work resolves to a real indexed publication, and is
+recorded in the output for a human to read.
 
 ---
 
@@ -88,7 +92,7 @@ strings.
 | | | public-health relevance | Addresses a pressing concern **and** relates to a known outbreak (e.g. WHO DON) | Paper text (quote-validated) |
 | | | study-design rigour | Rigorous design, methods validating the results, data and materials available for replication | Paper text (quote-validated) |
 | 3 | **Results & conclusion** | | Findings internally consistent, validated by multiple methods, limitations explicitly discussed | Paper text (quote-validated) |
-| 4 | **References** | | Balanced mix of foundational, recent and domain-relevant peer-reviewed work (more than ~20) | Crossref |
+| 4 | **References** | | Balanced mix of foundational, recent and domain-relevant peer-reviewed work (more than ~20) | Reference count, fixed thresholds |
 | 5 | **Community feedback** | | Multiple expert reviews, follow-up analyses or citations, authors responding to feedback | PREreview |
 
 <details>
@@ -141,10 +145,13 @@ strings.
 
 </details>
 
-Two rows are not scored by the model, by design. **References** is computed
-deterministically from the verified reference count rather than from the model's opinion
-of the bibliography, because the model kept misreading its own count against the
-threshold. **Community feedback** is scored only when PREreview actually holds reviews
+Two rows are not scored by the model, by design. **References** is computed in code from
+the reference count against fixed thresholds, rather than from the model's opinion of the
+bibliography: the model reports how many references it counted, the count alone sets the
+score, and a 3 is knocked down to a 2 when the supporting quote cannot be found verbatim
+in the paper. Nothing the model says about the *quality* of the bibliography moves the
+score, because it kept misreading its own count against the threshold. Crossref then checks separately whether those citations resolve to real
+indexed works, which is recorded in the output but deliberately kept out of the score. **Community feedback** is scored only when PREreview actually holds reviews
 for the DOI; otherwise it stays unscored and drops out of the average, rather than
 scoring a 1 that would apply to almost every preprint.
 
