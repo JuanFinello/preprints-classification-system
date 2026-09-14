@@ -44,7 +44,7 @@ from evaluate_preprint import (
     _doi_from_pdf_path,
     _failed_author_credibility_result,
     _failed_content_result,
-    _score_from_reference_count,
+    _apply_reference_score,
     compute_scores,
     extract_pdf,
     fetch_prereview_data,
@@ -85,13 +85,7 @@ def evaluate_content_deepseek(eval_text: str, criteria: dict, client: OpenAI, mo
         "references": parsed.get("references", {}),
     }
 
-    ref = result["references"]
-    ref_count = ref.get("reference_count")
-    if isinstance(ref_count, int):
-        ref["score"] = _score_from_reference_count(ref_count)
-    else:
-        ref["score"] = 1
-        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
+    _apply_reference_score(result["references"])
     return result
 
 

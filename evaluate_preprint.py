@@ -779,21 +779,27 @@ figures/tables if there is truly no such data anywhere in the text.
   presented" — do not soften this to score_2's "unclear statistical parameters",
   which is for vague or incomplete reporting, not a documented contradiction
   between the paper's own data and its own conclusion.
-- For references: count the total number of entries in the reference list and report
-  it as "reference_count" (an integer). The score is derived automatically from that
-  count using this exact rule — do not invent a different threshold: reference_count
-  > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
-  about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
-  balance, self-citation reliance) — not about whether the count itself "feels" low
-  or high, since that judgment isn't used. Separately, actually check every entry
-  in the list against the paper's own subject matter — if any reference is
-  genuinely unrelated (e.g. a paper about virus X citing a genome-assembly study
-  of an unrelated fungus, or a plant-virology review, with no clear methodological
-  link to this paper), name it explicitly in the justification (by number and/or
-  first author). This does not change the score — the count rule above still
-  applies — but do not write a generically positive justification ("strong,
-  domain-relevant coverage") if you can find even one clearly off-topic entry;
-  a human is relying on this text, not just the score, to judge reference quality.
+- For references: report facts, not a score. The score is computed in code from what
+  you report, so report each field carefully and do not try to reason about the final
+  number.
+  (a) "reference_count": the total number of entries in the reference list, as an
+  integer. Count them; do not estimate.
+  (b) "off_topic_references": a list of the entries that are genuinely unrelated to
+  this paper's subject matter (e.g. a paper about virus X citing a genome-assembly
+  study of an unrelated fungus, or a plant-virology review, with no clear
+  methodological link). Identify each by number and first author, with a few words
+  on why. Return an empty list if there are none — an empty list is the expected
+  answer for a well-focused bibliography, so do not manufacture entries, but do not
+  overlook a real one either: a single off-topic entry caps this criterion below the
+  top score.
+  (c) "non_peer_reviewed_count": how many entries are preprints, blog posts, press
+  releases or other non-peer-reviewed sources, as an integer.
+  (d) "self_citation_count": how many entries are by this paper's own authors, as an
+  integer.
+  Write the justification about source quality and coverage (peer-reviewed vs. not,
+  foundational vs. recent balance, domain relevance, self-citation reliance), naming
+  the off-topic entries you found. Do not write about whether the count itself feels
+  low or high, since that judgment is not used.
 
 === FULL PAPER TEXT ===
 {full_text}
@@ -822,7 +828,10 @@ Return ONLY this JSON (no markdown, no extra text):
   }},
   "references": {{
     "reference_count": 24,
-    "justification": "brief explanation of reference quality and coverage",
+    "off_topic_references": ["13 - Chen et al., fungal genome assembly, unrelated to this paper's subject"],
+    "non_peer_reviewed_count": 3,
+    "self_citation_count": 2,
+    "justification": "brief explanation of reference quality and coverage, naming any off-topic entries",
     "quote": "sample reference from the paper"
   }}
 }}"""
@@ -909,21 +918,27 @@ PDF actually contains them — check the real document, don't assume.
   the evidence presented" — do not soften this to score_2's "unclear statistical
   parameters", which is for vague or incomplete reporting, not a documented
   contradiction between the paper's own data and its own conclusion.
-- For references: count the total number of entries in the reference list and report
-  it as "reference_count" (an integer). The score is derived automatically from that
-  count using this exact rule — do not invent a different threshold: reference_count
-  > 20 → 3, reference_count < 10 → 1, otherwise → 2. Write the justification strictly
-  about source quality and coverage (peer-reviewed vs. not, foundational vs. recent
-  balance, self-citation reliance) — not about whether the count itself "feels" low
-  or high, since that judgment isn't used. Separately, actually check every entry
-  in the list against the paper's own subject matter — if any reference is
-  genuinely unrelated (e.g. a paper about virus X citing a genome-assembly study
-  of an unrelated fungus, or a plant-virology review, with no clear methodological
-  link to this paper), name it explicitly in the justification (by number and/or
-  first author). This does not change the score — the count rule above still
-  applies — but do not write a generically positive justification ("strong,
-  domain-relevant coverage") if you can find even one clearly off-topic entry;
-  a human is relying on this text, not just the score, to judge reference quality.
+- For references: report facts, not a score. The score is computed in code from what
+  you report, so report each field carefully and do not try to reason about the final
+  number.
+  (a) "reference_count": the total number of entries in the reference list, as an
+  integer. Count them; do not estimate.
+  (b) "off_topic_references": a list of the entries that are genuinely unrelated to
+  this paper's subject matter (e.g. a paper about virus X citing a genome-assembly
+  study of an unrelated fungus, or a plant-virology review, with no clear
+  methodological link). Identify each by number and first author, with a few words
+  on why. Return an empty list if there are none — an empty list is the expected
+  answer for a well-focused bibliography, so do not manufacture entries, but do not
+  overlook a real one either: a single off-topic entry caps this criterion below the
+  top score.
+  (c) "non_peer_reviewed_count": how many entries are preprints, blog posts, press
+  releases or other non-peer-reviewed sources, as an integer.
+  (d) "self_citation_count": how many entries are by this paper's own authors, as an
+  integer.
+  Write the justification about source quality and coverage (peer-reviewed vs. not,
+  foundational vs. recent balance, domain relevance, self-citation reliance), naming
+  the off-topic entries you found. Do not write about whether the count itself feels
+  low or high, since that judgment is not used.
 
 Return ONLY this JSON (no markdown, no extra text):
 {{
@@ -949,7 +964,10 @@ Return ONLY this JSON (no markdown, no extra text):
   }},
   "references": {{
     "reference_count": 24,
-    "justification": "brief explanation of reference quality and coverage",
+    "off_topic_references": ["13 - Chen et al., fungal genome assembly, unrelated to this paper's subject"],
+    "non_peer_reviewed_count": 3,
+    "self_citation_count": 2,
+    "justification": "brief explanation of reference quality and coverage, naming any off-topic entries",
     "quote": "sample reference from the paper"
   }}
 }}"""
@@ -1076,7 +1094,7 @@ Return ONLY this JSON (no markdown, no extra text):
 
 
 def _score_from_reference_count(n: int) -> int:
-    """Deterministic score from a reference count — the LLM only has to count,
+    """Deterministic score from a reference count. The LLM only has to count,
     not compare against the threshold (it was getting the comparison wrong,
     e.g. calling 58 'within 10-20')."""
     if n > 20:
@@ -1084,6 +1102,48 @@ def _score_from_reference_count(n: int) -> int:
     if n < 10:
         return 1
     return 2
+
+
+# Sandy's rubric asks for a "balanced mix of foundational, recent and domain-relevant"
+# peer-reviewed work for a 3, and calls "overreliance on non-peer-reviewed, obscure or
+# self-citations" a 1. Scoring purely on the count answered neither: one calibration
+# paper cited a fungal genome assembly and a fly-sequencing study, the model said so in
+# its own justification, and still scored 3 because it had 33 entries. So the count sets
+# the base and the quality findings can only pull it down, never push it up. The model
+# reports what it found; the rule lives here, same split as the count itself.
+_OFF_TOPIC_CAP = 2       # any genuinely off-topic entry blocks the "domain-relevant" requirement of a 3
+_LOW_QUALITY_SHARE = 0.5  # provisional, like the _recommendation thresholds: calibrate against labelled cases
+
+
+def _apply_reference_score(ref: dict) -> dict:
+    """Set references' score from the count, then apply the quality gates.
+    Fields other than reference_count are optional: results produced before
+    they existed score exactly as they did then."""
+    n = ref.get("reference_count")
+    if not isinstance(n, int):
+        ref["score"] = 1
+        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
+        return ref
+
+    score = _score_from_reference_count(n)
+    notes = []
+
+    off_topic = ref.get("off_topic_references") or []
+    if off_topic and score > _OFF_TOPIC_CAP:
+        score = _OFF_TOPIC_CAP
+        notes.append(f"capped at {_OFF_TOPIC_CAP}: {len(off_topic)} off-topic reference(s) reported "
+                     f"({'; '.join(str(x) for x in off_topic)[:200]})")
+
+    low_quality = (ref.get("non_peer_reviewed_count") or 0) + (ref.get("self_citation_count") or 0)
+    if n > 0 and low_quality / n > _LOW_QUALITY_SHARE and score > 1:
+        score = 1
+        notes.append(f"dropped to 1: {low_quality} of {n} references are non-peer-reviewed "
+                     f"or self-citations, over the {_LOW_QUALITY_SHARE:.0%} overreliance threshold")
+
+    ref["score"] = score
+    if notes:
+        ref["score_note"] = " | ".join(notes)
+    return ref
 
 
 # ─── reference-list citation verification (Crossref, no LLM) ────────────────
@@ -1504,13 +1564,7 @@ def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str)
         "references": parsed.get("references", {}),
     }
 
-    ref = result["references"]
-    ref_count = ref.get("reference_count")
-    if isinstance(ref_count, int):
-        ref["score"] = _score_from_reference_count(ref_count)
-    else:
-        ref["score"] = 1
-        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
+    _apply_reference_score(result["references"])
     return result
 
 
@@ -1551,13 +1605,7 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
         "references": parsed.get("references", {}),
     }
 
-    ref = result["references"]
-    ref_count = ref.get("reference_count")
-    if isinstance(ref_count, int):
-        ref["score"] = _score_from_reference_count(ref_count)
-    else:
-        ref["score"] = 1
-        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
+    _apply_reference_score(result["references"])
     return result
 
 

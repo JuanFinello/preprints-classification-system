@@ -145,15 +145,19 @@ strings.
 
 </details>
 
-Two rows are not scored by the model, by design. **References** is computed in code from
-the reference count against fixed thresholds, rather than from the model's opinion of the
-bibliography: the model reports how many references it counted, the count alone sets the
-score, and a 3 is knocked down to a 2 when the supporting quote cannot be found verbatim
-in the paper. Nothing the model says about the *quality* of the bibliography moves the
-score, because it kept misreading its own count against the threshold. Crossref then checks separately whether those citations resolve to real
-indexed works, which is recorded in the output but deliberately kept out of the score. **Community feedback** is scored only when PREreview actually holds reviews
-for the DOI; otherwise it stays unscored and drops out of the average, rather than
-scoring a 1 that would apply to almost every preprint.
+**References** is the one row the model never scores itself. It reports facts and the
+code applies the rule: the reference count sets the base against fixed thresholds, and
+the quality findings can only pull that base down. Any entry the model flags as
+genuinely off-topic caps the score at 2, and a bibliography more than half
+non-peer-reviewed or self-cited drops to 1. The split exists because the model could
+judge quality but could not reliably compare its own count against a threshold, once
+calling 58 references "within 10-20". Crossref separately checks whether the cited works
+resolve to real indexed publications, which is recorded in the output and deliberately
+kept out of the score, since the reference-list parser is not reliable enough to score on.
+
+**Community feedback** is scored only when PREreview actually holds reviews for the DOI;
+otherwise it stays unscored and drops out of the average, rather than scoring a 1 that
+would apply to almost every preprint.
 
 An earlier design required every condition in a criterion to hold at once for a 3. It
 made that score nearly unreachable and was replaced by the row-averaging above after the
@@ -246,10 +250,11 @@ useful part.
    aggregation.
 
 3. **An agreement percentage can be meaningless.** The `references` criterion agreed
-   ~65 % of the time between models, but one side computes it from a Crossref count and
-   the other makes a qualitative judgment. Agreement there measures coincidence, not
+   ~65 % of the time between two models, but one side derived it from a reference count
+   and the other made a qualitative judgment. Agreement there measured coincidence, not
    consensus. Comparisons are only worth reporting when both sides answer the same
-   question.
+   question, which is part of why that criterion now scores quality explicitly rather
+   than counting alone.
 
 4. **A failed run must never look like a low score.** A parse failure was written to
    disk as `score: 1, justification: "Parse error"`, which aggregates to a perfectly

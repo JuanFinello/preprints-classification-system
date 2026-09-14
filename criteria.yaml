@@ -161,33 +161,24 @@ criteria:
     label: "References"
     requires_external_data: false
     description: >
-      Score is 100% deterministic from reference_count (_score_from_reference_count:
-      >20→3, <10→1, else→2) — the LLM only counts, it never judges quality into
-      the score itself. This is a known, accepted limitation (see project memory,
-      2026-07-21 falla #2): a paper can hit score_3 on count alone even if several
-      references are off-topic. Reviewed 2026-07-24 (Pendiente: "revisar
-      references"): verified against a real calibration paper (chikungunya,
-      10.21203/rs.3.rs-8545804/v1, 33 refs) that at least 4 references are
-      genuinely unrelated to the paper's subject (e.g. a fungal genome-assembly
-      paper, a grapevine virology review) — yet the model's own justification
-      called the list "strong and domain-relevant" without naming any of them.
-      The score isn't meant to reflect this (by design), but the justification
-      text is the only human-readable signal here and was misleadingly upbeat.
-      Fix: prompt now explicitly asks the model to name specific off-topic
-      references in the justification (score unaffected) so a human reviewer
-      isn't misled by an inaccurate "good coverage" summary.
-
-      Separately, criteria["references"]["citation_verification"] (computed in
-      code by verify_references(), no LLM involved) checks whether each printed
-      citation actually resolves to a real indexed work via Crossref — same
-      "verify externally, don't just trust the read" principle as ROR/OpenAlex
-      for institutions. Verified against all 4 calibration papers: correctly
-      flagged a genuinely corrupted citation ("Road C, Quaritch B. Mosquitoes
-      of the Ethiopian Region" — real author is Edwards, matching what Claude's
-      manual review already caught by domain knowledge on 2026-07-13) without
-      also flagging real citations that just have a mangled DOI from extraction
-      (a fallback to bibliographic search catches those). Also purely
-      informational — does not affect the deterministic score.
+      Score is computed in code, never by the LLM (_apply_reference_score). The count
+      sets the base (_score_from_reference_count: >20→3, <10→1, else→2) because the
+      model could not reliably compare its own count against a threshold — it once
+      called 58 references "within 10-20". The quality findings the model reports can
+      then only pull that base down, never push it up:
+        - any entry in "off_topic_references" caps the score at 2, since the rubric's
+          score_3 requires a domain-relevant bibliography;
+        - "non_peer_reviewed_count" + "self_citation_count" above half the list drops
+          the score to 1, the rubric's "overreliance on non-peer-reviewed, obscure or
+          self-citations".
+      History of this criterion: until 2026-09-14 the score came from the count ALONE
+      and quality was narrative only. Verified against a real calibration paper
+      (chikungunya, 10.21203/rs.3.rs-8545804/v1, 33 refs): the model itself named two
+      genuinely unrelated references (a fungal genome assembly, a fly-sequencing
+      study) in its justification and the paper still scored 3, while the same paper
+      scored 2 when a human judged the bibliography. That gap is what the caps close.
+      Both thresholds are provisional and should be calibrated against labelled cases,
+      like the ones in _recommendation.
     evidence_to_look_for:
       - total number of references
       - presence of foundational and recent peer-reviewed literature
