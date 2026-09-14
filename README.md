@@ -101,17 +101,20 @@ requiring every condition to hold at once. The whole thing is declared in
 [`criteria.yaml`](criteria.yaml), so the scoring logic lives in data rather than in prompt
 strings.
 
-| # | Criterion | Row | What earns a 3 | Grounded in |
-|---|---|---|---|---|
-| 1 | **Author credibility** | institution reputability | All authors at credible institutions **and** the corresponding author at a nationally or globally recognised one | ROR + OpenAlex |
-| | | author expertise | 3 or more authors with a verifiable publication record in the field | Semantic Scholar |
-| | | institutional collaboration | More than 3 institutes involved | OpenAlex |
-| 2 | **Research question & methods** | objective & hypothesis | Objective and hypotheses explicit, testable, aligned with prior evidence | Paper text (quote-validated) |
-| | | public-health relevance | Addresses a pressing concern **and** relates to a known outbreak (e.g. WHO DON) | Paper text (quote-validated) |
-| | | study-design rigour | Rigorous design, methods validating the results, data and materials available for replication | Paper text (quote-validated) |
-| 3 | **Results & conclusion** | | Findings internally consistent, validated by multiple methods, limitations explicitly discussed | Paper text (quote-validated) |
-| 4 | **References** | | Balanced mix of foundational, recent and domain-relevant peer-reviewed work (more than ~20) | Reference count, fixed thresholds |
-| 5 | **Community feedback** | | Multiple expert reviews, follow-up analyses or citations, authors responding to feedback | PREreview |
+| Criterion | Row | A 3 requires | Grounded in |
+|---|---|---|---|
+| **1. Author credibility** | institution reputability | corresponding author at a recognised institution | ROR + OpenAlex |
+| | author expertise | 3+ authors with a publication record in the field | Semantic Scholar |
+| | institutional collaboration | more than 3 institutes | OpenAlex |
+| **2. Research question & methods** | objective & hypothesis | explicit, testable, tied to prior evidence | paper text |
+| | public-health relevance | tied to a known outbreak | paper text |
+| | study-design rigour | validated methods, data available to replicate | paper text |
+| **3. Results & conclusion** | | consistent, multi-method, limitations discussed | paper text |
+| **4. References** | | 20+, balanced, domain-relevant, peer-reviewed | count + quality, scored in code |
+| **5. Community feedback** | | expert reviews, citations, author responses | PREreview |
+
+Everything in the paper-text rows is quote-validated: the model has to cite the sentence
+it scored on, and the sentence has to be in the paper.
 
 <details>
 <summary><strong>Full 1 / 2 / 3 definitions for every row</strong></summary>
@@ -163,15 +166,14 @@ strings.
 
 </details>
 
-**References** is the one row the model never scores itself. It reports facts and the
-code applies the rule: the reference count sets the base against fixed thresholds, and
-the quality findings can only pull that base down. Any entry the model flags as
-genuinely off-topic caps the score at 2, and a bibliography more than half
-non-peer-reviewed or self-cited drops to 1. The split exists because the model could
-judge quality but could not reliably compare its own count against a threshold, once
-calling 58 references "within 10-20". Crossref separately checks whether the cited works
-resolve to real indexed publications, which is recorded in the output and deliberately
-kept out of the score, since the reference-list parser is not reliable enough to score on.
+**References** is the one row the model never scores itself: it reports facts and the
+code applies the rule. The count sets the base, and the quality findings can only pull it
+down. Any entry flagged as genuinely off-topic caps the score at 2, and a bibliography
+more than half non-peer-reviewed or self-cited drops to 1. The split exists because the
+model could judge quality but could not reliably compare its own count against a
+threshold, once calling 58 references "within 10-20". Crossref separately checks that the
+cited works resolve to real indexed publications, recorded in the output and kept out of
+the score.
 
 **Community feedback** is scored only when PREreview actually holds reviews for the DOI;
 otherwise it stays unscored and drops out of the average, rather than scoring a 1 that
