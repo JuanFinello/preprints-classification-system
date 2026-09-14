@@ -1,12 +1,12 @@
 # Preprint Classification System
 
-**LLM-based scoring of preprints that cite genomic data, to decide which ones are worth
-linking to a genomic surveillance database.**
+**LLM-based scoring of preprints that cite genomic data, to decide which ones get linked
+to the genome records they cite.**
 
-A preprint that reports or cites genomic sequence data is a candidate for being linked
-into a genomic surveillance database. Whether it actually qualifies is a judgment about
-the paper itself: who wrote it, how the study was designed, whether the results hold up,
-what it cites. It has to be made one preprint at a time.
+A preprint that cites genomic sequence data is a candidate for being linked to the entry
+of that genome in a surveillance database. Whether it qualifies is a judgment about the
+paper itself: who wrote it, how the study was designed, whether the results hold up, what
+it cites. It has to be made one preprint at a time.
 
 This repository automates that judgment: it takes a preprint PDF, scores it against a
 five-criterion rubric using an LLM **grounded in external scholarly APIs**, validates
@@ -20,7 +20,7 @@ every criterion.
 
 ---
 
-## Why this is not just "ask an LLM to rate a paper"
+## Where the model is not trusted
 
 A raw LLM judgment on a paper is confident, unverifiable, and wrong in ways you cannot
 see. Four design choices address that directly:
