@@ -1,17 +1,18 @@
 # Preprint Classification System
 
-**LLM-based triage of scientific preprints for genomic-surveillance curation.**
+**LLM-based scoring of preprints that cite genomic data, to decide which ones are worth
+linking to a genomic surveillance database.**
 
-Every day, hundreds of preprints appear on bioRxiv, medRxiv and Research Square. A
-handful of them carry the genomic or epidemiological signal that a surveillance
-database like [GISAID](https://gisaid.org) actually needs. Reading all of them is not
-an option; ignoring them is not either.
+A preprint that reports or cites genomic sequence data is a candidate for being linked
+into a genomic surveillance database. Whether it actually qualifies is a judgment about
+the paper itself — who wrote it, how the study was designed, whether the results hold up,
+what it cites — and it is made one preprint at a time.
 
-This repository is the scoring stage of that triage: it takes a preprint PDF, scores it
-against a five-criterion rubric using an LLM **grounded in external scholarly APIs**,
-validates the model's own evidence against the source text, and emits a structured
-recommendation — `accept`, `accept_with_reservations` or `reject` — with a written
-justification for every criterion.
+This repository automates that judgment: it takes a preprint PDF, scores it against a
+five-criterion rubric using an LLM **grounded in external scholarly APIs**, validates
+the model's own evidence against the source text, and emits a structured recommendation
+— `accept`, `accept_with_reservations` or `reject` — with a written justification for
+every criterion.
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -267,6 +268,6 @@ deliberately not versioned — see `.gitignore`.
 
 MIT — see [LICENSE](LICENSE).
 
-Built as part of genomic-surveillance curation work for GISAID. Preprint content belongs
-to its respective authors; this repository contains only automatically generated
-assessments of publicly available preprints.
+Built for genomic-surveillance curation work. Preprint content belongs to its respective
+authors; this repository contains only automatically generated assessments of publicly
+available preprints.

@@ -2,7 +2,7 @@
 .env
 *.key
 
-# ─── Internal curation data (GISAID) — stays on local disk, never versioned ──
+# ─── Internal curation data — stays on local disk, never versioned ───────────
 daily_dois.xlsx
 preprints_para_revisar.csv
 claude_author_data.csv
