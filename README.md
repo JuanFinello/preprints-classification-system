@@ -190,16 +190,10 @@ useful part.
 | Path | Role |
 |---|---|
 | `evaluate_preprint.py` | Core pipeline — extraction, API grounding, prompts, quote validation, scoring |
-| `batch_evaluate.py` | Runs the pipeline over a directory of PDFs → summary CSV |
 | `criteria.yaml` | The rubric: criteria, sub-criteria and score definitions |
-| `evaluate_preprint_claude.py` · `batch_evaluate_claude.py` | Second-model backend used for calibration |
-| `evaluate_preprint_deepseek.py` | Third-backend pilot (not yet wired into the batch flow) |
-| `compare_scores.py` | Agreement matrix and recommendation diff between models |
-| `export_for_claude.py` · `add_claude_score.py` | Manual-calibration path: export grounded author data, load scores by hand |
-| `weekly_update.py` | Weekly orchestration: sync new candidate PDFs → score → calibrate |
-| `update_preprint_status/` | Tracks which preprints have since been published (Crossref) |
+| `batch_evaluate.py` · `weekly_update.py` | Batch runs over a directory of PDFs, and the weekly orchestration around them |
+| `evaluate_preprint_claude.py` · `_deepseek.py` · `compare_scores.py` | Alternative model backends and the cross-model agreement report |
 | `results_pipeline/` · `results_summary_pipeline.csv` | Structured outputs of real runs |
-| `mvp_preprint_rag.py` · `retriever_part1.py` · `run_batch_papers.py` | Earlier RAG prototype, kept for reference |
 
 Source PDFs and internal curation data (DOI worklists, curator spreadsheets) are
 deliberately not versioned — see `.gitignore`.
@@ -213,10 +207,6 @@ deliberately not versioned — see `.gitignore`.
 - **Figure-based evidence cannot be quote-validated.** When the model reasons from a
   figure, `validate_quotes` has no text to match against; those findings need a human
   look.
-- **The rubric is not versioned against stored scores.** If `criteria.yaml` changes,
-  previously stored scores are silently compared against a different rubric.
-- **Failed second-model runs can enter the calibration CSV as score 1** (finding 4
-  above), where they aggregate into a plausible-looking `reject`.
 - **Scores do not yet feed back into the curation decision.** Today the output informs a
   human curator; wiring it into the upstream worklist is the next step.
 
