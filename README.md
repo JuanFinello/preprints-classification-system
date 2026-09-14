@@ -153,38 +153,6 @@ runs is in [`results_summary_pipeline.csv`](results_summary_pipeline.csv).
 
 ---
 
-## Results so far
-
-18 preprints scored end-to-end with `gpt-5.6-terra` (surveillance genomics, arbovirus
-and molecular-virology papers):
-
-| Recommendation | Papers |
-|---|---|
-| `accept` | 8 |
-| `accept_with_reservations` | 5 |
-| `reject` | 5 |
-
-### Cross-model calibration
-
-The same papers were scored independently by a second model to measure how much of the
-output is rubric and how much is model idiosyncrasy. Over 17 comparable papers:
-
-| Criterion | Exact agreement | Mean absolute difference |
-|---|---|---|
-| Author credibility | 59 % | 0.41 |
-| Research question & methods | 65 % | 0.59 |
-| Results & conclusion | 47 % | 0.82 |
-| References | 65 % | 0.59 |
-| **Final recommendation** | **53 %** | — |
-
-These numbers are the point of the exercise, not a disappointment: a single-model score
-on a rubric this qualitative should not be treated as ground truth, and the disagreement
-map says exactly which criteria need prompt work (`results_and_conclusion` first).
-One paper is excluded from the table because its second-model run failed and was
-recorded as a real score — see *Known limitations*.
-
----
-
 ## What this project learned the hard way
 
 These are the findings that shaped the design; they are documented because they are the
@@ -248,7 +216,7 @@ deliberately not versioned — see `.gitignore`.
 - **The rubric is not versioned against stored scores.** If `criteria.yaml` changes,
   previously stored scores are silently compared against a different rubric.
 - **Failed second-model runs can enter the calibration CSV as score 1** (finding 4
-  above); one such row is excluded from the results table by hand rather than by code.
+  above), where they aggregate into a plausible-looking `reject`.
 - **Scores do not yet feed back into the curation decision.** Today the output informs a
   human curator; wiring it into the upstream worklist is the next step.
 
@@ -257,7 +225,7 @@ deliberately not versioned — see `.gitignore`.
 ## Roadmap
 
 - [ ] Distinguish failures from judgments across the whole write path
-- [ ] Prompt work on `results_and_conclusion`, the worst-agreeing criterion
+- [ ] Prompt work on `results_and_conclusion`, the criterion where the two models agree least
 - [ ] Stamp a rubric version into every stored result
 - [ ] Complete the DeepSeek backend and re-run the refusal comparison across all three
 - [ ] Feed recommendations back into the curator worklist
