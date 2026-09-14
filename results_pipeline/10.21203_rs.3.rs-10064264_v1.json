@@ -88,7 +88,7 @@
         {
           "name": "Meng Zou",
           "paper_count": 42,
-          "citation_count": 363,
+          "citation_count": 366,
           "h_index": 10,
           "match_method": "openalex_fallback",
           "field_match": true,
@@ -123,9 +123,9 @@
         },
         {
           "name": "Hongqi Liu",
-          "paper_count": 112,
-          "citation_count": 5456,
-          "h_index": 31,
+          "paper_count": 109,
+          "citation_count": 5461,
+          "h_index": 32,
           "match_method": "openalex_fallback",
           "field_match": true,
           "position": "last"
@@ -155,69 +155,69 @@
   "criteria": {
     "author_credibility": {
       "score": 2,
-      "justification": "institution_reputability: All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type institution. The first and last authors are affiliated with this established nationally recognized medical research institution. | author_expertise: Two authors have clear field-matched, established publication records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (112 papers, h-index 31). Other authors have limited or incomplete verifiable publication evidence. | institutional_collaboration: Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College, despite authors being based in different internal laboratories and centers.",
+      "justification": "institution_reputability: All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type, nationally recognized medical research and training institution. The first/last-author positions are also affiliated with this institution. | author_expertise: Two authors have clearly verifiable, field-matched established records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (109 papers, h-index 32). Other authors have limited or unavailable publication evidence, and Cheng Wang's identity match is flagged as uncertain. | institutional_collaboration: Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College; the two listed affiliations are units within that same institution.",
       "sub_scores": {
         "institution_reputability": {
           "score": 3,
-          "justification": "All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type institution. The first and last authors are affiliated with this established nationally recognized medical research institution."
+          "justification": "All authors are affiliated with Chinese Academy of Medical Sciences & Peking Union Medical College, an education-type, nationally recognized medical research and training institution. The first/last-author positions are also affiliated with this institution."
         },
         "author_expertise": {
           "score": 2,
-          "justification": "Two authors have clear field-matched, established publication records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (112 papers, h-index 31). Other authors have limited or incomplete verifiable publication evidence."
+          "justification": "Two authors have clearly verifiable, field-matched established records: Meng Zou (42 papers, h-index 10) and Hongqi Liu (109 papers, h-index 32). Other authors have limited or unavailable publication evidence, and Cheng Wang's identity match is flagged as uncertain."
         },
         "institutional_collaboration": {
           "score": 1,
-          "justification": "Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College, despite authors being based in different internal laboratories and centers."
+          "justification": "Institution data identifies one distinct parent institution, Chinese Academy of Medical Sciences & Peking Union Medical College; the two listed affiliations are units within that same institution."
         }
       },
       "institutions_assessed": [
         "Chinese Academy of Medical Sciences & Peking Union Medical College"
       ],
       "n_institutes": 1,
-      "corresponding_author_papers": 112,
+      "corresponding_author_papers": 109,
       "flags": [
-        "Semantic Scholar did not identify the paper by DOI and corresponding-author name search failed.",
-        "Publication statistics were largely backfilled from OpenAlex.",
-        "Cheng Wang's OpenAlex identity match may refer to a different author.",
-        "Affiliation text lists two internal CAMS/PUMC units, but normalized institution data contains only one parent institution."
+        "Publication data were backfilled from OpenAlex because Semantic Scholar had no DOI record.",
+        "Cheng Wang was matched to a potentially different OpenAlex author identity ('C Wang'), so that author's expertise cannot be verified.",
+        "Several author-institution matches to Peking Union Medical College Hospital were dropped as likely mismatches."
       ]
     },
     "research_question_and_methods": {
-      "score": 1,
-      "justification": "Parse error",
+      "score": 3,
+      "justification": "objective_and_hypothesis: This matches the score 3 description: the paper states a testable mechanistic objective, connects it to prior uncertainty about CHIKV immune evasion, and tests the proposed nsP3–Hsp70–TOM20 pathway through infection and protein-expression experiments. | public_health_relevance: This matches the score 2 description: CHIKV is presented as an escalating public-health threat associated with chronic disabling arthritis and lacking specific antivirals, but the study does not investigate or explicitly relate its work to a defined outbreak. | study_design_rigor: This matches the score 3 description: the study provides detailed cell culture, infection, inhibitor, molecular-assay, microscopy, fractionation, sequencing, qPCR, and TCID50 methods, validates key findings with multiple orthogonal approaches, and deposits transcriptomic and proteomic datasets under stated accession numbers.",
       "sub_scores": {
         "objective_and_hypothesis": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "This matches the score 3 description: the paper states a testable mechanistic objective, connects it to prior uncertainty about CHIKV immune evasion, and tests the proposed nsP3–Hsp70–TOM20 pathway through infection and protein-expression experiments.",
+          "quote": "To investigate the mechanism of CHIKV immune evasion, we used cell culture models of CHIKV infection and viral protein overexpression.",
+          "quote_valid": true
         },
         "public_health_relevance": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 2,
+          "justification": "This matches the score 2 description: CHIKV is presented as an escalating public-health threat associated with chronic disabling arthritis and lacking specific antivirals, but the study does not investigate or explicitly relate its work to a defined outbreak.",
+          "quote": "CHIKV is rapidly expanding its geographic range, posing an escalating public health threat.",
+          "quote_valid": true
         },
         "study_design_rigor": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "This matches the score 3 description: the study provides detailed cell culture, infection, inhibitor, molecular-assay, microscopy, fractionation, sequencing, qPCR, and TCID50 methods, validates key findings with multiple orthogonal approaches, and deposits transcriptomic and proteomic datasets under stated accession numbers.",
+          "quote": "Each experiment was independently repeated 3 times, and results were expressed as the mean ± standard deviations for statistical analysis.",
+          "quote_valid": true
         }
       },
-      "quote_valid": false
+      "quote_valid": true
     },
     "results_and_conclusion": {
       "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false
+      "justification": "Although Figures 1–6 provide supporting experiments and no fractional discrete-item counts or table-summary mismatches are reported, the core mechanistic conclusion is internally contradictory: the Results explicitly call the process PINK1-dependent, whereas the abstract and discussion call it PINK1/Parkin-independent; the Figure 7 model also assigns PINK1 a mechanistic role. This directly meets the score 1 description of conclusions not being consistently grounded in the paper's own evidence.",
+      "quote": "These results indicate CHIKV infection induced the PINK1-dependent mitophagy.",
+      "quote_valid": true
     },
     "references": {
-      "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false,
+      "reference_count": 66,
+      "justification": "The list is largely a balanced mix of foundational and recent peer-reviewed studies on CHIKV, MAVS, mitophagy, Hsp70, ubiquitination, and related viral immune-evasion mechanisms, with repository citations appropriately supporting data deposition. However, reference 40 (Basler et al.) concerns Ebola-virus VP35 rather than CHIKV and does not clearly support the paper's stated comparison of CHIKV interferon-stimulated-gene kinetics; reference 61 is also a Research Square preprint.",
+      "quote": "Li XD, Sun L, Seth RB, Pineda G, Chen ZJ: Hepatitis C virus protease NS3/4A cleaves mitochondrial antiviral signaling protein off the mitochondria to evade innate immunity.",
+      "score": 3,
+      "quote_valid": true,
       "citation_verification": {
         "n_entries_found": 1,
         "n_resolved": 0,
@@ -243,21 +243,18 @@
   "scoring": {
     "per_criterion": {
       "author_credibility": 2,
-      "research_question_and_methods": 1,
+      "research_question_and_methods": 3,
       "results_and_conclusion": 1,
-      "references": 1,
+      "references": 3,
       "feedback": null
     },
-    "total": 5,
+    "total": 9,
     "max": 12,
-    "average": 1.25,
+    "average": 2.25,
     "n_criteria_evaluated": 4,
-    "recommendation": "reject",
-    "quotes_invalid": [
-      "research_question_and_methods",
-      "results_and_conclusion",
-      "references"
-    ]
+    "failed_criteria": [],
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
   },
   "data_quality_warnings": [
     "OpenAlex matched 'Peking Union Medical College Hospital' to 'Meng Zou' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",

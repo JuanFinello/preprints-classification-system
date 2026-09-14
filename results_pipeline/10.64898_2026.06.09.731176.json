@@ -183,8 +183,8 @@
         },
         {
           "name": "Jacob E. Lemieux",
-          "paper_count": 23,
-          "citation_count": 329,
+          "paper_count": 26,
+          "citation_count": 335,
           "h_index": 7,
           "match_method": "doi",
           "field_match": true,
@@ -207,19 +207,19 @@
   "criteria": {
     "author_credibility": {
       "score": 3,
-      "justification": "institution_reputability: The assessed affiliations are Massachusetts General Hospital, a major nationally and internationally recognized academic medical and research institution, and the University of Massachusetts Chan Medical School, a credible education and biomedical research institution. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital. | author_expertise: At least three authors have verifiable field-aligned publication records: Jacob E. Lemieux (23 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched authors including Gordon Adams, Patricia A. Jorquera, Dibya Ghimire, Jamie Devlin, and João Tsai Silva. The senior/last author Lemieux has strong field-matched publication evidence. | institutional_collaboration: The institution data identifies two distinct institutes: Massachusetts General Hospital and the University of Massachusetts Chan Medical School.",
+      "justification": "institution_reputability: The assessed affiliations are Massachusetts General Hospital and University of Massachusetts Chan Medical School, both credible research/academic institutions. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital, a nationally and globally recognized academic medical research institution. | author_expertise: At least three authors have verifiable field-aligned publication records, including Jacob E. Lemieux (26 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched coauthors such as Dibya Ghimire, Gordon Adams, and Patricia A. Jorquera. The senior/last author also has strong field-matched evidence. | institutional_collaboration: The institution data supports collaboration between two distinct assessed institutions: Massachusetts General Hospital and University of Massachusetts Chan Medical School.",
       "sub_scores": {
         "institution_reputability": {
           "score": 3,
-          "justification": "The assessed affiliations are Massachusetts General Hospital, a major nationally and internationally recognized academic medical and research institution, and the University of Massachusetts Chan Medical School, a credible education and biomedical research institution. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital."
+          "justification": "The assessed affiliations are Massachusetts General Hospital and University of Massachusetts Chan Medical School, both credible research/academic institutions. The last/main author, Jacob E. Lemieux, is affiliated with Massachusetts General Hospital, a nationally and globally recognized academic medical research institution."
         },
         "author_expertise": {
           "score": 3,
-          "justification": "At least three authors have verifiable field-aligned publication records: Jacob E. Lemieux (23 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched authors including Gordon Adams, Patricia A. Jorquera, Dibya Ghimire, Jamie Devlin, and João Tsai Silva. The senior/last author Lemieux has strong field-matched publication evidence."
+          "justification": "At least three authors have verifiable field-aligned publication records, including Jacob E. Lemieux (26 papers, h-index 7), Jeremy Luban (27 papers, h-index 9), and additional field-matched coauthors such as Dibya Ghimire, Gordon Adams, and Patricia A. Jorquera. The senior/last author also has strong field-matched evidence."
         },
         "institutional_collaboration": {
           "score": 2,
-          "justification": "The institution data identifies two distinct institutes: Massachusetts General Hospital and the University of Massachusetts Chan Medical School."
+          "justification": "The institution data supports collaboration between two distinct assessed institutions: Massachusetts General Hospital and University of Massachusetts Chan Medical School."
         }
       },
       "institutions_assessed": [
@@ -227,48 +227,49 @@
         "University of Massachusetts Chan Medical School"
       ],
       "n_institutes": 2,
-      "corresponding_author_papers": 23,
+      "corresponding_author_papers": 26,
       "flags": [
-        "The reported Moderna Therapeutics affiliation was dropped from institution data as a likely author-affiliation mismatch.",
-        "OpenAlex author-identity matches for Paula Eillanny Silva Marinho and Sunyoung Kwon may be incomplete or assigned to different individuals."
+        "The apparent Moderna Therapeutics affiliation was dropped as a likely author-affiliation mismatch because it does not appear in the paper affiliation text.",
+        "OpenAlex identity matches for Paula Eillanny Silva Marinho and Sunyoung Kwon may refer to different authors, so their publication evidence is uncertain."
       ]
     },
     "research_question_and_methods": {
-      "score": 1,
-      "justification": "Parse error",
+      "score": 3,
+      "justification": "objective_and_hypothesis: The manuscript states a concrete, method-linked objective, but it frames the work as characterization and assessment rather than stating a prospective explicit hypothesis. It therefore meets the clear-objective/intermediate score_2 description rather than score_3's explicit-hypothesis requirement. | public_health_relevance: RSV is presented as a substantial cause of severe respiratory disease, and the sampled viruses are explicitly connected to the particularly severe 2022–2023 RSV season. This meets score_3 because it addresses a pressing public-health concern in the context of a documented RSV surge. | study_design_rigor: The paper provides detailed protocols for isolation, sequencing, phylogenetics, replication assays, plaque/FRNT neutralization, and rabbit immunization, and validates both isolate sequence fidelity and FRNT against PRNT. This matches score_3's clear, rigorous, reproducible design with validation and stated data availability.",
       "sub_scores": {
         "objective_and_hypothesis": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 2,
+          "justification": "The manuscript states a concrete, method-linked objective, but it frames the work as characterization and assessment rather than stating a prospective explicit hypothesis. It therefore meets the clear-objective/intermediate score_2 description rather than score_3's explicit-hypothesis requirement.",
+          "quote": "We analyzed the viral genome sequences of 133 RSV clinical samples collected during the 2022–2023 and 2023–2024 seasons, and selected representative isolates for phenotypic testing.",
+          "quote_valid": true
         },
         "public_health_relevance": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "RSV is presented as a substantial cause of severe respiratory disease, and the sampled viruses are explicitly connected to the particularly severe 2022–2023 RSV season. This meets score_3 because it addresses a pressing public-health concern in the context of a documented RSV surge.",
+          "quote": "The isolates tested represented the genetic subtypes that were associated with the particularly severe RSV 2022-2023 season.",
+          "quote_valid": true
         },
         "study_design_rigor": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "The paper provides detailed protocols for isolation, sequencing, phylogenetics, replication assays, plaque/FRNT neutralization, and rabbit immunization, and validates both isolate sequence fidelity and FRNT against PRNT. This matches score_3's clear, rigorous, reproducible design with validation and stated data availability.",
+          "quote": "We developed a focus-reduction neutralization test (FRNT), which could be performed in 96-well format, and confirmed its correlation with PRNT (R = 0.793; Figure S7).",
+          "quote_valid": true
         }
       },
-      "quote_valid": false
+      "quote_valid": true
     },
     "results_and_conclusion": {
-      "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false
+      "score": 2,
+      "justification": "Table 2 supports the stated approximately 13-fold nirsevimab difference for RSV-0016 versus RSV-B1 (245.7 versus 17.86 ng/mL), and Figures 6 and 8 support key neutralization findings. However, reporting is internally inconsistent: Figure 9's caption gives PC1/PC2 values of 46.43%/43.73% whereas its rendered axes read 51.19%/36.54%, and the paper reports 133 samples in the Abstract/Results but 137 specimens in Methods; these are score_2-level reporting inconsistencies.",
+      "quote": "Individual samples are plotted along the first two principal components (PC1 = 46.43%; PC2 = 43.73%).",
+      "quote_valid": true
     },
     "references": {
-      "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false,
+      "reference_count": 39,
+      "justification": "The list combines foundational RSV structural and epidemiologic studies with recent clinical, genomic, and contemporary-isolate literature, and uses these sources to contextualize methods and findings. WHO, CDC, FDA, and a Merck approval webpage are non-peer-reviewed but relevant policy sources; no clearly unrelated reference was identified.",
+      "quote": "Structure-based design of a fusion glycoprotein vaccine for respiratory syncytial virus.",
+      "score": 3,
+      "quote_valid": true,
       "citation_verification": {
         "n_entries_found": 27,
         "n_resolved": 27,
@@ -288,21 +289,18 @@
   "scoring": {
     "per_criterion": {
       "author_credibility": 3,
-      "research_question_and_methods": 1,
-      "results_and_conclusion": 1,
-      "references": 1,
+      "research_question_and_methods": 3,
+      "results_and_conclusion": 2,
+      "references": 3,
       "feedback": null
     },
-    "total": 6,
+    "total": 11,
     "max": 12,
-    "average": 1.5,
+    "average": 2.75,
     "n_criteria_evaluated": 4,
-    "recommendation": "reject",
-    "quotes_invalid": [
-      "research_question_and_methods",
-      "results_and_conclusion",
-      "references"
-    ]
+    "failed_criteria": [],
+    "recommendation": "accept",
+    "quotes_invalid": []
   },
   "data_quality_warnings": [
     "OpenAlex matched the paper's byline name 'Paula Eillanny Silva Marinho' to a different author identity 'P Silva Marinho' — that author's OpenAlex-derived data may belong to the wrong person.",

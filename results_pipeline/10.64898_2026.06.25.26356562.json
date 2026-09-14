@@ -186,7 +186,7 @@
         {
           "name": "D. Nieuwenhuijse",
           "paper_count": 55,
-          "citation_count": 3950,
+          "citation_count": 3898,
           "h_index": 21,
           "match_method": "doi",
           "field_match": true,
@@ -203,7 +203,7 @@
         },
         {
           "name": "R. Sindayiheba",
-          "paper_count": 10,
+          "paper_count": 11,
           "citation_count": 68,
           "h_index": 4,
           "match_method": "doi",
@@ -221,18 +221,9 @@
         },
         {
           "name": "H. Cassidy",
-          "paper_count": 24,
-          "citation_count": 432,
-          "h_index": 7,
-          "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
-        },
-        {
-          "name": "F. Bacon Benimana",
-          "paper_count": 1,
-          "citation_count": 0,
-          "h_index": 0,
+          "paper_count": 26,
+          "citation_count": 488,
+          "h_index": 8,
           "match_method": "doi",
           "field_match": true,
           "position": "middle"
@@ -256,49 +247,13 @@
           "position": "middle"
         },
         {
-          "name": "G. Nzigire Barhatwira",
-          "paper_count": 1,
-          "citation_count": 0,
-          "h_index": 0,
-          "match_method": "doi",
-          "field_match": null,
-          "position": "middle"
-        },
-        {
-          "name": "J. Bengehya Mbiribindi",
-          "paper_count": 3,
-          "citation_count": 7,
+          "name": "T.-A. Lang",
+          "paper_count": 4,
+          "citation_count": 13,
           "h_index": 1,
           "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
-        },
-        {
-          "name": "J. Ndoli Minega",
-          "paper_count": 1,
-          "citation_count": 0,
-          "h_index": 0,
-          "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
-        },
-        {
-          "name": "T. Lang",
-          "paper_count": 7,
-          "citation_count": 183,
-          "h_index": 5,
-          "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
-        },
-        {
-          "name": "K. Lulihoshi Willy",
-          "paper_count": 1,
-          "citation_count": 0,
-          "h_index": 0,
-          "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
+          "field_match": null,
+          "position": ""
         },
         {
           "name": "P. Ngabo",
@@ -311,27 +266,18 @@
         },
         {
           "name": "S. Mitchell",
-          "paper_count": 2,
-          "citation_count": 12,
-          "h_index": 1,
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
           "match_method": "doi",
           "field_match": true,
           "position": "middle"
         },
         {
-          "name": "C. Gortázar",
-          "paper_count": 5,
-          "citation_count": 63,
-          "h_index": 3,
-          "match_method": "doi",
-          "field_match": null,
-          "position": "middle"
-        },
-        {
-          "name": "F. M. Aarestrup",
-          "paper_count": 1,
-          "citation_count": 0,
-          "h_index": 0,
+          "name": "F. Aarestrup",
+          "paper_count": 44,
+          "citation_count": 1263,
+          "h_index": 17,
           "match_method": "doi",
           "field_match": true,
           "position": "middle"
@@ -346,27 +292,9 @@
           "position": "middle"
         },
         {
-          "name": "M. Koopmans",
-          "paper_count": 17,
-          "citation_count": 111,
-          "h_index": 5,
-          "match_method": "doi",
-          "field_match": true,
-          "position": "middle"
-        },
-        {
-          "name": "B. O. Oude Munnink",
-          "paper_count": 128,
-          "citation_count": 6727,
-          "h_index": 34,
-          "match_method": "doi",
-          "field_match": null,
-          "position": "middle"
-        },
-        {
           "name": "P. Ndishimye",
-          "paper_count": 51,
-          "citation_count": 3399,
+          "paper_count": 54,
+          "citation_count": 3401,
           "h_index": 16,
           "match_method": "doi",
           "field_match": true,
@@ -374,15 +302,70 @@
         },
         {
           "name": "Leandre Murhula Masirika",
-          "paper_count": 15,
-          "citation_count": 370,
-          "h_index": 7,
+          "paper_count": 16,
+          "citation_count": 387,
+          "h_index": 8,
           "match_method": "openalex_fallback",
           "field_match": true,
           "position": "first"
+        },
+        {
+          "name": "Francisco Bacon Benimana",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Justin Bengehya Mbiribindi",
+          "paper_count": 15,
+          "citation_count": 408,
+          "h_index": 9,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Jules Ndoli Minega",
+          "paper_count": 10,
+          "citation_count": 17,
+          "h_index": 3,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Trudie Lang",
+          "paper_count": 151,
+          "citation_count": 6108,
+          "h_index": 34,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
+        },
+        {
+          "name": "Kasi Lulihoshi Willy",
+          "paper_count": 1,
+          "citation_count": 0,
+          "h_index": 0,
+          "match_method": "openalex_fallback",
+          "field_match": true,
+          "position": "middle"
         }
       ],
-      "warnings": []
+      "warnings": [
+        "Semantic Scholar: no authorId for 'F. Bacon Benimana' — skipped.",
+        "Semantic Scholar: no authorId for 'G. Nzigire Barhatwira' — skipped.",
+        "Semantic Scholar: no authorId for 'J. Bengehya Mbiribindi' — skipped.",
+        "Semantic Scholar: no authorId for 'J. Ndoli Minega' — skipped.",
+        "Semantic Scholar: no authorId for 'K. Lulihoshi Willy' — skipped.",
+        "Semantic Scholar: stats request failed for 'C. Gortázar'.",
+        "Semantic Scholar: stats request failed for 'M. Koopmans'.",
+        "Semantic Scholar: stats request failed for 'B. O. Munnink'.",
+        "Semantic Scholar: only 15/23 authors on record got verified stats — author_credibility for this paper is scored on incomplete data."
+      ]
     },
     "paper_fields": [
       "Immunology and Microbiology",
@@ -416,29 +399,39 @@
       "'University of Castilla-La Mancha' matched 'Christian Gortázar' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
       "OpenAlex matched 'Université Catholique de Bukavu' to 'Esto Bahizire' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
       "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
-      "OpenAlex matched 'Erasmus University Rotterdam' to 'Bas B. Oude Munnink' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+      "OpenAlex matched the paper's byline name 'Bas B. Oude Munnink' to a different author identity 'Marion Koopmans' — that author's OpenAlex-derived data may belong to the wrong person.",
+      "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
       "OpenAlex matched 'University of Kigali' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
       "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
       "OpenAlex matched 'Université Evangélique en Afrique' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
-      "Semantic Scholar had no record for 1 author(s) — their publication stats were backfilled from OpenAlex instead."
+      "Semantic Scholar: no authorId for 'F. Bacon Benimana' — skipped.",
+      "Semantic Scholar: no authorId for 'G. Nzigire Barhatwira' — skipped.",
+      "Semantic Scholar: no authorId for 'J. Bengehya Mbiribindi' — skipped.",
+      "Semantic Scholar: no authorId for 'J. Ndoli Minega' — skipped.",
+      "Semantic Scholar: no authorId for 'K. Lulihoshi Willy' — skipped.",
+      "Semantic Scholar: stats request failed for 'C. Gortázar'.",
+      "Semantic Scholar: stats request failed for 'M. Koopmans'.",
+      "Semantic Scholar: stats request failed for 'B. O. Munnink'.",
+      "Semantic Scholar: only 15/23 authors on record got verified stats — author_credibility for this paper is scored on incomplete data.",
+      "Semantic Scholar had no record for 6 author(s) — their publication stats were backfilled from OpenAlex instead."
     ]
   },
   "criteria": {
     "author_credibility": {
       "score": 2,
-      "justification": "institution_reputability: The collaboration includes many credible education, research, and healthcare institutions, and the first author is affiliated with the Instituto de Investigación en Recursos Cinegéticos and University of Castilla-La Mancha. However, the affiliation list also includes SMitchell Consulting, LLC, a commercial entity, which meets the score-1 condition. | author_expertise: More than three authors have verifiable field-matched publication records with established metrics, including first author Leandre Murhula Masirika (15 papers, h-index 7), Jean Claude Udahemuka (26, h-index 11), David F. Nieuwenhuijse (55, h-index 21), Leonard Schuele (16, h-index 8), Hayley Cassidy (24, h-index 7), Esto Bahizire (37, h-index 10), and last author Pacifique Ndishimye (51, h-index 16). | institutional_collaboration: Institution data identifies eight distinct institutions, exceeding the more-than-three-institutes threshold.",
+      "justification": "institution_reputability: Although several authors are affiliated with credible education or research institutions (including University of Castilla-La Mancha, University of Rwanda, University of Oxford, Technical University of Denmark, and AIMS), the paper's affiliation list includes SMitchell Consulting, LLC, a commercial consulting entity, and Stansile, whose research-institution status is not established in the supplied data. | author_expertise: Well over three authors have verifiable, field-matched publication records meeting the established-researcher threshold, including first author Leandre Murhula Masirika (16 papers, h-index 8), last author Pacifique Ndishimye (54 papers, h-index 16), and middle authors Jean Claude Udahemuka, David F. Nieuwenhuijse, Reuben Sindayiheba, Leonard Schuele, Hayley Cassidy, Frank M. Aarestrup, Esto Bahizire, Justin Bengehya Mbiribindi, Trudie Lang, and Jules Ndoli Minega. Both first and last authors have strong field-matched records. | institutional_collaboration: The institution data identifies 8 distinct institutes, exceeding the more-than-three-institutes threshold.",
       "sub_scores": {
         "institution_reputability": {
           "score": 1,
-          "justification": "The collaboration includes many credible education, research, and healthcare institutions, and the first author is affiliated with the Instituto de Investigación en Recursos Cinegéticos and University of Castilla-La Mancha. However, the affiliation list also includes SMitchell Consulting, LLC, a commercial entity, which meets the score-1 condition."
+          "justification": "Although several authors are affiliated with credible education or research institutions (including University of Castilla-La Mancha, University of Rwanda, University of Oxford, Technical University of Denmark, and AIMS), the paper's affiliation list includes SMitchell Consulting, LLC, a commercial consulting entity, and Stansile, whose research-institution status is not established in the supplied data."
         },
         "author_expertise": {
           "score": 3,
-          "justification": "More than three authors have verifiable field-matched publication records with established metrics, including first author Leandre Murhula Masirika (15 papers, h-index 7), Jean Claude Udahemuka (26, h-index 11), David F. Nieuwenhuijse (55, h-index 21), Leonard Schuele (16, h-index 8), Hayley Cassidy (24, h-index 7), Esto Bahizire (37, h-index 10), and last author Pacifique Ndishimye (51, h-index 16)."
+          "justification": "Well over three authors have verifiable, field-matched publication records meeting the established-researcher threshold, including first author Leandre Murhula Masirika (16 papers, h-index 8), last author Pacifique Ndishimye (54 papers, h-index 16), and middle authors Jean Claude Udahemuka, David F. Nieuwenhuijse, Reuben Sindayiheba, Leonard Schuele, Hayley Cassidy, Frank M. Aarestrup, Esto Bahizire, Justin Bengehya Mbiribindi, Trudie Lang, and Jules Ndoli Minega. Both first and last authors have strong field-matched records."
         },
         "institutional_collaboration": {
           "score": 3,
-          "justification": "Institution data identifies eight distinct institutions, exceeding the more-than-three-institutes threshold."
+          "justification": "The institution data identifies 8 distinct institutes, exceeding the more-than-three-institutes threshold."
         }
       },
       "institutions_assessed": [
@@ -452,49 +445,50 @@
         "African Institute for Mathematical Sciences"
       ],
       "n_institutes": 8,
-      "corresponding_author_papers": 15,
+      "corresponding_author_papers": 16,
       "flags": [
         "SMitchell Consulting, LLC is a commercial affiliation.",
-        "Several affiliations in the paper affiliation list have no corresponding institution-type record in the supplied OpenAlex data, so their institutional status is not independently verified.",
-        "Some author/institution identity matches were flagged as likely mismatches and excluded from assessment."
+        "Stansile has no verified institution-type information in the supplied institution data.",
+        "Publication-statistics coverage is incomplete: verified or backfilled records were available for 21 of 23 authors, with several identity and affiliation matches flagged as uncertain."
       ]
     },
     "research_question_and_methods": {
-      "score": 1,
-      "justification": "Parse error",
+      "score": 3,
+      "justification": "objective_and_hypothesis: Matches the score_2 description: the objective to report and characterize newly detected Clade Ia alongside Clade Ib is clear and connected to PCR and sequencing, but the paper does not state an explicit, testable hypothesis or prespecified prediction. | public_health_relevance: Matches the score_3 description: this concerns ongoing mpox transmission in the DRC and explicitly situates the outbreak in relation to the WHO-declared mpox Public Health Emergency of International Concern. | study_design_rigor: Matches the score_3 description: the paper specifies the surveillance population, collection dates and specimen types, PCR assay, Ct/volume sequencing selection, extraction and library methods, sequencing platform, read-processing tools and versions, phylogenetic parameters, and GISAID accessions for the three generated genomes. These details provide a reproducible workflow and genomic validation of initial Clade Ia detections.",
       "sub_scores": {
         "objective_and_hypothesis": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 2,
+          "justification": "Matches the score_2 description: the objective to report and characterize newly detected Clade Ia alongside Clade Ib is clear and connected to PCR and sequencing, but the paper does not state an explicit, testable hypothesis or prespecified prediction.",
+          "quote": "Here, we report the first MPXV clade Ia cases followed by rapid spread in the Province of South-Kivu",
+          "quote_valid": true
         },
         "public_health_relevance": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "Matches the score_3 description: this concerns ongoing mpox transmission in the DRC and explicitly situates the outbreak in relation to the WHO-declared mpox Public Health Emergency of International Concern.",
+          "quote": "leading to the second declaration of a Public Health Emergency of International Concern (PHEIC) in 2024 by the World health Organization",
+          "quote_valid": true
         },
         "study_design_rigor": {
-          "score": 1,
-          "justification": "Parse error",
-          "quote": "",
-          "quote_valid": false
+          "score": 3,
+          "justification": "Matches the score_3 description: the paper specifies the surveillance population, collection dates and specimen types, PCR assay, Ct/volume sequencing selection, extraction and library methods, sequencing platform, read-processing tools and versions, phylogenetic parameters, and GISAID accessions for the three generated genomes. These details provide a reproducible workflow and genomic validation of initial Clade Ia detections.",
+          "quote": "Raw reads were quality controlled using fastp (version v1.3.3), primer sequences were trimmed using Ampliclip",
+          "quote_valid": true
         }
       },
-      "quote_valid": false
+      "quote_valid": true
     },
     "results_and_conclusion": {
       "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false
+      "justification": "Matches the score_1 description because the reported case/detection totals are internally inconsistent: 545 Ib plus 50 Ia already equals 595, yet 37 of the 50 Ia cases are later reported as dual Ia/Ib positive. If 595 is the patient total, dual positives require 632 clade detections; if it is the detection total, there are 558 unique patients. Figure 1A also describes rates per 100,000 in its caption while its visible x-axis is labelled confirmed detections, further impairing interpretation of the central co-circulation result.",
+      "quote": "In total, 595 cases were diagnosed. Of these , 545 (91,60%) tested positive for clade Ib and 50 (8,4%) for clade Ia.",
+      "quote_valid": true
     },
     "references": {
-      "score": 1,
-      "justification": "Parse error",
-      "quote": "",
-      "quote_valid": false,
+      "reference_count": 29,
+      "justification": "The references meet the score_3 quality-and-coverage description: they include foundational mpox literature, recent peer-reviewed genomic and epidemiological studies from the DRC and neighboring settings, methodological literature, and relevant WHO outbreak documents. The overlapping-author studies (#13-15) are directly relevant to the South Kivu outbreak and do not dominate the list; no reference is clearly unrelated to the paper's subject matter.",
+      "quote": "Sustained human outbreak of a new MPXV clade I lineage in eastern Democratic Republic of the Congo.",
+      "score": 3,
+      "quote_valid": true,
       "citation_verification": {
         "n_entries_found": 28,
         "n_resolved": 27,
@@ -520,21 +514,18 @@
   "scoring": {
     "per_criterion": {
       "author_credibility": 2,
-      "research_question_and_methods": 1,
+      "research_question_and_methods": 3,
       "results_and_conclusion": 1,
-      "references": 1,
+      "references": 3,
       "feedback": null
     },
-    "total": 5,
+    "total": 9,
     "max": 12,
-    "average": 1.25,
+    "average": 2.25,
     "n_criteria_evaluated": 4,
-    "recommendation": "reject",
-    "quotes_invalid": [
-      "research_question_and_methods",
-      "results_and_conclusion",
-      "references"
-    ]
+    "failed_criteria": [],
+    "recommendation": "accept_with_reservations",
+    "quotes_invalid": []
   },
   "data_quality_warnings": [
     "OpenAlex matched 'University of Kigali' to 'Leandre Murhula Masirika' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
@@ -564,10 +555,20 @@
     "'University of Castilla-La Mancha' matched 'Christian Gortázar' via a ROR alias ('Universidad de Castilla-La Mancha') rather than OpenAlex's own display name — kept.",
     "OpenAlex matched 'Université Catholique de Bukavu' to 'Esto Bahizire' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
     "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
-    "OpenAlex matched 'Erasmus University Rotterdam' to 'Bas B. Oude Munnink' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
+    "OpenAlex matched the paper's byline name 'Bas B. Oude Munnink' to a different author identity 'Marion Koopmans' — that author's OpenAlex-derived data may belong to the wrong person.",
+    "OpenAlex matched 'Erasmus University Rotterdam' to 'Marion Koopmans' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
     "OpenAlex matched 'University of Kigali' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
     "OpenAlex matched 'Institut Supérieur Pédagogique de Bukavu' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
     "OpenAlex matched 'Université Evangélique en Afrique' to 'Pacifique Ndishimye' but that name (nor any of its known ROR aliases) doesn't appear anywhere in the paper's own affiliation text — dropped as a likely mismatch.",
-    "Semantic Scholar had no record for 1 author(s) — their publication stats were backfilled from OpenAlex instead."
+    "Semantic Scholar: no authorId for 'F. Bacon Benimana' — skipped.",
+    "Semantic Scholar: no authorId for 'G. Nzigire Barhatwira' — skipped.",
+    "Semantic Scholar: no authorId for 'J. Bengehya Mbiribindi' — skipped.",
+    "Semantic Scholar: no authorId for 'J. Ndoli Minega' — skipped.",
+    "Semantic Scholar: no authorId for 'K. Lulihoshi Willy' — skipped.",
+    "Semantic Scholar: stats request failed for 'C. Gortázar'.",
+    "Semantic Scholar: stats request failed for 'M. Koopmans'.",
+    "Semantic Scholar: stats request failed for 'B. O. Munnink'.",
+    "Semantic Scholar: only 15/23 authors on record got verified stats — author_credibility for this paper is scored on incomplete data.",
+    "Semantic Scholar had no record for 6 author(s) — their publication stats were backfilled from OpenAlex instead."
   ]
 }
