@@ -38,12 +38,11 @@ grounded in an API or checked after the fact.
 The honest exception is reference quality. Whether a cited work is off-topic,
 non-peer-reviewed or a self-citation is the model's own reading of the bibliography, and
 nothing verifies it: those three inputs lower the `references` score on the model's word
-alone. Two of them could be grounded, since Crossref returns a work's type and author
-list for every entry that resolves, but the reference-list parser currently finds only
-47 % of entries and fails almost completely on some papers, so counts built on it would
-be drawn from a biased subset of the bibliography. Fixing the parser is the prerequisite;
-until then the caps are explicitly a model judgment, recorded in `score_note` so a
-reviewer can see exactly which entries triggered them.
+alone. Two of them could be grounded, since Crossref returns a work's type and author list for
+every entry that resolves, and the reference-list parser now reaches 93 % of entries
+(up from 52 %) so those counts would no longer be drawn from a biased slice of the
+bibliography. Until that grounding is built, the caps are explicitly a model judgment,
+recorded in `score_note` so a reviewer can see exactly which entries triggered them.
 
 ---
 

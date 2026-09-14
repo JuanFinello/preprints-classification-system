@@ -1171,26 +1171,78 @@ _REF_ENTRY_RE = re.compile(
     rf'(?=(?:{_REF_NAME_PREFIX})?{_REF_SURNAME}(?:\s+[A-ZÀ-Ý]|,))'
 )
 
-_CROSSREF_MATCH_SCORE_THRESHOLD = 50  # spot-checked true matches scored 80+; below this, treat as unresolved rather than risk a false positive
+# Kept for reference in the stored output only. It used to decide acceptance, and
+# rejected a word-for-word correct match at 48 ("The global distribution and burden
+# of dengue"): Crossref's score is not normalised, so no fixed cutoff works.
+# _match_is_plausible now makes the call from the record itself.
+_CROSSREF_MATCH_SCORE_THRESHOLD = 50
 
 
 def _clean_doi(raw: str) -> str:
     return raw.rstrip(".").rstrip(")").rstrip("]")
 
 
+# The heading is matched on its own line and case-insensitively: one paper in the
+# calibration set writes "REFERENCES", and a case-sensitive rfind("References")
+# silently dropped its whole 67-entry list before any parsing began.
+_REF_HEADING_RE = re.compile(
+    r"(?im)^[^\S\n]{0,12}(?:references|bibliography|literature cited|works cited)"
+    r"[^\S\n]*:?[^\S\n]*$")
+
+# Line numbers down the margin of a preprint come out of pdfminer as their own
+# block ("1\n\n2\n\n3..."), and page furniture lands inside entries.
+_LINE_NUMBER_BLOCK_RE = re.compile(r"(?:^|\n)(?:[^\S\n]*\d{1,4}[.)]?[^\S\n]*\n\s*){3,}")
+_PAGE_FURNITURE_RE = re.compile(r"(?im)^[^\S\n]*Page\s+\d+\s*/\s*\d+[^\S\n]*$\n?")
+
+
 def _extract_references_section(full_text: str) -> str:
     """Isolate the reference-list text from the end of the paper. Used only
-    for citation verification (verify_references) — independent of whatever
+    for citation verification (verify_references), independent of whatever
     slice of the paper is sent to the LLM for scoring."""
-    idx = full_text.rfind("References")
-    if idx == -1:
-        return ""
-    section = full_text[idx + len("References"):]
+    matches = list(_REF_HEADING_RE.finditer(full_text))
+    if matches:
+        section = full_text[matches[-1].end():]
+    else:
+        # No heading on a line of its own: fall back to the last mention of the
+        # word anywhere, case-insensitively.
+        low = full_text.lower()
+        idx = low.rfind("references")
+        if idx == -1:
+            return ""
+        section = full_text[idx + len("references"):]
+
     for stop in ("\nFigures\n", "\nSupplementary", "\nFigure Legends", "\nAcknowledg"):
-        cut = section.find(stop)
+        cut = section.lower().find(stop.lower())
         if cut != -1:
             section = section[:cut]
+
+    section = _PAGE_FURNITURE_RE.sub("", section)
+    section = _LINE_NUMBER_BLOCK_RE.sub("\n", section)
     return section
+
+
+# Three reference-list styles seen in practice. The numbered ones are tried first
+# and keep their existing behaviour; the unnumbered strategy exists because a
+# line-numbered preprint loses its entry numbers to pdfminer's margin block, which
+# left one paper's 44 entries parsing as zero.
+_REF_ENTRY_BRACKET_RE = re.compile(rf'(?:^|\n)\s*\[\d{{1,3}}\]\s*'
+                                   rf'(?=(?:{_REF_NAME_PREFIX})?{_REF_SURNAME}(?:\s+[A-ZÀ-Ý]|,))')
+_REF_ENTRY_UNNUMBERED_RE = re.compile(rf'(?:^|\n)\s*'
+                                      rf'(?=(?:{_REF_NAME_PREFIX})?{_REF_SURNAME}(?:\s+[A-ZÀ-Ý]\b|,))')
+# "27 Li, M. et al." — numbered, but with no period after the number.
+_REF_ENTRY_BARE_NUMBER_RE = re.compile(rf'(?:^|\n)\s*\d{{1,3}}[.)]?\s+'
+                                       rf'(?=(?:{_REF_NAME_PREFIX})?{_REF_SURNAME}(?:\s+[A-ZÀ-Ý]|,))')
+
+
+def _split_on(pattern: re.Pattern, ref_section: str) -> list[str]:
+    positions = [m.start() for m in pattern.finditer(ref_section)]
+    entries = []
+    for i, pos in enumerate(positions):
+        end = positions[i + 1] if i + 1 < len(positions) else len(ref_section)
+        entry = re.sub(r"\s+", " ", ref_section[pos:end]).strip()
+        if entry:
+            entries.append(entry)
+    return entries
 
 
 def _split_reference_entries(ref_section: str) -> list[str]:
@@ -1199,19 +1251,24 @@ def _split_reference_entries(ref_section: str) -> list[str]:
     in some reference numbers (e.g. "16." extracts as "1 ."), and entries
     commonly start with a hyphenated compound surname ("Cardona-Trujillo") or
     a lowercase surname prefix ("de Souza") — plain "^\\d+\\. " splitting misses
-    both. Known residual gap (verified, not fixed): a Chinese-name
-    romanization with the hyphen inside a lowercase given name (e.g.
-    "Wei-ying Chen") isn't caught either — that entry merges into its
-    neighbor's text instead of being silently dropped, so verification just
-    runs on the combined text rather than skipping a reference outright."""
-    positions = [m.start() for m in _REF_ENTRY_RE.finditer(ref_section)]
-    entries = []
-    for i, pos in enumerate(positions):
-        end = positions[i + 1] if i + 1 < len(positions) else len(ref_section)
-        entry = re.sub(r"\s+", " ", ref_section[pos:end]).strip()
-        if entry:
-            entries.append(entry)
-    return entries
+    both.
+
+    Every strategy is tried and the one that finds the most entries wins. That
+    sounds like it should over-split, but measured across the calibration set it
+    does not: the winning strategy never exceeded the paper's real reference
+    count by more than five, while first-past-the-post selection left four
+    papers parsing under 11% of their list because a numbered pattern matched a
+    handful of false positives and blocked the unnumbered strategy that would
+    have found the whole list.
+
+    Known residual gap (verified, not fixed): a Chinese-name romanization with
+    the hyphen inside a lowercase given name (e.g. "Wei-ying Chen") isn't caught
+    — that entry merges into its neighbour's text instead of being dropped, so
+    verification runs on the combined text rather than skipping a reference."""
+    candidates = [_split_on(pattern, ref_section) for pattern in
+                  (_REF_ENTRY_RE, _REF_ENTRY_BRACKET_RE,
+                   _REF_ENTRY_BARE_NUMBER_RE, _REF_ENTRY_UNNUMBERED_RE)]
+    return max(candidates, key=len)
 
 
 def _crossref_get(url: str, params: dict, session: requests.Session, max_retries: int = 3) -> requests.Response | None:
@@ -1239,6 +1296,62 @@ def _crossref_get(url: str, params: dict, session: requests.Session, max_retries
     return None
 
 
+_TITLE_STOPWORDS = frozenset(
+    "a an the of in and for to on with by from as at is are its their this that "
+    "we be been between during via using use over under into after before".split())
+_TITLE_OVERLAP_THRESHOLD = 0.6  # share of the matched title's content words that must appear in the citation
+
+
+def _crossref_record(item: dict) -> dict:
+    """The fields worth keeping from a Crossref work. type distinguishes a
+    preprint ("posted-content") from a published article ("journal-article"),
+    and the author list is what a self-citation check needs; both used to be
+    thrown away here and re-derived from the model's reading instead."""
+    titles = item.get("title", [])
+    issued = (item.get("issued", {}) or {}).get("date-parts", [[]])
+    year = issued[0][0] if issued and issued[0] else None
+    return {
+        "doi": item.get("DOI", ""),
+        "title": titles[0] if titles else "",
+        "type": item.get("type", ""),
+        "container": (item.get("container-title") or [""])[0],
+        "authors": [a.get("family", "") for a in (item.get("author") or []) if a.get("family")],
+        "year": year,
+        "cited_by": item.get("is-referenced-by-count"),
+    }
+
+
+def _title_overlap(title: str, entry_text: str) -> float:
+    """Share of the title's content words that actually appear in the citation."""
+    words = [w for w in re.findall(r"[a-z0-9]+", _norm(title)) if w not in _TITLE_STOPWORDS and len(w) > 2]
+    if not words:
+        return 0.0
+    entry_words = set(re.findall(r"[a-z0-9]+", _norm(entry_text)))
+    return sum(1 for w in words if w in entry_words) / len(words)
+
+
+def _match_is_plausible(entry_text: str, rec: dict) -> tuple[bool, str]:
+    """Decide whether a Crossref hit really is the work the entry cites.
+
+    Crossref's own relevance score is not normalised and makes a poor cutoff:
+    at the previous threshold of 50, "The global distribution and burden of
+    dengue" was rejected at 48 against a citation whose title matched it word
+    for word. So the decision is made from the record itself instead, the same
+    way quotes are checked against the paper text rather than trusted."""
+    overlap = _title_overlap(rec.get("title", ""), entry_text)
+    if overlap < _TITLE_OVERLAP_THRESHOLD:
+        return False, f"title overlap {overlap:.0%} below {_TITLE_OVERLAP_THRESHOLD:.0%}"
+
+    entry_norm = _norm(entry_text)
+    first_author = (rec.get("authors") or [""])[0]
+    author_ok = bool(first_author) and _norm(first_author) in entry_norm
+    year_ok = bool(rec.get("year")) and str(rec["year"]) in entry_text
+    if not (author_ok or year_ok):
+        return False, f"title overlap {overlap:.0%} but neither first author nor year appears in the entry"
+    corroboration = "author" if author_ok else "year"
+    return True, f"title overlap {overlap:.0%}, corroborated by {corroboration}"
+
+
 def _crossref_lookup_doi(doi: str, session: requests.Session) -> dict:
     """Verify a DOI already printed in the reference actually resolves."""
     r = _crossref_get(f"{CROSSREF_API}/{doi}", {}, session)
@@ -1248,8 +1361,7 @@ def _crossref_lookup_doi(doi: str, session: requests.Session) -> dict:
         item = r.json().get("message", {})
     except Exception:
         return {}
-    titles = item.get("title", [])
-    return {"doi": doi, "title": titles[0] if titles else ""}
+    return _crossref_record(item)
 
 
 def _crossref_search_bibliographic(entry_text: str, session: requests.Session) -> dict:
@@ -1267,8 +1379,9 @@ def _crossref_search_bibliographic(entry_text: str, session: requests.Session) -
     if not items:
         return {}
     best = items[0]
-    titles = best.get("title", [])
-    return {"doi": best.get("DOI", ""), "title": titles[0] if titles else "", "score": best.get("score", 0)}
+    rec = _crossref_record(best)
+    rec["score"] = best.get("score", 0)
+    return rec
 
 
 def verify_references(full_text: str, session: requests.Session | None = None) -> dict:
@@ -1297,7 +1410,8 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
             result = _crossref_lookup_doi(doi, session)
             if result:
                 checked.append({"entry": entry[:160], "resolved": True,
-                                 "method": "doi_in_text", "doi": result["doi"]})
+                                 "method": "doi_in_text", "doi": result["doi"],
+                                 "record": result})
                 resolved_via_doi = True
 
         if not resolved_via_doi:
@@ -1311,13 +1425,16 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
             # getting that exact string right, so try it as a fallback before
             # concluding the citation can't be confirmed.
             result = _crossref_search_bibliographic(entry, session)
-            if result and result.get("score", 0) >= _CROSSREF_MATCH_SCORE_THRESHOLD:
+            plausible, why = _match_is_plausible(entry, result) if result else (False, "no candidate returned")
+            if plausible:
                 checked.append({"entry": entry[:160], "resolved": True,
                                  "method": "bibliographic_search" if not doi_match else "bibliographic_search_doi_fallback",
-                                 "doi": result["doi"], "match_score": result["score"]})
+                                 "doi": result["doi"], "match_score": result.get("score"),
+                                 "match_check": why, "record": result})
             else:
                 checked.append({"entry": entry[:160], "resolved": False,
                                  "method": "bibliographic_search_no_match" if not doi_match else "doi_in_text_not_resolved",
+                                 "match_check": why,
                                  **({"doi": _clean_doi(doi_match.group(0))} if doi_match else {})})
 
     n_resolved = sum(1 for c in checked if c["resolved"])
