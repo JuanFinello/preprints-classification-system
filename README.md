@@ -52,16 +52,21 @@ recorded in `score_note` so a reviewer can see exactly which entries triggered t
 flowchart TD
     A[Preprint PDF] --> B[pdfminer extraction<br/>header + full text]
 
-    B --> C[LLM 1<br/>extract authors & affiliations]
-    C --> D{External grounding}
-    D --> D1[ROR<br/>institution identity + aliases]
-    D --> D2[OpenAlex<br/>affiliations by DOI, field match]
-    D --> D3[Semantic Scholar<br/>publication record, h-index]
-    D --> F[LLM 2<br/>criterion 1: author credibility<br/>structured data only, no paper text]
+    A --> DOI([DOI])
+    B --> C[LLM 1<br/>read authors & affiliations<br/>off the header]
+
+    DOI --> D2[OpenAlex<br/>institutions by DOI<br/>primary source]
+    DOI --> D3[Semantic Scholar<br/>publication record, h-index]
+    C --> D3
+    C -. fallback: only when OpenAlex<br/>has no record for the DOI .-> D1[ROR<br/>affiliation strings<br/>author link lost, warned]
+
+    D2 --> F[LLM 2<br/>criterion 1: author credibility<br/>structured data only, no paper text]
+    D1 --> F
+    D3 --> F
 
     A --> E[LLM 3<br/>criteria 2-4<br/>native PDF: text + page images]
     E --> I[Quote validation<br/>every cited quote matched<br/>against the extracted text]
-    E --> J[Reference count<br/>to fixed thresholds<br/>no model judgement]
+    E --> J[References scored in code<br/>count sets the base<br/>quality findings cap it]
 
     A --> H[PREreview<br/>reviews for this DOI]
     H --> G[LLM 4<br/>criterion 5<br/>only when reviews exist]
@@ -78,7 +83,11 @@ flowchart TD
 
 The calls are deliberately separate. Author credibility never sees the paper text, only
 the structured data the APIs returned, so a persuasive paper cannot talk its way into a
-better affiliation score. The Crossref check runs alongside the score rather than into
+better affiliation score. Note which way the arrows run: the institution lookup is
+anchored on the DOI, not on what the model read off the header, so a misread affiliation
+cannot poison the grounding. The model's extraction is used only when OpenAlex has no
+record for the DOI, and that path is recorded as a data-quality warning because it loses
+the author-to-institution link. The Crossref check runs alongside the score rather than into
 it: it reports whether each cited work resolves to a real indexed publication, and is
 recorded in the output for a human to read.
 
