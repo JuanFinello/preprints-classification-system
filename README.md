@@ -261,18 +261,6 @@ Source PDFs and internal curation data are deliberately not versioned; see `.git
 
 ---
 
-## Known limitations
-
-- **No clean measurement of scoring accuracy.** The curator decisions available for
-  comparison were made with the model's output in view, so agreement with them is
-  circular. A blind holdout would settle it.
-- **Thresholds are provisional.** The cut-offs in `_recommendation()`, the reference
-  quality gates and the citation match rule are informed guesses pending labelled cases.
-- **Figure-based evidence cannot be quote-validated.** When the model reasons from a
-  figure, `validate_quotes` has nothing to match against; those findings need a human.
-
----
-
 ## Roadmap
 
 - [ ] Ground self-citation and peer-review status in Crossref instead of the model's read
