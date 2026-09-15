@@ -5,14 +5,9 @@ to the genome records they cite.**
 
 A preprint that cites genomic sequence data is a candidate for being linked to the entry
 of that genome in a surveillance database. Whether it qualifies is a judgment about the
-paper itself: who wrote it, how the study was designed, whether the results hold up, what
-it cites. It has to be made one preprint at a time.
-
-This repository automates that judgment: it takes a preprint PDF, scores it against a
-five-criterion rubric using an LLM **grounded in external scholarly APIs**, validates
-the model's own evidence against the source text, and emits a structured recommendation
-(`accept`, `accept_with_reservations` or `reject`) with a written justification for
-every criterion.
+paper itself, made one preprint at a time. This repository automates it: a PDF goes in, a
+five-criterion score comes out, with a written justification per criterion and a
+recommendation of `accept`, `accept_with_reservations` or `reject`.
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -20,29 +15,23 @@ every criterion.
 
 ---
 
-## Where the model is not trusted
+## Grounding and verification
 
-A raw LLM judgment on a paper is confident, unverifiable, and wrong in ways you cannot
-see. Four design choices address that directly:
+An unaided LLM judgment on a paper is confident, unverifiable, and wrong in ways that do
+not show. Four design choices address that:
 
 | Problem | What the pipeline does |
 |---|---|
-| The model cannot know if an institution or an author is real | Author affiliations are resolved against **ROR** and **OpenAlex**, author track records against **Semantic Scholar**, by DOI first, with name-matching only as a labelled fallback |
-| The model invents supporting quotes | Every quote it cites as evidence is **matched back against the extracted PDF text** (`validate_quotes`); an unverifiable quote caps that criterion's score |
-| The model bluffs about the bibliography | The `references` score is computed **in code**, never by the model: the count it reports sets the base and the quality problems it reports can only lower it. Reference entries are separately resolved against **Crossref**, recorded for a human to read |
-| Silent data gaps become silent scoring errors | Enrichment failures are surfaced as explicit `data_quality_warnings` in the output, and the prompt tells the model which fields it may *not* trust |
+| The model cannot know if an institution or an author is real | Affiliations resolved against **ROR** and **OpenAlex**, author records against **Semantic Scholar**, by DOI first, name-matching only as a labelled fallback |
+| The model invents supporting quotes | Every quote it cites is matched back against the extracted PDF text (`validate_quotes`); an unverifiable quote caps that criterion |
+| The model bluffs about the bibliography | The `references` score is computed in code: the count it reports sets the base, the problems it reports can only lower it. Entries are separately resolved against **Crossref** |
+| Silent data gaps become silent scoring errors | Enrichment failures surface as `data_quality_warnings`, and the prompt names the fields the model may *not* trust |
 
-Everything the model is asked to do that it can't be trusted to do alone is either
-grounded in an API or checked after the fact.
-
-The honest exception is reference quality. Whether a cited work is off-topic,
-non-peer-reviewed or a self-citation is the model's own reading of the bibliography, and
-nothing verifies it: those three inputs lower the `references` score on the model's word
-alone. Two of them could be grounded, since Crossref returns a work's type and author list for
-every entry that resolves, and the reference-list parser now reaches 93 % of entries
-(up from 52 %) so those counts would no longer be drawn from a biased slice of the
-bibliography. Until that grounding is built, the caps are explicitly a model judgment,
-recorded in `score_note` so a reviewer can see exactly which entries triggered them.
+One exception is documented rather than hidden: whether a cited work is off-topic,
+non-peer-reviewed or a self-citation is the model's own reading, unverified. Those three
+inputs lower the `references` score on its word alone, recorded in `score_note` so a
+reviewer can see what triggered them. Crossref returns type and author list for every
+entry that resolves, so two of the three can be grounded; that is the next step.
 
 ---
 
@@ -81,25 +70,19 @@ flowchart TD
     V -.-> L
 ```
 
-The calls are deliberately separate. Author credibility never sees the paper text, only
-the structured data the APIs returned, so a persuasive paper cannot talk its way into a
-better affiliation score. Note which way the arrows run: the institution lookup is
-anchored on the DOI, not on what the model read off the header, so a misread affiliation
-cannot poison the grounding. The model's extraction is used only when OpenAlex has no
-record for the DOI, and that path is recorded as a data-quality warning because it loses
-the author-to-institution link. The Crossref check runs alongside the score rather than into
-it: it reports whether each cited work resolves to a real indexed publication, and is
-recorded in the output for a human to read.
+The institution lookup is anchored on the DOI, not on what the model read off the header,
+so a misread affiliation cannot poison the grounding. The model's extraction is used only
+when OpenAlex has no record for the DOI, and that path is flagged as a data-quality
+warning because it loses the author-to-institution link. Author credibility never sees the
+paper text, so a persuasive paper cannot argue its way into a better affiliation score.
 
 ---
 
 ## The rubric
 
-Nine scored rows, grouped into five criteria. Each row is scored 1 (weak) / 2 (moderate) /
-3 (strong) on its own evidence, and composite criteria average their rows rather than
-requiring every condition to hold at once. The whole thing is declared in
-[`criteria.yaml`](criteria.yaml), so the scoring logic lives in data rather than in prompt
-strings.
+Nine scored rows grouped into five criteria, each scored 1 (weak) / 2 (moderate) /
+3 (strong) on its own evidence. Composite criteria average their rows. Declared in
+[`criteria.yaml`](criteria.yaml), so the scoring logic lives in data, not in prompt strings.
 
 | Criterion | Row | A 3 requires | Grounded in |
 |---|---|---|---|
@@ -113,8 +96,8 @@ strings.
 | **4. References** | | 20+, balanced, domain-relevant, peer-reviewed | count + quality, scored in code |
 | **5. Community feedback** | | expert reviews, citations, author responses | PREreview |
 
-Everything in the paper-text rows is quote-validated: the model has to cite the sentence
-it scored on, and the sentence has to be in the paper.
+Every paper-text row is quote-validated: the model cites the sentence it scored on, and
+that sentence has to exist in the paper.
 
 <details>
 <summary><strong>Full 1 / 2 / 3 definitions for every row</strong></summary>
@@ -166,58 +149,38 @@ it scored on, and the sentence has to be in the paper.
 
 </details>
 
-**References** is the one row the model never scores itself: it reports facts and the
-code applies the rule. The count sets the base, and the quality findings can only pull it
-down. Any entry flagged as genuinely off-topic caps the score at 2, and a bibliography
-more than half non-peer-reviewed or self-cited drops to 1. The split exists because the
-model could judge quality but could not reliably compare its own count against a
-threshold, once calling 58 references "within 10-20". Crossref separately checks that the
-cited works resolve to real indexed publications, recorded in the output and kept out of
-the score.
-
-**Community feedback** is scored only when PREreview actually holds reviews for the DOI;
-otherwise it stays unscored and drops out of the average, rather than scoring a 1 that
-would apply to almost every preprint.
-
-An earlier design required every condition in a criterion to hold at once for a 3. It
-made that score nearly unreachable and was replaced by the row-averaging above after the
-first real runs.
+Two rows behave differently from the rest. **References** is never scored by the model:
+the count sets the base, an off-topic entry caps it at 2, and a bibliography more than
+half non-peer-reviewed or self-cited drops to 1. The model can judge quality but could not
+compare its own count against a threshold, once classifying 58 references as "within
+10-20". **Community feedback** is scored only when PREreview holds reviews for the DOI;
+otherwise it stays unscored and leaves the average, rather than taking a 1 that would
+apply to almost every preprint.
 
 ---
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/JuanFinello/preprints-classification-system.git
-cd preprints-classification-system
 pip install -r requirements.txt
 cp .env.example .env    # then add your API key
 export OPENAI_API_KEY="sk-..."
 ```
 
-Score a single preprint:
-
 ```bash
-python evaluate_preprint.py \
-    --pdf papers/10.1101_2025.06.14.659623.pdf \
-    --criteria criteria.yaml \
-    --out results_pipeline/10.1101_2025.06.14.659623.json
-```
+# one preprint
+python evaluate_preprint.py --pdf papers/PAPER.pdf --criteria criteria.yaml \
+    --out results_pipeline/PAPER.json
 
-Score a directory of preprints and consolidate into one CSV:
-
-```bash
-python batch_evaluate.py \
-    --papers-dir papers \
-    --results-dir results_pipeline \
+# a directory, consolidated into one CSV
+python batch_evaluate.py --papers-dir papers --results-dir results_pipeline \
     --summary results_summary_pipeline.csv
-```
 
-Cross-model calibration (optional, needs `ANTHROPIC_API_KEY`):
+# score pending candidates into the curator worklist, before the decision is made
+python score_candidates.py
 
-```bash
-python batch_evaluate_claude.py   # scores the same papers with Claude
-python compare_scores.py          # agreement matrix between the two models
+# cross-model calibration (needs ANTHROPIC_API_KEY)
+python batch_evaluate_claude.py && python compare_scores.py
 ```
 
 ### Output shape
@@ -237,48 +200,49 @@ python compare_scores.py          # agreement matrix between the two models
   },
   "scoring": {
     "average": 2.75, "total": 11, "max": 12,
-    "recommendation": "accept", "quotes_invalid": []
+    "recommendation": "accept", "quotes_invalid": [], "failed_criteria": []
   },
   "data_quality_warnings": []
 }
 ```
 
-Real examples live in [`results_pipeline/`](results_pipeline/); the flattened view of all
-runs is in [`results_summary_pipeline.csv`](results_summary_pipeline.csv).
+Real examples are in [`results_pipeline/`](results_pipeline/), flattened into
+[`results_summary_pipeline.csv`](results_summary_pipeline.csv).
 
 ---
 
-## What this project learned the hard way
+## Observed failure modes
 
-These are the findings that shaped the design; they are documented because they are the
-useful part.
+Each was found in a real run, diagnosed, and is reflected in the current design.
 
 1. **Content-policy refusals are an architectural constraint, not an edge case.**
-   Molecular-virology preprints (viral receptors, host restriction factors,
-   protein-host interactions) were refused outright by one provider's API. The refusal
-   reproduced across four isolated diagnostics, including an 8 000-character abstract
-   with a trivial instruction, which ruled out prompt length and rubric wording. Surveillance
-   and diagnostics papers passed cleanly. For a genomic-surveillance use case that
-   pattern hits exactly the papers that matter most, so the pipeline is built
-   multi-backend (`evaluate_preprint.py`, `_claude.py`, `_deepseek.py` share one rubric
-   and one scoring core) rather than betting on one vendor.
+   Molecular-virology preprints (viral receptors, host restriction factors, protein-host
+   interactions) were refused outright by one provider's API, reproduced across four
+   isolated diagnostics including an 8 000-character abstract with a trivial instruction.
+   Surveillance and diagnostics papers passed cleanly. That pattern selects against
+   exactly the papers this use case cares about, so the pipeline is multi-backend over one
+   shared rubric and scoring core.
 
-2. **Anchoring is real and criterion-specific.** In an early run, one model returned
-   `results_and_conclusion = 1` for four papers out of four while the other model
-   spread across 1 to 3. Verified in code that no deterministic function was forcing it:
-   the anchoring was pure prompt bias, and it was fixed in the prompt, not in the
-   aggregation.
+2. **A failed run must not be representable as a low score.** A parse failure was written
+   to disk as `score: 1, justification: "Parse error"`, which aggregates into a plausible
+   `reject`. Five of the first eighteen runs were failures in that disguise. Failures now
+   score `None`, mark the evaluation as `error`, and retain the raw response, finish
+   reason and token counts.
 
-3. **An agreement percentage can be meaningless.** The `references` criterion agreed
-   ~65 % of the time between two models, but one side derived it from a reference count
-   and the other made a qualitative judgment. Agreement there measured coincidence, not
-   consensus. Comparisons are only worth reporting when both sides answer the same
-   question, which is part of why that criterion now scores quality explicitly rather
-   than counting alone.
+3. **Anchoring is real and criterion-specific.** One model returned
+   `results_and_conclusion = 1` on four papers out of four while another spread across
+   1 to 3. No deterministic function was forcing it, so the cause was prompt bias and the
+   fix belonged in the prompt, not in the aggregation.
 
-4. **A failed run must never look like a low score.** A parse failure was written to
-   disk as `score: 1, justification: "Parse error"`, which aggregates to a perfectly
-   plausible `reject`. Failures need to be structurally distinguishable from judgments.
+4. **An agreement percentage between models can be uninformative.** Two models agreed on
+   `references` ~65 % of the time, but one derived the score from a count and the other
+   from a qualitative judgment. That measures coincidence, not consensus.
+
+5. **A threshold on an external relevance score is not a verification.** Fuzzy citation
+   matching accepted any Crossref hit above a fixed score, which rejected a word-for-word
+   correct match at 48. The score is not normalised, so no cutoff generalises. Matches are
+   now verified from the record: title overlap with the citation text, corroborated by
+   first author or year.
 
 ---
 
@@ -288,34 +252,34 @@ useful part.
 |---|---|
 | `evaluate_preprint.py` | Core pipeline: extraction, API grounding, prompts, quote validation, scoring |
 | `criteria.yaml` | The rubric: criteria, sub-criteria and score definitions |
-| `batch_evaluate.py` · `weekly_update.py` | Batch runs over a directory of PDFs, and the weekly orchestration around them |
-| `evaluate_preprint_claude.py` · `_deepseek.py` · `compare_scores.py` | Alternative model backends and the cross-model agreement report |
+| `score_candidates.py` | Scores pending candidates into the curator worklist before the decision is made |
+| `batch_evaluate.py` · `weekly_update.py` | Batch runs over a directory of PDFs, and the weekly orchestration |
+| `evaluate_preprint_claude.py` · `_deepseek.py` · `compare_scores.py` | Alternative backends and the cross-model agreement report |
 | `results_pipeline/` · `results_summary_pipeline.csv` | Structured outputs of real runs |
 
-Source PDFs and internal curation data (DOI worklists, curator spreadsheets) are
-deliberately not versioned; see `.gitignore`.
+Source PDFs and internal curation data are deliberately not versioned; see `.gitignore`.
 
 ---
 
 ## Known limitations
 
-- **Thresholds are provisional.** The `accept` / `reject` cut-offs in `_recommendation()`
-  are informed guesses pending a larger labelled set.
+- **No clean measurement of scoring accuracy.** The curator decisions available for
+  comparison were made with the model's output in view, so agreement with them is
+  circular. A blind holdout would settle it.
+- **Thresholds are provisional.** The cut-offs in `_recommendation()`, the reference
+  quality gates and the citation match rule are informed guesses pending labelled cases.
 - **Figure-based evidence cannot be quote-validated.** When the model reasons from a
-  figure, `validate_quotes` has no text to match against; those findings need a human
-  look.
-- **Scores do not yet feed back into the curation decision.** Today the output informs a
-  human curator; wiring it into the upstream worklist is the next step.
+  figure, `validate_quotes` has nothing to match against; those findings need a human.
 
 ---
 
 ## Roadmap
 
-- [ ] Distinguish failures from judgments across the whole write path
-- [ ] Prompt work on `results_and_conclusion`, the criterion where the two models agree least
+- [ ] Ground self-citation and peer-review status in Crossref instead of the model's read
+- [ ] Score institute count in code, as reference count already is
 - [ ] Stamp a rubric version into every stored result
+- [ ] Prompt work on `results_and_conclusion`, the least stable criterion
 - [ ] Complete the DeepSeek backend and re-run the refusal comparison across all three
-- [ ] Feed recommendations back into the curator worklist
 
 ---
 
