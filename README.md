@@ -206,8 +206,9 @@ python batch_evaluate_claude.py && python compare_scores.py
 }
 ```
 
-Real examples are in [`results_pipeline/`](results_pipeline/), flattened into
-[`results_summary_pipeline.csv`](results_summary_pipeline.csv).
+Stored results are not published: they carry per-author bibliometric profiles and
+automated critical judgments of identifiable researchers' preprints, which do not belong
+in a public repository.
 
 ---
 
@@ -255,7 +256,6 @@ Each was found in a real run, diagnosed, and is reflected in the current design.
 | `score_candidates.py` | Scores pending candidates into the curator worklist before the decision is made |
 | `batch_evaluate.py` · `weekly_update.py` | Batch runs over a directory of PDFs, and the weekly orchestration |
 | `evaluate_preprint_claude.py` · `_deepseek.py` · `compare_scores.py` | Alternative backends and the cross-model agreement report |
-| `results_pipeline/` · `results_summary_pipeline.csv` | Structured outputs of real runs |
 
 Source PDFs and internal curation data are deliberately not versioned; see `.gitignore`.
 

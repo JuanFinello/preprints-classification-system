@@ -10,7 +10,7 @@ update_preprint_status/*.xlsx
 update_preprint_status/*.xlsx.bak
 update_preprint_status/*.csv
 cambiaron_de_status/
-tabla_de_criterios_sandy.xlsx
+tabla_de_criterios_*.xlsx
 criterios_question_and_methodology.xlsx
 notas.md
 
@@ -46,3 +46,8 @@ claude_scores_pipeline_manual_*.csv
 
 # Predicciones congeladas: se regeneran corriendo score_candidates.py
 predictions_frozen.csv
+
+# Resultados con autores nombrados y perfiles bibliométricos: no se publican
+results_pipeline/
+results_summary_pipeline.csv
+claude_scores_pipeline.csv

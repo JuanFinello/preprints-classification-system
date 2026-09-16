@@ -11,7 +11,7 @@ criteria:
     requires_external_data: true
     description: >
       Composite of 3 independently-scored sub-criteria (source: original rubric,
-      tabla_de_criterios_sandy.xlsx). Each sub-criterion is scored 1-3 on its own
+      the source rubric spreadsheet). Each sub-criterion is scored 1-3 on its own
       evidence; the final author_credibility score is the average of the 3,
       rounded to the nearest integer. This replaces the earlier single merged
       score_1/2/3 block, which required ALL conditions (institution reputation +
@@ -63,7 +63,7 @@ criteria:
     requires_external_data: false
     description: >
       Composite of 3 independently-scored sub-criteria (source: original rubric,
-      tabla_de_criterios_sandy.xlsx / criterios_question_and_methodology.xlsx).
+      the source rubric spreadsheets).
       Each sub-criterion is scored 1-3 on its own evidence; the final
       research_question_and_methods score is the average of the 3, rounded to
       the nearest integer. This replaces the earlier single merged score_1/2/3
@@ -121,10 +121,10 @@ criteria:
     requires_external_data: false
     description: >
       Single criterion, not split into sub-criteria (unlike author_credibility
-      and research_question_and_methods) — Sandy's original rubric
-      (tabla_de_criterios_sandy.xlsx) has it as one row, no AND-gate problem.
+      and research_question_and_methods) — the original rubric
+      (the source rubric spreadsheet) has it as one row, no AND-gate problem.
       Prompt guidance added 2026-07-24 (see Pendiente I, project memory) after
-      a real calibration paper (chikungunya, 10.21203/rs.3.rs-8545804/v1) showed
+      a real calibration paper (chikungunya diagnostics) showed
       the model catching an isolated numeric discrepancy but bucketing it as
       score_2 "unclear parameters" instead of recognizing it as the paper's own
       conclusion being contradicted by its own data (score_1) — see the
@@ -173,7 +173,7 @@ criteria:
           self-citations".
       History of this criterion: until 2026-09-14 the score came from the count ALONE
       and quality was narrative only. Verified against a real calibration paper
-      (chikungunya, 10.21203/rs.3.rs-8545804/v1, 33 refs): the model itself named two
+      (chikungunya diagnostics, 33 refs): the model itself named two
       genuinely unrelated references (a fungal genome assembly, a fly-sequencing
       study) in its justification and the paper still scored 3, while the same paper
       scored 2 when a human judged the bibliography. That gap is what the caps close.

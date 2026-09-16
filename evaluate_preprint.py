@@ -1104,7 +1104,7 @@ def _score_from_reference_count(n: int) -> int:
     return 2
 
 
-# Sandy's rubric asks for a "balanced mix of foundational, recent and domain-relevant"
+# The original rubric asks for a "balanced mix of foundational, recent and domain-relevant"
 # peer-reviewed work for a 3, and calls "overreliance on non-peer-reviewed, obscure or
 # self-citations" a 1. Scoring purely on the count answered neither: one calibration
 # paper cited a fungal genome assembly and a fly-sequencing study, the model said so in
@@ -1786,7 +1786,7 @@ def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenA
     """Evaluate criterion 1 (author credibility) using enriched author data.
 
     Scores 3 independent sub-criteria (see criteria.yaml, sourced from
-    tabla_de_criterios_sandy.xlsx) and combines them into the final
+    the source rubric spreadsheet) and combines them into the final
     author_credibility score via _compose_author_credibility_result.
     """
     prompt = _build_author_prompt(author_data, criteria)
