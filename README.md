@@ -214,36 +214,18 @@ in a public repository.
 
 ## Observed failure modes
 
-Each was found in a real run, diagnosed, and is reflected in the current design.
+Issues found in real runs, now reflected in the design:
 
-1. **Content-policy refusals are an architectural constraint, not an edge case.**
-   Molecular-virology preprints (viral receptors, host restriction factors, protein-host
-   interactions) were refused outright by one provider's API, reproduced across four
-   isolated diagnostics including an 8 000-character abstract with a trivial instruction.
-   Surveillance and diagnostics papers passed cleanly. That pattern selects against
-   exactly the papers this use case cares about, so the pipeline is multi-backend over one
-   shared rubric and scoring core.
-
-2. **A failed run must not be representable as a low score.** A parse failure was written
-   to disk as `score: 1, justification: "Parse error"`, which aggregates into a plausible
-   `reject`. Five of the first eighteen runs were failures in that disguise. Failures now
-   score `None`, mark the evaluation as `error`, and retain the raw response, finish
-   reason and token counts.
-
-3. **Anchoring is real and criterion-specific.** One model returned
-   `results_and_conclusion = 1` on four papers out of four while another spread across
-   1 to 3. No deterministic function was forcing it, so the cause was prompt bias and the
-   fix belonged in the prompt, not in the aggregation.
-
-4. **An agreement percentage between models can be uninformative.** Two models agreed on
-   `references` ~65 % of the time, but one derived the score from a count and the other
-   from a qualitative judgment. That measures coincidence, not consensus.
-
-5. **A threshold on an external relevance score is not a verification.** Fuzzy citation
-   matching accepted any Crossref hit above a fixed score, which rejected a word-for-word
-   correct match at 48. The score is not normalised, so no cutoff generalises. Matches are
-   now verified from the record: title overlap with the citation text, corroborated by
-   first author or year.
+- Some providers refuse certain scientific topics outright → the pipeline runs multiple
+  backends over one shared rubric.
+- A failed call must never be indistinguishable from a valid low score → failures are
+  marked `error`, never scored.
+- Score patterns can reflect prompt framing rather than paper quality → tuned per
+  criterion in the prompt, not patched in aggregation.
+- Agreement between models can mask different scoring logic → not treated as validation
+  by itself.
+- A raw similarity score is not verification → citation matches are corroborated by
+  title, author and year.
 
 ---
 
