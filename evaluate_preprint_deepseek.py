@@ -44,12 +44,12 @@ from evaluate_preprint import (
     _doi_from_pdf_path,
     _failed_author_credibility_result,
     _failed_content_result,
-    _apply_reference_score,
     compute_scores,
     extract_pdf,
     fetch_prereview_data,
     validate_quotes,
-    verify_and_score_references,
+    paper_author_names,
+    verify_references,
 )
 
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
@@ -71,8 +71,9 @@ def _llm(client: OpenAI, model: str, prompt: str, max_tokens: int = 1024) -> str
     return resp.choices[0].message.content.strip()
 
 
-def evaluate_content_deepseek(eval_text: str, criteria: dict, client: OpenAI, model: str) -> dict:
-    prompt = _build_content_prompt(eval_text, criteria)
+def evaluate_content_deepseek(eval_text: str, criteria: dict, client: OpenAI, model: str,
+                              verification: dict | None = None) -> dict:
+    prompt = _build_content_prompt(eval_text, criteria, verification)
     raw = _strip_json_fences(_llm(client, model, prompt, max_tokens=2000))
     try:
         parsed = json.loads(raw)
@@ -85,7 +86,6 @@ def evaluate_content_deepseek(eval_text: str, criteria: dict, client: OpenAI, mo
         "references": parsed.get("references", {}),
     }
 
-    _apply_reference_score(result["references"])
     return result
 
 
@@ -143,14 +143,16 @@ def evaluate_preprint_deepseek(pdf_path: Path, criteria_path: Path, model: str,
 
     pdf_data = extract_pdf(pdf_path)
 
-    content_results = evaluate_content_deepseek(pdf_data["eval_text"], criteria, client, model)
+    verification = verify_references(pdf_data["full_text"],
+                                     paper_authors=paper_author_names(author_data),
+                                     paper_doi=_doi_from_pdf_path(pdf_path))
+    content_results = evaluate_content_deepseek(pdf_data["eval_text"], criteria, client, model, verification)
     author_results = evaluate_author_credibility_deepseek(author_data, criteria, client, model)
 
     criterion_results = {**author_results, **content_results}
     criterion_results["feedback"] = evaluate_feedback_deepseek(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
-    criterion_results = verify_and_score_references(
-        criterion_results, pdf_data["full_text"], author_data, _doi_from_pdf_path(pdf_path))
+    criterion_results["references"]["citation_verification"] = verification
     criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
     scoring = compute_scores(criterion_results)
 

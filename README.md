@@ -24,14 +24,12 @@ not show. Four design choices address that:
 |---|---|
 | The model cannot know if an institution or an author is real | Institutions come from **OpenAlex** and author records from **Semantic Scholar**, both by DOI. A model reads the PDF header only when those lookups leave a gap, and that path is labelled |
 | The model invents supporting quotes | Every quote it cites is matched back against the extracted PDF text (`validate_quotes`); an unverifiable quote caps that criterion |
-| The model bluffs about the bibliography | The `references` score is computed in code: the count it reports sets the base. Each entry is resolved against **Crossref**, whose record says whether it is peer-reviewed and whether it is a self-citation |
+| The model miscounts | Whatever can be counted is counted in code and given to the model as facts: the number of references, which ones **Crossref** shows are not peer-reviewed or are self-citations, and the number of distinct institutions. The model scores with those numbers |
 | Silent data gaps become silent scoring errors | Enrichment failures surface as `data_quality_warnings`, and the prompt names the fields the model may *not* trust |
 
-One exception is documented rather than hidden: whether a cited work is off-topic is the
-model's own reading, unverified, and it can lower the `references` score on its word alone,
-recorded in `score_note` so a reviewer can see what triggered it. Peer-review status and
-self-citation come from Crossref; when it resolves under half the list, the model's counts
-stand in and the note says so.
+The model makes every score. What it cannot be trusted with is counting, so it never has
+to: whether a cited work is off-topic, or whether the bibliography balances foundational
+and recent work, stays its own reading.
 
 ---
 
@@ -56,22 +54,22 @@ flowchart TD
     D1 --> F
     D3 --> F
     D4 --> F
-    D2 --> N[Institute count<br/>scored in code]
+    D2 --> N[Institute count<br/>counted in code]
+    D1 --> N
+    N --> F
 
     A --> E[LLM 3<br/>criteria 2-4<br/>native PDF: text + page images]
     E --> I[Quote validation<br/>every cited quote matched<br/>against the extracted text]
-    B --> V[Crossref<br/>each reference resolved:<br/>peer-reviewed? self-citation?]
+    B --> V[Crossref + reference count<br/>counted in code, given to LLM 3:<br/>peer-reviewed? self-citation?]
     D2 --> V
-    E --> J[References scored in code<br/>count sets the base<br/>Crossref + off-topic cap it]
-    V --> J
+    V --> E
 
     A --> H[PREreview<br/>reviews for this DOI]
     H --> G[LLM 4<br/>criterion 5<br/>only when reviews exist]
 
     F --> K[Score aggregation]
-    N --> K
     I --> K
-    J --> K
+    E --> K
     G --> K
     K --> L[JSON result + summary CSV<br/>accept / with reservations / reject<br/>or error if a call produced nothing]
 ```
@@ -95,12 +93,12 @@ Nine scored rows grouped into five criteria, each scored 1 (weak) / 2 (moderate)
 |---|---|---|---|
 | **1. Author credibility** | institution reputability | corresponding author at a recognised institution | ROR + OpenAlex |
 | | author expertise | 3+ authors with a publication record in the field | Semantic Scholar |
-| | institutional collaboration | more than 3 institutes | OpenAlex, counted in code |
+| | institutional collaboration | more than 3 institutes | OpenAlex + ROR, count given to the model |
 | **2. Research question & methods** | objective & hypothesis | explicit, testable, tied to prior evidence | paper text |
 | | public-health relevance | tied to a known outbreak | paper text |
 | | study-design rigour | validated methods, data available to replicate | paper text |
 | **3. Results & conclusion** | | consistent, multi-method, limitations discussed | paper text |
-| **4. References** | | 20+, balanced, domain-relevant, peer-reviewed | count + Crossref, scored in code |
+| **4. References** | | 20+, balanced, domain-relevant, peer-reviewed | paper text + counts from Crossref |
 | **5. Community feedback** | | expert reviews, citations, author responses | PREreview |
 
 Every paper-text row is quote-validated: the model cites the sentence it scored on, and
@@ -156,15 +154,12 @@ that sentence has to exist in the paper.
 
 </details>
 
-Three rows behave differently from the rest. **References** is never scored by the model:
-the count sets the base, an off-topic entry caps it at 2, and a bibliography more than
-half non-peer-reviewed or self-cited, per Crossref, drops to 1. The model can judge quality but could not
-compare its own count against a threshold, once classifying 58 references as "within
-10-20". **Institutional collaboration** is set in code from the number of distinct institutions:
-those OpenAlex or ROR verify, plus affiliations printed in the paper that no registry
-knows (a county hospital, a small company), which are counted and shown to the model as
-unverified. The model's own read stands only when there is no institution data at all.
-**Community feedback** is scored only when PREreview holds reviews for the DOI;
+Two rows get their numbers from code. **References**: the model once classified 58
+references as "within 10-20", so the entry count, and Crossref's verdict on peer review and
+self-citation per entry, are handed to it as facts. **Institutional collaboration**: the
+model receives the count of distinct institutions, those OpenAlex or ROR verify plus
+affiliations printed in the paper that no registry knows (a county hospital, a small
+company). In both it still makes the score. **Community feedback** is scored only when PREreview holds reviews for the DOI;
 otherwise it stays unscored and leaves the average, rather than taking a 1 that would
 apply to almost every preprint.
 
@@ -257,7 +252,7 @@ Source PDFs and internal curation data are deliberately not versioned; see `.git
 ## Roadmap
 
 - [x] Ground self-citation and peer-review status in Crossref instead of the model's read
-- [x] Score institute count in code, as reference count already is
+- [x] Count institutes in code and give the count to the model
 - [ ] Stamp a rubric version into every stored result
 - [ ] Prompt work on `results_and_conclusion`, the least stable criterion
 - [ ] Complete the DeepSeek backend and re-run the refusal comparison across all three

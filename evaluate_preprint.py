@@ -783,7 +783,8 @@ def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: P
             if result:
                 institutions.append(result)
             else:
-                warnings.append(f"ROR: no match found for affiliation '{aff}'.")
+                unregistered.append({"author": "", "position": "", "raw": aff})
+                warnings.append(f"ROR: no match found for affiliation '{aff}' — counted, unverified.")
             time.sleep(0.3)
 
     if need_authors:
@@ -818,7 +819,7 @@ def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: P
 
 # ─── LLM evaluation ──────────────────────────────────────────────────────────
 
-def _build_content_prompt(full_text: str, criteria: dict) -> str:
+def _build_content_prompt(full_text: str, criteria: dict, verification: dict | None = None) -> str:
     rqm = criteria["research_question_and_methods"]
     sub = rqm["sub_criteria"]
     obj_c = sub["objective_and_hypothesis"]
@@ -859,6 +860,7 @@ Score 1: {ref["score_1"]["description"]}
 Score 2: {ref["score_2"]["description"]}
 Score 3: {ref["score_3"]["description"]}
 
+{_reference_facts_block(verification)}
 === HOW TO SCORE EACH (SUB-)CRITERION ===
 For each of the 5 things you are scoring (3 sub-criteria of criterion 1, plus
 criteria 2 and 3), follow this procedure before committing to a score:
@@ -898,27 +900,14 @@ figures/tables if there is truly no such data anywhere in the text.
   presented" — do not soften this to score_2's "unclear statistical parameters",
   which is for vague or incomplete reporting, not a documented contradiction
   between the paper's own data and its own conclusion.
-- For references: report facts, not a score. The score is computed in code from what
-  you report, so report each field carefully and do not try to reason about the final
-  number.
-  (a) "reference_count": the total number of entries in the reference list, as an
-  integer. Count them; do not estimate.
-  (b) "off_topic_references": a list of the entries that are genuinely unrelated to
-  this paper's subject matter (e.g. a paper about virus X citing a genome-assembly
-  study of an unrelated fungus, or a plant-virology review, with no clear
-  methodological link). Identify each by number and first author, with a few words
-  on why. Return an empty list if there are none — an empty list is the expected
-  answer for a well-focused bibliography, so do not manufacture entries, but do not
-  overlook a real one either: a single off-topic entry caps this criterion below the
-  top score.
-  (c) "non_peer_reviewed_count": how many entries are preprints, blog posts, press
-  releases or other non-peer-reviewed sources, as an integer.
-  (d) "self_citation_count": how many entries are by this paper's own authors, as an
-  integer.
-  Write the justification about source quality and coverage (peer-reviewed vs. not,
-  foundational vs. recent balance, domain relevance, self-citation reliance), naming
-  the off-topic entries you found. Do not write about whether the count itself feels
-  low or high, since that judgment is not used.
+- For references: score it against its score_1/score_2/score_3 descriptions like the
+  other criteria. Take the count, peer-review status and self-citations from the
+  REFERENCE FACTS block above instead of counting yourself; judge the rest from the
+  list itself (foundational vs. recent balance, domain relevance, whether the
+  references support the methods and findings). Also report "reference_count" (the
+  count you scored on) and "off_topic_references": entries genuinely unrelated to
+  this paper's subject (e.g. a paper about virus X citing a genome assembly of an
+  unrelated fungus), each by number, first author and why; an empty list if none.
 
 === FULL PAPER TEXT ===
 {full_text}
@@ -946,17 +935,16 @@ Return ONLY this JSON (no markdown, no extra text):
     "quote": "exact verbatim quote from the paper"
   }},
   "references": {{
+    "score": 2,
     "reference_count": 24,
     "off_topic_references": ["13 - Chen et al., fungal genome assembly, unrelated to this paper's subject"],
-    "non_peer_reviewed_count": 3,
-    "self_citation_count": 2,
-    "justification": "brief explanation of reference quality and coverage, naming any off-topic entries",
+    "justification": "brief explanation naming which score description the bibliography matches",
     "quote": "sample reference from the paper"
   }}
 }}"""
 
 
-def _build_content_prompt_pdf(criteria: dict) -> str:
+def _build_content_prompt_pdf(criteria: dict, verification: dict | None = None) -> str:
     """Same rubric/procedure as _build_content_prompt, but for the attached-PDF
     path: no full_text is embedded — the model reads the PDF file directly.
     Keep in sync with _build_content_prompt if the rubric wording changes;
@@ -1003,6 +991,7 @@ Score 1: {ref["score_1"]["description"]}
 Score 2: {ref["score_2"]["description"]}
 Score 3: {ref["score_3"]["description"]}
 
+{_reference_facts_block(verification)}
 === HOW TO SCORE EACH (SUB-)CRITERION ===
 For each of the 5 things you are scoring (3 sub-criteria of criterion 1, plus
 criteria 2 and 3), follow this procedure before committing to a score:
@@ -1037,27 +1026,14 @@ PDF actually contains them — check the real document, don't assume.
   the evidence presented" — do not soften this to score_2's "unclear statistical
   parameters", which is for vague or incomplete reporting, not a documented
   contradiction between the paper's own data and its own conclusion.
-- For references: report facts, not a score. The score is computed in code from what
-  you report, so report each field carefully and do not try to reason about the final
-  number.
-  (a) "reference_count": the total number of entries in the reference list, as an
-  integer. Count them; do not estimate.
-  (b) "off_topic_references": a list of the entries that are genuinely unrelated to
-  this paper's subject matter (e.g. a paper about virus X citing a genome-assembly
-  study of an unrelated fungus, or a plant-virology review, with no clear
-  methodological link). Identify each by number and first author, with a few words
-  on why. Return an empty list if there are none — an empty list is the expected
-  answer for a well-focused bibliography, so do not manufacture entries, but do not
-  overlook a real one either: a single off-topic entry caps this criterion below the
-  top score.
-  (c) "non_peer_reviewed_count": how many entries are preprints, blog posts, press
-  releases or other non-peer-reviewed sources, as an integer.
-  (d) "self_citation_count": how many entries are by this paper's own authors, as an
-  integer.
-  Write the justification about source quality and coverage (peer-reviewed vs. not,
-  foundational vs. recent balance, domain relevance, self-citation reliance), naming
-  the off-topic entries you found. Do not write about whether the count itself feels
-  low or high, since that judgment is not used.
+- For references: score it against its score_1/score_2/score_3 descriptions like the
+  other criteria. Take the count, peer-review status and self-citations from the
+  REFERENCE FACTS block above instead of counting yourself; judge the rest from the
+  list itself (foundational vs. recent balance, domain relevance, whether the
+  references support the methods and findings). Also report "reference_count" (the
+  count you scored on) and "off_topic_references": entries genuinely unrelated to
+  this paper's subject (e.g. a paper about virus X citing a genome assembly of an
+  unrelated fungus), each by number, first author and why; an empty list if none.
 
 Return ONLY this JSON (no markdown, no extra text):
 {{
@@ -1082,11 +1058,10 @@ Return ONLY this JSON (no markdown, no extra text):
     "quote": "exact verbatim quote from the paper"
   }},
   "references": {{
+    "score": 2,
     "reference_count": 24,
     "off_topic_references": ["13 - Chen et al., fungal genome assembly, unrelated to this paper's subject"],
-    "non_peer_reviewed_count": 3,
-    "self_citation_count": 2,
-    "justification": "brief explanation of reference quality and coverage, naming any off-topic entries",
+    "justification": "brief explanation naming which score description the bibliography matches",
     "quote": "sample reference from the paper"
   }}
 }}"""
@@ -1109,6 +1084,11 @@ def _build_author_prompt(author_data: dict, criteria: dict) -> str:
 
     ror_summary = json.dumps(ror, indent=2) if ror else "No institution data found"
     unregistered = author_data.get("unregistered_affiliations", [])
+    n_inst = _count_distinct_institutions(ror, unregistered)
+    inst_names = list(dict.fromkeys([i["name"] for i in ror if i.get("name")]
+                                    + [u["raw"] for u in unregistered]))
+    count_block = (f"{n_inst} distinct institution(s): " + "; ".join(inst_names)) if n_inst \
+        else "No institution data: the count is unknown, not zero."
     if unregistered:
         ror_summary += (
             "\n\nAffiliations printed in the paper that match no entry in OpenAlex or ROR "
@@ -1153,6 +1133,9 @@ Score 2: {collab_c["score_2"]["description"]}
 Score 3: {collab_c["score_3"]["description"]}
 
 {extracted_block}
+=== INSTITUTION COUNT (counted in code, not by you: use this number) ===
+{count_block}
+
 === INSTITUTION DATA (source: {institution_source}) ===
 {ror_summary}
 
@@ -1202,8 +1185,8 @@ reputability and author expertise; it isn't capped just because sub-criterion 3
   first or last author has field_match:true and strong stats is stronger evidence than the same signal
   on a middle author; conversely, a first/last author with field_match:false or no verifiable expertise
   is a more significant gap than the same being true of one middle author among many.
-- Sub-criterion 3 (institutional collaboration): count distinct institutions from INSTITUTION DATA above.
-  (The final score for this row is recomputed in code from the same count; give your own read anyway.)
+- Sub-criterion 3 (institutional collaboration): score from the INSTITUTION COUNT above; do not
+  recount. If the count is unknown, say so in the justification.
 - If ROR/OpenAlex or Semantic Scholar returned no data, or DATA QUALITY WARNINGS above flags
   missing/incomplete coverage, note the uncertainty but do not automatically penalize — unverified
   is not the same as lacking credibility or expertise.
@@ -1229,86 +1212,34 @@ Return ONLY this JSON (no markdown, no extra text):
 }}"""
 
 
-def _score_from_reference_count(n: int) -> int:
-    """Deterministic score from a reference count. The LLM only has to count,
-    not compare against the threshold (it was getting the comparison wrong,
-    e.g. calling 58 'within 10-20')."""
-    if n > 20:
-        return 3
-    if n < 10:
-        return 1
-    return 2
-
-
-# The original rubric asks for a "balanced mix of foundational, recent and domain-relevant"
-# peer-reviewed work for a 3, and calls "overreliance on non-peer-reviewed, obscure or
-# self-citations" a 1. Scoring purely on the count answered neither: one calibration
-# paper cited a fungal genome assembly and a fly-sequencing study, the model said so in
-# its own justification, and still scored 3 because it had 33 entries. So the count sets
-# the base and the quality findings can only pull it down, never push it up. The model
-# reports what it found; the rule lives here, same split as the count itself.
-_OFF_TOPIC_CAP = 2       # any genuinely off-topic entry blocks the "domain-relevant" requirement of a 3
-_LOW_QUALITY_SHARE = 0.5  # provisional, like the _recommendation thresholds: calibrate against labelled cases
-# Below this share of entries resolved in Crossref, its counts describe too little
-# of the list to replace the model's (e.g. a bibliography of agency reports, or a
-# garbled references section); the model's counts are used and marked unverified.
-_CROSSREF_MIN_COVERAGE = 0.5
-
-
-def _apply_reference_score(ref: dict, verification: dict | None = None) -> dict:
-    """Set references' score from the count, then apply the quality gates.
-    Fields other than reference_count are optional: results produced before
-    they existed score exactly as they did then.
-
-    With a Crossref verification (verify_references) that resolved enough of
-    the list, the overreliance gate runs on Crossref's own record of each
-    resolved entry (type → peer review, author list → self-citation) instead
-    of the counts the model reported; see _CROSSREF_MIN_COVERAGE."""
-    n = ref.get("reference_count")
-    if not isinstance(n, int):
-        ref["score"] = 1
-        ref["justification"] = (ref.get("justification", "") + " [no reference_count reported]").strip()
-        return ref
-
-    score = _score_from_reference_count(n)
-    notes = []
-
-    off_topic = ref.get("off_topic_references") or []
-    if off_topic and score > _OFF_TOPIC_CAP:
-        score = _OFF_TOPIC_CAP
-        notes.append(f"capped at {_OFF_TOPIC_CAP}: {len(off_topic)} off-topic reference(s) reported "
-                     f"({'; '.join(str(x) for x in off_topic)[:200]})")
-
-    n_checked = (verification or {}).get("n_resolved", 0)
-    n_found = (verification or {}).get("n_entries_found", 0)
-    if n_found and n_checked / n_found >= _CROSSREF_MIN_COVERAGE:
-        # Share over the entries Crossref could vouch for: an unresolved entry
-        # carries no verified type or author list either way.
-        low_quality, base = verification["n_low_quality"], n_checked
-        source = (f"Crossref ({verification['n_non_peer_reviewed']} non-peer-reviewed, "
-                  f"{verification['n_self_citations']} self-citations among {n_checked} resolved "
-                  f"of {n_found} entries)")
-        ref["quality_source"] = "crossref"
-    else:
-        low_quality = (ref.get("non_peer_reviewed_count") or 0) + (ref.get("self_citation_count") or 0)
-        base = n
-        source = "the model's own count (unverified"
-        source += (f": Crossref resolved only {n_checked} of {n_found} entries)" if n_found
-                   else ")")
-        ref["quality_source"] = "model"
-
-    if base > 0 and low_quality / base > _LOW_QUALITY_SHARE and score > 1:
-        score = 1
-        notes.append(f"dropped to 1: {low_quality} of {base} references are non-peer-reviewed "
-                     f"or self-citations per {source}, over the {_LOW_QUALITY_SHARE:.0%} "
-                     f"overreliance threshold")
-
-    ref["score"] = score
-    if notes:
-        ref["score_note"] = " | ".join(notes)
-    else:
-        ref.pop("score_note", None)
-    return ref
+def _reference_facts_block(verification: dict | None) -> str:
+    """What the code counted in the reference list, handed to the model so it
+    scores references on real numbers instead of its own count (it once called
+    58 references "within 10-20"). The model still makes the call."""
+    v = verification or {}
+    n = v.get("n_entries_found", 0)
+    if not n:
+        return ("=== REFERENCE FACTS ===\nThe reference list could not be parsed in code; "
+                "count and judge it from the paper yourself.\n")
+    self_note = "" if v.get("self_citation_checked") else " (not checked: no author list available)"
+    lines = [
+        "=== REFERENCE FACTS (counted in code, not by you: use these numbers) ===",
+        f"- Entries in the reference list: {n}. Apply the rubric's ~10 / ~20 thresholds to this "
+        f"number. It is parsed from the text, so it can be off by a few merged or split entries.",
+        f"- Resolved in Crossref: {v.get('n_resolved', 0)}. Among those: "
+        f"{v.get('n_non_peer_reviewed', 0)} not peer-reviewed (preprints, reports, datasets), "
+        f"{v.get('n_self_citations', 0)} self-citations by this paper's own authors{self_note}.",
+        f"- Not resolved in Crossref: {v.get('n_unresolved', 0)} (gray literature, agency reports, "
+        f"or garbled entries; no verified type for these).",
+    ]
+    flagged = v.get("flagged", [])
+    if flagged:
+        lines.append("- Flagged entries:")
+        for f in flagged[:15]:
+            kinds = [k for k, on in (("not peer-reviewed", f["non_peer_reviewed"]),
+                                     ("self-citation", f["self_citation"])) if on]
+            lines.append(f"  - [{', '.join(kinds)}] {f['entry'][:100]}")
+    return "\n".join(lines) + "\n"
 
 
 # ─── reference-list citation verification (Crossref, no LLM) ────────────────
@@ -1585,9 +1516,7 @@ def verify_references(full_text: str, session: requests.Session | None = None,
                       paper_authors: list[str] | None = None, paper_doi: str = "") -> dict:
     """Non-LLM verification of the reference list via Crossref: confirms each
     entry either carries a DOI that actually resolves, or can be matched to a
-    real indexed work by bibliographic search. Purely informational — does
-    NOT affect the deterministic reference_count score (_score_from_reference_count
-    stays the only thing driving the score, by design). Flags entries that
+    real indexed work by bibliographic search. Flags entries that
     can't be confirmed as a real, indexed publication — can indicate a garbled
     extraction, a fabricated/mismatched citation, OR simply a work outside
     Crossref's coverage (some gray literature, government/agency reports,
@@ -1596,8 +1525,8 @@ def verify_references(full_text: str, session: requests.Session | None = None,
 
     For every entry that resolves, Crossref's own record also says whether it
     is peer-reviewed (its type, see _NON_PEER_REVIEWED_TYPES) and, given the
-    paper's own authors, whether it is a self-citation. Those counts feed the
-    overreliance gate in _apply_reference_score in place of the model's."""
+    paper's own authors, whether it is a self-citation. Those counts go to the
+    model in the content prompt (_reference_facts_block), which scores with them."""
     paper_authors = paper_authors or []
     # The paper's own DOI is not a citation: journal page footers (observed on
     # MDPI) print it on every page, and one landing inside the last entry of a
@@ -1663,20 +1592,6 @@ def verify_references(full_text: str, session: requests.Session | None = None,
                     for c in resolved if c["non_peer_reviewed"] or c["self_citation"]],
         "unresolved": [c for c in checked if not c["resolved"]],
     }
-
-
-def verify_and_score_references(criterion_results: dict, full_text: str, author_data: dict,
-                                paper_doi: str = "") -> dict:
-    """Resolve the reference list in Crossref, then score references with it.
-    Must run before validate_quotes, whose 3→2 downgrade would otherwise be
-    overwritten by the rescore. Shared by every backend."""
-    ref = criterion_results["references"]
-    verification = verify_references(full_text, paper_authors=paper_author_names(author_data),
-                                     paper_doi=paper_doi)
-    ref["citation_verification"] = verification
-    if not ref.get("error"):
-        _apply_reference_score(ref, verification)
-    return criterion_results
 
 
 # ─── PREreview feedback lookup (no LLM for fetching; real HTML, no JS) ──────
@@ -1818,9 +1733,8 @@ _RESEARCH_SUB_CRITERIA = ("objective_and_hypothesis", "public_health_relevance",
 def _compose_research_question_result(parsed: dict) -> dict:
     """Combine the 3 independent research_question_and_methods sub-scores into
     the final composite (average, rounded to the nearest integer) — same
-    principle as evaluate_author_credibility's composite and
-    _score_from_reference_count: the aggregate is computed in code, never left
-    to the LLM's own arithmetic. Each sub-score keeps its own quote so
+    principle as evaluate_author_credibility's composite: the aggregate is
+    computed in code, never left to the LLM's own arithmetic. Each sub-score keeps its own quote so
     validate_quotes can check/downgrade them independently."""
     sub_scores = {}
     for key in _RESEARCH_SUB_CRITERIA:
@@ -1893,9 +1807,10 @@ def _failed_content_result(reason: str, raw: str = "", finish_reason: str | None
     }
 
 
-def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str) -> dict:
+def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str,
+                     verification: dict | None = None) -> dict:
     """Evaluate criteria 2, 3, 4 (research question, results, references) from full paper text."""
-    prompt = _build_content_prompt(full_text, criteria)
+    prompt = _build_content_prompt(full_text, criteria, verification)
     raw, finish_reason, usage = _llm_call(
         client, model, [{"role": "user", "content": prompt}], _CONTENT_MAX_TOKENS)
     raw = re.sub(r"^```(?:json)?\n?", "", raw)
@@ -1914,15 +1829,15 @@ def evaluate_content(full_text: str, criteria: dict, client: OpenAI, model: str)
         "references": parsed.get("references", {}),
     }
 
-    _apply_reference_score(result["references"])
     return result
 
 
-def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: str) -> dict:
+def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: str,
+                         verification: dict | None = None) -> dict:
     """Evaluate criteria 2, 3, 4 by sending the PDF file directly (text + page
     images), instead of pre-extracted text. Requires a vision-capable model."""
     pdf_b64 = base64.standard_b64encode(pdf_path.read_bytes()).decode("utf-8")
-    prompt = _build_content_prompt_pdf(criteria)
+    prompt = _build_content_prompt_pdf(criteria, verification)
 
     messages = [{
         "role": "user",
@@ -1955,29 +1870,16 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
         "references": parsed.get("references", {}),
     }
 
-    _apply_reference_score(result["references"])
     return result
 
 
 _AUTHOR_SUB_CRITERIA = ("institution_reputability", "author_expertise", "institutional_collaboration")
 
 
-def _score_from_institution_count(n: int) -> int:
-    """institutional_collaboration straight from the rubric: single institution
-    → 1, 2-3 → 2, more than 3 → 3. Computed in code like the reference count,
-    because the count is a fact the enrichment already has."""
-    if n > 3:
-        return 3
-    if n >= 2:
-        return 2
-    return 1
-
-
 def _compose_author_credibility_result(parsed: dict, author_data: dict | None = None) -> dict:
     """Combine the 3 independent author_credibility sub-scores into the final
     composite (average, rounded to the nearest integer) — the composite is
-    never left to the LLM's own arithmetic, same principle as
-    _score_from_reference_count. Shared by both the GPT path
+    never left to the LLM's own arithmetic. Shared by both the GPT path
     (evaluate_author_credibility) and the Claude path
     (evaluate_author_credibility_claude in evaluate_preprint_claude.py) so the
     two never drift out of sync the way they did after the 2026-07-22
@@ -1992,20 +1894,8 @@ def _compose_author_credibility_result(parsed: dict, author_data: dict | None = 
             "justification": block.get("justification", ""),
         }
 
-    # institutional_collaboration comes from the verified institution count when
-    # there is one. With no institution data at all the model's read stands: an
-    # empty lookup is missing evidence, not proof of a single-institution study.
-    n_institutes = parsed.get("n_institutes", 0)
-    n_verified = _count_distinct_institutions((author_data or {}).get("ror_results", []),
-                                              (author_data or {}).get("unregistered_affiliations", []))
-    if n_verified:
-        collab = sub_scores["institutional_collaboration"]
-        code_score = _score_from_institution_count(n_verified)
-        if code_score != collab["score"]:
-            collab["score_note"] = (f"set to {code_score} from {n_verified} distinct "
-                                    f"institution(s) in the enrichment; model had scored {collab['score']}")
-        collab["score"] = code_score
-        n_institutes = n_verified
+    # the count the model was given (_build_author_prompt), not its own recount
+    n_institutes = (author_data or {}).get("n_institutes") or parsed.get("n_institutes", 0)
 
     composite = round(sum(s["score"] for s in sub_scores.values()) / len(_AUTHOR_SUB_CRITERIA))
     combined_justification = " | ".join(
@@ -2261,8 +2151,14 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
     # Step 2: enrich authors (PDF + ROR + Semantic Scholar)
     author_data = enrich_author_data(pdf_data["header_text"], client, model, pdf_path)
 
-    # Step 3: evaluate content criteria (2, 3, 4) in one LLM call — PDF sent directly
-    content_results = evaluate_content_pdf(pdf_path, criteria, client, model)
+    # Step 3: resolve the reference list in Crossref (no LLM). Its counts go into
+    # the content prompt, so the model scores references on real numbers
+    verification = verify_references(pdf_data["full_text"],
+                                     paper_authors=paper_author_names(author_data),
+                                     paper_doi=_doi_from_pdf_path(pdf_path))
+
+    # Step 3b: evaluate content criteria (2, 3, 4) in one LLM call — PDF sent directly
+    content_results = evaluate_content_pdf(pdf_path, criteria, client, model, verification)
 
     # Step 4: evaluate author credibility (1) in one LLM call
     author_results = evaluate_author_credibility(author_data, criteria, client, model)
@@ -2274,12 +2170,9 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
     # (stays manual — score: None — if this DOI has zero PREreviews)
     criterion_results["feedback"] = evaluate_feedback(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
-    # Step 5: resolve the reference list in Crossref (no LLM) and score references
-    # with it — peer review and self-citation come from Crossref's records
-    criterion_results = verify_and_score_references(criterion_results, pdf_data["full_text"], author_data,
-                                                    _doi_from_pdf_path(pdf_path))
+    criterion_results["references"]["citation_verification"] = verification
 
-    # Step 5b: validate quotes against full text (catches hallucinated evidence)
+    # Step 5: validate quotes against full text (catches hallucinated evidence)
     criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
 
     # Step 6: aggregate scores

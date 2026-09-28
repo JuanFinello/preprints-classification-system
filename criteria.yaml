@@ -161,37 +161,20 @@ criteria:
     label: "References"
     requires_external_data: false
     description: >
-      Score is computed in code, never by the LLM (_apply_reference_score). The count
-      sets the base (_score_from_reference_count: >20→3, <10→1, else→2) because the
-      model could not reliably compare its own count against a threshold — it once
-      called 58 references "within 10-20". The quality findings the model reports can
-      then only pull that base down, never push it up:
-        - any entry in "off_topic_references" caps the score at 2, since the rubric's
-          score_3 requires a domain-relevant bibliography;
-        - non-peer-reviewed entries + self-citations above half the list drops the
-          score to 1, the rubric's "overreliance on non-peer-reviewed, obscure or
-          self-citations". Since 2026-09-28 both come from Crossref's own record of
-          each entry that resolves (type → peer review, author list → self-citation,
-          see verify_references), as a share of the resolved entries. The model's
-          "non_peer_reviewed_count" / "self_citation_count" are used only when
-          Crossref resolves under half the list (_CROSSREF_MIN_COVERAGE), and the
-          score_note then says they are unverified. Off-topic stays the model's read.
-      History of this criterion: until 2026-09-14 the score came from the count ALONE
-      and quality was narrative only. Verified against a real calibration paper
-      (chikungunya diagnostics, 33 refs): the model itself named two
-      genuinely unrelated references (a fungal genome assembly, a fly-sequencing
-      study) in its justification and the paper still scored 3, while the same paper
-      scored 2 when a human judged the bibliography. That gap is what the caps close.
-      Both thresholds are provisional and should be calibrated against labelled cases,
-      like the ones in _recommendation.
+      Scored by the LLM, like every other criterion. What can be counted is counted
+      in code and handed to the model in the prompt (_reference_facts_block): the
+      number of entries, and for each entry Crossref resolves, whether it is
+      peer-reviewed (its type) and whether it is a self-citation (its author list
+      against the paper's). The model counted badly on its own: it once called 58
+      references "within 10-20". Off-topic entries and the balance of foundational
+      and recent work remain the model's own read of the list.
     evidence_to_look_for:
       - total number of references
       - presence of foundational and recent peer-reviewed literature
       - absence of overreliance on self-citations or non-peer-reviewed sources
       - references used to support methods, contextualize findings, and discuss limitations
       - specific references that are off-topic or unrelated to the paper's own
-        subject matter (report by number/author, even though this doesn't
-        change the deterministic score)
+        subject matter (report by number/author)
     score_1:
       description: >
         Few references (fewer than ~10), missing major or foundational studies.
