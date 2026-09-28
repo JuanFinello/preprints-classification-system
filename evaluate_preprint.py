@@ -133,6 +133,7 @@ def _ror_lookup(affiliation: str, session: requests.Session) -> dict:
         country = locations[0].get("geonames_details", {}).get("country_name", "") if locations else ""
         return {
             "name": _ror_org_name(org),
+            "ror": org.get("id", ""),
             "type": org.get("types", []),
             "country": country,
             "score": best.get("score", 0),
@@ -213,10 +214,18 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
     OpenAlex-derived data (institutions here, topics elsewhere) should be
     trusted as theirs.
 
-    Returns {"institutions": [...], "warnings": [...], "paper_fields": [...],
+    Returns {"found": bool, "institutions": [...], "unmatched_affiliations": [...],
+    "warnings": [...], "paper_fields": [...],
     "authors": [{"name", "id", "identity_verified"}, ...]}.
+    unmatched_affiliations are the paper's own raw affiliation strings that no
+    kept institution accounts for: OpenAlex resolved nothing for them (observed:
+    a county hospital, a small company) or its match was dropped above. They are
+    still real affiliations printed in the paper; see enrich_author_data.
+    found is whether OpenAlex has a record for the DOI at all, which is not the
+    same as having institutions: every one of them can be dropped as unverified.
     """
-    empty = {"institutions": [], "warnings": [], "paper_fields": [], "authors": []}
+    empty = {"found": False, "institutions": [], "unmatched_affiliations": [], "warnings": [],
+             "paper_fields": [], "authors": []}
     if not doi:
         return empty
     try:
@@ -234,6 +243,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
             paper_fields.append(field_name)
 
     results = []
+    unmatched = []
     warnings = []
     authors_info = []
     ror_alias_cache: dict[str, list[str]] = {}
@@ -266,6 +276,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
         })
 
         raw_text = _norm(" ".join(a.get("raw_affiliation_strings", [])))
+        matched_texts = []  # the name or alias each kept institution was found under
         for inst in a.get("institutions", []):
             name = inst.get("display_name", "")
             if not name:
@@ -286,6 +297,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
                 results.append(entry)
             elif re.search(r"\b" + re.escape(_norm(name)) + r"\b", raw_text):
                 results.append(entry)
+                matched_texts.append(name)
             else:
                 ror_id = inst.get("ror", "")
                 if ror_id and ror_id not in ror_alias_cache:
@@ -302,6 +314,7 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
                         f"name — kept."
                     )
                     results.append(entry)
+                    matched_texts.append(matched_alias)
                 else:
                     warnings.append(
                         f"OpenAlex matched '{name}' to '{author_name}' but that name "
@@ -309,7 +322,12 @@ def _openalex_institutions_by_doi(doi: str, session: requests.Session) -> dict:
                         f"in the paper's own affiliation text — dropped as a likely "
                         f"mismatch."
                     )
-    return {"institutions": results, "warnings": warnings, "paper_fields": paper_fields, "authors": authors_info}
+        for raw in a.get("raw_affiliation_strings", []):
+            if not any(re.search(r"\b" + re.escape(_norm(t)) + r"\b", _norm(raw)) for t in matched_texts):
+                unmatched.append({"author": author_name, "position": a.get("author_position", ""),
+                                  "raw": raw})
+    return {"found": True, "institutions": results, "unmatched_affiliations": unmatched,
+            "warnings": warnings, "paper_fields": paper_fields, "authors": authors_info}
 
 
 def _match_author_name(name_a: str, name_b: str) -> bool:
@@ -479,35 +497,26 @@ def _semantic_scholar_lookup_by_name(author_name: str, session: requests.Session
         return {}
 
 
-def _semantic_scholar_lookup_all_authors(doi: str, corresponding_author: str, session: requests.Session) -> dict:
+def _semantic_scholar_lookup_all_authors(doi: str, session: requests.Session) -> dict:
     """Fetch publication stats for every author Semantic Scholar lists on this
     paper's own DOI record — each authorId comes pre-resolved by S2 against this
     specific paper, so it's as reliable as the old single-author DOI lookup, just
-    for everyone instead of one person. Falls back to a name-only search for the
-    corresponding author alone when the paper isn't indexed under its DOI.
+    for everyone instead of one person. No name-based fallback here: when the
+    DOI isn't indexed, enrich_author_data decides whether one is needed at all
+    (OpenAlex's own author profiles usually cover the gap first).
 
-    Returns {"authors": [stats, ...], "warnings": [str, ...]}. author_credibility
-    depends entirely on this data (the LLM never sees the PDF for that criterion),
-    so any gap here directly limits how much of the rubric can actually be judged
-    — warnings surface that instead of failing silently.
+    Returns {"found": bool, "authors": [stats, ...], "warnings": [str, ...]}.
+    author_credibility depends entirely on this data (the LLM never sees the
+    PDF for that criterion), so any gap here directly limits how much of the
+    rubric can actually be judged — warnings surface that instead of failing
+    silently.
     """
     warnings = []
     paper_authors = _semantic_scholar_paper_authors(doi, session)
 
     if not paper_authors:
-        warnings.append(
-            "Semantic Scholar has no record for this DOI — falling back to a "
-            "name-only search for the corresponding author only; every other "
-            "author's expertise is unverified."
-        )
-        fallback = _semantic_scholar_lookup_by_name(corresponding_author, session) if corresponding_author else {}
-        if corresponding_author and not fallback:
-            warnings.append(
-                f"Semantic Scholar name search also failed for corresponding "
-                f"author '{corresponding_author}' — no author expertise data "
-                f"available at all for this paper."
-            )
-        return {"authors": [fallback] if fallback else [], "warnings": warnings}
+        warnings.append("Semantic Scholar has no record for this DOI.")
+        return {"found": False, "authors": [], "warnings": warnings}
 
     stats_list = []
     for a in paper_authors:
@@ -531,7 +540,7 @@ def _semantic_scholar_lookup_all_authors(doi: str, corresponding_author: str, se
             f"this paper is scored on incomplete data."
         )
 
-    return {"authors": stats_list, "warnings": warnings}
+    return {"found": True, "authors": stats_list, "warnings": warnings}
 
 
 def _llm_call(client: OpenAI, model: str, messages: list, max_tokens: int,
@@ -599,20 +608,92 @@ TEXT:
         }
 
 
+def _extracted_from_openalex(openalex: dict, institutions: list[dict],
+                             unregistered: list[dict] | None = None) -> dict:
+    """The same fields _extract_affiliations_with_llm returns, built from the
+    DOI-anchored OpenAlex record instead of a model's read of the header, so
+    everything downstream (CSV columns, exports) keeps working when no LLM
+    extraction was run. The "corresponding" author is the first-position one,
+    the same convention the author prompt already asks the model to follow."""
+    authors = openalex.get("authors", [])
+    names = [a["name"] for a in authors if a.get("name")]
+    first = next((a["name"] for a in authors if a.get("position") == "first" and a.get("name")),
+                 names[0] if names else "")
+    affiliations = list(dict.fromkeys([i["name"] for i in institutions if i.get("name")]
+                                      + [u["raw"] for u in unregistered or []]))
+    return {
+        "source": "openalex",
+        "corresponding_author": first,
+        "all_authors": names,
+        "affiliations": affiliations,
+        "n_authors": len(names),
+        "n_institutes": _count_distinct_institutions(institutions, unregistered),
+    }
+
+
+def _count_distinct_institutions(institutions: list[dict], unregistered: list[dict] | None = None) -> int:
+    """One per ROR id when there is one, otherwise per normalized name: the
+    same institution appears once per author affiliated with it. Unregistered
+    affiliations (see _resolve_unmatched_affiliations) count once per distinct
+    string: they are printed in the paper, just not in any registry."""
+    keys = {i.get("ror") or _norm(i.get("name", "")) for i in institutions if i.get("name")}
+    keys |= {_norm(u["raw"]) for u in unregistered or []}
+    return len(keys)
+
+
+def _resolve_unmatched_affiliations(unmatched: list[dict], institutions: list[dict],
+                                    session: requests.Session, warnings: list[str]) -> list[dict]:
+    """Second chance for the paper's own affiliation strings that OpenAlex
+    left without a verified institution. Without it they vanished from the
+    count and from the author prompt: a county hospital with no OpenAlex entry
+    made a two-institution study count as one, and a company affiliation (a
+    credibility flag the rubric cares about) was never shown to the model.
+
+    Each string goes to ROR's affiliation matcher, and only a match ROR itself
+    marks "chosen" is added to institutions (keeping the author link, which
+    the header fallback loses). The rest are returned as unregistered: still
+    counted, still shown, flagged as matching no registry. A string that
+    already names a kept institution is not a new one."""
+    unregistered = []
+    seen = set()
+    for u in unmatched:
+        raw_norm = _norm(u["raw"])
+        if raw_norm in seen:
+            continue
+        seen.add(raw_norm)
+        known = [i["name"] for i in institutions if i.get("name")]
+        if any(re.search(r"\b" + re.escape(_norm(n)) + r"\b", raw_norm) for n in known):
+            continue
+        result = _ror_lookup(u["raw"], session)
+        time.sleep(0.3)
+        if result.get("chosen"):
+            result.update({"author": u["author"], "position": u["position"]})
+            institutions.append(result)
+            warnings.append(f"'{result['name']}' for '{u['author']}' resolved via ROR from the "
+                            f"paper's own affiliation text (OpenAlex had no verified match).")
+        else:
+            unregistered.append(u)
+            warnings.append(f"Affiliation '{u['raw'][:120]}' ({u['author']}) matches no registry "
+                            f"entry in OpenAlex or ROR — counted and shown, unverified.")
+    return unregistered
+
+
 def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: Path) -> dict:
-    """Extract authors/affiliations and enrich with institution + author data.
+    """Enrich author and institution data, anchored on the DOI.
 
-    Institutions: tries OpenAlex first (DOI-anchored, keeps the author link,
-    real ROR ids, no cap on how many come back). Falls back to LLM-extracted
-    header affiliations queried against ROR one by one when OpenAlex has no
-    record for this DOI — every affiliation is tried (no cap), compound
-    "X; Y" strings are split first, and any lookup that comes back empty is
-    recorded as a warning instead of silently dropped.
+    Institutions: OpenAlex (DOI-anchored, keeps the author link, real ROR
+    ids, no cap on how many come back). Authors: Semantic Scholar by DOI (see
+    _semantic_scholar_lookup_all_authors), with authors it lacks backfilled
+    from OpenAlex's own profiles.
 
-    Authors: Semantic Scholar, see _semantic_scholar_lookup_all_authors.
+    Reading authors and affiliations off the PDF header with an LLM is the
+    last resort, run only when the DOI lookups leave a gap: OpenAlex has no
+    verified institution (-> its affiliations are queried against ROR one by
+    one, compound "X; Y" strings split first, every empty lookup warned), or
+    neither source produced a single author record (-> a name-only Semantic
+    Scholar search for its corresponding author). In the normal case no LLM
+    call is made and "extracted" is built from OpenAlex instead.
     """
-    extracted = _extract_affiliations_with_llm(header_text, client, model)
-
     session = requests.Session()
     session.headers["User-Agent"] = "GISAID-preprint-evaluator/1.0 (mailto:juanfinello@gmail.com)"
 
@@ -620,30 +701,12 @@ def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: P
     warnings = []
 
     openalex = _openalex_institutions_by_doi(doi, session)
-    ror_results = openalex["institutions"]
+    institutions = list(openalex["institutions"])
     warnings.extend(openalex["warnings"])
+    unregistered = _resolve_unmatched_affiliations(openalex["unmatched_affiliations"],
+                                                   institutions, session, warnings)
 
-    if ror_results:
-        institution_source = "openalex"
-    else:
-        institution_source = "ror_fallback"
-        warnings.append(
-            "OpenAlex had no verified institution data for this DOI — falling "
-            "back to header-text affiliation extraction + ROR lookup (the "
-            "author-institution link is lost in this path; institutions are "
-            "matched as a flat list)."
-        )
-        affiliations = _split_affiliations(extracted.get("affiliations", []))
-        for aff in affiliations:
-            result = _ror_lookup(aff, session)
-            if result:
-                ror_results.append(result)
-            else:
-                warnings.append(f"ROR: no match found for affiliation '{aff}'.")
-            time.sleep(0.3)
-
-    corr = extracted.get("corresponding_author", "")
-    s2_data = _semantic_scholar_lookup_all_authors(doi, corr, session)
+    s2_data = _semantic_scholar_lookup_all_authors(doi, session)
     warnings.extend(s2_data["warnings"])
 
     field_match = _openalex_author_field_match(
@@ -687,10 +750,66 @@ def enrich_author_data(header_text: str, client: OpenAI, model: str, pdf_path: P
             f"their publication stats were backfilled from OpenAlex instead."
         )
 
+    need_institutions = not institutions and not unregistered
+    need_authors = not s2_data["authors"]
+
+    if not (need_institutions or need_authors):
+        extracted = _extracted_from_openalex(openalex, institutions, unregistered)
+    else:
+        extracted = _extract_affiliations_with_llm(header_text, client, model)
+        extracted["source"] = "llm_header"
+        gaps = [g for g, needed in (("institutions", need_institutions),
+                                    ("author records", need_authors)) if needed]
+        warnings.append(
+            f"DOI lookups left no {' and no '.join(gaps)} — authors and "
+            f"affiliations were read off the PDF header by a model (unverified) "
+            f"to fill the gap."
+        )
+
+    if institutions or unregistered:
+        institution_source = "openalex"
+    else:
+        institution_source = "ror_fallback"
+        warnings.append(
+            ("OpenAlex has no record for this DOI" if not openalex["found"] else
+             "OpenAlex has a record for this DOI but no institution in it could "
+             "be verified against the paper's own affiliation text")
+            + " — falling back to the header affiliations + ROR lookup (the "
+            "author-institution link is lost in this path; institutions are "
+            "matched as a flat list)."
+        )
+        for aff in _split_affiliations(extracted.get("affiliations", [])):
+            result = _ror_lookup(aff, session)
+            if result:
+                institutions.append(result)
+            else:
+                warnings.append(f"ROR: no match found for affiliation '{aff}'.")
+            time.sleep(0.3)
+
+    if need_authors:
+        corr = extracted.get("corresponding_author", "")
+        fallback = _semantic_scholar_lookup_by_name(corr, session) if corr else {}
+        if fallback:
+            s2_data["authors"].append(fallback)
+            warnings.append(
+                f"No author record by DOI in Semantic Scholar or OpenAlex — "
+                f"matched only the corresponding author '{corr}' by name; every "
+                f"other author's expertise is unverified."
+            )
+        else:
+            warnings.append(
+                "No author record by DOI in Semantic Scholar or OpenAlex, and "
+                "the name-only search for the corresponding author "
+                f"{repr(corr) if corr else '(none read off the header)'} also "
+                "failed — no author expertise data available at all for this paper."
+            )
+
     return {
         "extracted": extracted,
-        "ror_results": ror_results,
+        "ror_results": institutions,
+        "unregistered_affiliations": unregistered,
         "institution_source": institution_source,
+        "n_institutes": _count_distinct_institutions(institutions, unregistered),
         "semantic_scholar": s2_data,
         "paper_fields": openalex.get("paper_fields", []),
         "data_quality_warnings": warnings,
@@ -989,9 +1108,30 @@ def _build_author_prompt(author_data: dict, criteria: dict) -> str:
     paper_fields = author_data.get("paper_fields", [])
 
     ror_summary = json.dumps(ror, indent=2) if ror else "No institution data found"
+    unregistered = author_data.get("unregistered_affiliations", [])
+    if unregistered:
+        ror_summary += (
+            "\n\nAffiliations printed in the paper that match no entry in OpenAlex or ROR "
+            "(no type data; could be a company, a small hospital, a local lab — judge from "
+            "the text itself, and count each as a distinct institution):\n"
+            + json.dumps(unregistered, indent=2))
     s2_summary = json.dumps(s2_authors, indent=2) if s2_authors else "No Semantic Scholar data found"
     fields_summary = ", ".join(paper_fields) if paper_fields else "Unknown (no OpenAlex field data for this paper)"
     warnings_block = "\n".join(f"- {w}" for w in all_warnings) if all_warnings else "None"
+
+    # Only shown when the DOI lookups failed and a model had to read the header
+    # (results stored before "source" existed always came from that read). In the
+    # normal case the same facts are already in the verified blocks below.
+    if extracted.get("source", "llm_header") == "openalex":
+        extracted_block = ""
+    else:
+        extracted_block = f"""
+=== AUTHOR DATA READ OFF THE PDF HEADER (unverified: DOI lookups failed) ===
+Corresponding/first author: {extracted.get("corresponding_author", "unknown")}
+All authors ({extracted.get("n_authors", "?")}): {", ".join(extracted.get("all_authors", [])[:8])}
+Distinct affiliations ({extracted.get("n_institutes", "?")}):
+{chr(10).join("- " + a for a in extracted.get("affiliations", []))}
+"""
 
     return f"""You are evaluating the authors and institutions of a scientific preprint for GISAID eligibility.
 Author credibility is scored as 3 INDEPENDENT sub-criteria — score each one on its
@@ -1012,12 +1152,7 @@ Score 1: {collab_c["score_1"]["description"]}
 Score 2: {collab_c["score_2"]["description"]}
 Score 3: {collab_c["score_3"]["description"]}
 
-=== EXTRACTED AUTHOR DATA ===
-Corresponding/first author: {extracted.get("corresponding_author", "unknown")}
-All authors ({extracted.get("n_authors", "?")}): {", ".join(extracted.get("all_authors", [])[:8])}
-Distinct affiliations ({extracted.get("n_institutes", "?")}):
-{chr(10).join("- " + a for a in extracted.get("affiliations", []))}
-
+{extracted_block}
 === INSTITUTION DATA (source: {institution_source}) ===
 {ror_summary}
 
@@ -1045,7 +1180,7 @@ reputability and author expertise; it isn't capped just because sub-criterion 3
   "education"/"Education" or "facility"/"Research" institutions are credible; "company"/"Company"
   or missing data is a flag. Same vocabulary whether the source is OpenAlex or ROR. For score_3,
   use each institution's own "position" field (already "first"/"middle"/"last", not something to
-  infer by matching names against the corresponding_author string above) to identify the
+  infer by matching author names) to identify the
   main/corresponding author's institution directly — "first" or "last" is the main/corresponding
   author by academic convention.
 - Sub-criterion 2 (author expertise): use the publication stats (paper_count > 10 and h_index > 3
@@ -1068,6 +1203,7 @@ reputability and author expertise; it isn't capped just because sub-criterion 3
   on a middle author; conversely, a first/last author with field_match:false or no verifiable expertise
   is a more significant gap than the same being true of one middle author among many.
 - Sub-criterion 3 (institutional collaboration): count distinct institutions from INSTITUTION DATA above.
+  (The final score for this row is recomputed in code from the same count; give your own read anyway.)
 - If ROR/OpenAlex or Semantic Scholar returned no data, or DATA QUALITY WARNINGS above flags
   missing/incomplete coverage, note the uncertainty but do not automatically penalize — unverified
   is not the same as lacking credibility or expertise.
@@ -1113,12 +1249,21 @@ def _score_from_reference_count(n: int) -> int:
 # reports what it found; the rule lives here, same split as the count itself.
 _OFF_TOPIC_CAP = 2       # any genuinely off-topic entry blocks the "domain-relevant" requirement of a 3
 _LOW_QUALITY_SHARE = 0.5  # provisional, like the _recommendation thresholds: calibrate against labelled cases
+# Below this share of entries resolved in Crossref, its counts describe too little
+# of the list to replace the model's (e.g. a bibliography of agency reports, or a
+# garbled references section); the model's counts are used and marked unverified.
+_CROSSREF_MIN_COVERAGE = 0.5
 
 
-def _apply_reference_score(ref: dict) -> dict:
+def _apply_reference_score(ref: dict, verification: dict | None = None) -> dict:
     """Set references' score from the count, then apply the quality gates.
     Fields other than reference_count are optional: results produced before
-    they existed score exactly as they did then."""
+    they existed score exactly as they did then.
+
+    With a Crossref verification (verify_references) that resolved enough of
+    the list, the overreliance gate runs on Crossref's own record of each
+    resolved entry (type → peer review, author list → self-citation) instead
+    of the counts the model reported; see _CROSSREF_MIN_COVERAGE."""
     n = ref.get("reference_count")
     if not isinstance(n, int):
         ref["score"] = 1
@@ -1134,15 +1279,35 @@ def _apply_reference_score(ref: dict) -> dict:
         notes.append(f"capped at {_OFF_TOPIC_CAP}: {len(off_topic)} off-topic reference(s) reported "
                      f"({'; '.join(str(x) for x in off_topic)[:200]})")
 
-    low_quality = (ref.get("non_peer_reviewed_count") or 0) + (ref.get("self_citation_count") or 0)
-    if n > 0 and low_quality / n > _LOW_QUALITY_SHARE and score > 1:
+    n_checked = (verification or {}).get("n_resolved", 0)
+    n_found = (verification or {}).get("n_entries_found", 0)
+    if n_found and n_checked / n_found >= _CROSSREF_MIN_COVERAGE:
+        # Share over the entries Crossref could vouch for: an unresolved entry
+        # carries no verified type or author list either way.
+        low_quality, base = verification["n_low_quality"], n_checked
+        source = (f"Crossref ({verification['n_non_peer_reviewed']} non-peer-reviewed, "
+                  f"{verification['n_self_citations']} self-citations among {n_checked} resolved "
+                  f"of {n_found} entries)")
+        ref["quality_source"] = "crossref"
+    else:
+        low_quality = (ref.get("non_peer_reviewed_count") or 0) + (ref.get("self_citation_count") or 0)
+        base = n
+        source = "the model's own count (unverified"
+        source += (f": Crossref resolved only {n_checked} of {n_found} entries)" if n_found
+                   else ")")
+        ref["quality_source"] = "model"
+
+    if base > 0 and low_quality / base > _LOW_QUALITY_SHARE and score > 1:
         score = 1
-        notes.append(f"dropped to 1: {low_quality} of {n} references are non-peer-reviewed "
-                     f"or self-citations, over the {_LOW_QUALITY_SHARE:.0%} overreliance threshold")
+        notes.append(f"dropped to 1: {low_quality} of {base} references are non-peer-reviewed "
+                     f"or self-citations per {source}, over the {_LOW_QUALITY_SHARE:.0%} "
+                     f"overreliance threshold")
 
     ref["score"] = score
     if notes:
         ref["score_note"] = " | ".join(notes)
+    else:
+        ref.pop("score_note", None)
     return ref
 
 
@@ -1316,6 +1481,8 @@ def _crossref_record(item: dict) -> dict:
         "type": item.get("type", ""),
         "container": (item.get("container-title") or [""])[0],
         "authors": [a.get("family", "") for a in (item.get("author") or []) if a.get("family")],
+        "author_names": [f"{a.get('given', '')} {a['family']}".strip()
+                         for a in (item.get("author") or []) if a.get("family")],
         "year": year,
         "cited_by": item.get("is-referenced-by-count"),
     }
@@ -1384,7 +1551,38 @@ def _crossref_search_bibliographic(entry_text: str, session: requests.Session) -
     return rec
 
 
-def verify_references(full_text: str, session: requests.Session | None = None) -> dict:
+# Crossref work types that are not peer-reviewed publications. Deliberately
+# narrow: books, chapters and proceedings stay out of it, since some are
+# reviewed and the type alone cannot tell.
+_NON_PEER_REVIEWED_TYPES = {"posted-content", "report", "dataset"}
+
+
+def _is_self_citation(record: dict, paper_authors: list[str], entry_text: str) -> bool:
+    """A cited work is a self-citation when any of its authors is one of this
+    paper's own authors. Full names, surname plus compatible first name
+    (_match_author_name), not surnames alone: a shared surname like Wang or
+    Silva is not a self-citation. The shared author's surname must also be
+    printed in the entry itself, so a Crossref record matched to the wrong
+    work (observed: a WHO guidance document matched by bibliographic search
+    to an earlier paper by the same authors) can't make one up."""
+    entry_norm = _norm(entry_text)
+    for cited in record.get("author_names", []):
+        surname = _norm(cited).split()[-1] if cited.strip() else ""
+        if surname and re.search(r"\b" + re.escape(surname) + r"\b", entry_norm) \
+                and any(_match_author_name(cited, own) for own in paper_authors):
+            return True
+    return False
+
+
+def paper_author_names(author_data: dict) -> list[str]:
+    """Every author name the enrichment has for this paper, from any source."""
+    names = list((author_data.get("extracted") or {}).get("all_authors", []))
+    names += [a.get("name", "") for a in (author_data.get("semantic_scholar") or {}).get("authors", [])]
+    return list(dict.fromkeys(n for n in names if n))
+
+
+def verify_references(full_text: str, session: requests.Session | None = None,
+                      paper_authors: list[str] | None = None, paper_doi: str = "") -> dict:
     """Non-LLM verification of the reference list via Crossref: confirms each
     entry either carries a DOI that actually resolves, or can be matched to a
     real indexed work by bibliographic search. Purely informational — does
@@ -1394,7 +1592,17 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
     extraction, a fabricated/mismatched citation, OR simply a work outside
     Crossref's coverage (some gray literature, government/agency reports,
     non-English-indexed journals) — "unresolved" is a prompt to check
-    manually, not proof of fabrication."""
+    manually, not proof of fabrication.
+
+    For every entry that resolves, Crossref's own record also says whether it
+    is peer-reviewed (its type, see _NON_PEER_REVIEWED_TYPES) and, given the
+    paper's own authors, whether it is a self-citation. Those counts feed the
+    overreliance gate in _apply_reference_score in place of the model's."""
+    paper_authors = paper_authors or []
+    # The paper's own DOI is not a citation: journal page footers (observed on
+    # MDPI) print it on every page, and one landing inside the last entry of a
+    # page made that entry resolve to the paper itself.
+    own_doi = paper_doi.lower()
     session = session or requests.Session()
     section = _extract_references_section(full_text)
     entries = _split_reference_entries(section)
@@ -1403,13 +1611,14 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
     for i, entry in enumerate(entries):
         if i > 0:
             time.sleep(0.35)  # stay under the polite pool's 3 req/s even before any 429 forces a retry
-        doi_match = _DOI_RE.search(entry)
+        doi_match = next((m for m in _DOI_RE.finditer(entry)
+                          if _clean_doi(m.group(0)).lower() != own_doi), None)
         resolved_via_doi = False
         if doi_match:
             doi = _clean_doi(doi_match.group(0))
             result = _crossref_lookup_doi(doi, session)
             if result:
-                checked.append({"entry": entry[:160], "resolved": True,
+                checked.append({"entry": entry[:160], "full_entry": entry, "resolved": True,
                                  "method": "doi_in_text", "doi": result["doi"],
                                  "record": result})
                 resolved_via_doi = True
@@ -1427,7 +1636,7 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
             result = _crossref_search_bibliographic(entry, session)
             plausible, why = _match_is_plausible(entry, result) if result else (False, "no candidate returned")
             if plausible:
-                checked.append({"entry": entry[:160], "resolved": True,
+                checked.append({"entry": entry[:160], "full_entry": entry, "resolved": True,
                                  "method": "bibliographic_search" if not doi_match else "bibliographic_search_doi_fallback",
                                  "doi": result["doi"], "match_score": result.get("score"),
                                  "match_check": why, "record": result})
@@ -1437,13 +1646,37 @@ def verify_references(full_text: str, session: requests.Session | None = None) -
                                  "match_check": why,
                                  **({"doi": _clean_doi(doi_match.group(0))} if doi_match else {})})
 
-    n_resolved = sum(1 for c in checked if c["resolved"])
+    resolved = [c for c in checked if c["resolved"]]
+    for c in resolved:
+        c["non_peer_reviewed"] = c["record"].get("type", "") in _NON_PEER_REVIEWED_TYPES
+        c["self_citation"] = _is_self_citation(c["record"], paper_authors, c.pop("full_entry"))
     return {
         "n_entries_found": len(checked),
-        "n_resolved": n_resolved,
-        "n_unresolved": len(checked) - n_resolved,
+        "n_resolved": len(resolved),
+        "n_unresolved": len(checked) - len(resolved),
+        "n_non_peer_reviewed": sum(c["non_peer_reviewed"] for c in resolved),
+        "n_self_citations": sum(c["self_citation"] for c in resolved),
+        "n_low_quality": sum(c["non_peer_reviewed"] or c["self_citation"] for c in resolved),
+        "self_citation_checked": bool(paper_authors),
+        "flagged": [{"entry": c["entry"], "doi": c["doi"], "type": c["record"].get("type", ""),
+                     "non_peer_reviewed": c["non_peer_reviewed"], "self_citation": c["self_citation"]}
+                    for c in resolved if c["non_peer_reviewed"] or c["self_citation"]],
         "unresolved": [c for c in checked if not c["resolved"]],
     }
+
+
+def verify_and_score_references(criterion_results: dict, full_text: str, author_data: dict,
+                                paper_doi: str = "") -> dict:
+    """Resolve the reference list in Crossref, then score references with it.
+    Must run before validate_quotes, whose 3→2 downgrade would otherwise be
+    overwritten by the rescore. Shared by every backend."""
+    ref = criterion_results["references"]
+    verification = verify_references(full_text, paper_authors=paper_author_names(author_data),
+                                     paper_doi=paper_doi)
+    ref["citation_verification"] = verification
+    if not ref.get("error"):
+        _apply_reference_score(ref, verification)
+    return criterion_results
 
 
 # ─── PREreview feedback lookup (no LLM for fetching; real HTML, no JS) ──────
@@ -1729,7 +1962,18 @@ def evaluate_content_pdf(pdf_path: Path, criteria: dict, client: OpenAI, model: 
 _AUTHOR_SUB_CRITERIA = ("institution_reputability", "author_expertise", "institutional_collaboration")
 
 
-def _compose_author_credibility_result(parsed: dict) -> dict:
+def _score_from_institution_count(n: int) -> int:
+    """institutional_collaboration straight from the rubric: single institution
+    → 1, 2-3 → 2, more than 3 → 3. Computed in code like the reference count,
+    because the count is a fact the enrichment already has."""
+    if n > 3:
+        return 3
+    if n >= 2:
+        return 2
+    return 1
+
+
+def _compose_author_credibility_result(parsed: dict, author_data: dict | None = None) -> dict:
     """Combine the 3 independent author_credibility sub-scores into the final
     composite (average, rounded to the nearest integer) — the composite is
     never left to the LLM's own arithmetic, same principle as
@@ -1748,6 +1992,21 @@ def _compose_author_credibility_result(parsed: dict) -> dict:
             "justification": block.get("justification", ""),
         }
 
+    # institutional_collaboration comes from the verified institution count when
+    # there is one. With no institution data at all the model's read stands: an
+    # empty lookup is missing evidence, not proof of a single-institution study.
+    n_institutes = parsed.get("n_institutes", 0)
+    n_verified = _count_distinct_institutions((author_data or {}).get("ror_results", []),
+                                              (author_data or {}).get("unregistered_affiliations", []))
+    if n_verified:
+        collab = sub_scores["institutional_collaboration"]
+        code_score = _score_from_institution_count(n_verified)
+        if code_score != collab["score"]:
+            collab["score_note"] = (f"set to {code_score} from {n_verified} distinct "
+                                    f"institution(s) in the enrichment; model had scored {collab['score']}")
+        collab["score"] = code_score
+        n_institutes = n_verified
+
     composite = round(sum(s["score"] for s in sub_scores.values()) / len(_AUTHOR_SUB_CRITERIA))
     combined_justification = " | ".join(
         f"{key}: {sub_scores[key]['justification']}" for key in _AUTHOR_SUB_CRITERIA
@@ -1759,7 +2018,7 @@ def _compose_author_credibility_result(parsed: dict) -> dict:
             "justification": combined_justification,
             "sub_scores": sub_scores,
             "institutions_assessed": parsed.get("institutions_assessed", []),
-            "n_institutes": parsed.get("n_institutes", 0),
+            "n_institutes": n_institutes,
             "corresponding_author_papers": parsed.get("corresponding_author_papers", 0),
             "flags": parsed.get("flags", []),
         }
@@ -1804,7 +2063,7 @@ def evaluate_author_credibility(author_data: dict, criteria: dict, client: OpenA
         return _failed_author_credibility_result(
             f"could not parse response as JSON ({e})", raw, finish_reason, usage)
 
-    return _compose_author_credibility_result(parsed)
+    return _compose_author_credibility_result(parsed, author_data)
 
 
 # ─── quote validation ────────────────────────────────────────────────────────
@@ -2015,11 +2274,13 @@ def evaluate_preprint(pdf_path: Path, criteria_path: Path, model: str, client: O
     # (stays manual — score: None — if this DOI has zero PREreviews)
     criterion_results["feedback"] = evaluate_feedback(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
-    # Step 5: validate quotes against full text (catches hallucinated evidence)
-    criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
+    # Step 5: resolve the reference list in Crossref (no LLM) and score references
+    # with it — peer review and self-citation come from Crossref's records
+    criterion_results = verify_and_score_references(criterion_results, pdf_data["full_text"], author_data,
+                                                    _doi_from_pdf_path(pdf_path))
 
-    # Step 5b: verify the reference list against Crossref (no LLM, informational only)
-    criterion_results["references"]["citation_verification"] = verify_references(pdf_data["full_text"])
+    # Step 5b: validate quotes against full text (catches hallucinated evidence)
+    criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
 
     # Step 6: aggregate scores
     scoring = compute_scores(criterion_results)

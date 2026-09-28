@@ -120,6 +120,8 @@ def _flatten(result: dict) -> dict:
     row["n_authors"] = extracted.get("n_authors", "")
     row["n_institutes"] = extracted.get("n_institutes", "")
     row["corresponding_author"] = extracted.get("corresponding_author", "")
+    row["author_data_source"] = extracted.get("source", "llm_header")
+    row["references_quality_source"] = criteria.get("references", {}).get("quality_source", "")
     row["s2_authors_verified"] = len(s2_authors)
     row["s2_avg_hindex"] = (
         round(sum(a.get("h_index", 0) for a in s2_authors) / len(s2_authors), 1)

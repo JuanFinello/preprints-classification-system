@@ -49,7 +49,7 @@ from evaluate_preprint import (
     extract_pdf,
     fetch_prereview_data,
     validate_quotes,
-    verify_references,
+    verify_and_score_references,
 )
 
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
@@ -97,7 +97,7 @@ def evaluate_author_credibility_deepseek(author_data: dict, criteria: dict, clie
     except Exception as e:
         return _failed_author_credibility_result(f"could not parse response as JSON ({e})", raw)
 
-    return _compose_author_credibility_result(parsed)
+    return _compose_author_credibility_result(parsed, author_data)
 
 
 def evaluate_feedback_deepseek(doi: str, criteria: dict, client: OpenAI, model: str) -> dict:
@@ -149,8 +149,9 @@ def evaluate_preprint_deepseek(pdf_path: Path, criteria_path: Path, model: str,
     criterion_results = {**author_results, **content_results}
     criterion_results["feedback"] = evaluate_feedback_deepseek(_doi_from_pdf_path(pdf_path), criteria, client, model)
 
+    criterion_results = verify_and_score_references(
+        criterion_results, pdf_data["full_text"], author_data, _doi_from_pdf_path(pdf_path))
     criterion_results = validate_quotes(criterion_results, pdf_data["full_text"])
-    criterion_results["references"]["citation_verification"] = verify_references(pdf_data["full_text"])
     scoring = compute_scores(criterion_results)
 
     checked = ["research_question_and_methods", "results_and_conclusion", "references"]
