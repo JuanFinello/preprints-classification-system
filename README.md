@@ -48,7 +48,8 @@ flowchart TD
     D2 -. only if the DOI lookups<br/>leave a gap .-> C[LLM 1<br/>read authors & affiliations<br/>off the header, unverified]
     D3 -.-> C
     B -.-> C
-    C -. no verified institution .-> D1[ROR<br/>affiliation strings<br/>author link lost, warned]
+    D2 -- affiliations it<br/>could not verify --> D1[ROR<br/>affiliation strings<br/>unmatched ones kept as unregistered]
+    C -. no verified institution .-> D1
     C -. no author record .-> D4[Semantic Scholar<br/>name search<br/>corresponding author only]
 
     D2 --> F[LLM 2<br/>criterion 1: author credibility<br/>structured data only, no paper text]
